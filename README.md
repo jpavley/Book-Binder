@@ -16,4 +16,4 @@ Just getting started. Not much to see. If you'd like to contribute reach out on 
 - Infer metadata from shooting a picture of a book or published object
 - If the book is part of series or multiple volumes Book Binder should help you discover what is missing
 - Records your personal rating and feeling about a book
-- Social sharing
+- Social sharing: Snap Chat for Books
