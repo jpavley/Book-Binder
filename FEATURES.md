@@ -1,10 +1,19 @@
 # Features
 
+_Note: Need to update to include the idea of showing all the books in a Series
+Object. This means a detail view for series as well as books. So now we're
+looking at a four or five view app as we'll want to separate capture from
+Book Object Detail View as well. Capture view enables shooting a photo to
+add a book to a collection. Capturing may create or extend a Series Object
+and well as alway create a Book Event. The new list of views are: Capture,
+Book Detail, Timeline, Summary, and Series Overview._
+
 ## Views
 
  Book Binder has three views: Detail, Timeline, and Summary. These views enable
  users to manage their collections at the book and series level as well as well
  as a chronological feed or a ordered list.
+
 ## Detail View
 
  Detail view enable the user to manage their books. Detail view is a sub-view of
@@ -20,10 +29,10 @@
 
 References
 
-* https://schema.org/CreativeWork and specific types
-* https://schema.org/SocialMediaPosting and specific types
-* https://schema.org/ItemList and specific types
-* https://schema.org/Product and specific types
+* <https://schema.org/CreativeWork> and specific types
+* <https://schema.org/SocialMediaPosting> and specific types
+* <https://schema.org/ItemList> and specific types
+* <https://schema.org/Product> and specific types
 
 * Identity
   * Title
