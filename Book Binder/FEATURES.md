@@ -132,8 +132,8 @@ touch.
   * List of Missing Book Index Numbers
   * Visible Flag
 
-  * Actions
-    * Edit Visibility
-    * Go to Collected Book
-    * Add Missing Book
-    * Add Next Book
+* Actions
+  * Edit Visibility
+  * Go to Collected Book
+  * Add Missing Book
+  * Add Next Book
