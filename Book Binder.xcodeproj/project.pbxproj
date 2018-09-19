@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */ = {isa = PBXBuildFile; fileRef = 4824760021528AF70039399D /* UX for Book Binder Summary View.png */; };
 		483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B7214ED8E9008C69D8 /* AppDelegate.swift */; };
 		483C61BA214ED8E9008C69D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B9214ED8E9008C69D8 /* ViewController.swift */; };
 		483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483C61BB214ED8E9008C69D8 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4824760021528AF70039399D /* UX for Book Binder Summary View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UX for Book Binder Summary View.png"; sourceTree = "<group>"; };
 		483C61B4214ED8E9008C69D8 /* Book Binder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Binder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		483C61B7214ED8E9008C69D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		483C61B9214ED8E9008C69D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,12 +42,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		482475FF21528A930039399D /* UX Designs */ = {
+			isa = PBXGroup;
+			children = (
+				4824760021528AF70039399D /* UX for Book Binder Summary View.png */,
+			);
+			path = "UX Designs";
+			sourceTree = "<group>";
+		};
 		483C61AB214ED8E9008C69D8 = {
 			isa = PBXGroup;
 			children = (
 				48FBD3042151405000D2A14B /* README.md */,
 				48FBD3032151405000D2A14B /* LICENSE */,
 				48FBD3072151409400D2A14B /* FEATURES.md */,
+				482475FF21528A930039399D /* UX Designs */,
 				483C61B6214ED8E9008C69D8 /* Book Binder */,
 				483C61B5214ED8E9008C69D8 /* Products */,
 			);
@@ -134,6 +145,7 @@
 				483C61BF214ED8EB008C69D8 /* Assets.xcassets in Resources */,
 				48FBD3062151405000D2A14B /* README.md in Resources */,
 				48FBD3052151405000D2A14B /* LICENSE in Resources */,
+				4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */,
 				483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

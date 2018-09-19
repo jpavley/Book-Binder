@@ -1,12 +1,17 @@
 # Features
 
-_Note: Need to update to include the idea of showing all the books in a Series
+_TODO: Need to update to include the idea of showing all the books in a Series
 Object. This means a detail view for series as well as books. So now we're
 looking at a four or five view app as we'll want to separate capture from
 Book Object Detail View as well. Capture view enables shooting a photo to
 add a book to a collection. Capturing may create or extend a Series Object
 and well as alway create a Book Event. The new list of views are: Capture,
 Book Detail, Timeline, Summary, and Series Overview._
+
+_TODO: Include the price paid and the estimated current value of a collected
+book. Update Detail and Summary Views to report on costs and value. This
+points to the need for an overview of the collection which could include it's
+total count, cost, and value._
 
 ## Views
 
