@@ -56,9 +56,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let text = collectionData[indexPath.row]
         print("selected \(text)")
-        
-
-
     }
 }
 
