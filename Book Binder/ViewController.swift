@@ -60,8 +60,16 @@ class ViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         
         super.setEditing(editing, animated: animated)
-        
         addButton.isEnabled = !editing
+        collectionView.allowsMultipleSelection = editing
+        
+        // set the editing state of each visible cell
+        
+        let indexPaths = collectionView.indexPathsForVisibleItems
+        for indexPath in indexPaths {
+            let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
+            cell.isEditing = editing
+        }
     }
     
     
@@ -91,17 +99,29 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell",
-                                                      for: indexPath)
+                                                      for: indexPath) as! CollectionViewCell
         
-        if let label = cell.viewWithTag(100) as? UILabel {
-            label.text = collectionData[indexPath.row]
-        }
+        // editing mode
+        
+        cell.titleLabel.text = collectionData[indexPath.row]
+        cell.isEditing = isEditing
+        
+        // code prior to custom collection cell
+        
+//        if let label = cell.viewWithTag(100) as? UILabel {
+//            label.text = collectionData[indexPath.row]
+//        }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
+        
+        if isEditing {
+            // Don't segue if in editing mode
+            return
+        }
         
         let text = collectionData[indexPath.row]
         print("selected \(text)")
