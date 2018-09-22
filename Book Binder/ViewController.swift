@@ -60,6 +60,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier != "DetailSegue" {
+            return
+        }
+        
         if let dest = segue.destination as? DetailViewController,
             let index = collectionView.indexPathsForSelectedItems?.first {
             

@@ -48,7 +48,7 @@
                                             <constraint firstItem="7Xm-CH-IWv" firstAttribute="centerY" secondItem="NKw-ev-Cdh" secondAttribute="centerY" id="fG8-0d-8U9"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="6F6-9h-lCG" kind="show" id="aQ2-rl-2KK"/>
+                                            <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="aQ2-rl-2KK"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
