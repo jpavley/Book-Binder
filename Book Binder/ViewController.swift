@@ -17,13 +17,29 @@ class ViewController: UIViewController {
     
     @IBAction func addItem() {
         
-        // First: Add the new data to the data model
-        let text = "\(collectionData.count + 1) 👽"
-        collectionData.append(text)
+        // add more than one item per touch
         
-        // Second: Update the collection view
-        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
-        collectionView.insertItems(at: [indexPath])
+        collectionView.performBatchUpdates({
+            for _ in 0 ..< 2 {
+                // First: Add the new data to the data model
+                let text = "\(collectionData.count + 1) 👽"
+                collectionData.append(text)
+                
+                // Second: Update the collection view
+                let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+                collectionView.insertItems(at: [indexPath])
+            }
+        }, completion: nil)
+        
+        // add only one item per touch
+        
+//        // First: Add the new data to the data model
+//        let text = "\(collectionData.count + 1) 👽"
+//        collectionData.append(text)
+//        
+//        // Second: Update the collection view
+//        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+//        collectionView.insertItems(at: [indexPath])
     }
 
     override func viewDidLoad() {
