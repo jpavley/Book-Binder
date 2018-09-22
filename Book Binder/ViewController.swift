@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var addButton: UIBarButtonItem!
     
     let columnCount = CGFloat(3)
     
@@ -19,7 +20,7 @@ class ViewController: UIViewController {
     
     @IBAction func addItem() {
         
-        // add more than one item per touch
+        // add one item per touch
         
         collectionView.performBatchUpdates({
             addItems(itemList: ["\(collectionData.count + 1) 😈"])
@@ -50,13 +51,25 @@ class ViewController: UIViewController {
         // This one line of code does so much!
         // - Adds an edit button to the left side of the
         // - Toggles the button between Edit and Done
-        // - Toggles the view between editing and not-editing mode
+        // - Toggles the view controller between editing and not-editing mode
         navigationItem.leftBarButtonItem = editButtonItem
     }
+    
+    // editing mode
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        
+        addButton.isEnabled = !editing
+    }
+    
     
     // pull to refresh
     
     @objc func refresh() {
+        
+        // ad more than one item per pull
         
         collectionView.performBatchUpdates({
             addItems(itemList: ["\(collectionData.count + 1) 👽", "\(collectionData.count + 2) 💩"])

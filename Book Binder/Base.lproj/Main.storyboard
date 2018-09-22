@@ -72,6 +72,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="VrF-Uc-5HI" id="mye-id-MUq"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>
                     </connections>
