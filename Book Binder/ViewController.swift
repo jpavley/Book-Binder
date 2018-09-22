@@ -56,6 +56,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let text = collectionData[indexPath.row]
         print("selected \(text)")
+        
+        // code for selection passing with manual segue
+        
+        performSegue(withIdentifier: "DetailSegue", sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,11 +68,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return
         }
         
+        // code for selection passing with manual segue
+        
         if let dest = segue.destination as? DetailViewController,
-            let index = collectionView.indexPathsForSelectedItems?.first {
+            let index = sender as? IndexPath {
             
             dest.selection = collectionData[index.row]
         }
+
+        
+        // orignal code for selection passing with automated segue
+        
+//        if let dest = segue.destination as? DetailViewController,
+//            let index = collectionView.indexPathsForSelectedItems?.first {
+//
+//            dest.selection = collectionData[index.row]
+//        }
     }
 }
 
