@@ -20,31 +20,15 @@ class ViewController: UIViewController {
         // add more than one item per touch
         
         collectionView.performBatchUpdates({
-            for _ in 0 ..< 2 {
-                // First: Add the new data to the data model
-                let text = "\(collectionData.count + 1) 👽"
-                collectionData.append(text)
-                
-                // Second: Update the collection view
-                let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
-                collectionView.insertItems(at: [indexPath])
-            }
+            addItems(itemList: ["\(collectionData.count + 1) 😈"])
         }, completion: nil)
-        
-        // add only one item per touch
-        
-//        // First: Add the new data to the data model
-//        let text = "\(collectionData.count + 1) 👽"
-//        collectionData.append(text)
-//
-//        // Second: Update the collection view
-//        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
-//        collectionView.insertItems(at: [indexPath])
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // cllection vuew layout sizing
         
         let collectionViewMinSpacing = CGFloat(10)
         let columnCount = CGFloat(3)
@@ -55,13 +39,21 @@ class ViewController: UIViewController {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
         
+        // pull to refresh
+        
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         collectionView.refreshControl = refresh
     }
     
+    // pull to refresh
+    
     @objc func refresh() {
-        addItem()
+        
+        collectionView.performBatchUpdates({
+            addItems(itemList: ["\(collectionData.count + 1) 👽", "\(collectionData.count + 2) 💩"])
+        }, completion: nil)
+        
         collectionView.refreshControl?.endRefreshing()
     }
 }
@@ -120,6 +112,30 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 //
 //            dest.selection = collectionData[index.row]
 //        }
+    }
+}
+
+/// Adding one more items
+extension ViewController {
+    
+    func addItems(itemList: [String]) {
+        for item in itemList {
+            
+            // First update model
+            addItemToModel(item: item)
+            
+            // Second update view
+            updateCollectionView()
+        }
+    }
+    
+    func addItemToModel(item: String) {
+        collectionData.append(item)
+    }
+    
+    func updateCollectionView() {
+        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+        collectionView.insertItems(at: [indexPath])
     }
 }
 
