@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Summary VIew-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Summary VIew" customClass="ViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,6 +47,9 @@
                                             <constraint firstItem="7Xm-CH-IWv" firstAttribute="centerX" secondItem="NKw-ev-Cdh" secondAttribute="centerX" id="c4l-oT-Hvz"/>
                                             <constraint firstItem="7Xm-CH-IWv" firstAttribute="centerY" secondItem="NKw-ev-Cdh" secondAttribute="centerY" id="fG8-0d-8U9"/>
                                         </constraints>
+                                        <connections>
+                                            <segue destination="6F6-9h-lCG" kind="show" id="aQ2-rl-2KK"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -70,6 +73,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Detail View-->
+        <scene sceneID="Lhl-Yj-ALX">
+            <objects>
+                <viewController id="6F6-9h-lCG" userLabel="Detail View" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cLF-Lk-Apy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV2-j1-npG">
+                                <rect key="frame" x="117" y="273.5" width="86" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fV2-j1-npG" firstAttribute="centerX" secondItem="cLF-Lk-Apy" secondAttribute="centerX" id="1Cr-aK-NLx"/>
+                            <constraint firstItem="fV2-j1-npG" firstAttribute="centerY" secondItem="cLF-Lk-Apy" secondAttribute="centerY" id="Sb4-Rm-QBc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tjh-zU-fAW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="919" y="33"/>
         </scene>
     </scenes>
 </document>
