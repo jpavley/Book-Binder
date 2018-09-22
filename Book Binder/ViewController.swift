@@ -17,21 +17,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        
+        return collectionData.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell",
+                                                      for: indexPath)
+        
+        if let label = cell.viewWithTag(100) as? UILabel {
+            label.text = collectionData[indexPath.row]
+        }
+        
+        return cell
     }
-    
-    
 }
 
