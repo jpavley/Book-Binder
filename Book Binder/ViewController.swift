@@ -28,6 +28,38 @@ class ViewController: UIViewController {
         }, completion: nil)
     }
     
+    @IBAction func deleteItems() {
+        
+        if let selected = collectionView.indexPathsForSelectedItems {
+            
+            // sort and reverse the order of the selected items so we
+            // are deleting them last to first and not messing up
+            // the index paths. Otherwise we would have to delete
+            // by tag or id. Index paths are based on position from the
+            // beginning of the visible items.
+            let items = selected.map { $0.item }.sorted().reversed()
+            for item in items {
+                collectionData.remove(at: item)
+            }
+            
+            collectionView.deleteItems(at: selected)
+        }
+        
+        // my code
+        
+//        if let indexPaths = collectionView!.indexPathsForSelectedItems {
+//
+//            collectionView.performBatchUpdates({
+//
+//                for indexPath in indexPaths {
+//                    collectionData.remove(at: indexPath.row)
+//                    collectionView.deleteItems(at: [indexPath])
+//                }
+//            }, completion: nil)
+//        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
