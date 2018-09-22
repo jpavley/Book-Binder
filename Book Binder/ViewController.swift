@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // collection vuew layout sizing
+        // collection view layout sizing
         
         let collectionViewMinSpacing = CGFloat(10)
         let spacesBetweenColumns = columnCount - 1
@@ -45,6 +45,13 @@ class ViewController: UIViewController {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
         collectionView.refreshControl = refresh
+        
+        // editing mode
+        // This one line of code does so much!
+        // - Adds an edit button to the left side of the
+        // - Toggles the button between Edit and Done
+        // - Toggles the view between editing and not-editing mode
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     // pull to refresh
