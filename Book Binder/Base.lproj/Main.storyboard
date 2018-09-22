@@ -60,7 +60,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uSc-2I-9lN" secondAttribute="trailing" id="LBL-pg-qVu"/>
                             <constraint firstItem="uSc-2I-9lN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M72-au-JqR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uSc-2I-9lN" secondAttribute="bottom" id="nO1-sH-FHU"/>
-                            <constraint firstItem="uSc-2I-9lN" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="yaE-8c-L2w"/>
+                            <constraint firstItem="uSc-2I-9lN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yaE-8c-L2w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
