@@ -67,7 +67,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dSP-eA-E90"/>
+                    <navigationItem key="navigationItem" title="Series" id="dSP-eA-E90"/>
                     <connections>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
                     </connections>
@@ -79,7 +79,7 @@
         <!--Detail View-->
         <scene sceneID="Lhl-Yj-ALX">
             <objects>
-                <viewController id="6F6-9h-lCG" userLabel="Detail View" customClass="DetailViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Book" id="6F6-9h-lCG" userLabel="Detail View" customClass="DetailViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLF-Lk-Apy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
