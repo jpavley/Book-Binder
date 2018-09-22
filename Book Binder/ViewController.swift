@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 //        // First: Add the new data to the data model
 //        let text = "\(collectionData.count + 1) 👽"
 //        collectionData.append(text)
-//        
+//
 //        // Second: Update the collection view
 //        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
 //        collectionView.insertItems(at: [indexPath])
@@ -54,6 +54,11 @@ class ViewController: UIViewController {
         let width = (view.frame.size.width - totalSpacing) / columnCount
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
+    }
+    
+    @objc func refresh() {
+        addItem()
+        collectionView.refreshControl?.endRefreshing()
     }
 }
 
