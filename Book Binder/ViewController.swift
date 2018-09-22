@@ -19,7 +19,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let width = view.frame.size.width / 3
+        let collectionViewMinSpacing = CGFloat(10)
+        let columnCount = CGFloat(3)
+        let spacesBetweenColumns = columnCount - 1
+        let totalSpacing = collectionViewMinSpacing * spacesBetweenColumns
+        
+        let width = (view.frame.size.width - totalSpacing) / columnCount
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
     }
