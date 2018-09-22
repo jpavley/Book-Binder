@@ -31,6 +31,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
@@ -48,6 +49,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        
+        let text = collectionData[indexPath.row]
+        print("selected \(text)")
+        
+
+
     }
 }
 
