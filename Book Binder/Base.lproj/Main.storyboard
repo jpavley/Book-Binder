@@ -78,15 +78,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Series" id="dSP-eA-E90">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VrF-Uc-5HI">
-                            <connections>
-                                <action selector="addItem" destination="BYZ-38-t0r" id="KU8-Xw-8bE"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="VrF-Uc-5HI">
+                                <connections>
+                                    <action selector="addItem" destination="BYZ-38-t0r" id="KU8-Xw-8bE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="2ZK-Ar-Gq3"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="VrF-Uc-5HI" id="mye-id-MUq"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
+                        <outlet property="deleteButton" destination="2ZK-Ar-Gq3" id="2cp-6o-c68"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>
                     </connections>
                 </viewController>

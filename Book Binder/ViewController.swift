@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var addButton: UIBarButtonItem!
+    @IBOutlet private weak var deleteButton: UIBarButtonItem!
     
     let columnCount = CGFloat(3)
     
