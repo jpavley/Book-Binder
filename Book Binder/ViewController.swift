@@ -54,6 +54,10 @@ class ViewController: UIViewController {
         let width = (view.frame.size.width - totalSpacing) / columnCount
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
+        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+        collectionView.refreshControl = refresh
     }
     
     @objc func refresh() {
