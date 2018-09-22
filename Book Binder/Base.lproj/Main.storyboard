@@ -64,7 +64,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Series" id="dSP-eA-E90"/>
+                    <navigationItem key="navigationItem" title="Series" id="dSP-eA-E90">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VrF-Uc-5HI">
+                            <connections>
+                                <action selector="addItem" destination="BYZ-38-t0r" id="KU8-Xw-8bE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>

@@ -14,6 +14,17 @@ class ViewController: UIViewController {
     
     var collectionData = ["1 🏆", "2 🐸", "3 🍩", "4 😸", "5 🤡", "6 👾",
                       "7 👻", "8 🍖", "9  🎸", "10 🐯", "11 🐷", "12 🌋"]
+    
+    @IBAction func addItem() {
+        
+        // First: Add the new data to the data model
+        let text = "\(collectionData.count + 1) 👽"
+        collectionData.append(text)
+        
+        // Second: Update the collection view
+        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+        collectionView.insertItems(at: [indexPath])
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
