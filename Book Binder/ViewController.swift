@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         
         super.setEditing(editing, animated: animated)
         addButton.isEnabled = !editing
+        deleteButton.isEnabled = editing
         collectionView.allowsMultipleSelection = editing
         
         // set the editing state of each visible cell

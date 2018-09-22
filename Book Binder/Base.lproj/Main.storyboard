@@ -84,7 +84,7 @@
                                     <action selector="addItem" destination="BYZ-38-t0r" id="KU8-Xw-8bE"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="trash" id="2ZK-Ar-Gq3"/>
+                            <barButtonItem enabled="NO" systemItem="trash" id="2ZK-Ar-Gq3"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
