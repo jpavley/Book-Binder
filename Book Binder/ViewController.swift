@@ -57,5 +57,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let text = collectionData[indexPath.row]
         print("selected \(text)")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let dest = segue.destination as? DetailViewController,
+            let index = collectionView.indexPathsForSelectedItems?.first {
+            
+            dest.selection = collectionData[index.row]
+        }
+    }
 }
 

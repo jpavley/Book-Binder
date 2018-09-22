@@ -77,7 +77,7 @@
         <!--Detail View-->
         <scene sceneID="Lhl-Yj-ALX">
             <objects>
-                <viewController id="6F6-9h-lCG" userLabel="Detail View" sceneMemberID="viewController">
+                <viewController id="6F6-9h-lCG" userLabel="Detail View" customClass="DetailViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLF-Lk-Apy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,10 +96,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tjh-zU-fAW"/>
                     </view>
+                    <connections>
+                        <outlet property="detailsLabel" destination="fV2-j1-npG" id="A3o-Ez-yPl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919" y="33"/>
+            <point key="canvasLocation" x="992" y="130"/>
         </scene>
     </scenes>
 </document>
