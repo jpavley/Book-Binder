@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
+    let columnCount = CGFloat(3)
+    
     var collectionData = ["1 🏆", "2 🐸", "3 🍩", "4 😸", "5 🤡", "6 👾",
                       "7 👻", "8 🍖", "9  🎸", "10 🐯", "11 🐷", "12 🌋"]
     
@@ -28,10 +30,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // cllection vuew layout sizing
+        // collection vuew layout sizing
         
         let collectionViewMinSpacing = CGFloat(10)
-        let columnCount = CGFloat(3)
         let spacesBetweenColumns = columnCount - 1
         let totalSpacing = collectionViewMinSpacing * spacesBetweenColumns
         
@@ -115,7 +116,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-/// Adding one more items
+/// Add one or more items to the collection and update the view
 extension ViewController {
     
     func addItems(itemList: [String]) {
