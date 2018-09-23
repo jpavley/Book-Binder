@@ -44,20 +44,7 @@ class ViewController: UIViewController {
             
             collectionView.deleteItems(at: selected)
         }
-        
-        // my code
-        
-//        if let indexPaths = collectionView!.indexPathsForSelectedItems {
-//
-//            collectionView.performBatchUpdates({
-//
-//                for indexPath in indexPaths {
-//                    collectionData.remove(at: indexPath.row)
-//                    collectionView.deleteItems(at: [indexPath])
-//                }
-//            }, completion: nil)
-//        }
-        
+        navigationController?.isToolbarHidden = true
     }
     
     override func viewDidLoad() {
@@ -93,10 +80,9 @@ class ViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         
+        // enable edit mode on the collection with multiple selection
+        
         super.setEditing(editing, animated: animated)
-        addButton.isEnabled = !editing
-        deleteButton.isEnabled = editing
-        // navigationController?.isToolbarHidden = !editing
         collectionView.allowsMultipleSelection = editing
         
         // set the editing state of each visible cell
@@ -106,6 +92,19 @@ class ViewController: UIViewController {
             let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
             cell.isEditing = editing
         }
+        
+        // add buttomn management
+        
+        addButton.isEnabled = !editing
+        
+        // delete button and tool bar management
+        
+        deleteButton.isEnabled = isEditing
+        
+        if !editing {
+            navigationController?.isToolbarHidden = true
+        }
+
     }
     
     
@@ -141,12 +140,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.titleLabel.text = collectionData[indexPath.row]
         cell.isEditing = isEditing
-        
-        // code prior to custom collection cell
-        
-//        if let label = cell.viewWithTag(100) as? UILabel {
-//            label.text = collectionData[indexPath.row]
-//        }
         
         return cell
     }
@@ -186,15 +179,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             
             dest.selection = collectionData[index.row]
         }
-
-        
-        // orignal code for selection passing with automated segue
-        
-//        if let dest = segue.destination as? DetailViewController,
-//            let index = collectionView.indexPathsForSelectedItems?.first {
-//
-//            dest.selection = collectionData[index.row]
-//        }
     }
 }
 
