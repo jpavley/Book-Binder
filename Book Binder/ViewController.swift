@@ -85,6 +85,12 @@ class ViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         collectionView.allowsMultipleSelection = editing
         
+        // ensure all cells are deselected when entering or exiting edit more
+        
+        collectionView.indexPathsForSelectedItems?.forEach {
+            collectionView.deselectItem(at: $0, animated: false)
+        }
+        
         // set the editing state of each visible cell
         
         let indexPaths = collectionView.indexPathsForVisibleItems
