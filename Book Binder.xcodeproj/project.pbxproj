@@ -36,6 +36,7 @@
 		484CC0DC2157DD380012CD42 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		484CC0DE2157DD890012CD42 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		484CC0E02157DFC00012CD42 /* BookBinderURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderURI.swift; sourceTree = "<group>"; };
+		484CC0E22157F3540012CD42 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		48FBD3032151405000D2A14B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		48FBD3042151405000D2A14B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		48FBD3072151409400D2A14B /* FEATURES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FEATURES.md; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 		483C61AB214ED8E9008C69D8 = {
 			isa = PBXGroup;
 			children = (
+				484CC0E22157F3540012CD42 /* TODO.md */,
 				48FBD3042151405000D2A14B /* README.md */,
 				48FBD3032151405000D2A14B /* LICENSE */,
 				48FBD3072151409400D2A14B /* FEATURES.md */,
