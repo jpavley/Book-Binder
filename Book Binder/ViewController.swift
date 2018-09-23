@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         addButton.isEnabled = !editing
         deleteButton.isEnabled = editing
-        navigationController?.isToolbarHidden = !editing
+        // navigationController?.isToolbarHidden = !editing
         collectionView.allowsMultipleSelection = editing
         
         // set the editing state of each visible cell
@@ -152,19 +152,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView,
+                        didDeselectItemAt indexPath: IndexPath) {
+        if isEditing {
+            if let selected = collectionView.indexPathsForSelectedItems, selected.count == 0 {
+                navigationController?.isToolbarHidden = true
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         
         if isEditing {
-            // Don't segue if in editing mode
-            return
+            navigationController?.isToolbarHidden = false
+        } else {
+            performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
         
         let text = collectionData[indexPath.row]
         print("selected \(text)")
-        
-        // code for selection passing with manual segue
-        
-        performSegue(withIdentifier: "DetailSegue", sender: indexPath)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
