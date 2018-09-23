@@ -77,20 +77,21 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem enabled="NO" systemItem="trash" id="2ZK-Ar-Gq3">
+                            <connections>
+                                <action selector="deleteItems" destination="BYZ-38-t0r" id="SeA-Cd-2FN"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Series" id="dSP-eA-E90">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="VrF-Uc-5HI">
-                                <connections>
-                                    <action selector="addItem" destination="BYZ-38-t0r" id="KU8-Xw-8bE"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem enabled="NO" systemItem="trash" id="2ZK-Ar-Gq3">
-                                <connections>
-                                    <action selector="deleteItems" destination="BYZ-38-t0r" id="SeA-Cd-2FN"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VrF-Uc-5HI">
+                            <connections>
+                                <action selector="addItem" destination="BYZ-38-t0r" id="KU8-Xw-8bE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="VrF-Uc-5HI" id="mye-id-MUq"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
