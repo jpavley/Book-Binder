@@ -78,7 +78,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem enabled="NO" systemItem="trash" id="2ZK-Ar-Gq3">
+                        <barButtonItem systemItem="trash" id="2ZK-Ar-Gq3">
                             <connections>
                                 <action selector="deleteItems" destination="BYZ-38-t0r" id="SeA-Cd-2FN"/>
                             </connections>

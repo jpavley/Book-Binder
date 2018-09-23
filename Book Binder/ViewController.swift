@@ -103,9 +103,7 @@ class ViewController: UIViewController {
         
         addButton.isEnabled = !editing
         
-        // delete button and tool bar management
-        
-        deleteButton.isEnabled = isEditing
+        // tool bar management
         
         if !editing {
             navigationController?.isToolbarHidden = true
