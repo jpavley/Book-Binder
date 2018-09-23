@@ -20,10 +20,10 @@ class SeriesModel {
     // Books included in this series
     var books: [BookModel]
     
-    init(publisherName: String, era: String, seriesTitle: String) {
+    init(publisherName: String, seriesTitle: String, era: String) {
         self.seriesTitle = seriesTitle
         books = [BookModel]()
         
-        seriesURI = BookBinderURI(fromURIString: "/\(publisherName)/\(era)/\(seriesTitle)")
+        seriesURI = BookBinderURI(fromURIString: "\(publisherName)/\(seriesTitle)/\(era)")
     }
 }
