@@ -86,6 +86,7 @@ class ViewController: UIViewController {
         // - Toggles the button between Edit and Done
         // - Toggles the view controller between editing and not-editing mode
         navigationItem.leftBarButtonItem = editButtonItem
+        navigationController?.isToolbarHidden = true
     }
     
     // editing mode
@@ -95,6 +96,7 @@ class ViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         addButton.isEnabled = !editing
         deleteButton.isEnabled = editing
+        navigationController?.isToolbarHidden = !editing
         collectionView.allowsMultipleSelection = editing
         
         // set the editing state of each visible cell
