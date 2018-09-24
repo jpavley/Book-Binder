@@ -11,13 +11,13 @@ import Foundation
 /// MVP 1: Just enough to get the Summary View displayed
 class SeriesModel {
     
-    // Used to tie this series to a publisher and eara
+    /// Used to tie this series to a publisher and era
     var seriesURI: BookBinderURI
     
-    // Title of the series
+    /// Title of the series
     var seriesTitle: String
     
-    // Books included in this series
+    /// Books included in this series
     var books: [BookModel]
     
     init(publisherName: String, seriesTitle: String, era: String) {
