@@ -8,6 +8,14 @@
 
 import Foundation
 
+enum URIPart: Int {
+    case publisher = 0
+    case series = 1
+    case era = 2
+    case issue = 3
+    case varient = 4
+}
+
 /// MVP 1: Simple URI format.
 /// - Publisher/Series/Era/Issue/Varient
 /// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v"
@@ -38,10 +46,10 @@ struct BookBinderURI: CustomStringConvertible {
     init(fromURIString s: String) {
         let parts = s.components(separatedBy: "/")
         
-        publisherID = parts.count >= 1 ? parts[0] : ""
-        seriesID = parts.count >= 2 ? parts[1] : ""
-        eraID = parts.count >= 3 ? parts[2] : ""
-        issueID = parts.count >= 4 ? parts[3] : ""
-        varientID = parts.count >= 5 ? parts[4] : ""
+        publisherID = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
+        seriesID = parts.count >= URIPart.series.rawValue + 1 ? parts[URIPart.series.rawValue] : ""
+        eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
+        issueID = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
+        varientID = parts.count >= URIPart.varient.rawValue + 1 ? parts[URIPart.varient.rawValue] : ""
     }
 }
