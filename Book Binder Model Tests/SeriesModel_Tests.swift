@@ -9,21 +9,22 @@
 import XCTest
 
 class SeriesModel_Tests: XCTestCase {
-
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
     func testCreateSeriesModel() {
         let testString1 = "Ziff Davis/GI Joe/1950"
         let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", era: "1950")
         
         XCTAssertTrue(seriesModel.seriesURI.description == testString1)
         XCTAssertTrue(seriesModel.seriesTitle == "GI Joe")
+        XCTAssertTrue(seriesModel.seriesEra == "1950")
         XCTAssertTrue(seriesModel.books.count == 0)
     }
     
@@ -51,6 +52,6 @@ class SeriesModel_Tests: XCTestCase {
         XCTAssertTrue(seriesModel.books[1].varientLetter == "a")
         XCTAssertTrue(seriesModel.books[1].isOwned == true)
         XCTAssertTrue(seriesModel.books[1].bookURI.description == testString2)
-   }
-
+    }
+    
 }

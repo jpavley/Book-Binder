@@ -17,11 +17,15 @@ class SeriesModel {
     /// Title of the series
     var seriesTitle: String
     
+    /// Era of the series
+    var seriesEra: String
+    
     /// Books included in this series
     var books: [BookModel]
     
     init(publisherName: String, seriesTitle: String, era: String) {
         self.seriesTitle = seriesTitle
+        self.seriesEra = era
         books = [BookModel]()
         
         seriesURI = BookBinderURI(fromURIString: "\(publisherName)/\(seriesTitle)/\(era)")
