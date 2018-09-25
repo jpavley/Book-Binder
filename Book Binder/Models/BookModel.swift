@@ -28,6 +28,6 @@ class BookModel {
         self.varientLetter = varientLetter
         self.isOwned = isOwned
         
-        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)//\(seriesURI.eraID)\(issueNumber)/\(varientLetter)")
+        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(varientLetter)")
     }
 }
