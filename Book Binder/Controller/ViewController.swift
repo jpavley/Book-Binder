@@ -17,8 +17,13 @@ class ViewController: UIViewController {
     let columnCount = CGFloat(4)
     let collectionViewMinSpacing = CGFloat(2)
     let cellHeight = CGFloat(40)
-
-    var collectionData = ["...", "1v", "2", "3", "4", "+"]
+    
+    var collectionData = [
+        "...", "583", "584", "585", "586", "587", "588",
+        "589", "590", "591", "592", "593", "594", "595",
+        "596", "597", "598", "599", "600", "601", "602",
+        "603", "604", "605", "606", "607", "608", "+"
+    ]
     
     @IBAction func addItem() {
         
@@ -108,7 +113,7 @@ class ViewController: UIViewController {
         if !editing {
             navigationController?.isToolbarHidden = true
         }
-
+        
     }
     
     
@@ -134,12 +139,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             
-            let headerView =
-                collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                withReuseIdentifier: "HeaderView",
-                                                                for: indexPath) as! CollectionReusableView
-            headerView.titleLabel.text = "Doctor Strange 2018"
-            headerView.subTitleLabel.text = "Marvel Entertainment"
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! CollectionReusableView
+            
+            headerView.titleLabel.text = "Daredevil 2018"
+            headerView.subTitleLabel.text = "Marvel Entertainment, Comicbook"
             
             return headerView
             
@@ -160,9 +163,29 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell",
                                                       for: indexPath) as! CollectionViewCell
         
-        // editing mode
         
-        cell.titleLabel.text = collectionData[indexPath.row]
+        let blueStrings = ["...", "605", "606", "607", "608", "+"]
+        
+        if blueStrings.contains(collectionData[indexPath.row]) {
+            
+            let attributes: [NSAttributedString.Key: Any] = [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                NSAttributedString.Key.foregroundColor: UIColor.blue
+            ]
+            
+            cell.titleLabel.attributedText = NSAttributedString(string: collectionData[indexPath.row], attributes: attributes)
+        } else {
+            
+            let attributes: [NSAttributedString.Key: Any] = [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                NSAttributedString.Key.foregroundColor: UIColor.red,
+                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+            
+            cell.titleLabel.attributedText = NSAttributedString(string: collectionData[indexPath.row], attributes: attributes)
+        }
+        
+        
         cell.isEditing = isEditing
         
         return cell
