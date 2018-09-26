@@ -14,10 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet private weak var deleteButton: UIBarButtonItem!
     
-    let columnCount = CGFloat(3)
-    
-    var collectionData = ["1 🏆", "2 🐸", "3 🍩", "4 😸", "5 🤡", "6 👾",
-                      "7 👻", "8 🍖", "9  🎸", "10 🐯", "11 🐷", "12 🌋"]
+    let columnCount = CGFloat(4)
+    let collectionViewMinSpacing = CGFloat(2)
+    let cellHeight = CGFloat(40)
+
+    var collectionData = ["...", "1v", "2", "3", "4", "+"]
     
     @IBAction func addItem() {
         
@@ -53,13 +54,12 @@ class ViewController: UIViewController {
         
         // collection view layout sizing
         
-        let collectionViewMinSpacing = CGFloat(10)
         let spacesBetweenColumns = columnCount - 1
         let totalSpacing = collectionViewMinSpacing * spacesBetweenColumns
         
         let width = (view.frame.size.width - totalSpacing) / columnCount
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width)
+        layout.itemSize = CGSize(width: width, height: cellHeight)
         
         // pull to refresh
         
@@ -129,6 +129,26 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            
+            let headerView =
+                collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                withReuseIdentifier: "HeaderView",
+                                                                for: indexPath) as! CollectionReusableView
+            headerView.titleLabel.text = "Doctor Strange 2018"
+            headerView.subTitleLabel.text = "Marvel Entertainment"
+            
+            return headerView
+            
+        default:
+            assert(false, "unexpected UICollection element kind")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
         return collectionData.count
@@ -184,6 +204,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             dest.selection = collectionData[index.row]
         }
     }
+    
+    
 }
 
 /// Add one or more items to the collection and update the view
