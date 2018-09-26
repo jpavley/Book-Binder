@@ -28,6 +28,8 @@ class BookModel {
         self.varientLetter = varientLetter
         self.isOwned = isOwned
         
-        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(varientLetter)")
+        let ownership = isOwned ? "owned" : ""
+        
+        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(varientLetter)/\(ownership)")
     }
 }

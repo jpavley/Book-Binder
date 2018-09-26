@@ -22,7 +22,7 @@ class BookModel_Tests: XCTestCase {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018"
         let seriesURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, varientLetter: "a", isOwned: true)
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"
+        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a/owned"
         
         XCTAssertTrue(bookModel.bookURI.description == testString2)
         XCTAssertTrue(bookModel.issueNumber == 1)

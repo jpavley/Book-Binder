@@ -14,6 +14,7 @@ enum URIPart: Int {
     case era = 2
     case issue = 3
     case varient = 4
+    case consumption = 5
 }
 
 /// MVP 1: Simple URI format.
@@ -28,9 +29,10 @@ struct BookBinderURI: CustomStringConvertible {
     var eraID: String
     var issueID: String
     var varientID: String
+    var consumptionID: String
     
+    /// URI format: publisher/series/era/issue/varient/consumption
     var description: String {
-        // return "\(publisherID)/\(seriesID)/\(eraID)/\(issueID)/\(varientID)"
         
         var result = ""
         
@@ -39,6 +41,7 @@ struct BookBinderURI: CustomStringConvertible {
         result += eraID != "" ? "/\(eraID)" : ""
         result += issueID != "" ? "/\(issueID)" : ""
         result += varientID != "" ? "/\(varientID)" : ""
+        result += consumptionID != "" ? "/\(consumptionID)" : ""
         
         return result
     }
@@ -51,5 +54,6 @@ struct BookBinderURI: CustomStringConvertible {
         eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
         issueID = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
         varientID = parts.count >= URIPart.varient.rawValue + 1 ? parts[URIPart.varient.rawValue] : ""
+        consumptionID = parts.count >= URIPart.consumption.rawValue + 1 ? parts[URIPart.consumption.rawValue] : ""
     }
 }

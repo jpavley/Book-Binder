@@ -47,7 +47,7 @@ class SeriesModel_Tests: XCTestCase {
         XCTAssertTrue(seriesModel.books[0].isOwned == false)
         XCTAssertTrue(seriesModel.books[0].bookURI.description == testString1)
         
-        let testString2 = "Ziff Davis/GI Joe/1950/1/a"
+        let testString2 = "Ziff Davis/GI Joe/1950/1/a/owned"
         XCTAssertTrue(seriesModel.books[1].issueNumber == 1)
         XCTAssertTrue(seriesModel.books[1].varientLetter == "a")
         XCTAssertTrue(seriesModel.books[1].isOwned == true)

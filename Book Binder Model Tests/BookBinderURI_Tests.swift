@@ -19,7 +19,7 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testCompleteURI() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
         let uri1 = BookBinderURI(fromURIString: testString1)
         
         XCTAssertTrue(uri1.publisherID == "Marvel Entertainment")
@@ -27,6 +27,7 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.eraID == "2018")
         XCTAssertTrue(uri1.issueID == "1")
         XCTAssertTrue(uri1.varientID == "v")
+        XCTAssertTrue(uri1.consumptionID == "owned")
     }
     
     func testNoVarientURI() {
@@ -49,6 +50,18 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.eraID == "2005")
         XCTAssertTrue(uri1.issueID == "")
         XCTAssertTrue(uri1.varientID == "")
+    }
+    
+    func testMissingPartsURI() {
+        let testString1 = "Marvel Entertainment//2018/1//owned"
+        let uri1 = BookBinderURI(fromURIString: testString1)
+        
+        XCTAssertTrue(uri1.publisherID == "Marvel Entertainment")
+        XCTAssertTrue(uri1.seriesID == "")
+        XCTAssertTrue(uri1.eraID == "2018")
+        XCTAssertTrue(uri1.issueID == "1")
+        XCTAssertTrue(uri1.varientID == "")
+        XCTAssertTrue(uri1.consumptionID == "owned")
     }
     
     func testURIDescription() {
