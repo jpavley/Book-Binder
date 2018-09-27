@@ -19,19 +19,33 @@ enum URIPart: Int {
 
 /// MVP 1: Simple URI format.
 /// - Publisher/Series/Era/Issue/Varient
-/// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v"
+/// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
+/// - Missing Parts URI: "Marvel Entertainment//2018/1//owned"
 /// - No Varient URI: "Ziff Davis/GI Joe/1950/10"
 /// - Series URI: "DC/Superman/2005"
 struct BookBinderURI: CustomStringConvertible {
     
+    /// String that represents a publisher like "Ziff Davis"
     var publisherID: String
+    
+    /// String that represents a series like "ROM Spaceknight"
     var seriesID: String
+    
+    /// String that represents an era date like "1950"
     var eraID: String
+    
+    /// String that represents an issue number like "608"
     var issueID: String
+    
+    /// String that represents a varient letter like "c"
     var varientID: String
+    
+    /// String that represents a consumption state liked "owned" or "read"
     var consumptionID: String
     
-    /// URI format: publisher/series/era/issue/varient/consumption
+    /// Builds a string version of an URI based on the value of it's parts
+    ///
+    /// - URI format: publisher/series/era/issue/varient/consumption
     var description: String {
         
         var result = ""
@@ -55,5 +69,16 @@ struct BookBinderURI: CustomStringConvertible {
         issueID = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
         varientID = parts.count >= URIPart.varient.rawValue + 1 ? parts[URIPart.varient.rawValue] : ""
         consumptionID = parts.count >= URIPart.consumption.rawValue + 1 ? parts[URIPart.consumption.rawValue] : ""
+    }
+    
+    static func part(fromURIString s: String, partID: URIPart) -> String {
+        
+        let parts = s.components(separatedBy: "/")
+        
+        if parts.count > partID.rawValue {
+            return parts[partID.rawValue]
+        } else {
+            return ""
+        }
     }
 }

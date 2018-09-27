@@ -69,6 +69,86 @@ class BookBinderURI_Tests: XCTestCase {
         let uri1 = BookBinderURI(fromURIString: testString1)
         XCTAssertTrue(uri1.description == testString1)
     }
+    
+    func testPartFromURIString() {
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
+        let testURI = BookBinderURI.init(fromURIString: testString1)
+        
+        let publisherPart = BookBinderURI.part(fromURIString: testString1, partID: .publisher)
+        XCTAssertEqual(publisherPart, "Marvel Entertainment")
+        XCTAssertEqual(publisherPart, testURI.publisherID)
+        
+        let seriesPart = BookBinderURI.part(fromURIString: testString1, partID: .series)
+        XCTAssertEqual(seriesPart, "DoctorStrange")
+        XCTAssertEqual(seriesPart, testURI.seriesID)
+        
+        let eraPart = BookBinderURI.part(fromURIString: testString1, partID: .era)
+        XCTAssertEqual(eraPart, "2018")
+        XCTAssertEqual(eraPart, testURI.eraID)
+
+        let issuePart = BookBinderURI.part(fromURIString: testString1, partID: .issue)
+        XCTAssertEqual(issuePart, "1")
+        XCTAssertEqual(issuePart, testURI.issueID)
+        
+        let varientPart = BookBinderURI.part(fromURIString: testString1, partID: .varient)
+        XCTAssertEqual(varientPart, "v")
+        XCTAssertEqual(varientPart, testURI.varientID)
+        
+        let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
+        XCTAssertEqual(comsumptionPart, "owned")
+        XCTAssertEqual(comsumptionPart, testURI.consumptionID)
+    }
+    
+    func testPartFromURIStringWithMissingParts() {
+        let testString1 = "Marvel Entertainment//2018/1//owned"
+        let testURI = BookBinderURI.init(fromURIString: testString1)
+        
+        let publisherPart = BookBinderURI.part(fromURIString: testString1, partID: .publisher)
+        XCTAssertEqual(publisherPart, "Marvel Entertainment")
+        XCTAssertEqual(publisherPart, testURI.publisherID)
+        
+        let seriesPart = BookBinderURI.part(fromURIString: testString1, partID: .series)
+        XCTAssertEqual(seriesPart, "")
+        XCTAssertEqual(seriesPart, testURI.seriesID)
+        
+        let eraPart = BookBinderURI.part(fromURIString: testString1, partID: .era)
+        XCTAssertEqual(eraPart, "2018")
+        XCTAssertEqual(eraPart, testURI.eraID)
+        
+        let issuePart = BookBinderURI.part(fromURIString: testString1, partID: .issue)
+        XCTAssertEqual(issuePart, "1")
+        XCTAssertEqual(issuePart, testURI.issueID)
+        
+        let varientPart = BookBinderURI.part(fromURIString: testString1, partID: .varient)
+        XCTAssertEqual(varientPart, "")
+        XCTAssertEqual(varientPart, testURI.varientID)
+        
+        let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
+        XCTAssertEqual(comsumptionPart, "owned")
+        XCTAssertEqual(comsumptionPart, testURI.consumptionID)
+    }
+    
+    func testPartFromURIStringWrongURI() {
+        let testString1 = "DC/Superman/2005"
+        
+        let publisherPart = BookBinderURI.part(fromURIString: testString1, partID: .publisher)
+        XCTAssertEqual(publisherPart, "DC")
+        
+        let seriesPart = BookBinderURI.part(fromURIString: testString1, partID: .series)
+        XCTAssertEqual(seriesPart, "Superman")
+        
+        let eraPart = BookBinderURI.part(fromURIString: testString1, partID: .era)
+        XCTAssertEqual(eraPart, "2005")
+        
+        let issuePart = BookBinderURI.part(fromURIString: testString1, partID: .issue)
+        XCTAssertEqual(issuePart, "")
+        
+        let varientPart = BookBinderURI.part(fromURIString: testString1, partID: .varient)
+        XCTAssertEqual(varientPart, "")
+        
+        let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
+        XCTAssertEqual(comsumptionPart, "")
+    }
 
 
 }
