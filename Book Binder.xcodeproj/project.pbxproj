@@ -25,6 +25,7 @@
 		484CC0F721585C8C0012CD42 /* BookBinderURI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0F621585C8C0012CD42 /* BookBinderURI_Tests.swift */; };
 		484CC1072159668F0012CD42 /* BookModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC1062159668F0012CD42 /* BookModel_Tests.swift */; };
 		48699AEF215AE7710038864A /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48699AEE215AE7710038864A /* CollectionReusableView.swift */; };
+		48CBB67F215D5EDF003D1870 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 48CBB67E215D5EDF003D1870 /* books.json */; };
 		48FBD3052151405000D2A14B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3032151405000D2A14B /* LICENSE */; };
 		48FBD3062151405000D2A14B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3042151405000D2A14B /* README.md */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		484CC0F621585C8C0012CD42 /* BookBinderURI_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookBinderURI_Tests.swift; sourceTree = "<group>"; };
 		484CC1062159668F0012CD42 /* BookModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel_Tests.swift; sourceTree = "<group>"; };
 		48699AEE215AE7710038864A /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		48CBB67E215D5EDF003D1870 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		48FBD3032151405000D2A14B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		48FBD3042151405000D2A14B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		48FBD3072151409400D2A14B /* FEATURES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FEATURES.md; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				484CC0DC2157DD380012CD42 /* BookModel.swift */,
 				484CC0DE2157DD890012CD42 /* SeriesModel.swift */,
 				484CC0E02157DFC00012CD42 /* BookBinderURI.swift */,
+				48CBB67E215D5EDF003D1870 /* books.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48CBB67F215D5EDF003D1870 /* books.json in Resources */,
 				483C61C2214ED8EB008C69D8 /* LaunchScreen.storyboard in Resources */,
 				483C61BF214ED8EB008C69D8 /* Assets.xcassets in Resources */,
 				48FBD3062151405000D2A14B /* README.md in Resources */,

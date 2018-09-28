@@ -1,0 +1,15 @@
+[
+    {
+        publisher: "==",
+        series: "",
+        era: "",
+        [
+            {
+                issueNumber: "",
+                varientLetter: "",
+                isOwned: ""
+            }
+        ]
+    }
+]
+

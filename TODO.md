@@ -1,5 +1,26 @@
 #  TODO
 
+## Serialization
+
+### JSON Representation
+
+```
+[
+    {
+        publisher: "",
+        series: "",
+        era: "",
+        [
+            {
+                issueNumber: "",
+                varientLetter: "",
+                isOwned: ""
+            }
+        ]
+    }
+]
+```
+
 ## Models
 
 ### How to integrate issue number, era, and series?
