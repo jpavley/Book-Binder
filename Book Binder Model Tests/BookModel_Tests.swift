@@ -29,6 +29,4 @@ class BookModel_Tests: XCTestCase {
         XCTAssertTrue(bookModel.varientLetter == "a")
         XCTAssertTrue(bookModel.isOwned == true)
     }
-    
-
 }
