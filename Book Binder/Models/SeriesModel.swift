@@ -35,11 +35,11 @@ class SeriesModel {
     /// Assume that all series have at least one issue
     var currentIssueNumber = 1
     
-    init(publisherName: String, seriesTitle: String, era: String) {
+    init(publisherName: String, seriesTitle: String, seriesEra: String) {
         self.seriesTitle = seriesTitle
-        self.seriesEra = era
+        self.seriesEra = seriesEra
         books = [BookModel]()
         
-        seriesURI = BookBinderURI(fromURIString: "\(publisherName)/\(seriesTitle)/\(era)")
+        seriesURI = BookBinderURI(fromURIString: "\(publisherName)/\(seriesTitle)/\(seriesEra)")
     }
 }

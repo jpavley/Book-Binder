@@ -20,7 +20,7 @@ class SeriesModel_Tests: XCTestCase {
     
     func testCreateSeriesModel() {
         let testString1 = "Ziff Davis/GI Joe/1950"
-        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", era: "1950")
+        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         XCTAssertTrue(seriesModel.seriesURI.description == testString1)
         XCTAssertTrue(seriesModel.seriesTitle == "GI Joe")
@@ -29,14 +29,14 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testSeriesIssueManagement() {
-        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", era: "1950")
+        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         XCTAssertEqual(seriesModel.firstIssueNumber, 1)
         XCTAssertEqual(seriesModel.currentIssueNumber, 1)
     }
     
     func testAddBooksToSeries() {
-        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", era: "1950")
+        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         let book1 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, variantLetter: "", isOwned: false)
         let book2 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
