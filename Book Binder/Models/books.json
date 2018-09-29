@@ -1,13 +1,155 @@
 [
     {
-        publisher: "",
-        series: "",
-        era: "",
+        "publisher": "Marvel Entertainment",
+        "series": "Daredevil",
+        "era": "2017",
+        "firstIssue": "595",
+        "currentIssue": "608",
+        "ownedIssues": 
         [
             {
-                issueNumber: "",
-                varientLetter: "",
-                isOwned: ""
+                "issueNumber": "605",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "606",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "607",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "608",
+                "variantLetter": ""
+            }
+         ]
+    },
+    {
+        "publisher": "DC Comics",
+        "series": "Batman: The Widening Gyre",
+        "era": "2009",
+        "firstIssue": "1",
+        "currentIssue": "6",
+        "ownedIssues": 
+        [
+            {
+                "issueNumber": "1",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "2",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "3",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "4",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "5",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "6",
+                "variantLetter": ""
+            }
+         ]
+    },
+    {
+        "publisher": "NBM",
+        "series": "Boneyard",
+        "era": "2001",
+        "firstIssue": "1",
+        "currentIssue": "28",
+        "ownedIssues": 
+        [
+            {
+                "issueNumber": "1",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "2",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "4",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "5",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "8",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "9",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "10",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "11",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "12",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "13",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "14",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "15",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "16",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "17",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "18",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "19",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "21",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "22",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "24",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "26",
+                "variantLetter": ""
+            },
+            {
+                "issueNumber": "27",
+                "variantLetter": ""
             }
         ]
     }

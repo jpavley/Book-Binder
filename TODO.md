@@ -4,17 +4,21 @@
 
 ### JSON Representation
 
+Minimum about if info that needs to be serilized in JSON for a factory to create series, books, and URIs.
+
 ```
 [
     {
-        publisher: "",
-        series: "",
-        era: "",
+        "publisher": "",
+        "series": "",
+        "era": "",
+        "firstIssue": "",
+        "currentIssue": "",
+        "ownedIssues": 
         [
             {
-                issueNumber: "",
-                varientLetter: "",
-                isOwned: ""
+                "issueNumber": "",
+                "variantLetter": ""
             }
         ]
     }
