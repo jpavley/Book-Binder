@@ -17,29 +17,54 @@ import Foundation
 /// 1968 started at issue 169 and 2017 started at issue 381.
 class SeriesModel {
     
-    /// Used to tie this series to a publisher and era
-    var seriesURI: BookBinderURI
-    
+    /// Title of the series
+    var seriesPublisher: String
+
     /// Title of the series
     var seriesTitle: String
     
     /// Era of the series
     var seriesEra: String
     
-    /// Books owned by the user from this series
-    var books: [BookModel]
-    
     /// Assume that the first issue in a series is number 1
-    var firstIssueNumber = 1
+    var seriesFirstIssue = 1
     
     /// Assume that all series have at least one issue
-    var currentIssueNumber = 1
+    var seriesCurrentIssue = 1
     
-    init(publisherName: String, seriesTitle: String, seriesEra: String) {
+    /// Assume that no issues in series were skipped
+    var seriesSkippedIssues = 0
+    
+    /// Assume that no extra issues in the series were added
+    var seriesExtraIssues = 0
+    
+    /// Initialization by properties
+    init(seriesPublisher: String, seriesTitle: String, seriesEra: String) {
+        self.seriesPublisher = seriesPublisher
         self.seriesTitle = seriesTitle
         self.seriesEra = seriesEra
-        books = [BookModel]()
-        
-        seriesURI = BookBinderURI(fromURIString: "\(publisherName)/\(seriesTitle)/\(seriesEra)")
+    }
+    
+    /// Initalization by URI
+    init(fromURI: BookBinderURI) {
+        self.seriesPublisher = fromURI.publisherID
+        self.seriesTitle = fromURI.seriesID
+        self.seriesEra = fromURI.eraID
+    }
+}
+
+// MARK: Calculated Vars
+
+extension SeriesModel {
+    
+    /// URI that identifies this series
+    var seriesURI: BookBinderURI {
+        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)")
+    }
+    
+    /// Number of possible issues if no numbers are skipped
+    var publishedIssueCount: Int {
+        let sequentialIssues = seriesCurrentIssue - (seriesFirstIssue - 1)
+        return sequentialIssues + seriesExtraIssues - seriesSkippedIssues
     }
 }

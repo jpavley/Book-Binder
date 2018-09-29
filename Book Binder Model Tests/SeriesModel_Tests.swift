@@ -18,47 +18,74 @@ class SeriesModel_Tests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func testCreateSeriesModel() {
+    func testCreateSeriesModelFromProperties() {
         let testString1 = "Ziff Davis/GI Joe/1950"
-        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         XCTAssertTrue(seriesModel.seriesURI.description == testString1)
         XCTAssertTrue(seriesModel.seriesTitle == "GI Joe")
         XCTAssertTrue(seriesModel.seriesEra == "1950")
-        XCTAssertTrue(seriesModel.books.count == 0)
+    }
+    
+    func testCreateSeriesModelFromURI() {
+        let testString1 = "Ziff Davis/GI Joe/1950"
+        let testURI = BookBinderURI(fromURIString: testString1)
+        let testSeriesModel = SeriesModel(fromURI: testURI)
+        
+        XCTAssertTrue(testSeriesModel.seriesURI.description == testString1)
+        XCTAssertTrue(testSeriesModel.seriesTitle == "GI Joe")
+        XCTAssertTrue(testSeriesModel.seriesEra == "1950")
     }
     
     func testSeriesIssueManagement() {
-        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
-        XCTAssertEqual(seriesModel.firstIssueNumber, 1)
-        XCTAssertEqual(seriesModel.currentIssueNumber, 1)
+        XCTAssertEqual(seriesModel.seriesFirstIssue, 1)
+        XCTAssertEqual(seriesModel.seriesCurrentIssue, 1)
+        XCTAssertEqual(seriesModel.seriesSkippedIssues, 0)
+        XCTAssertEqual(seriesModel.seriesExtraIssues, 0)
+        XCTAssertEqual(seriesModel.publishedIssueCount, 1)
     }
     
-    func testAddBooksToSeries() {
-        let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+    func testSeriesMutipleIssues() {
+        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
-        let book1 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, variantLetter: "", isOwned: false)
-        let book2 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
-        let book3 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 2, variantLetter: "", isOwned: false)
-        let book4 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 3, variantLetter: "", isOwned: true)
+        seriesModel.seriesFirstIssue = 1
+        seriesModel.seriesCurrentIssue = 2
+        XCTAssertEqual(seriesModel.publishedIssueCount, 2)
         
+        seriesModel.seriesFirstIssue = 1
+        seriesModel.seriesCurrentIssue = 3
+        XCTAssertEqual(seriesModel.publishedIssueCount, 3)
         
-        seriesModel.books = [book1, book2, book3, book4]
+        seriesModel.seriesFirstIssue = 2
+        seriesModel.seriesCurrentIssue = 4
+        XCTAssertEqual(seriesModel.publishedIssueCount, 3)
         
-        XCTAssertTrue(seriesModel.books.count == 4)
+        seriesModel.seriesFirstIssue = 2
+        seriesModel.seriesCurrentIssue = 5
+        XCTAssertEqual(seriesModel.publishedIssueCount, 4)
         
-        let testString1 = "Ziff Davis/GI Joe/1950/1"
-        XCTAssertTrue(seriesModel.books[0].issueNumber == 1)
-        XCTAssertTrue(seriesModel.books[0].variantLetter == "")
-        XCTAssertTrue(seriesModel.books[0].isOwned == false)
-        XCTAssertTrue(seriesModel.books[0].bookURI.description == testString1)
-        
-        let testString2 = "Ziff Davis/GI Joe/1950/1/a/owned"
-        XCTAssertTrue(seriesModel.books[1].issueNumber == 1)
-        XCTAssertTrue(seriesModel.books[1].variantLetter == "a")
-        XCTAssertTrue(seriesModel.books[1].isOwned == true)
-        XCTAssertTrue(seriesModel.books[1].bookURI.description == testString2)
+        seriesModel.seriesFirstIssue = 2
+        seriesModel.seriesCurrentIssue = 6
+        XCTAssertEqual(seriesModel.publishedIssueCount, 5)
     }
     
+    func testSeriesOutOfSequeenceIssues() {
+        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        seriesModel.seriesFirstIssue = 1
+        seriesModel.seriesCurrentIssue = 100
+        XCTAssertEqual(seriesModel.publishedIssueCount, 100)
+        
+        seriesModel.seriesSkippedIssues = 10
+        seriesModel.seriesExtraIssues = 0
+       XCTAssertEqual(seriesModel.publishedIssueCount, 90)
+
+        seriesModel.seriesSkippedIssues = 5
+        seriesModel.seriesExtraIssues = 5
+        XCTAssertEqual(seriesModel.publishedIssueCount, 100)
+        
+        seriesModel.seriesFirstIssue = 20
+        XCTAssertEqual(seriesModel.publishedIssueCount, 81)
+    }
 }
