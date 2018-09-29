@@ -17,19 +17,19 @@ class BookModel {
     /// The number of this book
     var issueNumber: Int
     
-    /// The number of this issue's varient
+    /// The number of this issue's variant
     var variantLetter: String
     
     /// Does the user own this issue?
     var isOwned: Bool
     
-    init(seriesURI: BookBinderURI, issueNumber: Int, varientLetter: String, isOwned: Bool) {
+    init(seriesURI: BookBinderURI, issueNumber: Int, variantLetter: String, isOwned: Bool) {
         self.issueNumber = issueNumber
-        self.variantLetter = varientLetter
+        self.variantLetter = variantLetter
         self.isOwned = isOwned
         
         let ownership = isOwned ? "owned" : ""
         
-        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(varientLetter)/\(ownership)")
+        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(ownership)")
     }
 }

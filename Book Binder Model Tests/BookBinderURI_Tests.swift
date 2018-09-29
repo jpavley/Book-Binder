@@ -26,11 +26,11 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.seriesID == "DoctorStrange")
         XCTAssertTrue(uri1.eraID == "2018")
         XCTAssertTrue(uri1.issueID == "1")
-        XCTAssertTrue(uri1.varientID == "v")
+        XCTAssertTrue(uri1.variantID == "v")
         XCTAssertTrue(uri1.consumptionID == "owned")
     }
     
-    func testNoVarientURI() {
+    func testNoVariantURI() {
         let testString1 = "Ziff Davis/GI Joe/1950/10"
         let uri1 = BookBinderURI(fromURIString: testString1)
         
@@ -38,7 +38,7 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.seriesID == "GI Joe")
         XCTAssertTrue(uri1.eraID == "1950")
         XCTAssertTrue(uri1.issueID == "10")
-        XCTAssertTrue(uri1.varientID == "")
+        XCTAssertTrue(uri1.variantID == "")
     }
     
     func testNoSeriesURI() {
@@ -49,7 +49,7 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.seriesID == "Superman")
         XCTAssertTrue(uri1.eraID == "2005")
         XCTAssertTrue(uri1.issueID == "")
-        XCTAssertTrue(uri1.varientID == "")
+        XCTAssertTrue(uri1.variantID == "")
     }
     
     func testMissingPartsURI() {
@@ -60,7 +60,7 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.seriesID == "")
         XCTAssertTrue(uri1.eraID == "2018")
         XCTAssertTrue(uri1.issueID == "1")
-        XCTAssertTrue(uri1.varientID == "")
+        XCTAssertTrue(uri1.variantID == "")
         XCTAssertTrue(uri1.consumptionID == "owned")
     }
     
@@ -90,9 +90,9 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertEqual(issuePart, "1")
         XCTAssertEqual(issuePart, testURI.issueID)
         
-        let varientPart = BookBinderURI.part(fromURIString: testString1, partID: .varient)
-        XCTAssertEqual(varientPart, "v")
-        XCTAssertEqual(varientPart, testURI.varientID)
+        let variantPart = BookBinderURI.part(fromURIString: testString1, partID: .variant)
+        XCTAssertEqual(variantPart, "v")
+        XCTAssertEqual(variantPart, testURI.variantID)
         
         let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
         XCTAssertEqual(comsumptionPart, "owned")
@@ -119,9 +119,9 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertEqual(issuePart, "1")
         XCTAssertEqual(issuePart, testURI.issueID)
         
-        let varientPart = BookBinderURI.part(fromURIString: testString1, partID: .varient)
-        XCTAssertEqual(varientPart, "")
-        XCTAssertEqual(varientPart, testURI.varientID)
+        let variantPart = BookBinderURI.part(fromURIString: testString1, partID: .variant)
+        XCTAssertEqual(variantPart, "")
+        XCTAssertEqual(variantPart, testURI.variantID)
         
         let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
         XCTAssertEqual(comsumptionPart, "owned")
@@ -143,8 +143,8 @@ class BookBinderURI_Tests: XCTestCase {
         let issuePart = BookBinderURI.part(fromURIString: testString1, partID: .issue)
         XCTAssertEqual(issuePart, "")
         
-        let varientPart = BookBinderURI.part(fromURIString: testString1, partID: .varient)
-        XCTAssertEqual(varientPart, "")
+        let variantPart = BookBinderURI.part(fromURIString: testString1, partID: .variant)
+        XCTAssertEqual(variantPart, "")
         
         let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
         XCTAssertEqual(comsumptionPart, "")

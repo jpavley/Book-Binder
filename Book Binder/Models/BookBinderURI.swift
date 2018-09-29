@@ -13,15 +13,15 @@ enum URIPart: Int {
     case series = 1
     case era = 2
     case issue = 3
-    case varient = 4
+    case variant = 4
     case consumption = 5
 }
 
 /// MVP 1: Simple URI format.
-/// - Publisher/Series/Era/Issue/Varient
+/// - Publisher/Series/Era/Issue/variant
 /// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
 /// - Missing Parts URI: "Marvel Entertainment//2018/1//owned"
-/// - No Varient URI: "Ziff Davis/GI Joe/1950/10"
+/// - No variant URI: "Ziff Davis/GI Joe/1950/10"
 /// - Series URI: "DC/Superman/2005"
 struct BookBinderURI: CustomStringConvertible {
     
@@ -37,15 +37,15 @@ struct BookBinderURI: CustomStringConvertible {
     /// String that represents an issue number like "608"
     var issueID: String
     
-    /// String that represents a varient letter like "c"
-    var varientID: String
+    /// String that represents a variant letter like "c"
+    var variantID: String
     
     /// String that represents a consumption state liked "owned" or "read"
     var consumptionID: String
     
     /// Builds a string version of an URI based on the value of it's parts
     ///
-    /// - URI format: publisher/series/era/issue/varient/consumption
+    /// - URI format: publisher/series/era/issue/variant/consumption
     var description: String {
         
         var result = ""
@@ -54,7 +54,7 @@ struct BookBinderURI: CustomStringConvertible {
         result += seriesID != "" ? "/\(seriesID)" : ""
         result += eraID != "" ? "/\(eraID)" : ""
         result += issueID != "" ? "/\(issueID)" : ""
-        result += varientID != "" ? "/\(varientID)" : ""
+        result += variantID != "" ? "/\(variantID)" : ""
         result += consumptionID != "" ? "/\(consumptionID)" : ""
         
         return result
@@ -67,7 +67,7 @@ struct BookBinderURI: CustomStringConvertible {
         seriesID = parts.count >= URIPart.series.rawValue + 1 ? parts[URIPart.series.rawValue] : ""
         eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
         issueID = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
-        varientID = parts.count >= URIPart.varient.rawValue + 1 ? parts[URIPart.varient.rawValue] : ""
+        variantID = parts.count >= URIPart.variant.rawValue + 1 ? parts[URIPart.variant.rawValue] : ""
         consumptionID = parts.count >= URIPart.consumption.rawValue + 1 ? parts[URIPart.consumption.rawValue] : ""
     }
     

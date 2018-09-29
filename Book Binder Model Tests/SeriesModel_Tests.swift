@@ -38,10 +38,10 @@ class SeriesModel_Tests: XCTestCase {
     func testAddBooksToSeries() {
         let seriesModel = SeriesModel(publisherName: "Ziff Davis", seriesTitle: "GI Joe", era: "1950")
         
-        let book1 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, varientLetter: "", isOwned: false)
-        let book2 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, varientLetter: "a", isOwned: true)
-        let book3 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 2, varientLetter: "", isOwned: false)
-        let book4 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 3, varientLetter: "", isOwned: true)
+        let book1 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, variantLetter: "", isOwned: false)
+        let book2 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
+        let book3 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 2, variantLetter: "", isOwned: false)
+        let book4 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 3, variantLetter: "", isOwned: true)
         
         
         seriesModel.ownedBooks = [book1, book2, book3, book4]
