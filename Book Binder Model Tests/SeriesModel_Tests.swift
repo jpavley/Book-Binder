@@ -25,7 +25,7 @@ class SeriesModel_Tests: XCTestCase {
         XCTAssertTrue(seriesModel.seriesURI.description == testString1)
         XCTAssertTrue(seriesModel.seriesTitle == "GI Joe")
         XCTAssertTrue(seriesModel.seriesEra == "1950")
-        XCTAssertTrue(seriesModel.ownedBooks.count == 0)
+        XCTAssertTrue(seriesModel.books.count == 0)
     }
     
     func testSeriesIssueManagement() {
@@ -44,21 +44,21 @@ class SeriesModel_Tests: XCTestCase {
         let book4 = BookModel(seriesURI: seriesModel.seriesURI, issueNumber: 3, variantLetter: "", isOwned: true)
         
         
-        seriesModel.ownedBooks = [book1, book2, book3, book4]
+        seriesModel.books = [book1, book2, book3, book4]
         
-        XCTAssertTrue(seriesModel.ownedBooks.count == 4)
+        XCTAssertTrue(seriesModel.books.count == 4)
         
         let testString1 = "Ziff Davis/GI Joe/1950/1"
-        XCTAssertTrue(seriesModel.ownedBooks[0].issueNumber == 1)
-        XCTAssertTrue(seriesModel.ownedBooks[0].variantLetter == "")
-        XCTAssertTrue(seriesModel.ownedBooks[0].isOwned == false)
-        XCTAssertTrue(seriesModel.ownedBooks[0].bookURI.description == testString1)
+        XCTAssertTrue(seriesModel.books[0].issueNumber == 1)
+        XCTAssertTrue(seriesModel.books[0].variantLetter == "")
+        XCTAssertTrue(seriesModel.books[0].isOwned == false)
+        XCTAssertTrue(seriesModel.books[0].bookURI.description == testString1)
         
         let testString2 = "Ziff Davis/GI Joe/1950/1/a/owned"
-        XCTAssertTrue(seriesModel.ownedBooks[1].issueNumber == 1)
-        XCTAssertTrue(seriesModel.ownedBooks[1].variantLetter == "a")
-        XCTAssertTrue(seriesModel.ownedBooks[1].isOwned == true)
-        XCTAssertTrue(seriesModel.ownedBooks[1].bookURI.description == testString2)
+        XCTAssertTrue(seriesModel.books[1].issueNumber == 1)
+        XCTAssertTrue(seriesModel.books[1].variantLetter == "a")
+        XCTAssertTrue(seriesModel.books[1].isOwned == true)
+        XCTAssertTrue(seriesModel.books[1].bookURI.description == testString2)
     }
     
 }
