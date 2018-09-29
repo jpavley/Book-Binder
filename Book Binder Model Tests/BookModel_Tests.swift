@@ -26,7 +26,7 @@ class BookModel_Tests: XCTestCase {
         
         XCTAssertTrue(bookModel.bookURI.description == testString2)
         XCTAssertTrue(bookModel.issueNumber == 1)
-        XCTAssertTrue(bookModel.varientLetter == "a")
+        XCTAssertTrue(bookModel.variantLetter == "a")
         XCTAssertTrue(bookModel.isOwned == true)
     }
 }

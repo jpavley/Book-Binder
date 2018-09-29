@@ -18,14 +18,14 @@ class BookModel {
     var issueNumber: Int
     
     /// The number of this issue's varient
-    var varientLetter: String
+    var variantLetter: String
     
     /// Does the user own this issue?
     var isOwned: Bool
     
     init(seriesURI: BookBinderURI, issueNumber: Int, varientLetter: String, isOwned: Bool) {
         self.issueNumber = issueNumber
-        self.varientLetter = varientLetter
+        self.variantLetter = varientLetter
         self.isOwned = isOwned
         
         let ownership = isOwned ? "owned" : ""

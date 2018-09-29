@@ -50,13 +50,13 @@ class SeriesModel_Tests: XCTestCase {
         
         let testString1 = "Ziff Davis/GI Joe/1950/1"
         XCTAssertTrue(seriesModel.ownedBooks[0].issueNumber == 1)
-        XCTAssertTrue(seriesModel.ownedBooks[0].varientLetter == "")
+        XCTAssertTrue(seriesModel.ownedBooks[0].variantLetter == "")
         XCTAssertTrue(seriesModel.ownedBooks[0].isOwned == false)
         XCTAssertTrue(seriesModel.ownedBooks[0].bookURI.description == testString1)
         
         let testString2 = "Ziff Davis/GI Joe/1950/1/a/owned"
         XCTAssertTrue(seriesModel.ownedBooks[1].issueNumber == 1)
-        XCTAssertTrue(seriesModel.ownedBooks[1].varientLetter == "a")
+        XCTAssertTrue(seriesModel.ownedBooks[1].variantLetter == "a")
         XCTAssertTrue(seriesModel.ownedBooks[1].isOwned == true)
         XCTAssertTrue(seriesModel.ownedBooks[1].bookURI.description == testString2)
     }
