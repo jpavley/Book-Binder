@@ -58,6 +58,7 @@ class SeriesModel {
 extension SeriesModel {
     
     /// URI that identifies this series
+    /// - Publisher/Series/Era/
     var seriesURI: BookBinderURI {
         return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)")
     }

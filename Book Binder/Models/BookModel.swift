@@ -12,7 +12,7 @@ import Foundation
 class BookModel {
     
     /// Used to tie this book to a series
-    var bookURI: BookBinderURI
+    var seriesURI: BookBinderURI
     
     /// The number of this book
     var issueNumber: Int
@@ -24,12 +24,36 @@ class BookModel {
     var isOwned: Bool
     
     init(seriesURI: BookBinderURI, issueNumber: Int, variantLetter: String, isOwned: Bool) {
+        self.seriesURI = seriesURI
         self.issueNumber = issueNumber
         self.variantLetter = variantLetter
         self.isOwned = isOwned
-        
-        let ownership = isOwned ? "owned" : ""
-        
-        bookURI = BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(ownership)")
     }
 }
+
+// MARK: Calculated Vars
+
+extension BookModel {
+    
+    /// URI that identifies this book
+    /// - Publisher/Series/Era/Issue/variant/consumption
+    var bookURI: BookBinderURI {
+        
+        let ownerShip = isOwned ? "owned" : ""
+        
+        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(ownerShip)")
+    }
+    
+    var bookPublisher: String {
+        return seriesURI.publisherID
+    }
+    
+    var bookTitle: String {
+        return seriesURI.seriesID
+    }
+    
+    var bookEra: String {
+        return seriesURI.eraID
+    }
+}
+

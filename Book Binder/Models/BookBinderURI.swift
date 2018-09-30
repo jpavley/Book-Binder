@@ -18,7 +18,7 @@ enum URIPart: Int {
 }
 
 /// MVP 1: Simple URI format.
-/// - Publisher/Series/Era/Issue/variant
+/// - Publisher/Series/Era/Issue/variant/consumption
 /// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
 /// - Missing Parts URI: "Marvel Entertainment//2018/1//owned"
 /// - No variant URI: "Ziff Davis/GI Joe/1950/10"
