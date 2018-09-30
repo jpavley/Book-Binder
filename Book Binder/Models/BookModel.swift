@@ -29,6 +29,15 @@ class BookModel {
         self.variantLetter = variantLetter
         self.isOwned = isOwned
     }
+    
+    /// initalization from a full URI
+    /// - Publisher/Series/Era/Issue/variant/consumption
+    init(fromURI: BookBinderURI) {
+        self.seriesURI = SeriesModel(fromURI: fromURI).seriesURI
+        self.issueNumber = Int(fromURI.issueID)!
+        self.variantLetter = fromURI.variantID
+        self.isOwned = fromURI.consumptionID == "owned"
+    }
 }
 
 // MARK: Calculated Vars
@@ -39,9 +48,9 @@ extension BookModel {
     /// - Publisher/Series/Era/Issue/variant/consumption
     var bookURI: BookBinderURI {
         
-        let ownerShip = isOwned ? "owned" : ""
+        let consumption = isOwned ? "owned" : ""
         
-        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(ownerShip)")
+        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(consumption)")
     }
     
     var bookPublisher: String {
