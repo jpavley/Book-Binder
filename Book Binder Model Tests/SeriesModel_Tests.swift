@@ -22,9 +22,9 @@ class SeriesModel_Tests: XCTestCase {
         let testString1 = "Ziff Davis/GI Joe/1950"
         let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
-        XCTAssertTrue(seriesModel.seriesURI.description == testString1)
-        XCTAssertTrue(seriesModel.seriesTitle == "GI Joe")
-        XCTAssertTrue(seriesModel.seriesEra == "1950")
+        XCTAssertEqual(seriesModel.seriesURI.description, testString1)
+        XCTAssertEqual(seriesModel.seriesTitle, "GI Joe")
+        XCTAssertEqual(seriesModel.seriesEra, "1950")
     }
     
     func testCreateSeriesModelFromURI() {
@@ -32,9 +32,9 @@ class SeriesModel_Tests: XCTestCase {
         let testURI = BookBinderURI(fromURIString: testString1)
         let testSeriesModel = SeriesModel(fromURI: testURI)
         
-        XCTAssertTrue(testSeriesModel.seriesURI.description == testString1)
-        XCTAssertTrue(testSeriesModel.seriesTitle == "GI Joe")
-        XCTAssertTrue(testSeriesModel.seriesEra == "1950")
+        XCTAssertEqual(testSeriesModel.seriesURI.description, testString1)
+        XCTAssertEqual(testSeriesModel.seriesTitle, "GI Joe")
+        XCTAssertEqual(testSeriesModel.seriesEra, "1950")
     }
     
     func testSeriesIssueManagement() {
