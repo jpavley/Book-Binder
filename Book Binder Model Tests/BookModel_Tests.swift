@@ -22,11 +22,23 @@ class BookModel_Tests: XCTestCase {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018"
         let seriesURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
+        
+        XCTAssertEqual(bookModel.seriesURI.description, testString1)
+        XCTAssertEqual(bookModel.issueNumber, 1)
+        XCTAssertEqual(bookModel.variantLetter, "a")
+        XCTAssertEqual(bookModel.isOwned, true)
+    }
+    
+    func testComputedProperties() {
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018"
+        let seriesURI = BookBinderURI(fromURIString: testString1)
+        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a/owned"
         
-        XCTAssertTrue(bookModel.bookURI.description == testString2)
-        XCTAssertTrue(bookModel.issueNumber == 1)
-        XCTAssertTrue(bookModel.variantLetter == "a")
-        XCTAssertTrue(bookModel.isOwned == true)
+        XCTAssertEqual(bookModel.bookURI.description, testString2)
+        XCTAssertEqual(bookModel.bookPublisher, "Marvel Entertainment")
+        XCTAssertEqual(bookModel.bookTitle, "Doctor Strange")
+        XCTAssertEqual(bookModel.bookEra, "2018")
+
     }
 }
