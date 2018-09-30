@@ -70,6 +70,18 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.description == testString1)
     }
     
+    func testEmptyURIDescription() {
+        let testString1 = ""
+        let uri1 = BookBinderURI(fromURIString: testString1)
+        XCTAssertEqual(uri1.description, testString1)
+    }
+    
+    func testFullURIDescription() {
+        let testString1 = "Publisher/Series/Era/Issue/variant/owned"
+        let uri1 = BookBinderURI(fromURIString: testString1)
+        XCTAssertEqual(uri1.description, testString1)
+    }
+    
     func testPartFromURIString() {
         let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
         let testURI = BookBinderURI.init(fromURIString: testString1)
@@ -149,6 +161,5 @@ class BookBinderURI_Tests: XCTestCase {
         let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
         XCTAssertEqual(comsumptionPart, "")
     }
-
 
 }
