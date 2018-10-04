@@ -18,18 +18,17 @@ Minimum about if info that needs to be serilized in JSON for a factory to create
     {
         "seriesPublisher": "",
         "seriesTitle": "",
-        "seriesEra": "",
-        "seriesFirstIssue": "",
-        "seriesCurrentIssue": "",
-        "seriesSkippedIssues":"",
-        "seriesExtraIssues":"",
+        "seriesEra": 0,
+        "seriesFirstIssue": 0,
+        "seriesCurrentIssue": 0,
+        "seriesSkippedIssues":0,
+        "seriesExtraIssues":0,
         "books": 
         [
             {
-                "seriesURI": "",
-                "issueNumber": "",
+                "issueNumber": 0,
                 "variantLetter": "",
-                "isOwned": ""
+                "isOwned": true
             }
         ]
     }
