@@ -32,44 +32,57 @@ class Comicbook {
 
 extension Comicbook {
     
+    /// Returns a series URI from a JsonModel
     static func createSeriesURIFrom(jsonModel: JsonModel) -> BookBinderURI {
         let uriString = "\(jsonModel.seriesPublisher)/\(jsonModel.seriesTitle)/\(jsonModel.seriesEra)"
         return BookBinderURI(fromURIString: uriString)
     }
     
-    static func createFrom(jsonModel: JsonModel) -> Comicbook {
+    /// Returns an array of Comicbooks from a JsonModel
+    /// - A JsonModel contains data for 0 to n Comicbooks
+    static func createFrom(jsonModel: [JsonModel]) -> [Comicbook] {
         
-        let seriesURI = createSeriesURIFrom(jsonModel: jsonModel)
+        var comicbooks = [Comicbook]()
         
-        let comicbook = Comicbook(seriesURI: seriesURI)
-        comicbook.series.seriesFirstIssue = jsonModel.seriesFirstIssue
-        comicbook.series.seriesCurrentIssue = jsonModel.seriesCurrentIssue
-        comicbook.series.seriesSkippedIssues = jsonModel.seriesSkippedIssues
-        comicbook.series.seriesExtraIssues = jsonModel.seriesExtraIssues
+        for jsonComic in jsonModel {
         
-        for jsonBook in jsonModel.books {
-            let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned)
-            comicbook.books.append(book)
+            let seriesURI = createSeriesURIFrom(jsonModel: jsonComic)
+            let comicbook = Comicbook(seriesURI: seriesURI)
+            
+            comicbook.series.seriesFirstIssue = jsonComic.seriesFirstIssue
+            comicbook.series.seriesCurrentIssue = jsonComic.seriesCurrentIssue
+            comicbook.series.seriesSkippedIssues = jsonComic.seriesSkippedIssues
+            comicbook.series.seriesExtraIssues = jsonComic.seriesExtraIssues
+            
+            for jsonBook in jsonComic.books {
+                let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned)
+                comicbook.books.append(book)
+            }
+            
+            comicbooks.append(comicbook)
         }
 
-        return comicbook
+        return comicbooks
     }
     
-    static func createFrom(jsonData: Data) -> Comicbook? {
+    /// Returns an optional array of Comicbooks from data that encodes a JsonModel
+    /// - Calls createFrom(jsonModel:)
+    static func createFrom(jsonData: Data) -> [Comicbook]? {
         do {
             let decoder = JSONDecoder()
-            let jsonModel = try decoder.decode(JsonModel.self, from: jsonData)
-            let comicbook = Comicbook.createFrom(jsonModel: jsonModel)
-            return comicbook
+            let jsonModel = try decoder.decode([JsonModel].self, from: jsonData)
+            return Comicbook.createFrom(jsonModel: jsonModel)
         } catch {
             // handle error
         }
         return nil
     }
     
-    static func createFrom(jsonString: String) -> Comicbook {
+    /// Returns an optional array of Comicbooks from a string that expresses a JsonModel
+    /// - Calls createFrom(jsonString:)
+    static func createFrom(jsonString: String) -> [Comicbook]? {
         let jsonData = jsonString.data(using: .utf8)!
-        return createFrom(jsonData: jsonData)!
+        return createFrom(jsonData: jsonData)
     }
     
 }
