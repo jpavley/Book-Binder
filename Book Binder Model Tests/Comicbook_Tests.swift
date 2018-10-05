@@ -65,12 +65,44 @@ class Comicbook_Tests: XCTestCase {
             comicbook.books.append(book)
         }
         
-        XCTAssertEqual(jsonModel.books.count, comicbook.books.count)
+        XCTAssertEqual(comicbook.books.count, jsonModel.books.count)
         XCTAssertEqual(comicbook.series.publishedIssueCount, 14)
         XCTAssertEqual(comicbook.books[0].seriesURI.description, testURI.description)
         XCTAssertEqual(comicbook.books[1].seriesURI.description, testURI.description)
-
     }
-
-
+    
+    func testCreateComicbookFromFactory() {
+        let jsonString = """
+            {
+                "seriesPublisher": "Marvel Entertainment",
+                "seriesTitle": "Daredevil",
+                "seriesEra": 2017,
+                "seriesFirstIssue": 595,
+                "seriesCurrentIssue": 608,
+                "seriesSkippedIssues": 1,
+                "seriesExtraIssues": 1,
+                "books":
+                [
+                    {
+                        "issueNumber": 605,
+                        "variantLetter": "",
+                        "isOwned": true
+                    },
+                     {
+                        "issueNumber": 606,
+                        "variantLetter": "c",
+                        "isOwned": false
+                    }
+                ]
+            }
+        """
+        
+        let comicbook = Comicbook.createFrom(jsonString: jsonString)
+        
+        XCTAssertNotNil(comicbook)
+        XCTAssertEqual(comicbook.books.count, 2)
+        XCTAssertEqual(comicbook.series.publishedIssueCount, 14)
+        XCTAssertEqual(comicbook.books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017")
+        XCTAssertEqual(comicbook.books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017")
+    }
 }
