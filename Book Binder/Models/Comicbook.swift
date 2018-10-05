@@ -73,7 +73,7 @@ extension Comicbook {
             let jsonModel = try decoder.decode([JsonModel].self, from: jsonData)
             return Comicbook.createFrom(jsonModel: jsonModel)
         } catch {
-            // handle error
+            // TODO: Probably malformed JSON data
         }
         return nil
     }

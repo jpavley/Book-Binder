@@ -31,20 +31,20 @@ class ViewController: UIViewController {
     
     @IBAction func deleteItems() {
         
-        if let selected = collectionView.indexPathsForSelectedItems {
-            
+//        if let selected = collectionView.indexPathsForSelectedItems {
+        
             // sort and reverse the order of the selected items so we
             // are deleting them last to first and not messing up
             // the index paths. Otherwise we would have to delete
             // by tag or id. Index paths are based on position from the
             // beginning of the visible items.
-            let items = selected.map { $0.item }.sorted().reversed()
-            for item in items {
-                // collectionData.remove(at: item)
-            }
-            
-            collectionView.deleteItems(at: selected)
-        }
+//            let items = selected.map { $0.item }.sorted().reversed()
+//            for item in items {
+//                // collectionData.remove(at: item)
+//            }
+//
+//            collectionView.deleteItems(at: selected)
+//        }
         navigationController?.isToolbarHidden = true
     }
     
@@ -75,6 +75,17 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.leftBarButtonItem?.isEnabled = false
         navigationController?.isToolbarHidden = true
+        
+        // load comicbook data from json file
+        if let path = Bundle.main.path(forResource: "books", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                comicbooks = Comicbook.createFrom(jsonData: data)!
+            } catch {
+                // TODO: books.json probably not found
+            }
+        }
+
     }
     
     // editing mode
