@@ -88,4 +88,12 @@ class SeriesModel_Tests: XCTestCase {
         seriesModel.seriesFirstIssue = 20
         XCTAssertEqual(seriesModel.publishedIssueCount, 81)
     }
+    
+    func testPublishedIssues() {
+        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        seriesModel.seriesFirstIssue = 5
+        seriesModel.seriesCurrentIssue = 10
+        XCTAssertEqual(seriesModel.publishedIssues, [5, 6, 7, 8, 9, 10])
+
+    }
 }

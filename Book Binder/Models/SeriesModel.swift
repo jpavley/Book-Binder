@@ -27,29 +27,54 @@ class SeriesModel {
     var seriesEra: String
     
     /// Assume that the first issue in a series is number 1
-    var seriesFirstIssue = 1
+    var seriesFirstIssue: Int {
+        didSet {
+            updatePublishedIssues()
+        }
+    }
     
     /// Assume that all series have at least one issue
-    var seriesCurrentIssue = 1
+    var seriesCurrentIssue: Int {
+        didSet {
+            updatePublishedIssues()
+        }
+    }
     
     /// Assume that no issues in series were skipped
     var seriesSkippedIssues = 0
+    // TODO: Make Array
     
     /// Assume that no extra issues in the series were added
     var seriesExtraIssues = 0
+    // TODO: Make Array
+    
+    var publishedIssues: [Int]
     
     /// Initialization by properties
     init(seriesPublisher: String, seriesTitle: String, seriesEra: String) {
         self.seriesPublisher = seriesPublisher
         self.seriesTitle = seriesTitle
         self.seriesEra = seriesEra
+        self.publishedIssues = [Int]()
+        self.seriesFirstIssue = 1
+        self.seriesCurrentIssue = 1
     }
     
     /// Initalization by URI
-    init(fromURI: BookBinderURI) {
-        self.seriesPublisher = fromURI.publisherID
-        self.seriesTitle = fromURI.seriesID
-        self.seriesEra = fromURI.eraID
+    convenience init(fromURI: BookBinderURI) {
+        self.init(seriesPublisher: fromURI.publisherID, seriesTitle: fromURI.seriesID, seriesEra: fromURI.eraID)
+    }
+    
+    func updatePublishedIssues() {
+        
+        if seriesFirstIssue > seriesCurrentIssue {
+            return
+        }
+        
+        publishedIssues = [Int]()
+        for n in seriesFirstIssue...seriesCurrentIssue {
+            publishedIssues.append(n)
+        }
     }
 }
 
@@ -65,6 +90,7 @@ extension SeriesModel {
     
     /// Number of possible issues if no numbers are skipped
     var publishedIssueCount: Int {
+        // TODO: update to work with arrays for published, extra and skipped issues
         let sequentialIssues = seriesCurrentIssue - (seriesFirstIssue - 1)
         return sequentialIssues + seriesExtraIssues - seriesSkippedIssues
     }

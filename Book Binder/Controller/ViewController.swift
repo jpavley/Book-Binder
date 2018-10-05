@@ -161,7 +161,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
-        return comicbooks[section].books.count
+        return comicbooks[section].series.publishedIssues.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -174,7 +174,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
         let blueStrings = comicbooks[indexPath.section].ownedIssues()
-        let currentIssueString = "\(comicbooks[indexPath.section].books[indexPath.row].issueNumber)"
+        let currentIssueString = "\(comicbooks[indexPath.section].series.publishedIssues[indexPath.row])"
         var attributes: [NSAttributedString.Key: Any]
         
         if blueStrings.contains(currentIssueString) {
@@ -229,7 +229,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         if let dest = segue.destination as? DetailViewController,
             let index = sender as? IndexPath {
-            dest.selection = "\(comicbooks[index.section].books[index.row].issueNumber)"
+            dest.selection = "\(comicbooks[index.section].series.publishedIssues[index.row])"
         }
     }
     
