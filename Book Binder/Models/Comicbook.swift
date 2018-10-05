@@ -55,16 +55,21 @@ extension Comicbook {
         return comicbook
     }
     
-    static func createFrom(jsonData: Data) -> Comicbook {
-        let decoder = JSONDecoder()
-        let jsonModel = try! decoder.decode(JsonModel.self, from: jsonData)
-        let comicbook = Comicbook.createFrom(jsonModel: jsonModel)
-        return comicbook
+    static func createFrom(jsonData: Data) -> Comicbook? {
+        do {
+            let decoder = JSONDecoder()
+            let jsonModel = try decoder.decode(JsonModel.self, from: jsonData)
+            let comicbook = Comicbook.createFrom(jsonModel: jsonModel)
+            return comicbook
+        } catch {
+            // handle error
+        }
+        return nil
     }
     
     static func createFrom(jsonString: String) -> Comicbook {
         let jsonData = jsonString.data(using: .utf8)!
-        return createFrom(jsonData: jsonData)
+        return createFrom(jsonData: jsonData)!
     }
     
 }
