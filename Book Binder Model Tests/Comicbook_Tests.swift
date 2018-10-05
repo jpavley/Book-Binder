@@ -105,4 +105,35 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertEqual(comicbook.books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017")
         XCTAssertEqual(comicbook.books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017")
     }
+    
+    func testOwnedIssues() {
+        let jsonString = """
+            {
+                "seriesPublisher": "Marvel Entertainment",
+                "seriesTitle": "Daredevil",
+                "seriesEra": 2017,
+                "seriesFirstIssue": 595,
+                "seriesCurrentIssue": 608,
+                "seriesSkippedIssues": 1,
+                "seriesExtraIssues": 1,
+                "books":
+                [
+                    {
+                        "issueNumber": 605,
+                        "variantLetter": "",
+                        "isOwned": true
+                    },
+                     {
+                        "issueNumber": 606,
+                        "variantLetter": "c",
+                        "isOwned": true
+                    }
+                ]
+            }
+        """
+        
+        let comicbook = Comicbook.createFrom(jsonString: jsonString)
+        XCTAssertEqual(comicbook.ownedIssues(), ["605", "606"])
+
+    }
 }

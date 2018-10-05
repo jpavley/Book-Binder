@@ -18,24 +18,7 @@ class ViewController: UIViewController {
     let collectionViewMinSpacing = CGFloat(2)
     let cellHeight = CGFloat(40)
     
-    var collectionData1 = [
-        "...", "583", "584", "585", "586", "587", "588",
-        "589", "590", "591", "592", "593", "594", "595",
-        "596", "597", "598", "599", "600", "601", "602",
-        "603", "604", "605", "606", "607", "608", "+"
-    ]
-    
-    var collectionData2 = [
-        "...", "1v", "2", "3", "4", "+"
-    ]
-    
-    var collectionData3 = [
-        "...", "45", "46", "47", "48", "49", "50",
-        "51", "52", "53", "54", "55", "56", "57",
-        "58", "59", "60", "61", "62", "63", "64",
-        "65", "66", "67", "68", "69", "70", "+",
-    ]
-
+    var comicbooks = [Comicbook]()
     
     @IBAction func addItem() {
         
@@ -154,20 +137,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! CollectionReusableView
             
-            if indexPath.section == 0 {
-                headerView.titleLabel.text = "Daredevil 2018"
-                headerView.subTitleLabel.text = "Marvel Entertainment, Comicbook"
-            }
-            
-            if indexPath.section == 1  {
-                headerView.titleLabel.text = "Doctor Strange 2018"
-                headerView.subTitleLabel.text = "Marvel Entertainment, Comicbook"
-            }
-            
-            if indexPath.section == 2 {
-                headerView.titleLabel.text = "ROM Spaceknight 1979"
-                headerView.subTitleLabel.text = "Marvel Comics Group, Comicbook"
-            }
+            headerView.titleLabel.text = "\(comicbooks[indexPath.section].series.seriesTitle) \(comicbooks[indexPath.section].series.seriesEra)"
+            headerView.subTitleLabel.text = comicbooks[indexPath.section].series.seriesPublisher
             
             return headerView
             
@@ -179,25 +150,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
-        if section == 0 {
-            return collectionData1.count
-        }
-        
-        if section == 1 {
-            return collectionData2.count
-        }
-
-        if section == 2 {
-            return collectionData3.count
-        }
-        
-        return 0
-
-        //return collectionData.count
+        return comicbooks[section].books.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return comicbooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -205,82 +162,27 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        if indexPath.section == 0 {
+        let blueStrings = comicbooks[indexPath.section].ownedIssues()
+        let currentIssueString = "\(comicbooks[indexPath.section].books[indexPath.row].issueNumber)"
+        var attributes: [NSAttributedString.Key: Any]
+        
+        if blueStrings.contains(currentIssueString) {
             
-            let blueStrings = ["...", "605", "606", "607", "608", "+"]
+            attributes = [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                NSAttributedString.Key.foregroundColor: UIColor.blue
+            ]
+        } else {
             
-            if blueStrings.contains(collectionData1[indexPath.row]) {
-                
-                let attributes: [NSAttributedString.Key: Any] = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                    NSAttributedString.Key.foregroundColor: UIColor.blue
-                ]
-                
-                cell.titleLabel.attributedText = NSAttributedString(string: collectionData1[indexPath.row], attributes: attributes)
-            } else {
-                
-                let attributes: [NSAttributedString.Key: Any] = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                    NSAttributedString.Key.foregroundColor: UIColor.red,
-                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-                ]
-                
-                cell.titleLabel.attributedText = NSAttributedString(string: collectionData1[indexPath.row], attributes: attributes)
-            }
+            attributes = [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                NSAttributedString.Key.foregroundColor: UIColor.red,
+                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
         }
         
-        if indexPath.section == 1 {
-            
-            let blueStrings = ["...", "1v", "3", "4", "+"]
-            
-            if blueStrings.contains(collectionData2[indexPath.row]) {
-                
-                let attributes: [NSAttributedString.Key: Any] = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                    NSAttributedString.Key.foregroundColor: UIColor.blue
-                ]
-                
-                cell.titleLabel.attributedText = NSAttributedString(string: collectionData2[indexPath.row], attributes: attributes)
-            } else {
-                
-                let attributes: [NSAttributedString.Key: Any] = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                    NSAttributedString.Key.foregroundColor: UIColor.red,
-                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-                ]
-                
-                cell.titleLabel.attributedText = NSAttributedString(string: collectionData2[indexPath.row], attributes: attributes)
-            }
-        }
-        
-        if indexPath.section == 2 {
-            
-            let blueStrings = ["...", "49", "52", "55", "57", "58", "59", "63", "69", "70", "+"]
-            
-            if blueStrings.contains(collectionData3[indexPath.row]) {
-                
-                let attributes: [NSAttributedString.Key: Any] = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                    NSAttributedString.Key.foregroundColor: UIColor.blue
-                ]
-                
-                cell.titleLabel.attributedText = NSAttributedString(string: collectionData3[indexPath.row], attributes: attributes)
-            } else {
-                
-                let attributes: [NSAttributedString.Key: Any] = [
-                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                    NSAttributedString.Key.foregroundColor: UIColor.red,
-                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-                ]
-                
-                cell.titleLabel.attributedText = NSAttributedString(string: collectionData3[indexPath.row], attributes: attributes)
-            }
-        }
-
-        
-        
+        cell.titleLabel.attributedText = NSAttributedString(string: currentIssueString, attributes: attributes)
         cell.isEditing = isEditing
-        
         return cell
     }
     
@@ -302,20 +204,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
         
-        if indexPath.section == 0 {
-            let text = collectionData1[indexPath.row]
-            print(text)
-        }
-        
-        if indexPath.section == 1 {
-            let text = collectionData2[indexPath.row]
-            print(text)
-        }
-        
-        if indexPath.section == 2 {
-            let text = collectionData3[indexPath.row]
-            print(text)
-        }
+        let text = "\(comicbooks[indexPath.section].books[indexPath.row].issueNumber)"
+        print(text)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -328,18 +218,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         if let dest = segue.destination as? DetailViewController,
             let index = sender as? IndexPath {
-            
-            if index.section == 0 {
-                dest.selection = collectionData1[index.row]
-            }
-            
-            if index.section == 1 {
-                dest.selection = collectionData2[index.row]
-            }
-            
-            if index.section == 2 {
-                dest.selection = collectionData3[index.row]
-            }
+            dest.selection = "\(comicbooks[index.section].books[index.row].issueNumber)"
         }
     }
     

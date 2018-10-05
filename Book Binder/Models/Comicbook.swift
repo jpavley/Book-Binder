@@ -16,6 +16,17 @@ class Comicbook {
         series = SeriesModel(fromURI: seriesURI)
         books = [BookModel]()
     }
+    
+    /// Returns a list of owned issue numbers as a string
+    func ownedIssues() -> [String] {
+        var result = [String]()
+        for book in books {
+            if book.isOwned {
+                result.append("\(book.issueNumber)")
+            }
+        }
+        return result
+    }
 }
 // MARk: Comicbook Factories
 
