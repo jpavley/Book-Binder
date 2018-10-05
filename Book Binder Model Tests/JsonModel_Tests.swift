@@ -41,7 +41,22 @@ class JsonModel_Tests: XCTestCase {
         let jsonData = jsonString.data(using: .utf8)!
         let decoder = JSONDecoder()
         let jsonModel = try! decoder.decode(JsonModel.self, from: jsonData)
+        
         XCTAssertNotNil(jsonModel)
-    }
+        XCTAssertEqual(jsonModel.seriesPublisher, "Marvel Entertainment")
+        XCTAssertEqual(jsonModel.seriesTitle, "Daredevil")
+        XCTAssertEqual(jsonModel.seriesEra, 2017)
+        XCTAssertEqual(jsonModel.seriesFirstIssue, 595)
+        XCTAssertEqual(jsonModel.seriesCurrentIssue, 608)
+        XCTAssertEqual(jsonModel.seriesSkippedIssues, 0)
+        XCTAssertEqual(jsonModel.seriesExtraIssues, 0)
+        
+        let book = jsonModel.books.first!
+        
+        XCTAssertNotNil(book)
+        XCTAssertEqual(book.issueNumber, 605)
+        XCTAssertEqual(book.variantLetter, "")
+        XCTAssertEqual(book.isOwned, true)
+   }
 
 }

@@ -10,15 +10,13 @@ import Foundation
 
 struct JsonModel: Codable {
     
-    struct JsonSeries: Codable {
-        let seriesPublisher: String
-        let seriesTitle: String
-        let seriesEra: Int
-        let seriesFirstIssue: Int
-        let seriesCurrentIssue: Int
-        let seriesSkippedIssues: Int
-        let seriesExtraIssues: Int
-    }
+    let seriesPublisher: String
+    let seriesTitle: String
+    let seriesEra: Int
+    let seriesFirstIssue: Int
+    let seriesCurrentIssue: Int
+    let seriesSkippedIssues: Int
+    let seriesExtraIssues: Int
     
     struct JsonBook: Codable {
         let issueNumber: Int
@@ -26,7 +24,6 @@ struct JsonModel: Codable {
         let isOwned: Bool
     }
     
-    let series: JsonSeries
     let books: [JsonBook]
 }
 
