@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct JasonComicbook: Codable {
+struct JsonModel: Codable {
     
     struct JsonSeries: Codable {
         let seriesPublisher: String
