@@ -32,6 +32,7 @@
 		48ED2CAC2166C45600945BED /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED2CA62166423300945BED /* JsonModel.swift */; };
 		48ED2CAD2166C5DF00945BED /* Comicbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED2CA82166BFA400945BED /* Comicbook.swift */; };
 		48ED2CAF2167D47C00945BED /* Comicbook_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED2CAE2167D47C00945BED /* Comicbook_Tests.swift */; };
+		48ED2CB02167DC3900945BED /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 48CBB67E215D5EDF003D1870 /* books.json */; };
 		48FBD3052151405000D2A14B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3032151405000D2A14B /* LICENSE */; };
 		48FBD3062151405000D2A14B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3042151405000D2A14B /* README.md */; };
 /* End PBXBuildFile section */
@@ -280,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48ED2CB02167DC3900945BED /* books.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
