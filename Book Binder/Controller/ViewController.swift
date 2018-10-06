@@ -31,20 +31,20 @@ class ViewController: UIViewController {
     
     @IBAction func deleteItems() {
         
-//        if let selected = collectionView.indexPathsForSelectedItems {
+        //        if let selected = collectionView.indexPathsForSelectedItems {
         
-            // sort and reverse the order of the selected items so we
-            // are deleting them last to first and not messing up
-            // the index paths. Otherwise we would have to delete
-            // by tag or id. Index paths are based on position from the
-            // beginning of the visible items.
-//            let items = selected.map { $0.item }.sorted().reversed()
-//            for item in items {
-//                // collectionData.remove(at: item)
-//            }
-//
-//            collectionView.deleteItems(at: selected)
-//        }
+        // sort and reverse the order of the selected items so we
+        // are deleting them last to first and not messing up
+        // the index paths. Otherwise we would have to delete
+        // by tag or id. Index paths are based on position from the
+        // beginning of the visible items.
+        //            let items = selected.map { $0.item }.sorted().reversed()
+        //            for item in items {
+        //                // collectionData.remove(at: item)
+        //            }
+        //
+        //            collectionView.deleteItems(at: selected)
+        //        }
         navigationController?.isToolbarHidden = true
     }
     
@@ -85,7 +85,7 @@ class ViewController: UIViewController {
                 // TODO: books.json probably not found
             }
         }
-
+        
     }
     
     // editing mode
@@ -150,8 +150,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! CollectionReusableView
             
-            headerView.titleLabel.text = "\(comicbooks[indexPath.section].series.seriesTitle) \(comicbooks[indexPath.section].series.seriesEra)"
-            headerView.subTitleLabel.text = comicbooks[indexPath.section].series.seriesPublisher
+            let seriesModel = getSeriesModelFor(indexPath: indexPath)
+            
+            headerView.titleLabel.text = "\(seriesModel.seriesTitle) \(seriesModel.seriesEra)"
+            headerView.subTitleLabel.text = seriesModel.seriesPublisher
             
             return headerView
             
@@ -163,7 +165,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         
-        return comicbooks[section].series.publishedIssues.count
+        let indexPath = IndexPath(row: 0, section: section)
+        let seriesModel = getSeriesModelFor(indexPath: indexPath)
+        return seriesModel.publishedIssues.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -175,8 +179,11 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        let blueStrings = comicbooks[indexPath.section].ownedIssues()
-        let currentIssueString = "\(comicbooks[indexPath.section].series.publishedIssues[indexPath.row])"
+        let comicbook = getComicbookFor(indexPath: indexPath)
+        let blueStrings = comicbook.ownedIssues()
+        
+        let publishedIssue = getPublishedIssueFor(indexPath: indexPath)
+        let currentIssueString = "\(publishedIssue)"
         var attributes: [NSAttributedString.Key: Any]
         
         if blueStrings.contains(currentIssueString) {
@@ -199,6 +206,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
+    /// Did Deselect Item At
     func collectionView(_ collectionView: UICollectionView,
                         didDeselectItemAt indexPath: IndexPath) {
         if isEditing {
@@ -208,6 +216,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
+    /// Did Select Item At
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         
@@ -217,7 +226,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
         
-        let text = "\(comicbooks[indexPath.section].series.publishedIssues[indexPath.row])"
+        let publishedIssue = getPublishedIssueFor(indexPath: indexPath)
+        let text = "\(publishedIssue)"
         print(text)
     }
     
@@ -230,8 +240,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         // code for selection passing with manual segue
         
         if let dest = segue.destination as? DetailViewController,
-            let index = sender as? IndexPath {
-            dest.selection = "\(comicbooks[index.section].series.publishedIssues[index.row])"
+            let indexPath = sender as? IndexPath {
+            let publishedIssue = getPublishedIssueFor(indexPath: indexPath)
+            dest.selection = "\(publishedIssue)"
         }
     }
     
@@ -258,8 +269,8 @@ extension ViewController {
     }
     
     func updateCollectionView() {
-//        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
-//        collectionView.insertItems(at: [indexPath])
+        //        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+        //        collectionView.insertItems(at: [indexPath])
     }
 }
 
