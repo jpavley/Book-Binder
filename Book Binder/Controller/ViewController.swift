@@ -138,6 +138,8 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionView -
+
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
@@ -236,7 +238,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
 }
 
-/// Add one or more items to the collection and update the view
+// MARK: - Item Management -
+
 extension ViewController {
     
     func addItems(itemList: [String]) {
@@ -257,6 +260,40 @@ extension ViewController {
     func updateCollectionView() {
 //        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
 //        collectionView.insertItems(at: [indexPath])
+    }
+}
+
+// MARK: - Get objects by index path -
+
+extension ViewController {
+    
+    func getComicbookFor(indexPath: IndexPath) -> Comicbook {
+        return comicbooks[indexPath.section]
+    }
+    
+    func getSeriesModelFor(indexPath: IndexPath) -> SeriesModel {
+        return getComicbookFor(indexPath: indexPath).series
+    }
+    
+    func getPublishedIssueFor(indexPath: IndexPath) -> Int {
+        let seriesModel = getSeriesModelFor(indexPath: indexPath)
+        return seriesModel.publishedIssues[indexPath.row]
+    }
+    
+    func getBookModelFor(indexPath: IndexPath) -> BookModel {
+        let comicbook = getComicbookFor(indexPath: indexPath)
+        let issueNumber = getPublishedIssueFor(indexPath: indexPath)
+        
+        for book in comicbook.books {
+            if issueNumber == book.issueNumber {
+                // This ia a book the user owns or is tracking
+                return book
+            }
+        }
+        
+        // This is a book the user doesn't own yet...
+        return BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: issueNumber, variantLetter: "", isOwned: false)
+        
     }
 }
 
