@@ -215,7 +215,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
         
-        let text = "\(comicbooks[indexPath.section].books[indexPath.row].issueNumber)"
+        let text = "\(comicbooks[indexPath.section].series.publishedIssues[indexPath.row])"
         print(text)
     }
     
