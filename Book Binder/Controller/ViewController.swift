@@ -29,30 +29,27 @@ class ViewController: UIViewController {
     // MARK:- Actions -
     
     @IBAction func addItem() {
-        
-        // add one item per touch
-        
         collectionView.performBatchUpdates({
-            // addItems(itemList: ["\(collectionData.count + 1) 😈"])
+            // TODO: Add comicbook
         }, completion: nil)
     }
     
     @IBAction func deleteItems() {
         
-        //        if let selected = collectionView.indexPathsForSelectedItems {
+        if let selected = collectionView.indexPathsForSelectedItems {
         
         // sort and reverse the order of the selected items so we
         // are deleting them last to first and not messing up
         // the index paths. Otherwise we would have to delete
         // by tag or id. Index paths are based on position from the
         // beginning of the visible items.
-        //            let items = selected.map { $0.item }.sorted().reversed()
-        //            for item in items {
-        //                // collectionData.remove(at: item)
-        //            }
-        //
-        //            collectionView.deleteItems(at: selected)
-        //        }
+        let items = selected.map { $0.item }.sorted().reversed()
+            for _ in items {
+                // TODO: Remove comicbook
+            }
+        
+            collectionView.deleteItems(at: selected)
+        }
         navigationController?.isToolbarHidden = true
     }
     
@@ -103,6 +100,8 @@ class ViewController: UIViewController {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         
+        // TODO: Choose sections (comicbooks) not cells (issues) for editing
+        
         // enable edit mode on the collection with multiple selection
         
         super.setEditing(editing, animated: animated)
@@ -139,10 +138,8 @@ class ViewController: UIViewController {
     
     @objc func refresh() {
         
-        // ad more than one item per pull
-        
         collectionView.performBatchUpdates({
-            //addItems(itemList: ["\(collectionData.count + 1) 👽", "\(collectionData.count + 2) 💩"])
+            // TODO: Update comicbook data from a server
         }, completion: nil)
         
         collectionView.refreshControl?.endRefreshing()
@@ -276,12 +273,11 @@ extension ViewController {
     }
     
     func addItemToModel(item: String) {
-        //collectionData.append(item)
+        // TODO: Add sections, not cell
     }
     
     func updateCollectionView() {
-        //        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
-        //        collectionView.insertItems(at: [indexPath])
+        // TODO: Update sections, not cells
     }
 }
 
