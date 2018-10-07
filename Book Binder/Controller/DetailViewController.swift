@@ -18,7 +18,9 @@ class DetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        detailsLabel.text = selection
+        detailsLabel.text = "#\(selection ?? "0")"
+        navigationController?.isToolbarHidden = false
+
     }
     
 
