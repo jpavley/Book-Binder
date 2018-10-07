@@ -175,23 +175,60 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let indexPath = IndexPath(row: 0, section: section)
         let seriesModel = getSeriesModelFor(indexPath: indexPath)
-        return seriesModel.publishedIssues.count
+        
+        // add 2 to the published issues count for the ... and + icons
+        let result = seriesModel.publishedIssues.count + 2
+        return result
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return comicbooks.count
     }
     
+    func calcOffsetIndexPath(indexPath: IndexPath) -> IndexPath {
+        // offset by -1 because first cell contains ... icon
+        return IndexPath(row: indexPath.row - 1, section: indexPath.section)
+    }
+    
+    func calcCurrentIssueString(indexPath: IndexPath) -> String {
+        var currentIssueString = ""
+        let seriesModel = getSeriesModelFor(indexPath: indexPath)
+        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        
+        // The first cell (0) should be the ... icon for editing the series
+        // The last cell (seriesModel.publishedIssues.count + 2) should be the + icon for adding a book
+        
+        if indexPath.row == 0 {
+            
+            currentIssueString = "..."
+            
+        } else if indexPath.row == (seriesModel.publishedIssues.count + 1) {
+            
+            // offset the published issue count by 1 to account for ... and + icons
+            currentIssueString = "+"
+            
+        } else {
+            
+            let publishedIssue = getPublishedIssueFor(indexPath: offsetIndexPath)
+            currentIssueString = "\(publishedIssue)"
+        }
+        return currentIssueString
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let currentIssueString = calcCurrentIssueString(indexPath: indexPath)
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        let comicbook = getComicbookFor(indexPath: indexPath)
-        let blueStrings = comicbook.ownedIssues()
+        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        let comicbook = getComicbookFor(indexPath: offsetIndexPath)
         
-        let publishedIssue = getPublishedIssueFor(indexPath: indexPath)
-        let currentIssueString = "\(publishedIssue)"
+        var blueStrings = ["..."]
+        blueStrings.append(contentsOf: comicbook.ownedIssues())
+        blueStrings.append("+")
+        
         var attributes: [NSAttributedString.Key: Any]
         
         if blueStrings.contains(currentIssueString) {
@@ -233,10 +270,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         } else {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
-        
-        let publishedIssue = getPublishedIssueFor(indexPath: indexPath)
-        let text = "\(publishedIssue)"
-        print(text)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -245,16 +278,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
             return
         }
         
-        // code for selection passing with manual segue
-        
-        if let dest = segue.destination as? DetailViewController,
-            let indexPath = sender as? IndexPath {
-            let publishedIssue = getPublishedIssueFor(indexPath: indexPath)
-            dest.selection = "\(publishedIssue)"
+        if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
+            dest.selection = calcCurrentIssueString(indexPath: indexPath)
         }
     }
-    
-    
 }
 
 // MARK: - Item Management -
