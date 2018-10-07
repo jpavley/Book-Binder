@@ -10,15 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK:- Outlets -
+    
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet private weak var deleteButton: UIBarButtonItem!
+    
+    // MARK:- Constants -
     
     let columnCount = CGFloat(6)
     let collectionViewMinSpacing = CGFloat(2)
     let cellHeight = CGFloat(40)
     
+    // MARK:- Properties -
+    
     var comicbooks = [Comicbook]()
+    
+    // MARK:- Actions -
     
     @IBAction func addItem() {
         
@@ -48,47 +56,50 @@ class ViewController: UIViewController {
         navigationController?.isToolbarHidden = true
     }
     
+    // MARK: - Startup -
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        // collection view layout sizing
+        func collectionViewLayout() {
+            let spacesBetweenColumns = columnCount - 1
+            let totalSpacing = collectionViewMinSpacing * spacesBetweenColumns
+            
+            let width = (view.frame.size.width - totalSpacing) / columnCount
+            let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            layout.itemSize = CGSize(width: width, height: cellHeight)
+        }
         
-        let spacesBetweenColumns = columnCount - 1
-        let totalSpacing = collectionViewMinSpacing * spacesBetweenColumns
+        func pullToRefreshSetup() {
+            let refresh = UIRefreshControl()
+            refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
+            collectionView.refreshControl = refresh
+        }
         
-        let width = (view.frame.size.width - totalSpacing) / columnCount
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: cellHeight)
+        func editModeSetup() {
+            navigationItem.leftBarButtonItem = editButtonItem
+            navigationItem.leftBarButtonItem?.isEnabled = false
+            navigationController?.isToolbarHidden = true
+        }
         
-        // pull to refresh
-        
-        let refresh = UIRefreshControl()
-        refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-        collectionView.refreshControl = refresh
-        
-        // editing mode
-        // This one line of code does so much!
-        // - Adds an edit button to the left side of the
-        // - Toggles the button between Edit and Done
-        // - Toggles the view controller between editing and not-editing mode
-        navigationItem.leftBarButtonItem = editButtonItem
-        navigationItem.leftBarButtonItem?.isEnabled = false
-        navigationController?.isToolbarHidden = true
-        
-        // load comicbook data from json file
-        if let path = Bundle.main.path(forResource: "books", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                comicbooks = Comicbook.createFrom(jsonData: data)!
-            } catch {
-                // TODO: books.json probably not found
+        func loadComicbookData() {
+            if let path = Bundle.main.path(forResource: "books", ofType: "json") {
+                do {
+                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                    comicbooks = Comicbook.createFrom(jsonData: data)!
+                } catch {
+                    // TODO: books.json probably not found
+                }
             }
         }
         
+        collectionViewLayout()
+        pullToRefreshSetup()
+        editModeSetup()
+        loadComicbookData()
     }
     
-    // editing mode
+    // MARK:- Editing -
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         
