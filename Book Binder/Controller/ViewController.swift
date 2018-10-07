@@ -37,17 +37,17 @@ class ViewController: UIViewController {
     @IBAction func deleteItems() {
         
         if let selected = collectionView.indexPathsForSelectedItems {
-        
-        // sort and reverse the order of the selected items so we
-        // are deleting them last to first and not messing up
-        // the index paths. Otherwise we would have to delete
-        // by tag or id. Index paths are based on position from the
-        // beginning of the visible items.
-        let items = selected.map { $0.item }.sorted().reversed()
+            
+            // sort and reverse the order of the selected items so we
+            // are deleting them last to first and not messing up
+            // the index paths. Otherwise we would have to delete
+            // by tag or id. Index paths are based on position from the
+            // beginning of the visible items.
+            let items = selected.map { $0.item }.sorted().reversed()
             for _ in items {
                 // TODO: Remove comicbook
             }
-        
+            
             collectionView.deleteItems(at: selected)
         }
         navigationController?.isToolbarHidden = true
@@ -185,11 +185,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return comicbooks.count
     }
     
+    /// The offset index path takes into account that the first cell is the ... icon.
     func calcOffsetIndexPath(indexPath: IndexPath) -> IndexPath {
         // offset by -1 because first cell contains ... icon
         return IndexPath(row: indexPath.row - 1, section: indexPath.section)
     }
     
+    /// The current issue string is either ..., +, or a published issue number.
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
         let seriesModel = getSeriesModelFor(indexPath: indexPath)
@@ -215,20 +217,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return currentIssueString
     }
     
+    /// Blue strings are either the icons or the issues the user owns.
+    func calcBlueStrings(indexPath: IndexPath) -> [String] {
+        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        let comicbook = getComicbookFor(indexPath: offsetIndexPath)
+        var blueStrings = ["..."]
+        blueStrings.append(contentsOf: comicbook.ownedIssues())
+        blueStrings.append("+")
+        return blueStrings
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let currentIssueString = calcCurrentIssueString(indexPath: indexPath)
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        
-        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        let comicbook = getComicbookFor(indexPath: offsetIndexPath)
-        
-        var blueStrings = ["..."]
-        blueStrings.append(contentsOf: comicbook.ownedIssues())
-        blueStrings.append("+")
-        
+        let blueStrings = calcBlueStrings(indexPath: indexPath)
         var attributes: [NSAttributedString.Key: Any]
         
         if blueStrings.contains(currentIssueString) {
