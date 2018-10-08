@@ -15,7 +15,6 @@ book. Update Detail and Summary Views to report on costs and value. This
 points to the need for an overview of the collection which could include it's
 total count, cost, and value.
 
-- Rename ViewController to SummaryViewController.
 - Remove edit mode management from summary view.
 - Hide toolbar when returning from detail view to summary view.
 - Enable swiping between books in detail view.
@@ -27,6 +26,9 @@ total count, cost, and value.
 - Implement add in summary view to add a book to a series.
 - Implement add series action in summary view.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
+
+## In progress
+- Rename ViewController to SummaryViewController.
 
 ## Closed
 
