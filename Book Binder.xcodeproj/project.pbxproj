@@ -10,7 +10,7 @@
 		482093A32159BACB00A0C00D /* SeriesModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482093A22159BACB00A0C00D /* SeriesModel_Tests.swift */; };
 		4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */ = {isa = PBXBuildFile; fileRef = 4824760021528AF70039399D /* UX for Book Binder Summary View.png */; };
 		483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B7214ED8E9008C69D8 /* AppDelegate.swift */; };
-		483C61BA214ED8E9008C69D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B9214ED8E9008C69D8 /* ViewController.swift */; };
+		483C61BA214ED8E9008C69D8 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */; };
 		483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483C61BB214ED8E9008C69D8 /* Main.storyboard */; };
 		483C61BF214ED8EB008C69D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 483C61BE214ED8EB008C69D8 /* Assets.xcassets */; };
 		483C61C2214ED8EB008C69D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483C61C0214ED8EB008C69D8 /* LaunchScreen.storyboard */; };
@@ -52,7 +52,7 @@
 		4824760021528AF70039399D /* UX for Book Binder Summary View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UX for Book Binder Summary View.png"; sourceTree = "<group>"; };
 		483C61B4214ED8E9008C69D8 /* Book Binder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Binder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		483C61B7214ED8E9008C69D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		483C61B9214ED8E9008C69D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		483C61BC214ED8E9008C69D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		483C61BE214ED8EB008C69D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		483C61C1214ED8EB008C69D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -109,8 +109,8 @@
 			children = (
 				484CC0E22157F3540012CD42 /* TODO.md */,
 				48FBD3042151405000D2A14B /* README.md */,
-				48FBD3032151405000D2A14B /* LICENSE */,
 				48FBD3072151409400D2A14B /* FEATURES.md */,
+				48FBD3032151405000D2A14B /* LICENSE */,
 				482475FF21528A930039399D /* UX Designs */,
 				483C61B6214ED8E9008C69D8 /* Book Binder */,
 				484CC0E8215850350012CD42 /* Book Binder Model Tests */,
@@ -167,7 +167,7 @@
 		484CC0DB2157DCF20012CD42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				483C61B9214ED8E9008C69D8 /* ViewController.swift */,
+				483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */,
 				484CC0D521567A180012CD42 /* DetailViewController.swift */,
 			);
 			path = Controller;
@@ -298,7 +298,7 @@
 				48ED2CA72166423300945BED /* JsonModel.swift in Sources */,
 				48ED2CA92166BFA400945BED /* Comicbook.swift in Sources */,
 				484CC0D621567A180012CD42 /* DetailViewController.swift in Sources */,
-				483C61BA214ED8E9008C69D8 /* ViewController.swift in Sources */,
+				483C61BA214ED8E9008C69D8 /* SummaryViewController.swift in Sources */,
 				484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */,
 				483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */,
 				484CC0E12157DFC00012CD42 /* BookBinderURI.swift in Sources */,

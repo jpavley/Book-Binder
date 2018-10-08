@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SummaryViewController.swift
 //  Book Binder
 //
 //  Created by John Pavley on 9/16/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SummaryViewController: UIViewController {
     
     // MARK:- Outlets -
     
@@ -148,7 +148,7 @@ class ViewController: UIViewController {
 
 // MARK: - UICollectionView -
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
@@ -301,7 +301,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 // MARK: - Item Management -
 
-extension ViewController {
+extension SummaryViewController {
     
     func addItems(itemList: [String]) {
         for item in itemList {
@@ -325,7 +325,7 @@ extension ViewController {
 
 // MARK: - Get objects by index path -
 
-extension ViewController {
+extension SummaryViewController {
     
     func getComicbookFor(indexPath: IndexPath) -> Comicbook {
         return comicbooks[indexPath.section]

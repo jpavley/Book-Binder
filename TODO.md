@@ -28,7 +28,7 @@ total count, cost, and value.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
-- Rename ViewController to SummaryViewController.
 
 ## Closed
+- Rename ViewController to SummaryViewController.
 

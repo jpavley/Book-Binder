@@ -6,7 +6,7 @@ your hand then Book Binder might be for you. Open source, MIT license. Written i
 
 ## Current State
 
-Just getting started. Not much to see. If you'd like to contribute reach out on Twitter to @jpavley.
+Good progress on summary and detail views. If you'd like to contribute reach out on Twitter to @jpavley.
 
 ## Planned Features
 
