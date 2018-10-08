@@ -191,6 +191,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return IndexPath(row: indexPath.row - 1, section: indexPath.section)
     }
     
+    /// The offset index path takes into account that the first cell is the ... icon.
+    func calcResetIndexPath(indexPath: IndexPath) -> IndexPath {
+        // offset by 1 because first cell contains ... icon
+        return IndexPath(row: indexPath.row + 1, section: indexPath.section)
+    }
+
+    
     /// The current issue string is either ..., +, or a published issue number.
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
@@ -272,18 +279,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         if isEditing {
             navigationController?.isToolbarHidden = false
         } else {
+            // return if these are the special cells that represent other actions
+            let issueString = calcCurrentIssueString(indexPath: indexPath)
+            if issueString == "..." || issueString == "+" {
+                return
+            }
+            
+            // continue to detail view control to display selected book
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier != "DetailSegue" {
-            return
-        }
-        
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
-            dest.selection = calcCurrentIssueString(indexPath: indexPath)
+            let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+            dest.selection = getBookModelFor(indexPath: offsetIndexPath)
         }
     }
 }

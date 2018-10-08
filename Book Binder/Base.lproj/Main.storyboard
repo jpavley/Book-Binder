@@ -176,6 +176,9 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UCS-Eo-pEg">
                                                 <rect key="frame" x="194" y="0.0" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="isOwnedAction:" destination="6F6-9h-lCG" eventType="valueChanged" id="9Nw-W0-fq3"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
@@ -192,15 +195,32 @@
                         <viewLayoutGuide key="safeArea" id="tjh-zU-fAW"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem systemItem="trash" id="UbO-hQ-cP4"/>
+                        <barButtonItem systemItem="trash" id="UbO-hQ-cP4">
+                            <connections>
+                                <action selector="deleteAction:" destination="6F6-9h-lCG" id="O2i-QT-lzT"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zje-wQ-OW7"/>
-                        <barButtonItem systemItem="camera" id="je3-mr-ZhH"/>
+                        <barButtonItem systemItem="camera" id="je3-mr-ZhH">
+                            <connections>
+                                <action selector="cameraAction:" destination="6F6-9h-lCG" id="dTa-OR-kXN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FDZ-7P-hqR"/>
-                        <barButtonItem systemItem="add" id="a4w-Li-dos"/>
+                        <barButtonItem systemItem="add" id="a4w-Li-dos">
+                            <connections>
+                                <action selector="addIssueAction:" destination="6F6-9h-lCG" id="PH7-tg-Iqy"/>
+                            </connections>
+                        </barButtonItem>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="detailsLabel" destination="fV2-j1-npG" id="A3o-Ez-yPl"/>
+                        <outlet property="coverImageView" destination="ZQM-w5-72L" id="wQ9-bl-dFv"/>
+                        <outlet property="isOwnedSwitch" destination="UCS-Eo-pEg" id="84O-42-ZrH"/>
+                        <outlet property="issueNumberLabel" destination="fV2-j1-npG" id="PC1-7j-Ipd"/>
+                        <outlet property="publisherLabel" destination="Hj3-XC-JxU" id="j1g-aX-xNR"/>
+                        <outlet property="titleLabel" destination="ToO-mV-afp" id="M5z-8S-HwS"/>
+                        <outlet property="variantLetterLabel" destination="IFf-HI-Ghq" id="rXi-pG-UgO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
