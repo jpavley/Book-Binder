@@ -40,7 +40,46 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSwipeGestureRecognisers()
         updateUX()
+    }
+    
+    func addSwipeGestureRecognisers() {
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipe))
+        swipeLeft.direction = .left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipe))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc func respondToSwipe(gesture: UISwipeGestureRecognizer) {
+        switch gesture.direction {
+        case .left:
+            // next book
+            print("left")
+        case .right:
+            print("right")
+            // previous book
+        default:
+            assert(false, "unsupported gesture")
+        }
+    }
+    
+    func loadBook(next: Bool) {
+        // if next is true
+        //     if this is not the last book
+        //         load the next book
+        //     else
+        //         load the first book
+        // else
+        //    if this is not the first book
+        //        load the prevous book
+        //    else
+        //        load the last book
+        
     }
     
     func updateUX() {
