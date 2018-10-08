@@ -49,12 +49,25 @@ class DetailViewController: UIViewController {
         issueNumberLabel.text = "#\(selection.issueNumber)"
         variantLetterLabel.text = "\(selection.variantLetter)"
         
-        coverImageView.image = UIImage(named: "logans-run-6")
+        let coverName = publisherCover(for: selection.bookPublisher)
+        coverImageView.image = UIImage(named: coverName)
         isOwnedSwitch.isOn = selection.isOwned
         
         navigationController?.isToolbarHidden = false
     }
     
+    func publisherCover(for publisher: String) -> String {
+        switch publisher {
+        case "Marvel Entertainment":
+            return "x-men-101"
+        case "DC Comics":
+            return "lois-lane-111"
+        case "NBM":
+            return "logans-run-6"
+        default:
+            return "identity-crisis-7-b"
+        }
+    }
     
     /*
      // MARK: - Navigation
