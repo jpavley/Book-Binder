@@ -30,27 +30,8 @@ class SummaryViewController: UIViewController {
     
     @IBAction func addItem() {
         collectionView.performBatchUpdates({
-            // TODO: Add comicbook
+            // TODO: Add series
         }, completion: nil)
-    }
-    
-    @IBAction func deleteItems() {
-        
-        if let selected = collectionView.indexPathsForSelectedItems {
-            
-            // sort and reverse the order of the selected items so we
-            // are deleting them last to first and not messing up
-            // the index paths. Otherwise we would have to delete
-            // by tag or id. Index paths are based on position from the
-            // beginning of the visible items.
-            let items = selected.map { $0.item }.sorted().reversed()
-            for _ in items {
-                // TODO: Remove comicbook
-            }
-            
-            collectionView.deleteItems(at: selected)
-        }
-        navigationController?.isToolbarHidden = true
     }
     
     // MARK: - Startup -
@@ -73,9 +54,7 @@ class SummaryViewController: UIViewController {
             collectionView.refreshControl = refresh
         }
         
-        func editModeSetup() {
-            navigationItem.leftBarButtonItem = editButtonItem
-            navigationItem.leftBarButtonItem?.isEnabled = false
+        func toolbarSetup() {
             navigationController?.isToolbarHidden = true
         }
         
@@ -92,47 +71,9 @@ class SummaryViewController: UIViewController {
         
         collectionViewLayout()
         pullToRefreshSetup()
-        editModeSetup()
+        toolbarSetup()
         loadComicbookData()
     }
-    
-    // MARK:- Editing -
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        
-        // TODO: Choose sections (comicbooks) not cells (issues) for editing
-        
-        // enable edit mode on the collection with multiple selection
-        
-        super.setEditing(editing, animated: animated)
-        collectionView.allowsMultipleSelection = editing
-        
-        // ensure all cells are deselected when entering or exiting edit more
-        
-        collectionView.indexPathsForSelectedItems?.forEach {
-            collectionView.deselectItem(at: $0, animated: false)
-        }
-        
-        // set the editing state of each visible cell
-        
-        let indexPaths = collectionView.indexPathsForVisibleItems
-        for indexPath in indexPaths {
-            let cell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
-            cell.isEditing = editing
-        }
-        
-        // add buttomn management
-        
-        addButton.isEnabled = !editing
-        
-        // tool bar management
-        
-        if !editing {
-            navigationController?.isToolbarHidden = true
-        }
-        
-    }
-    
     
     // pull to refresh
     
@@ -258,18 +199,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         cell.titleLabel.attributedText = NSAttributedString(string: currentIssueString, attributes: attributes)
-        cell.isEditing = isEditing
         return cell
-    }
-    
-    /// Did Deselect Item At
-    func collectionView(_ collectionView: UICollectionView,
-                        didDeselectItemAt indexPath: IndexPath) {
-        if isEditing {
-            if let selected = collectionView.indexPathsForSelectedItems, selected.count == 0 {
-                navigationController?.isToolbarHidden = true
-            }
-        }
     }
     
     /// Did Select Item At
@@ -296,30 +226,6 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
             dest.selection = getBookModelFor(indexPath: offsetIndexPath)
         }
-    }
-}
-
-// MARK: - Item Management -
-
-extension SummaryViewController {
-    
-    func addItems(itemList: [String]) {
-        for item in itemList {
-            
-            // First update model
-            addItemToModel(item: item)
-            
-            // Second update view
-            updateCollectionView()
-        }
-    }
-    
-    func addItemToModel(item: String) {
-        // TODO: Add sections, not cell
-    }
-    
-    func updateCollectionView() {
-        // TODO: Update sections, not cells
     }
 }
 
