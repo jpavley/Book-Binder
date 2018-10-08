@@ -59,26 +59,39 @@ class DetailViewController: UIViewController {
         switch gesture.direction {
         case .left:
             // next book
-            print("left")
+            loadBook(next: true)
         case .right:
-            print("right")
             // previous book
+            loadBook(next: false)
         default:
             assert(false, "unsupported gesture")
         }
     }
     
     func loadBook(next: Bool) {
-        // if next is true
-        //     if this is not the last book
-        //         load the next book
-        //     else
-        //         load the first book
-        // else
-        //    if this is not the first book
-        //        load the prevous book
-        //    else
-        //        load the last book
+        
+        let series = SeriesModel.init(fromURI: selection.seriesURI)
+        let firstIssue = series.seriesFirstIssue
+        let lastIssue = series.seriesCurrentIssue
+        
+        if next {
+            if selection.issueNumber != lastIssue {
+                // load the next book
+                print("next")
+            } else {
+                // load the first book
+                print("first")
+            }
+        } else {
+            if selection.issueNumber != firstIssue {
+                // load the previous book
+                print("previous")
+            } else {
+                // load the last book
+                print("last")
+            }
+        }
+        
         
     }
     
