@@ -18,11 +18,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     
-    var selection: BookModel!
+    var selectedBook: BookModel!
     
     
     @IBAction func isOwnedAction(_ sender: Any) {
-        selection.isOwned = isOwnedSwitch.isOn
+        selectedBook.isOwned = isOwnedSwitch.isOn
         updateUX()
     }
     
@@ -70,12 +70,12 @@ class DetailViewController: UIViewController {
     
     func loadBook(next: Bool) {
         
-        let series = SeriesModel.init(fromURI: selection.seriesURI)
+        let series = SeriesModel.init(fromURI: selectedBook.seriesURI)
         let firstIssue = series.seriesFirstIssue
         let lastIssue = series.seriesCurrentIssue
         
         if next {
-            if selection.issueNumber != lastIssue {
+            if selectedBook.issueNumber != lastIssue {
                 // load the next book
                 print("next")
             } else {
@@ -83,7 +83,7 @@ class DetailViewController: UIViewController {
                 print("first")
             }
         } else {
-            if selection.issueNumber != firstIssue {
+            if selectedBook.issueNumber != firstIssue {
                 // load the previous book
                 print("previous")
             } else {
@@ -96,14 +96,14 @@ class DetailViewController: UIViewController {
     }
     
     func updateUX() {
-        titleLabel.text = "\(selection.bookTitle)"
-        publisherLabel.text = "\(selection.bookPublisher) \(selection.bookEra)"
-        issueNumberLabel.text = "#\(selection.issueNumber)"
-        variantLetterLabel.text = "\(selection.variantLetter)"
+        titleLabel.text = "\(selectedBook.bookTitle)"
+        publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
+        issueNumberLabel.text = "#\(selectedBook.issueNumber)"
+        variantLetterLabel.text = "\(selectedBook.variantLetter)"
         
-        let coverName = publisherCover(for: selection.bookPublisher)
+        let coverName = publisherCover(for: selectedBook.bookPublisher)
         coverImageView.image = UIImage(named: coverName)
-        isOwnedSwitch.isOn = selection.isOwned
+        isOwnedSwitch.isOn = selectedBook.isOwned
         
         navigationController?.isToolbarHidden = false
     }
