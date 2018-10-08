@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     
     var selectedBook: BookModel!
-    
+    var selectedSeries: SeriesModel!
     
     @IBAction func isOwnedAction(_ sender: Any) {
         selectedBook.isOwned = isOwnedSwitch.isOn

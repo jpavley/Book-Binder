@@ -225,6 +225,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
             let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
             dest.selectedBook = getBookModelFor(indexPath: offsetIndexPath)
+            dest.selectedSeries = getSeriesModelFor(indexPath: offsetIndexPath)
         }
     }
 }
