@@ -70,26 +70,22 @@ class DetailViewController: UIViewController {
     
     func loadBook(next: Bool) {
         
-        let series = SeriesModel.init(fromURI: selectedBook.seriesURI)
-        let firstIssue = series.seriesFirstIssue
-        let lastIssue = series.seriesCurrentIssue
-        
         if next {
-            if selectedBook.issueNumber != lastIssue {
-                // load the next book
-                print("next")
-            } else {
+            if selectedBook.issueNumber == selectedSeries.seriesCurrentIssue {
                 // load the first book
                 print("first")
+            } else {
+                // load the next book
+                print("next")
             }
         } else {
-            if selectedBook.issueNumber != firstIssue {
-                // load the previous book
-                print("previous")
-            } else {
+            if selectedBook.issueNumber == selectedSeries.seriesFirstIssue {
                 // load the last book
                 print("last")
-            }
+           } else {
+                // load the previous book
+                print("previous")
+           }
         }
         
         
