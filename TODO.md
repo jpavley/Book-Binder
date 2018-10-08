@@ -27,8 +27,9 @@ total count, cost, and value.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
-- Remove edit mode management from summary view.
 
 ## Closed
 - Rename ViewController to SummaryViewController.
+- Remove edit mode management from summary view.
+
 
