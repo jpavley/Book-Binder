@@ -11,6 +11,7 @@ import Foundation
 class Comicbook {
     var series: SeriesModel
     var books: [BookModel]
+    var selectedBook: BookModel?
     
     init(seriesURI: BookBinderURI) {
         series = SeriesModel(fromURI: seriesURI)
@@ -27,6 +28,11 @@ class Comicbook {
         }
         return result
     }
+    
+    func getBookBy(issueNumber: Int) -> BookModel? {
+        return books.filter { $0.issueNumber == issueNumber}.first
+    }
+    
 }
 // MARk: Comicbook Factories
 

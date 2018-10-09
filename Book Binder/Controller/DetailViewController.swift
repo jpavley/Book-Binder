@@ -18,12 +18,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     
-    var selectedBook: BookModel!
-    var selectedSeries: SeriesModel!
+    var selectedComicbook: Comicbook!
     
     @IBAction func isOwnedAction(_ sender: Any) {
-        selectedBook.isOwned = isOwnedSwitch.isOn
-        updateUX()
+        if let selectedBook = selectedComicbook.selectedBook {
+            selectedBook.isOwned = isOwnedSwitch.isOn
+            updateUX()
+        }
     }
     
     @IBAction func deleteAction(_ sender: Any) {
@@ -70,36 +71,43 @@ class DetailViewController: UIViewController {
     
     func loadBook(next: Bool) {
         
-        if next {
-            if selectedBook.issueNumber == selectedSeries.seriesCurrentIssue {
-                // load the first book
-                print("first")
+        if let selectedBook = selectedComicbook.selectedBook {
+                    
+            if next {
+                if selectedBook.issueNumber == selectedComicbook.series.seriesCurrentIssue {
+                    // load the first book
+                    selectedComicbook.selectedBook = selectedComicbook.getBookBy(issueNumber: selectedComicbook.series.seriesFirstIssue)
+                } else {
+                    // load the next book
+                    selectedComicbook.selectedBook = selectedComicbook.getBookBy(issueNumber: selectedBook.issueNumber + 1)
+                }
             } else {
-                // load the next book
-                print("next")
+                if selectedBook.issueNumber == selectedComicbook.series.seriesFirstIssue {
+                    // load the last book
+                    selectedComicbook.selectedBook = selectedComicbook.getBookBy(issueNumber: selectedComicbook.series.seriesCurrentIssue)
+               } else {
+                    // load the previous book
+                    selectedComicbook.selectedBook = selectedComicbook.getBookBy(issueNumber: selectedBook.issueNumber - 1)
+               }
             }
-        } else {
-            if selectedBook.issueNumber == selectedSeries.seriesFirstIssue {
-                // load the last book
-                print("last")
-           } else {
-                // load the previous book
-                print("previous")
-           }
+            
+            updateUX()
         }
-        
-        
     }
     
     func updateUX() {
-        titleLabel.text = "\(selectedBook.bookTitle)"
-        publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
-        issueNumberLabel.text = "#\(selectedBook.issueNumber)"
-        variantLetterLabel.text = "\(selectedBook.variantLetter)"
         
-        let coverName = publisherCover(for: selectedBook.bookPublisher)
-        coverImageView.image = UIImage(named: coverName)
-        isOwnedSwitch.isOn = selectedBook.isOwned
+        if let selectedBook = selectedComicbook.selectedBook {
+
+            titleLabel.text = "\(selectedBook.bookTitle)"
+            publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
+            issueNumberLabel.text = "#\(selectedBook.issueNumber)"
+            variantLetterLabel.text = "\(selectedBook.variantLetter)"
+            
+            let coverName = publisherCover(for: selectedBook.bookPublisher)
+            coverImageView.image = UIImage(named: coverName)
+            isOwnedSwitch.isOn = selectedBook.isOwned
+        }
         
         navigationController?.isToolbarHidden = false
     }
