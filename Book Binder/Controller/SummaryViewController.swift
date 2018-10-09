@@ -24,7 +24,7 @@ class SummaryViewController: UIViewController {
     
     // MARK:- Properties -
     
-    var comicbooks = [Comicbook]()
+    var bookBinder: BookBinder!
     
     // MARK:- Actions -
     
@@ -58,21 +58,28 @@ class SummaryViewController: UIViewController {
             navigationController?.isToolbarHidden = true
         }
         
-        func loadComicbookData() {
+        func loadComicbookData() -> [Comicbook]? {
             if let path = Bundle.main.path(forResource: "books", ofType: "json") {
                 do {
                     let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                    comicbooks = Comicbook.createFrom(jsonData: data)!
+                    return Comicbook.createFrom(jsonData: data)!
                 } catch {
                     // TODO: books.json probably not found
                 }
             }
+            return nil
         }
         
         collectionViewLayout()
         pullToRefreshSetup()
         toolbarSetup()
-        loadComicbookData()
+        
+        if let comicbooks = loadComicbookData() {
+            bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        } else {
+            // No comic book data, create an empty book binder
+            bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: ""))], selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        }
     }
     
     // pull to refresh
@@ -123,7 +130,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return comicbooks.count
+        return bookBinder.comicbooks.count
     }
     
     /// The offset index path takes into account that the first cell is the ... icon.
@@ -223,13 +230,11 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
+            
             let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-            
-            let selectedComicbook = getComicbookFor(indexPath: offsetIndexPath)
-            let selectedBook = getBookModelFor(indexPath: offsetIndexPath)
-            
-            selectedComicbook.selectedBook = selectedBook
-            dest.selectedComicbook = selectedComicbook
+            bookBinder.selectedComicbookIndex = offsetIndexPath.section
+            bookBinder.selectedIssueIndex = offsetIndexPath.row
+            dest.bookBinder = bookBinder
             
         }
     }
@@ -240,7 +245,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension SummaryViewController {
     
     func getComicbookFor(indexPath: IndexPath) -> Comicbook {
-        return comicbooks[indexPath.section]
+        return bookBinder.comicbooks[indexPath.section]
     }
     
     func getSeriesModelFor(indexPath: IndexPath) -> SeriesModel {

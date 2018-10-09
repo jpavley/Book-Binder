@@ -41,24 +41,32 @@ class BookBinder {
         // DUPE: 100 end
     }
     
-    func getNextComicbook() -> Comicbook {
+    func selectNextComicbook() {
         
         var nextComicbookIndex = selectedComicbookIndex + 1
         if nextComicbookIndex >= comicbooks.count {
             nextComicbookIndex = 0
         }
         selectedIssueIndex = nextComicbookIndex
-        return getSelectedComicbook()
     }
     
-    func getNextIssue() -> BookModel {
+    func selectNextIssue() {
         let currentComicbook = getSelectedComicbook()
         var nextIssueIndex = selectedIssueIndex + 1
         if nextIssueIndex > currentComicbook.series.seriesCurrentIssue {
             nextIssueIndex = currentComicbook.series.seriesFirstIssue
         }
         selectedIssueIndex = nextIssueIndex
-        return getSelectedIssue()
 
+    }
+    
+    func selectPreviousIssue() {
+        let currentComicbook = getSelectedComicbook()
+        var previousIssueIndex = selectedIssueIndex - 1
+        if previousIssueIndex < currentComicbook.series.seriesFirstIssue {
+            previousIssueIndex = currentComicbook.series.seriesCurrentIssue
+        }
+        selectedIssueIndex = previousIssueIndex
+        
     }
 }
