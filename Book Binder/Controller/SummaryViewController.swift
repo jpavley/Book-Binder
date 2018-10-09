@@ -253,6 +253,7 @@ extension SummaryViewController {
     }
     
     func getBookModelFor(indexPath: IndexPath) -> BookModel {
+        // DUPE: 100 start
         let comicbook = getComicbookFor(indexPath: indexPath)
         let issueNumber = getPublishedIssueFor(indexPath: indexPath)
         
@@ -265,7 +266,7 @@ extension SummaryViewController {
         
         // This is a book the user doesn't own yet...
         return BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: issueNumber, variantLetter: "", isOwned: false)
-        
+        // DUPE: 100 end
     }
 }
 

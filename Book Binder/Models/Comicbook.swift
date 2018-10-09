@@ -11,7 +11,6 @@ import Foundation
 class Comicbook {
     var series: SeriesModel
     var books: [BookModel]
-    var selectedBook: BookModel?
     
     init(seriesURI: BookBinderURI) {
         series = SeriesModel(fromURI: seriesURI)
@@ -59,7 +58,7 @@ extension Comicbook {
             comicbook.series.seriesCurrentIssue = jsonComic.seriesCurrentIssue
             comicbook.series.seriesSkippedIssues = jsonComic.seriesSkippedIssues
             comicbook.series.seriesExtraIssues = jsonComic.seriesExtraIssues
-            
+                        
             for jsonBook in jsonComic.books {
                 let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned)
                 comicbook.books.append(book)

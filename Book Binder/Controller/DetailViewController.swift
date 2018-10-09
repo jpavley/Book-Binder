@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     var selectedComicbook: Comicbook!
     
     @IBAction func isOwnedAction(_ sender: Any) {
-        if let selectedBook = selectedComicbook.selectedBook {
+        if let selectedBook = selectedComicbook.getBookBy(issueNumber: selectedComicbook.selectedIssueNumber) {
             selectedBook.isOwned = isOwnedSwitch.isOn
             updateUX()
         }
@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
     
     func loadBook(next: Bool) {
         
-        if let selectedBook = selectedComicbook.selectedBook {
+        if let selectedBook = selectedComicbook.getBookBy(issueNumber: selectedComicbook.selectedIssueNumber) {
                     
             if next {
                 if selectedBook.issueNumber == selectedComicbook.series.seriesCurrentIssue {
