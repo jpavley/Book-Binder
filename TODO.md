@@ -15,6 +15,11 @@ book. Update Detail and Summary Views to report on costs and value. This
 points to the need for an overview of the collection which could include it's
 total count, cost, and value.
 
+- URI now need to include slashes of missing parts: "publisher/title/era///" is the 
+new series URI because of this. Probably need a series URI compare method so that
+"publisher/title/era" is the same as "publisher/title/era///".
+
+- Enable swiping up and down between series in detail view.
 - Hide toolbar when returning from detail view to summary view.
 - When returning to summary view from detail view the changed based to a book should persist.
 - Implement camera in detail view to take or use a photo of a comic book cover.
@@ -26,10 +31,11 @@ total count, cost, and value.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
-- Enable swiping between books in detail view.
 
 ## Closed
 - Rename ViewController to SummaryViewController.
 - Remove edit mode management from summary view.
+- Enable swiping between books in detail view.
+
 
 

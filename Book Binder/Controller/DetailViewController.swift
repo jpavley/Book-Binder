@@ -67,6 +67,7 @@ class DetailViewController: UIViewController {
         default:
             assert(false, "unsupported gesture")
         }
+        updateUX()
     }
     
     func updateUX() {
