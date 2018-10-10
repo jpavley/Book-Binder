@@ -62,16 +62,17 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.issueID == "1")
         XCTAssertTrue(uri1.variantID == "")
         XCTAssertTrue(uri1.consumptionID == "owned")
+        XCTAssertEqual(uri1.description, testString1)
     }
     
     func testURIDescription() {
-        let testString1 = "Marvel Comics Group/ROM Spaceknight/1983/43"
+        let testString1 = "Marvel Comics Group/ROM Spaceknight/1983/43//"
         let uri1 = BookBinderURI(fromURIString: testString1)
-        XCTAssertTrue(uri1.description == testString1)
+        XCTAssertEqual(uri1.description, testString1)
     }
     
     func testEmptyURIDescription() {
-        let testString1 = ""
+        let testString1 = "/////"
         let uri1 = BookBinderURI(fromURIString: testString1)
         XCTAssertEqual(uri1.description, testString1)
     }

@@ -27,7 +27,7 @@ class BookBinder {
     func getSelectedIssue() -> BookModel {
         // DUPE: 100 start
         let comicbook = getSelectedComicbook()
-        let issueNumber = selectedComicbookIndex
+        let issueNumber = comicbook.series.publishedIssues[selectedIssueIndex]
         
         for book in comicbook.books {
             if issueNumber == book.issueNumber {
@@ -47,14 +47,25 @@ class BookBinder {
         if nextComicbookIndex >= comicbooks.count {
             nextComicbookIndex = 0
         }
-        selectedIssueIndex = nextComicbookIndex
+        selectedComicbookIndex = nextComicbookIndex
+        selectedIssueIndex = 0
+    }
+    
+    func selectPreviousComicbook() {
+        
+        var previousComicbookIndex = selectedComicbookIndex - 1
+        if previousComicbookIndex < 0 {
+            previousComicbookIndex = comicbooks.count - 1
+        }
+        selectedComicbookIndex = previousComicbookIndex
+        selectedIssueIndex = 0
     }
     
     func selectNextIssue() {
         let currentComicbook = getSelectedComicbook()
         var nextIssueIndex = selectedIssueIndex + 1
-        if nextIssueIndex > currentComicbook.series.seriesCurrentIssue {
-            nextIssueIndex = currentComicbook.series.seriesFirstIssue
+        if nextIssueIndex >= currentComicbook.series.publishedIssues.count {
+            nextIssueIndex = 0
         }
         selectedIssueIndex = nextIssueIndex
 
@@ -63,8 +74,8 @@ class BookBinder {
     func selectPreviousIssue() {
         let currentComicbook = getSelectedComicbook()
         var previousIssueIndex = selectedIssueIndex - 1
-        if previousIssueIndex < currentComicbook.series.seriesFirstIssue {
-            previousIssueIndex = currentComicbook.series.seriesCurrentIssue
+        if previousIssueIndex < 0 {
+            previousIssueIndex = currentComicbook.series.publishedIssues.count - 1
         }
         selectedIssueIndex = previousIssueIndex
         

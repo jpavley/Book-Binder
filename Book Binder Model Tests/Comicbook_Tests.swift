@@ -102,8 +102,8 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         XCTAssertEqual(comicbook![0].books.count, 2)
         XCTAssertEqual(comicbook![0].series.publishedIssueCount, 14)
-        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017")
-        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017")
+        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017///")
+        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017///")
     }
     
     func testOwnedIssues() {
@@ -136,4 +136,45 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertEqual(comicbook![0].ownedIssues(), ["605", "606"])
 
     }
+    
+    func testGetBookBy() {
+        let jsonString = """
+            [{
+                "seriesPublisher": "Marvel Entertainment",
+                "seriesTitle": "Daredevil",
+                "seriesEra": 2017,
+                "seriesFirstIssue": 595,
+                "seriesCurrentIssue": 608,
+                "seriesSkippedIssues": 1,
+                "seriesExtraIssues": 1,
+                "books":
+                [
+                    {
+                        "issueNumber": 605,
+                        "variantLetter": "",
+                        "isOwned": true
+                    },
+                     {
+                        "issueNumber": 606,
+                        "variantLetter": "c",
+                        "isOwned": true
+                    }
+                ]
+            }]
+        """
+        
+        let comicbook = Comicbook.createFrom(jsonString: jsonString)
+        let testBook1 = comicbook![0].books[0]
+        let testBook2 = comicbook![0].books[1]
+        let testBook3 = comicbook![0].getBookBy(issueNumber: 605)
+        let testBook4 = comicbook![0].getBookBy(issueNumber: 606)
+
+        
+        XCTAssertEqual(testBook1.bookURI.description, testBook3?.bookURI.description)
+        XCTAssertEqual(testBook2.bookURI.description, testBook4?.bookURI.description)
+
+    }
+
+    
+    
 }

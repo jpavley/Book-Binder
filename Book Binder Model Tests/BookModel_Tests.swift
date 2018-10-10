@@ -19,7 +19,7 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testCreateBookModelFromProperies() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
         
@@ -56,7 +56,7 @@ class BookModel_Tests: XCTestCase {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018"
         let seriesURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: false)
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"
+        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a/"
         
         XCTAssertEqual(bookModel.bookURI.description, testString2)
 

@@ -51,11 +51,11 @@ struct BookBinderURI: CustomStringConvertible {
         var result = ""
         
         result += publisherID != "" ? "\(publisherID)" : ""
-        result += seriesID != "" ? "/\(seriesID)" : ""
-        result += eraID != "" ? "/\(eraID)" : ""
-        result += issueID != "" ? "/\(issueID)" : ""
-        result += variantID != "" ? "/\(variantID)" : ""
-        result += consumptionID != "" ? "/\(consumptionID)" : ""
+        result += seriesID != "" ? "/\(seriesID)" : "/"
+        result += eraID != "" ? "/\(eraID)" : "/"
+        result += issueID != "" ? "/\(issueID)" : "/"
+        result += variantID != "" ? "/\(variantID)" : "/"
+        result += consumptionID != "" ? "/\(consumptionID)" : "/"
         
         return result
     }
