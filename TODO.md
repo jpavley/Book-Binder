@@ -26,7 +26,6 @@ is an object with that contains a series and a list of associated books.
 
 - Investigate http://www.coverbrowser.com Can I use these covers?
 
-- Enable swiping up and down between series in detail view.
 - Hide toolbar when returning from detail view to summary view.
 - When returning to summary view from detail view the changed based to a book should persist.
 - Implement camera in detail view to take or use a photo of a comic book cover.
@@ -38,6 +37,7 @@ is an object with that contains a series and a list of associated books.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
+- Enable swiping up and down between series in detail view.
 
 ## Closed
 - Rename ViewController to SummaryViewController.
