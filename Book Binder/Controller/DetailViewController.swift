@@ -54,6 +54,14 @@ class DetailViewController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipe))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipe))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipe))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
     }
     
     @objc func respondToSwipe(gesture: UISwipeGestureRecognizer) {
@@ -64,9 +72,16 @@ class DetailViewController: UIViewController {
         case .right:
             // previous book
             bookBinder.selectPreviousIssue()
+        case .up:
+            // next series
+            bookBinder.selectNextComicbook()
+        case .down:
+            // previous book
+            bookBinder.selectPreviousComicbook()
         default:
             assert(false, "unsupported gesture")
         }
+        
         updateUX()
     }
     

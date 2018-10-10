@@ -37,12 +37,11 @@ is an object with that contains a series and a list of associated books.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
-- Enable swiping up and down between series in detail view.
 
 ## Closed
 - Rename ViewController to SummaryViewController.
 - Remove edit mode management from summary view.
 - Enable swiping between books in detail view.
-
+- Enable swiping up and down between series in detail view.
 
 
