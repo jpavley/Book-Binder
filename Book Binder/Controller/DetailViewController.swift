@@ -45,6 +45,10 @@ class DetailViewController: UIViewController {
         updateUX()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.setToolbarHidden(true, animated: true)
+    }
+    
     func addSwipeGestureRecognisers() {
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipe))
@@ -113,15 +117,4 @@ class DetailViewController: UIViewController {
             return "identity-crisis-7-b"
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

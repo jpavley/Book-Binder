@@ -234,8 +234,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
             bookBinder.selectedComicbookIndex = offsetIndexPath.section
             bookBinder.selectedIssueIndex = offsetIndexPath.row
-            dest.bookBinder = bookBinder
             
+            dest.bookBinder = bookBinder
         }
     }
 }

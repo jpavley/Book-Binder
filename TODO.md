@@ -26,7 +26,6 @@ is an object with that contains a series and a list of associated books.
 
 - Investigate http://www.coverbrowser.com Can I use these covers?
 
-- Hide toolbar when returning from detail view to summary view.
 - When returning to summary view from detail view the changed based to a book should persist.
 - Implement camera in detail view to take or use a photo of a comic book cover.
 - Implement delete in detail view to remove a book from a series.
@@ -43,5 +42,7 @@ is an object with that contains a series and a list of associated books.
 - Remove edit mode management from summary view.
 - Enable swiping between books in detail view.
 - Enable swiping up and down between series in detail view.
+- Hide toolbar when returning from detail view to summary view.
+
 
 
