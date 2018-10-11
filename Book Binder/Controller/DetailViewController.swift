@@ -47,6 +47,8 @@ class DetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setToolbarHidden(true, animated: true)
+        
+        // TODO: save chagnes to user defaults
     }
     
     func addSwipeGestureRecognisers() {

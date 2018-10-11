@@ -58,28 +58,39 @@ class SummaryViewController: UIViewController {
             navigationController?.isToolbarHidden = true
         }
         
-        func loadComicbookData() -> [Comicbook]? {
-            if let path = Bundle.main.path(forResource: "books", ofType: "json") {
-                do {
-                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                    return Comicbook.createFrom(jsonData: data)!
-                } catch {
-                    // TODO: books.json probably not found
-                }
-            }
-            return nil
-        }
-        
         collectionViewLayout()
         pullToRefreshSetup()
         toolbarSetup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateBookBinderData()
+    }
+    func updateBookBinderData() {
+        print("updateBookBinderData()")
         
-        if let comicbooks = loadComicbookData() {
+        // TODO: if there is something in NSUserDefaults deserialize it.
+        //       Otherwise, load it from JSON if that exists.
+        //       Finally, just create an empty book binder
+        
+        if let comicbooks = loadComicbookDataFromJSON() {
             bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
         } else {
             // No comic book data, create an empty book binder
             bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: ""))], selectedComicbookIndex: 0, selectedIssueIndex: 0)
         }
+    }
+    
+    func loadComicbookDataFromJSON() -> [Comicbook]? {
+        if let path = Bundle.main.path(forResource: "books", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                return Comicbook.createFrom(jsonData: data)!
+            } catch {
+                // TODO: books.json probably not found
+            }
+        }
+        return nil
     }
     
     // pull to refresh
