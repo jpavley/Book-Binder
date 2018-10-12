@@ -81,4 +81,15 @@ struct BookBinderURI: CustomStringConvertible {
             return ""
         }
     }
+    
+    static func extractSeriesURI(fromURIString s: String) -> String {
+        
+        let parts = s.components(separatedBy: "/")
+        
+        let publisherID = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
+        let seriesID = parts.count >= URIPart.series.rawValue + 1 ? parts[URIPart.series.rawValue] : ""
+        let eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
+
+        return "\(publisherID)/\(seriesID)/\(eraID)"
+    }
 }

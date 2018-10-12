@@ -15,10 +15,6 @@ book. Update Detail and Summary Views to report on costs and value. This
 points to the need for an overview of the collection which could include it's
 total count, cost, and value.
 
-- URI now need to include slashes of missing parts: "publisher/title/era///" is the 
-new series URI because of this. Probably need a series URI compare method so that
-"publisher/title/era" is the same as "publisher/title/era///".
-
 - Models and metaphor confusion: Comicbook, book, and series could potentially 
 all refer to the same thing; Book and issue likewise. Probably Comicbook and book
 need to go. A book is an "owned" issue of a series and can just be renamed issue. A Comicbook
@@ -43,6 +39,10 @@ is an object with that contains a series and a list of associated books.
 - Enable swiping between books in detail view.
 - Enable swiping up and down between series in detail view.
 - Hide toolbar when returning from detail view to summary view.
+- URI now need to include slashes of missing parts: "publisher/title/era///" is the 
+new series URI because of this. Probably need a series URI compare method so that
+"publisher/title/era" is the same as "publisher/title/era///".
+
 
 
 
