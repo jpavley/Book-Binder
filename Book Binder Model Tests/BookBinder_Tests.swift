@@ -68,19 +68,19 @@ class BookBinder_Tests: XCTestCase {
         """
         
         comicbooks = Comicbook.createFrom(jsonString: jsonString)!
-        seriesURIStrings.append("Marvel Entertainment/Daredevil/2017////") // 0
-        seriesURIStrings.append("DC Comics/Batman/1950////")               // 1
+        seriesURIStrings.append("Marvel Entertainment/Daredevil/2017//") // 0
+        seriesURIStrings.append("DC Comics/Batman/1950//")               // 1
 
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/595///") // 0
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/596///") // 1
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/597///") // 2
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/598///") // 3
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/599///") // 4
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/595/") // 0
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/596/") // 1
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/597/") // 2
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/598/") // 3
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/599/") // 4
         
-        bookURIStrings.append("DC Comics/Batman/1950/5///")       // 5
-        bookURIStrings.append("DC Comics/Batman/1950/6///")       // 6
-        bookURIStrings.append("DC Comics/Batman/1950/7//owned/")  // 7
-        bookURIStrings.append("DC Comics/Batman/1950/8/c/owned/") // 8
+        bookURIStrings.append("DC Comics/Batman/1950/5/")  // 5
+        bookURIStrings.append("DC Comics/Batman/1950/6/")  // 6
+        bookURIStrings.append("DC Comics/Batman/1950/7/")  // 7
+        bookURIStrings.append("DC Comics/Batman/1950/8/c") // 8
 
 
     }

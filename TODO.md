@@ -36,12 +36,6 @@ books array and the books array should be a books dictionary with the book URI a
 - When returning to summary view from detail view the changes to a book should persist.
 
 ## In progress
-- To create a BookBinder from a list of book URIs I need to encode the first and current issues. But
-there isn't much of a good reason for a book URI to carry that info around as it changes every time
-a new issue is published. In a large collection all the book URIs will need to be updated when 
-a new issue is published which means book URIs are not stateless. In fact I should take the ownership
-field out of the the book URI as that is state that can easily change as well! A book URI at this point
-sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which was were I started!)
 
 
 ## Closed
@@ -53,6 +47,13 @@ sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which w
 - URI now need to include slashes of missing parts: "publisher/title/era///" is the 
 new series URI because of this. Probably need a series URI compare method so that
 "publisher/title/era" is the same as "publisher/title/era///".
+- To create a BookBinder from a list of book URIs I need to encode the first and current issues. But
+there isn't much of a good reason for a book URI to carry that info around as it changes every time
+a new issue is published. In a large collection all the book URIs will need to be updated when 
+a new issue is published which means book URIs are not stateless. In fact I should take the ownership
+field out of the the book URI as that is state that can easily change as well! A book URI at this point
+sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which was were I started!)
+
 
 
 

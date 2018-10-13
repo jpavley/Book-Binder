@@ -35,13 +35,13 @@ class BookModel {
     }
     
     /// initalization from a full URI
-    /// - Publisher/Series/Era/Issue/variant/consumption/cover
-    init(fromURI: BookBinderURI) {
+    /// - Publisher/Series/Era/Issue/variant
+    init(fromURI: BookBinderURI, isOwned: Bool, coverImageID: String) {
         self.seriesURI = SeriesModel(fromURI: fromURI).seriesURI
         self.issueNumber = Int(fromURI.issueID)!
         self.variantLetter = fromURI.variantID
-        self.isOwned = fromURI.consumptionID == "owned"
-        self.coverImageID = fromURI.coverImageID
+        self.isOwned = isOwned
+        self.coverImageID = coverImageID
     }
 }
 

@@ -14,15 +14,13 @@ enum URIPart: Int {
     case era = 2
     case issue = 3
     case variant = 4
-    case consumption = 5
-    case coverImage = 6
 }
 
 /// MVP 1: Simple URI format.
-/// - Publisher/Series/Era/Issue/variant/consumption
-/// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
-/// - Missing Parts URI: "Marvel Entertainment//2018/1//owned"
-/// - No variant URI: "Ziff Davis/GI Joe/1950/10"
+/// - Publisher/Series/Era/Issue/variant
+/// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v"
+/// - Missing Parts URI: "Marvel Entertainment//2018//"
+/// - No variant URI: "Ziff Davis/GI Joe/1950/10/"
 /// - Series URI: "DC/Superman/2005"
 struct BookBinderURI: CustomStringConvertible {
     
@@ -41,12 +39,6 @@ struct BookBinderURI: CustomStringConvertible {
     /// String that represents a variant letter like "c"
     var variantID: String
     
-    /// String that represents a consumption state liked "owned" or "read"
-    var consumptionID: String
-    
-    /// String that represents the ID of an issue's cover image
-    var coverImageID: String
-    
     /// Builds a string version of an URI based on the value of it's parts
     ///
     /// - URI format: publisher/series/era/issue/variant/consumption
@@ -59,8 +51,6 @@ struct BookBinderURI: CustomStringConvertible {
         result += eraID != "" ? "/\(eraID)" : "/"
         result += issueID != "" ? "/\(issueID)" : "/"
         result += variantID != "" ? "/\(variantID)" : "/"
-        result += consumptionID != "" ? "/\(consumptionID)" : "/"
-        result += coverImageID != "" ? "/\(coverImageID)" : "/"
         
         return result
     }
@@ -72,8 +62,6 @@ struct BookBinderURI: CustomStringConvertible {
         eraID = BookBinderURI.part(fromURIString: s, partID: .era)
         issueID = BookBinderURI.part(fromURIString: s, partID: .issue)
         variantID = BookBinderURI.part(fromURIString: s, partID: .variant)
-        consumptionID = BookBinderURI.part(fromURIString: s, partID: .consumption)
-        coverImageID = BookBinderURI.part(fromURIString: s, partID: .coverImage)
   }
     
     static func part(fromURIString s: String, partID: URIPart) -> String {

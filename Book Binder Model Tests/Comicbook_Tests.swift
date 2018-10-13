@@ -106,8 +106,8 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         XCTAssertEqual(comicbook![0].books.count, 2)
         XCTAssertEqual(comicbook![0].series.publishedIssueCount, 14)
-        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017////")
-        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017////")
+        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017//")
+        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017//")
     }
     
     func testOwnedIssues() {
