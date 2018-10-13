@@ -68,17 +68,14 @@ class SummaryViewController: UIViewController {
     }
     func updateBookBinderData() {
         print("updateBookBinderData()")
-        
-        // TODO: if there is something in NSUserDefaults deserialize it.
-        //       Otherwise, load it from JSON if that exists.
-        //       Finally, just create an empty book binder
-        
+                
         if let comicbooks = loadComicbookDataFromJSON() {
             bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
-        } else {
-            // No comic book data, create an empty book binder
-            bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: ""))], selectedComicbookIndex: 0, selectedIssueIndex: 0)
+            return
         }
+        
+        // No comic book data, create an empty book binder
+        bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: ""))], selectedComicbookIndex: 0, selectedIssueIndex: 0)
     }
     
     func loadComicbookDataFromJSON() -> [Comicbook]? {

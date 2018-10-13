@@ -22,8 +22,17 @@ class DetailViewController: UIViewController {
     
     @IBAction func isOwnedAction(_ sender: Any) {
         
+        let s = sender as! UISwitch
+        print("switch \(s.isOn)")
+        
         let selectedBook = bookBinder.getSelectedIssue()
         selectedBook.isOwned = isOwnedSwitch.isOn
+        
+        // TODO: if the user changes the ownership of the book
+        // either add or delete it from the series
+        
+        // NOTE: if the book has a photo don't delete it
+        
         updateUX()
     }
     
@@ -47,8 +56,6 @@ class DetailViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setToolbarHidden(true, animated: true)
-        
-        // TODO: save chagnes to user defaults
     }
     
     func addSwipeGestureRecognisers() {
@@ -94,7 +101,7 @@ class DetailViewController: UIViewController {
     func updateUX() {
         
         let selectedBook = bookBinder.getSelectedIssue()
-
+        
         titleLabel.text = "\(selectedBook.bookTitle)"
         publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
         issueNumberLabel.text = "#\(selectedBook.issueNumber)"
@@ -102,7 +109,7 @@ class DetailViewController: UIViewController {
         
         let coverName = publisherCover(for: selectedBook.bookPublisher)
         coverImageView.image = UIImage(named: coverName)
-        isOwnedSwitch.isOn = selectedBook.isOwned
+        isOwnedSwitch.setOn(selectedBook.isOwned, animated: true)
         
         navigationController?.isToolbarHidden = false
     }
