@@ -29,9 +29,16 @@ is an object with that contains a series and a list of associated books.
 - Implement add in summary view to add a book to a series.
 - Implement add series action in summary view.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
+- When returning to summary view from detail view the changes to a book should persist.
 
 ## In progress
-- When returning to summary view from detail view the changes to a book should persist.
+- To create a BookBinder from a list of book URIs I need to encode the first and current issues. But
+there isn't much of a good reason for a book URI to carry that info around as it changes every time
+a new issue is published. In a large collection all the book URIs will need to be updated when 
+a new issue is published which means book URIs are not stateless. In fact I should take the ownership
+field out of the the book URI as that is state that can easily change as well! A book URI at this point
+sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which was were I started!)
+
 
 ## Closed
 - Rename ViewController to SummaryViewController.
