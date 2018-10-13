@@ -50,7 +50,7 @@ class Comicbook_Tests: XCTestCase {
         let decoder = JSONDecoder()
         let jsonModel = try! decoder.decode(JsonModel.self, from: jsonData)
         
-        let testURIString = "\(jsonModel.seriesPublisher)/\(jsonModel.seriesTitle)/\(jsonModel.seriesEra)"
+        let testURIString = "\(jsonModel.seriesPublisher)/\(jsonModel.seriesTitle)/\(jsonModel.seriesEra)//"
         let testURI = BookBinderURI(fromURIString: testURIString)
         
         let comicbook = Comicbook(seriesURI: testURI)

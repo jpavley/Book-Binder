@@ -22,7 +22,11 @@ enum URIPart: Int {
 /// - Missing Parts URI: "Marvel Entertainment//2018//"
 /// - No variant URI: "Ziff Davis/GI Joe/1950/10/"
 /// - Series URI: "DC/Superman/2005"
+/// - Empty URI: "////"
 struct BookBinderURI: CustomStringConvertible {
+    
+    /// Number of slashes that should be in every well formed URI
+    static let slashCount = 4
     
     /// String that represents a publisher like "Ziff Davis"
     var publisherID: String
@@ -66,6 +70,10 @@ struct BookBinderURI: CustomStringConvertible {
     
     static func part(fromURIString s: String, partID: URIPart) -> String {
         
+        if !BookBinderURI.isWellFormed(uriString: s) {
+            return "////"
+        }
+        
         let parts = s.components(separatedBy: "/")
         
         if parts.count > partID.rawValue {
@@ -78,12 +86,22 @@ struct BookBinderURI: CustomStringConvertible {
     
     static func extractSeriesURI(fromURIString s: String) -> String {
         
+        if !BookBinderURI.isWellFormed(uriString: s) {
+            return "//"
+        }
+        
         let parts = s.components(separatedBy: "/")
         
         let publisherID = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
         let seriesID = parts.count >= URIPart.series.rawValue + 1 ? parts[URIPart.series.rawValue] : ""
         let eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
 
-        return "\(publisherID)/\(seriesID)/\(eraID)"
+        return "\(publisherID)/\(seriesID)/\(eraID)//"
+    }
+    
+    static func isWellFormed(uriString: String) -> Bool {
+        let regex = try? NSRegularExpression(pattern: "/", options: .caseInsensitive)
+        let count = regex?.matches(in: uriString, options: [], range: NSRange(location: 0, length: uriString.count)).count
+        return count == BookBinderURI.slashCount
     }
 }

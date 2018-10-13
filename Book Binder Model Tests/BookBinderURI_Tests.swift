@@ -30,7 +30,7 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testNoVariantURI() {
-        let testString1 = "Ziff Davis/GI Joe/1950/10"
+        let testString1 = "Ziff Davis/GI Joe/1950/10/"
         let uri1 = BookBinderURI(fromURIString: testString1)
         
         XCTAssertTrue(uri1.publisherID == "Ziff Davis")
@@ -40,15 +40,15 @@ class BookBinderURI_Tests: XCTestCase {
         XCTAssertTrue(uri1.variantID == "")
     }
     
-    func testNoSeriesURI() {
-        let testString1 = "DC/Superman/2005"
+    func testNoBookURI() {
+        let testString1 = "DC/Superman/2005//"
         let uri1 = BookBinderURI(fromURIString: testString1)
         
-        XCTAssertTrue(uri1.publisherID == "DC")
-        XCTAssertTrue(uri1.seriesID == "Superman")
-        XCTAssertTrue(uri1.eraID == "2005")
-        XCTAssertTrue(uri1.issueID == "")
-        XCTAssertTrue(uri1.variantID == "")
+        XCTAssertEqual(uri1.publisherID, "DC")
+        XCTAssertEqual(uri1.seriesID, "Superman")
+        XCTAssertEqual(uri1.eraID, "2005")
+        XCTAssertEqual(uri1.issueID, "")
+        XCTAssertEqual(uri1.variantID, "")
     }
     
     func testMissingPartsURI() {
@@ -132,7 +132,7 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testPartFromURIStringWrongURI() {
-        let testString1 = "DC/Superman/2005"
+        let testString1 = "DC/Superman/2005//"
         
         let publisherPart = BookBinderURI.part(fromURIString: testString1, partID: .publisher)
         XCTAssertEqual(publisherPart, "DC")
@@ -151,11 +151,13 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testExtractSeriesURI() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v"
         let extractedURIString = BookBinderURI.extractSeriesURI(fromURIString: testString1)
+        XCTAssertEqual(extractedURIString, "Marvel Entertainment/DoctorStrange/2018//")
         
-        XCTAssertEqual(extractedURIString, "Marvel Entertainment/DoctorStrange/2018")
-
+        let testString2 = "/////"
+        let extractedURIString2 = BookBinderURI.extractSeriesURI(fromURIString: testString2)
+        XCTAssertEqual(extractedURIString2, "//")
     }
 
 }

@@ -43,7 +43,7 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testComputedProperties() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
         let seriesURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"
@@ -55,7 +55,7 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testBookURIUnowned() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
         let seriesURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"

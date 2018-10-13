@@ -85,7 +85,7 @@ extension SeriesModel {
     /// URI that identifies this series
     /// - Publisher/Series/Era/
     var seriesURI: BookBinderURI {
-        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)")
+        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)//")
     }
     
     /// Number of possible issues if no numbers are skipped

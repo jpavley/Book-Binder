@@ -39,7 +39,7 @@ extension Comicbook {
     
     /// Returns a series URI from a JsonModel
     static func createSeriesURIFrom(jsonModel: JsonModel) -> BookBinderURI {
-        let uriString = "\(jsonModel.seriesPublisher)/\(jsonModel.seriesTitle)/\(jsonModel.seriesEra)"
+        let uriString = "\(jsonModel.seriesPublisher)/\(jsonModel.seriesTitle)/\(jsonModel.seriesEra)//"
         return BookBinderURI(fromURIString: uriString)
     }
     

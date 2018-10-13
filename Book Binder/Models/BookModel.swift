@@ -52,10 +52,8 @@ extension BookModel {
     /// URI that identifies this book
     /// - Publisher/Series/Era/Issue/variant/consumption
     var bookURI: BookBinderURI {
-        
-        let consumption = isOwned ? "owned" : ""
-        
-        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(consumption)/\(coverImageID)")
+                
+        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)")
     }
     
     var bookPublisher: String {
