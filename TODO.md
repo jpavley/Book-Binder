@@ -20,6 +20,10 @@ all refer to the same thing; Book and issue likewise. Probably Comicbook and boo
 need to go. A book is an "owned" issue of a series and can just be renamed issue. A Comicbook
 is an object with that contains a series and a list of associated books.
 
+- Really need a web backend for this app. Giant database of comicbooks in the sky with only
+part of a user's collection stored locally. Also all issues (owned and unowned) should be in the
+books array and the books array should be a books dictionary with the book URI as the key!
+
 - Investigate http://www.coverbrowser.com Can I use these covers?
 
 - Implement camera in detail view to take or use a photo of a comic book cover.
