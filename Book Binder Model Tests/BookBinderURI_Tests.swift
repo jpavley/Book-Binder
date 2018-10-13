@@ -53,7 +53,7 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testMissingPartsURI() {
-        let testString1 = "Marvel Entertainment//2018/1//owned"
+        let testString1 = "Marvel Entertainment//2018/1//owned/"
         let uri1 = BookBinderURI(fromURIString: testString1)
         
         XCTAssertTrue(uri1.publisherID == "Marvel Entertainment")
@@ -66,25 +66,25 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testURIDescription() {
-        let testString1 = "Marvel Comics Group/ROM Spaceknight/1983/43//"
+        let testString1 = "Marvel Comics Group/ROM Spaceknight/1983/43///"
         let uri1 = BookBinderURI(fromURIString: testString1)
         XCTAssertEqual(uri1.description, testString1)
     }
     
     func testEmptyURIDescription() {
-        let testString1 = "/////"
+        let testString1 = "//////"
         let uri1 = BookBinderURI(fromURIString: testString1)
         XCTAssertEqual(uri1.description, testString1)
     }
     
     func testFullURIDescription() {
-        let testString1 = "Publisher/Series/Era/Issue/variant/owned"
+        let testString1 = "Publisher/Series/Era/Issue/variant/owned/"
         let uri1 = BookBinderURI(fromURIString: testString1)
         XCTAssertEqual(uri1.description, testString1)
     }
     
     func testPartFromURIString() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned/x-men-101"
         let testURI = BookBinderURI.init(fromURIString: testString1)
         
         let publisherPart = BookBinderURI.part(fromURIString: testString1, partID: .publisher)
@@ -110,6 +110,10 @@ class BookBinderURI_Tests: XCTestCase {
         let comsumptionPart = BookBinderURI.part(fromURIString: testString1, partID: .consumption)
         XCTAssertEqual(comsumptionPart, "owned")
         XCTAssertEqual(comsumptionPart, testURI.consumptionID)
+        
+        let coverImagePart = BookBinderURI.part(fromURIString: testString1, partID: .coverImage)
+        XCTAssertEqual(coverImagePart, "x-men-101")
+        XCTAssertEqual(coverImagePart, testURI.coverImageID)
     }
     
     func testPartFromURIStringWithMissingParts() {

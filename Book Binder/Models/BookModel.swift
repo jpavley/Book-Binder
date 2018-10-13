@@ -23,20 +23,25 @@ class BookModel {
     /// Does the user own this issue?
     var isOwned: Bool
     
-    init(seriesURI: BookBinderURI, issueNumber: Int, variantLetter: String, isOwned: Bool) {
+    /// Is there are photo of this issue's cover?
+    var coverImageID: String
+    
+    init(seriesURI: BookBinderURI, issueNumber: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
         self.seriesURI = seriesURI
         self.issueNumber = issueNumber
         self.variantLetter = variantLetter
         self.isOwned = isOwned
+        self.coverImageID = coverImageID
     }
     
     /// initalization from a full URI
-    /// - Publisher/Series/Era/Issue/variant/consumption
+    /// - Publisher/Series/Era/Issue/variant/consumption/cover
     init(fromURI: BookBinderURI) {
         self.seriesURI = SeriesModel(fromURI: fromURI).seriesURI
         self.issueNumber = Int(fromURI.issueID)!
         self.variantLetter = fromURI.variantID
         self.isOwned = fromURI.consumptionID == "owned"
+        self.coverImageID = fromURI.coverImageID
     }
 }
 
@@ -50,7 +55,7 @@ extension BookModel {
         
         let consumption = isOwned ? "owned" : ""
         
-        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(consumption)")
+        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)/\(consumption)/\(coverImageID)")
     }
     
     var bookPublisher: String {

@@ -33,12 +33,14 @@ class Comicbook_Tests: XCTestCase {
                     {
                         "issueNumber": 605,
                         "variantLetter": "",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     },
                      {
                         "issueNumber": 606,
                         "variantLetter": "c",
-                        "isOwned": false
+                        "isOwned": false,
+                        "coverImageID": ""
                     }
                 ]
             }
@@ -60,7 +62,7 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         
         for jsonBook in jsonModel.books {
-            let book = BookModel(seriesURI: testURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned)
+            let book = BookModel(seriesURI: testURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
             comicbook.books.append(book)
         }
@@ -86,12 +88,14 @@ class Comicbook_Tests: XCTestCase {
                     {
                         "issueNumber": 605,
                         "variantLetter": "",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     },
                      {
                         "issueNumber": 606,
                         "variantLetter": "c",
-                        "isOwned": false
+                        "isOwned": false,
+                        "coverImageID": ""
                     }
                 ]
             }]
@@ -102,8 +106,8 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         XCTAssertEqual(comicbook![0].books.count, 2)
         XCTAssertEqual(comicbook![0].series.publishedIssueCount, 14)
-        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017///")
-        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017///")
+        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017////")
+        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017////")
     }
     
     func testOwnedIssues() {
@@ -121,12 +125,14 @@ class Comicbook_Tests: XCTestCase {
                     {
                         "issueNumber": 605,
                         "variantLetter": "",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     },
                      {
                         "issueNumber": 606,
                         "variantLetter": "c",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     }
                 ]
             }]
@@ -152,12 +158,14 @@ class Comicbook_Tests: XCTestCase {
                     {
                         "issueNumber": 605,
                         "variantLetter": "",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     },
                      {
                         "issueNumber": 606,
                         "variantLetter": "c",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     }
                 ]
             }]

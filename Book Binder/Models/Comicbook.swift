@@ -60,7 +60,7 @@ extension Comicbook {
             comicbook.series.seriesExtraIssues = jsonComic.seriesExtraIssues
                         
             for jsonBook in jsonComic.books {
-                let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned)
+                let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
                 comicbook.books.append(book)
             }
             

@@ -22,6 +22,7 @@ struct JsonModel: Codable {
         let issueNumber: Int
         let variantLetter: String
         let isOwned: Bool
+        let coverImageID: String
     }
     
     let books: [JsonBook]

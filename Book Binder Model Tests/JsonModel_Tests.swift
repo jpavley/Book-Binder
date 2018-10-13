@@ -33,7 +33,8 @@ class JsonModel_Tests: XCTestCase {
                     {
                         "issueNumber": 605,
                         "variantLetter": "",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     }
                  ]
             }
@@ -75,7 +76,8 @@ class JsonModel_Tests: XCTestCase {
                     {
                         "issueNumber": 605,
                         "variantLetter": "",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     }
                  ]
             },
@@ -92,12 +94,14 @@ class JsonModel_Tests: XCTestCase {
                     {
                         "issueNumber": 123,
                         "variantLetter": "c",
-                        "isOwned": false
+                        "isOwned": false,
+                        "coverImageID": ""
                     },
                     {
                         "issueNumber": 345,
                         "variantLetter": "e",
-                        "isOwned": true
+                        "isOwned": true,
+                        "coverImageID": ""
                     }
                  ]
             }]

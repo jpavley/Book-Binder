@@ -19,18 +19,20 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testCreateBookModelFromProperies() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018///"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018////"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
+        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
         
         XCTAssertEqual(bookModel.seriesURI.description, testString1)
         XCTAssertEqual(bookModel.issueNumber, 1)
         XCTAssertEqual(bookModel.variantLetter, "a")
         XCTAssertEqual(bookModel.isOwned, true)
+        XCTAssertEqual(bookModel.coverImageID, "x-men-101")
+
     }
     
     func testCreateBookModelFromURI() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v/owned/"
         let bookURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(fromURI: bookURI)
         
@@ -43,8 +45,8 @@ class BookModel_Tests: XCTestCase {
     func testComputedProperties() {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true)
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a/owned"
+        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
+        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a/owned/x-men-101"
         
         XCTAssertEqual(bookModel.bookURI.description, testString2)
         XCTAssertEqual(bookModel.bookPublisher, "Marvel Entertainment")
@@ -55,9 +57,9 @@ class BookModel_Tests: XCTestCase {
     func testBookURIUnowned() {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: false)
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a/"
-        
+        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
+        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a//x-men-101"
+
         XCTAssertEqual(bookModel.bookURI.description, testString2)
 
     }

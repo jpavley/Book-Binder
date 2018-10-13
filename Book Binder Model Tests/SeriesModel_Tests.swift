@@ -19,7 +19,7 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testCreateSeriesModelFromProperties() {
-        let testString1 = "Ziff Davis/GI Joe/1950///"
+        let testString1 = "Ziff Davis/GI Joe/1950////"
         let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         XCTAssertEqual(seriesModel.seriesURI.description, testString1)
@@ -28,7 +28,7 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testCreateSeriesModelFromURI() {
-        let testString1 = "Ziff Davis/GI Joe/1950///"
+        let testString1 = "Ziff Davis/GI Joe/1950////"
         let testURI = BookBinderURI(fromURIString: testString1)
         let testSeriesModel = SeriesModel(fromURI: testURI)
         

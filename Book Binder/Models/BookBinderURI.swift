@@ -15,6 +15,7 @@ enum URIPart: Int {
     case issue = 3
     case variant = 4
     case consumption = 5
+    case coverImage = 6
 }
 
 /// MVP 1: Simple URI format.
@@ -43,6 +44,9 @@ struct BookBinderURI: CustomStringConvertible {
     /// String that represents a consumption state liked "owned" or "read"
     var consumptionID: String
     
+    /// String that represents the ID of an issue's cover image
+    var coverImageID: String
+    
     /// Builds a string version of an URI based on the value of it's parts
     ///
     /// - URI format: publisher/series/era/issue/variant/consumption
@@ -56,6 +60,7 @@ struct BookBinderURI: CustomStringConvertible {
         result += issueID != "" ? "/\(issueID)" : "/"
         result += variantID != "" ? "/\(variantID)" : "/"
         result += consumptionID != "" ? "/\(consumptionID)" : "/"
+        result += coverImageID != "" ? "/\(coverImageID)" : "/"
         
         return result
     }
@@ -69,6 +74,7 @@ struct BookBinderURI: CustomStringConvertible {
         issueID = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
         variantID = parts.count >= URIPart.variant.rawValue + 1 ? parts[URIPart.variant.rawValue] : ""
         consumptionID = parts.count >= URIPart.consumption.rawValue + 1 ? parts[URIPart.consumption.rawValue] : ""
+        coverImageID = parts.count >= URIPart.coverImage.rawValue + 1 ? parts[URIPart.coverImage.rawValue] : ""
     }
     
     static func part(fromURIString s: String, partID: URIPart) -> String {
