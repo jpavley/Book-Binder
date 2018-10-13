@@ -90,4 +90,39 @@ extension Comicbook {
         return createFrom(jsonData: jsonData)
     }
     
+    static func createFrom(bookBinderURIStrings: String) -> [Comicbook]? {
+        var comicbooks = [Comicbook]()
+        let uriList = bookBinderURIStrings.components(separatedBy: "\n")
+        
+        // What if the URIs are not in order? Need so sort them before processing!
+        let sortedURIList = uriList.sorted()
+        
+        // the signal for a new comicbook is when the seriesURI changes
+        var previousSeriesURIString = ""
+        var comicbook: Comicbook!
+        
+        for uriString in sortedURIList {
+            let bookURI = BookBinderURI(fromURIString: uriString)
+            let book = BookModel(fromURI: bookURI)
+            let seriesURI = book.seriesURI
+            
+            if seriesURI.description != previousSeriesURIString {
+                
+                // update signal that new comicbook has started
+                previousSeriesURIString = seriesURI.description
+                
+                // save old comicbook
+                if comicbook != nil {
+                    comicbooks.append(comicbook)
+                }
+                // start new comicbook
+                comicbook = Comicbook(seriesURI: seriesURI)
+            }
+            
+            comicbook.books.append(book)
+        }
+        
+        return comicbooks
+    }
+    
 }

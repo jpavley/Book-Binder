@@ -66,23 +66,23 @@ struct BookBinderURI: CustomStringConvertible {
     }
     
     init(fromURIString s: String) {
-        let parts = s.components(separatedBy: "/")
         
-        publisherID = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
-        seriesID = parts.count >= URIPart.series.rawValue + 1 ? parts[URIPart.series.rawValue] : ""
-        eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
-        issueID = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
-        variantID = parts.count >= URIPart.variant.rawValue + 1 ? parts[URIPart.variant.rawValue] : ""
-        consumptionID = parts.count >= URIPart.consumption.rawValue + 1 ? parts[URIPart.consumption.rawValue] : ""
-        coverImageID = parts.count >= URIPart.coverImage.rawValue + 1 ? parts[URIPart.coverImage.rawValue] : ""
-    }
+        publisherID = BookBinderURI.part(fromURIString: s, partID: .publisher)
+        seriesID = BookBinderURI.part(fromURIString: s, partID: .series)
+        eraID = BookBinderURI.part(fromURIString: s, partID: .era)
+        issueID = BookBinderURI.part(fromURIString: s, partID: .issue)
+        variantID = BookBinderURI.part(fromURIString: s, partID: .variant)
+        consumptionID = BookBinderURI.part(fromURIString: s, partID: .consumption)
+        coverImageID = BookBinderURI.part(fromURIString: s, partID: .coverImage)
+  }
     
     static func part(fromURIString s: String, partID: URIPart) -> String {
         
         let parts = s.components(separatedBy: "/")
         
         if parts.count > partID.rawValue {
-            return parts[partID.rawValue]
+            let part = parts[partID.rawValue]
+            return part.trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
             return ""
         }

@@ -183,6 +183,24 @@ class Comicbook_Tests: XCTestCase {
 
     }
 
-    
+//    func testComicbooksFromUriString() {
+//        let uriString = """
+//            Marvel Entertainment/Doctor Strange/2018/1/a/owned
+//            Marvel Entertainment/Doctor Strange/2018/2//
+//            Marvel Entertainment/Doctor Strange/2018/4//owned
+//            DC Comics/Batman/2000/600//
+//            DC Comics/Batman/2000/800//
+//            DC Comics/Batman/2000/700/z/owned
+//            Marvel Entertainment/Doctor Strange/2018/3/c/
+//        """
+//        
+//        let comicbooks = Comicbook.createFrom(bookBinderURIStrings: uriString)
+//        XCTAssertNotNil(comicbooks)
+//        XCTAssertEqual(comicbooks?.count, 2)
+//        XCTAssertEqual(comicbooks?[0].series.seriesTitle, "Batman")
+//        XCTAssertEqual(comicbooks?[1].series.seriesTitle, "Doctor Strange")
+//        XCTAssertEqual(comicbooks?[1].books.count, 4)
+//
+//    }
     
 }
