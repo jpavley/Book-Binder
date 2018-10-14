@@ -21,8 +21,7 @@ need to go. A book is an "owned" issue of a series and can just be renamed issue
 is an object with that contains a series and a list of associated books.
 
 - Really need a web backend for this app. Giant database of comicbooks in the sky with only
-part of a user's collection stored locally. Also all issues (owned and unowned) should be in the
-books array and the books array should be a books dictionary with the book URI as the key!
+part of a user's collection stored locally. 
 
 - Investigate http://www.coverbrowser.com Can I use these covers?
 
@@ -33,9 +32,10 @@ books array and the books array should be a books dictionary with the book URI a
 - Implement add in summary view to add a book to a series.
 - Implement add series action in summary view.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
-- When returning to summary view from detail view the changes to a book should persist.
 
 ## In progress
+- When returning to summary view from detail view the changes to a book should persist. Also all issues (owned and unowned) should be in the
+books array and the books array should be a books dictionary with the book URI as the key!
 
 
 ## Closed

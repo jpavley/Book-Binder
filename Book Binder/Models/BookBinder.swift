@@ -29,10 +29,10 @@ class BookBinder {
         let comicbook = getSelectedComicbook()
         let issueNumber = comicbook.series.publishedIssues[selectedIssueIndex]
         
-        for book in comicbook.books {
-            if issueNumber == book.issueNumber {
+        for (_, value) in comicbook.books {
+            if issueNumber == value.issueNumber {
                 // This ia a book the user owns or is tracking
-                return book
+                return value
             }
         }
         

@@ -68,4 +68,3 @@ extension BookModel {
         return seriesURI.eraID
     }
 }
-

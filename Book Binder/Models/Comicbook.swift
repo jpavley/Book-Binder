@@ -10,26 +10,46 @@ import Foundation
 
 class Comicbook {
     var series: SeriesModel
-    var books: [BookModel]
+    var books: [BookBinderURI: BookModel]
     
     init(seriesURI: BookBinderURI) {
         series = SeriesModel(fromURI: seriesURI)
-        books = [BookModel]()
+        books = [BookBinderURI: BookModel]()
     }
     
     /// Returns a list of owned issue numbers as a string
     func ownedIssues() -> [String] {
-        var result = [String]()
-        for book in books {
-            if book.isOwned {
-                result.append("\(book.issueNumber)")
+//        var result = [String]()
+        
+        return books.map { $0.value.isOwned ? "\($0.value.issueNumber)" : "" }
+        
+//        for (key, value) in books {
+//            if value.isOwned {
+//                result.append("")
+//            }
+//        }
+//
+//        for book in books {
+//            if book.isOwned {
+//                result.append("\(book.issueNumber)")
+//            }
+//        }
+//        return result
+    }
+    
+    /// Returns a list of books that match the issue number.
+    /// Because of varients this could be more than one.
+    func getBookBy(issueNumber: Int) -> [BookModel] {
+        //return books.filter { $0.value.issueNumber == issueNumber}.first
+        
+        var result = [BookModel]()
+        
+        for (_, value) in books {
+            if value.issueNumber == issueNumber {
+                result.append(value)
             }
         }
         return result
-    }
-    
-    func getBookBy(issueNumber: Int) -> BookModel? {
-        return books.filter { $0.issueNumber == issueNumber}.first
     }
     
 }
@@ -61,7 +81,7 @@ extension Comicbook {
                         
             for jsonBook in jsonComic.books {
                 let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
-                comicbook.books.append(book)
+                comicbook.books[book.bookURI] = book
             }
             
             comicbooks.append(comicbook)

@@ -270,10 +270,10 @@ extension SummaryViewController {
         let comicbook = getComicbookFor(indexPath: indexPath)
         let issueNumber = getPublishedIssueFor(indexPath: indexPath)
         
-        for book in comicbook.books {
-            if issueNumber == book.issueNumber {
+        for (_, value) in comicbook.books {
+            if issueNumber == value.issueNumber {
                 // This ia a book the user owns or is tracking
-                return book
+                return value
             }
         }
         

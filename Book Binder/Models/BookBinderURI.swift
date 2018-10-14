@@ -105,3 +105,15 @@ struct BookBinderURI: CustomStringConvertible {
         return count == BookBinderURI.slashCount
     }
 }
+
+extension BookBinderURI: Hashable {
+    
+    static func == (lhs: BookBinderURI, rhs: BookBinderURI) -> Bool {
+        return lhs.description == rhs.description
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(description)
+    }
+    
+}
