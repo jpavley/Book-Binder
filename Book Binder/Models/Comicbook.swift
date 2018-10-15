@@ -19,22 +19,8 @@ class Comicbook {
     
     /// Returns a list of owned issue numbers as a string
     func ownedIssues() -> [String] {
-//        var result = [String]()
-        
-        return books.map { $0.value.isOwned ? "\($0.value.issueNumber)" : "" }
-        
-//        for (key, value) in books {
-//            if value.isOwned {
-//                result.append("")
-//            }
-//        }
-//
-//        for book in books {
-//            if book.isOwned {
-//                result.append("\(book.issueNumber)")
-//            }
-//        }
-//        return result
+        let foundIssues = books.map { $0.value.isOwned ? "\($0.value.issueNumber)" : "" }
+        return foundIssues.sorted()
     }
     
     /// Returns a list of books that match the issue number.
