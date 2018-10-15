@@ -19,16 +19,21 @@ class BookBinder {
         self.selectedIssueIndex = selectedIssueIndex
     }
     
+    /// Modifies the selected comicbook's books array by either updating an existing book
+    /// or adding a book if it doesn't exist
     func updateBooks(with modifiedBook: BookModel) {
         let selectedComicbook = getSelectedComicbook()
         var books = selectedComicbook.books
         
-        if books[modifiedBook.bookURI] != nil {
-            if let oldValue = books.updateValue(modifiedBook, forKey: modifiedBook.bookURI) {
-                assert(true, "the old value of \(oldValue.debugDescription) was replaced with \(modifiedBook.debugDescription)")
-            } else {
-                assert(true, "no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")
-            }
+        if selectedComicbook.series.seriesURI.description != modifiedBook.seriesURI.description {
+            assert(true, "you can't add or modify a book with a series URI different from the comicbook's series URI!")
+            return
+        }
+        
+        if let oldValue = books.updateValue(modifiedBook, forKey: modifiedBook.bookURI) {
+            assert(true, "the old value of \(oldValue.debugDescription) was replaced with \(modifiedBook.debugDescription)")
+        } else {
+            assert(true, "no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")
         }
         
         selectedComicbook.books = books
