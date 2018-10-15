@@ -22,9 +22,6 @@ class DetailViewController: UIViewController {
     
     @IBAction func isOwnedAction(_ sender: Any) {
         
-        let s = sender as! UISwitch
-        print("switch \(s.isOn)")
-        
         let selectedBook = bookBinder.getSelectedIssue()
         selectedBook.isOwned = isOwnedSwitch.isOn
         

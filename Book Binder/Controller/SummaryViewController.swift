@@ -67,8 +67,7 @@ class SummaryViewController: UIViewController {
         updateBookBinderData()
     }
     func updateBookBinderData() {
-        print("updateBookBinderData()")
-                
+        
         if let comicbooks = loadComicbookDataFromJSON() {
             bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
             return
