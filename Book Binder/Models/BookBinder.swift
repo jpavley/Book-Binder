@@ -19,6 +19,21 @@ class BookBinder {
         self.selectedIssueIndex = selectedIssueIndex
     }
     
+    func updateBooks(with modifiedBook: BookModel) {
+        let selectedComicbook = getSelectedComicbook()
+        var books = selectedComicbook.books
+        
+        if books[modifiedBook.bookURI] != nil {
+            if let oldValue = books.updateValue(modifiedBook, forKey: modifiedBook.bookURI) {
+                assert(true, "the old value of \(oldValue.debugDescription) was replaced with \(modifiedBook.debugDescription)")
+            } else {
+                assert(true, "no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")
+            }
+        }
+        
+        selectedComicbook.books = books
+    }
+    
     func getSelectedComicbook() -> Comicbook {
         // TODO: nil and range checking
         return comicbooks[selectedComicbookIndex]

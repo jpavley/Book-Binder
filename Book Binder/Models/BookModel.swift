@@ -68,3 +68,11 @@ extension BookModel {
         return seriesURI.eraID
     }
 }
+
+extension BookModel: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return "bookURI: \(bookURI.description), isOwned: \(isOwned), coverImageID: \(coverImageID)"
+    }
+    
+    
+}

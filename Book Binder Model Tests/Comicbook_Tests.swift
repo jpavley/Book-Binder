@@ -64,13 +64,16 @@ class Comicbook_Tests: XCTestCase {
         for jsonBook in jsonModel.books {
             let book = BookModel(seriesURI: testURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
-            comicbook.books.append(book)
+            comicbook.books[book.bookURI] = book
         }
         
         XCTAssertEqual(comicbook.books.count, jsonModel.books.count)
         XCTAssertEqual(comicbook.series.publishedIssueCount, 14)
-        XCTAssertEqual(comicbook.books[0].seriesURI.description, testURI.description)
-        XCTAssertEqual(comicbook.books[1].seriesURI.description, testURI.description)
+        
+        for (_,value) in comicbook.books {
+            XCTAssertEqual(value.seriesURI.description, testURI.description)
+        }
+        
     }
     
     func testCreateComicbookFromFactory() {
@@ -102,12 +105,16 @@ class Comicbook_Tests: XCTestCase {
         """
         
         let comicbook = Comicbook.createFrom(jsonString: jsonString)
-        
+        let testURIString = "Marvel Entertainment/Daredevil/2017//"
+        let testURI = BookBinderURI(fromURIString: testURIString)
+
         XCTAssertNotNil(comicbook)
         XCTAssertEqual(comicbook![0].books.count, 2)
         XCTAssertEqual(comicbook![0].series.publishedIssueCount, 14)
-        XCTAssertEqual(comicbook![0].books[0].seriesURI.description, "Marvel Entertainment/Daredevil/2017//")
-        XCTAssertEqual(comicbook![0].books[1].seriesURI.description, "Marvel Entertainment/Daredevil/2017//")
+        
+        for (_,value) in comicbook![0].books {
+            XCTAssertEqual(value.seriesURI.description, testURI.description)
+        }
     }
     
     func testOwnedIssues() {
@@ -171,15 +178,28 @@ class Comicbook_Tests: XCTestCase {
             }]
         """
         
-        let comicbook = Comicbook.createFrom(jsonString: jsonString)
-        let testBook1 = comicbook![0].books[0]
-        let testBook2 = comicbook![0].books[1]
-        let testBook3 = comicbook![0].getBookBy(issueNumber: 605)
-        let testBook4 = comicbook![0].getBookBy(issueNumber: 606)
+        let bookURI1 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/605/")
+        let bookURI2 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/606/c")
 
+        let comicbooks = Comicbook.createFrom(jsonString: jsonString)
         
-        XCTAssertEqual(testBook1.bookURI.description, testBook3?.bookURI.description)
-        XCTAssertEqual(testBook2.bookURI.description, testBook4?.bookURI.description)
+        
+        if let comicbooks = comicbooks {
+            let comicbook = comicbooks[0]
+            
+            for (k,v) in comicbook.books {
+                XCTAssertEqual("\(k.description)", "\(v.bookURI.description)")
+            }
+            
+            let testBook1 = comicbook.books[bookURI1]
+            let testBook2 = comicbook.books[bookURI2]
+            
+            let testBook3 = comicbook.getBookBy(issueNumber: 605).first!
+            let testBook4 = comicbook.getBookBy(issueNumber: 606).first!
+            
+            XCTAssertEqual(testBook1?.bookURI.description, testBook3.bookURI.description)
+            XCTAssertEqual(testBook2?.bookURI.description, testBook4.bookURI.description)
+        }
 
     }    
 }

@@ -184,6 +184,24 @@ class BookBinder_Tests: XCTestCase {
         }
         
     }
+    
+    func testUpdateBook() {
+        let bookbinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 1)
+        let selectedComicbook = bookbinder.getSelectedComicbook()
+        let testBook = BookModel(fromURI: BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/606/c"), isOwned: false, coverImageID: "x-men-101")
+        let bookToBeUpdated = selectedComicbook.books[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/606/c")]
+        
+        XCTAssertEqual(selectedComicbook.books.count, 2)
+        XCTAssertEqual(bookToBeUpdated?.isOwned, true)
+        XCTAssertEqual(bookToBeUpdated?.coverImageID, "")
+        
+        bookbinder.updateBooks(with: testBook)
+        
+        let bookThatWasUpdated = selectedComicbook.books[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/606/c")]
+        XCTAssertEqual(selectedComicbook.books.count, 2)
+        XCTAssertEqual(bookThatWasUpdated?.isOwned, false)
+        XCTAssertEqual(bookThatWasUpdated?.coverImageID, "x-men-101")
+    }
 
 
 

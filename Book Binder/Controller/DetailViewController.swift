@@ -28,10 +28,8 @@ class DetailViewController: UIViewController {
         let selectedBook = bookBinder.getSelectedIssue()
         selectedBook.isOwned = isOwnedSwitch.isOn
         
-        // TODO: if the user changes the ownership of the book
-        // either add or delete it from the series
-        
-        // NOTE: if the book has a photo don't delete it
+        // TODO: if the book is not in the list of books add it.
+        bookBinder.updateBooks(with: selectedBook)
         
         updateUX()
     }
