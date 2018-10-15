@@ -122,7 +122,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             return headerView
             
         default:
-            assert(false, "unexpected UICollection element kind")
+            assert(false, "BOOKBINDERAPP: unexpected UICollection element kind")
+            return CollectionReusableView()
         }
     }
     

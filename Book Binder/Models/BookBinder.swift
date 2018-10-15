@@ -26,14 +26,14 @@ class BookBinder {
         var books = selectedComicbook.books
         
         if selectedComicbook.series.seriesURI.description != modifiedBook.seriesURI.description {
-            assert(true, "you can't add or modify a book with a series URI different from the comicbook's series URI!")
+            assert(true, "BOOKBINDERAPP: you can't add or modify a book with a series URI different from the comicbook's series URI!")
             return
         }
         
         if let oldValue = books.updateValue(modifiedBook, forKey: modifiedBook.bookURI) {
-            assert(true, "the old value of \(oldValue.debugDescription) was replaced with \(modifiedBook.debugDescription)")
+            assert(true, "BOOKBINDERAPP: the old value of \(oldValue.debugDescription) was replaced with \(modifiedBook.debugDescription)")
         } else {
-            assert(true, "no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")
+            assert(true, "BOOKBINDERAPP: no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")
         }
         
         selectedComicbook.books = books

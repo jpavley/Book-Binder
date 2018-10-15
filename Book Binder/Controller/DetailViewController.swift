@@ -90,7 +90,7 @@ class DetailViewController: UIViewController {
             // previous book
             bookBinder.selectPreviousComicbook()
         default:
-            assert(false, "unsupported gesture")
+            assert(false, "BOOKBINDERAPP: unsupported gesture")
         }
         
         updateUX()
