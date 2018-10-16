@@ -101,9 +101,14 @@ class DetailViewController: UIViewController {
         publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
         issueNumberLabel.text = "#\(selectedBook.issueNumber)"
         variantLetterLabel.text = "\(selectedBook.variantLetter)"
-        coverImageView.image = UIImage(named: "\(selectedBook.coverImageID)")
-        isOwnedSwitch.setOn(selectedBook.isOwned, animated: true)
         
+        coverImageView.alpha = 0
+        coverImageView.image = UIImage(named: "\(selectedBook.coverImageID)")
+        UIView.animate(withDuration: 1.0, animations: {
+            self.coverImageView.alpha = 1.0
+        }, completion: nil)
+        
+        isOwnedSwitch.setOn(selectedBook.isOwned, animated: true)
         navigationController?.isToolbarHidden = false
     }
 }
