@@ -33,6 +33,7 @@ part of a user's collection stored locally.
 - Implement add series action in summary view.
 
 ## In progress
+- Implement saving and loading the current book binder
 
 
 ## Closed
