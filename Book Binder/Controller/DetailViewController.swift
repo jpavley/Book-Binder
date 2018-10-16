@@ -101,24 +101,9 @@ class DetailViewController: UIViewController {
         publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
         issueNumberLabel.text = "#\(selectedBook.issueNumber)"
         variantLetterLabel.text = "\(selectedBook.variantLetter)"
-        
-        let coverName = publisherCover(for: selectedBook.bookPublisher)
-        coverImageView.image = UIImage(named: coverName)
+        coverImageView.image = UIImage(named: "\(selectedBook.coverImageID)")
         isOwnedSwitch.setOn(selectedBook.isOwned, animated: true)
         
         navigationController?.isToolbarHidden = false
-    }
-    
-    func publisherCover(for publisher: String) -> String {
-        switch publisher {
-        case "Marvel Entertainment":
-            return "x-men-101"
-        case "DC Comics":
-            return "lois-lane-111"
-        case "NBM":
-            return "logans-run-6"
-        default:
-            return "identity-crisis-7-b"
-        }
     }
 }

@@ -45,7 +45,6 @@ class BookBinder {
     }
     
     func getSelectedIssue() -> BookModel {
-        // DUPE: 100 start
         let comicbook = getSelectedComicbook()
         let issueNumber = comicbook.series.publishedIssues[selectedIssueIndex]
         
@@ -57,9 +56,22 @@ class BookBinder {
         }
         
         // This is a book the user doesn't own yet...
-        return BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
-        // DUPE: 100 end
+        let publisherID = BookBinderURI.part(fromURIString: comicbook.series.seriesURI.description, partID: .publisher)
+        let colverImageID = publisherCover(for: publisherID)
+        return BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: colverImageID)
     }
+    
+    func publisherCover(for publisher: String) -> String {
+        switch publisher {
+        case "Marvel Entertainment":
+            return "marvel-placeholder-1"
+        case "DC Comics":
+            return "dc-placeholder-1"
+        default:
+            return "golden-age-placeholder-1"
+        }
+    }
+
     
     func selectNextComicbook() {
         

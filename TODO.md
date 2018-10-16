@@ -31,7 +31,6 @@ part of a user's collection stored locally.
 - Implement series view to view and edit a series.
 - Implement add in summary view to add a book to a series.
 - Implement add series action in summary view.
-- Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
 
@@ -54,6 +53,8 @@ sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which w
 - When returning to summary view from detail view the changes to a book should persist. Also all issues 
 (owned and unowned) should be in the books array and the books array should be a books dictionary with
 the book URI as the key!
+- Create a placeholder comic book cover for each of the major publishers plus an indy cover.
+
 
 
 
