@@ -34,8 +34,6 @@ part of a user's collection stored locally.
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 
 ## In progress
-- When returning to summary view from detail view the changes to a book should persist. Also all issues (owned and unowned) should be in the
-books array and the books array should be a books dictionary with the book URI as the key!
 
 
 ## Closed
@@ -53,6 +51,9 @@ a new issue is published. In a large collection all the book URIs will need to b
 a new issue is published which means book URIs are not stateless. In fact I should take the ownership
 field out of the the book URI as that is state that can easily change as well! A book URI at this point
 sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which was were I started!)
+- When returning to summary view from detail view the changes to a book should persist. Also all issues 
+(owned and unowned) should be in the books array and the books array should be a books dictionary with
+the book URI as the key!
 
 
 

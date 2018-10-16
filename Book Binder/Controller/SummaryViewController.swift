@@ -64,7 +64,13 @@ class SummaryViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateBookBinderData()
+        
+        if bookBinder == nil {
+            updateBookBinderData()
+        } else {
+            // TODO: force update of collection view
+            collectionView.reloadData()
+        }
     }
     func updateBookBinderData() {
         
