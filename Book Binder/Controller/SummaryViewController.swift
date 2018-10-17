@@ -68,7 +68,6 @@ class SummaryViewController: UIViewController {
         if bookBinder == nil {
             updateBookBinderData()
         } else {
-            // TODO: force update of collection view
             collectionView.reloadData()
         }
     }
