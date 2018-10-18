@@ -1,226 +1,231 @@
-[
-    {
-        "seriesPublisher": "Marvel Entertainment",
-        "seriesTitle": "Daredevil",
-        "seriesEra": 2017,
-        "seriesFirstIssue": 595,
-        "seriesCurrentIssue": 608,
-        "seriesSkippedIssues": 0,
-        "seriesExtraIssues": 0,
-        "books":
-        [
-            {
-                "issueNumber": 605,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "marvel-placeholder-1"
-            },
-            {
-                "issueNumber": 606,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "marvel-placeholder-1"
+{ 
+    "series": 
+    [
+        {
+            "seriesPublisher": "Marvel Entertainment",
+            "seriesTitle": "Daredevil",
+            "seriesEra": 2017,
+            "seriesFirstIssue": 595,
+            "seriesCurrentIssue": 608,
+            "seriesSkippedIssues": 0,
+            "seriesExtraIssues": 0,
+            "books":
+            [
+                {
+                    "issueNumber": 605,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "marvel-placeholder-1"
+                },
+                {
+                    "issueNumber": 606,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "marvel-placeholder-1"
 
-            },
-            {
-                "issueNumber": 607,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "marvel-placeholder-1"
-            },
-            {
-                "issueNumber": 608,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "marvel-placeholder-1"
-            }
-         ]
-    },
-    {
-        "seriesPublisher": "DC Comics",
-        "seriesTitle": "Batman: The Widening Gyre",
-        "seriesEra": 2009,
-        "seriesFirstIssue": 1,
-        "seriesCurrentIssue": 6,
-        "seriesSkippedIssues":0,
-        "seriesExtraIssues":0,
-        "books":
-        [
-            {
-                "issueNumber": 1,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "dc-placeholder-1"
-            },
-            {
-                "issueNumber": 2,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "dc-placeholder-1"
-            },
-            {
-                "issueNumber": 3,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "dc-placeholder-1"
-            },
-            {
-                "issueNumber": 4,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "dc-placeholder-1"
-            },
-            {
-                "issueNumber": 5,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "dc-placeholder-1"
-            },
-            {
-                "issueNumber": 6,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "dc-placeholder-1"
-            }
-         ]
-    },
-    {
-        "seriesPublisher": "NBM",
-        "seriesTitle": "Boneyard",
-        "seriesEra": 2001,
-        "seriesFirstIssue": 1,
-        "seriesCurrentIssue": 28,
-        "seriesSkippedIssues":0,
-        "seriesExtraIssues":0,
-        "books":
-        [
-            {
-                "issueNumber": 1,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 2,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 4,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 5,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 8,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 9,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 10,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 11,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 12,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 13,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 14,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 15,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 16,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 17,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 18,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 19,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 21,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 22,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 24,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 26,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            },
-            {
-                "issueNumber": 27,
-                "variantLetter": "",
-                "isOwned": true,
-                "coverImageID": "golden-age-placeholder-1"
-            }
-        ]
-    }
-]
+                },
+                {
+                    "issueNumber": 607,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "marvel-placeholder-1"
+                },
+                {
+                    "issueNumber": 608,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "marvel-placeholder-1"
+                }
+            ]
+        },
+        {
+            "seriesPublisher": "DC Comics",
+            "seriesTitle": "Batman: The Widening Gyre",
+            "seriesEra": 2009,
+            "seriesFirstIssue": 1,
+            "seriesCurrentIssue": 6,
+            "seriesSkippedIssues":0,
+            "seriesExtraIssues":0,
+            "books":
+            [
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "dc-placeholder-1"
+                },
+                {
+                    "issueNumber": 2,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "dc-placeholder-1"
+                },
+                {
+                    "issueNumber": 3,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "dc-placeholder-1"
+                },
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "dc-placeholder-1"
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "dc-placeholder-1"
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "dc-placeholder-1"
+                }
+            ]
+        },
+        {
+            "seriesPublisher": "NBM",
+            "seriesTitle": "Boneyard",
+            "seriesEra": 2001,
+            "seriesFirstIssue": 1,
+            "seriesCurrentIssue": 28,
+            "seriesSkippedIssues":0,
+            "seriesExtraIssues":0,
+            "books":
+            [
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 2,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 10,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 11,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 12,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 13,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 14,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 15,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 16,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 17,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 18,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 19,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 21,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 22,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 24,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 26,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                },
+                {
+                    "issueNumber": 27,
+                    "variantLetter": "",
+                    "isOwned": true,
+                    "coverImageID": "golden-age-placeholder-1"
+                }
+            ]
+        }
+    ],
+    "selectedSeriesIndex": 0,
+    "selectedBookIndex": 0
+}
 

@@ -89,6 +89,7 @@ class SummaryViewController: UIViewController {
                 return Comicbook.createFrom(jsonData: data)!
             } catch {
                 // TODO: books.json probably not found
+                print(error)
             }
         }
         return nil

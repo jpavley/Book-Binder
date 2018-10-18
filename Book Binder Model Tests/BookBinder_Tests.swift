@@ -17,54 +17,61 @@ class BookBinder_Tests: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         let jsonString = """
-            [{
-                "seriesPublisher": "Marvel Entertainment",
-                "seriesTitle": "Daredevil",
-                "seriesEra": 2017,
-                "seriesFirstIssue": 595,
-                "seriesCurrentIssue": 608,
-                "seriesSkippedIssues": 1,
-                "seriesExtraIssues": 1,
-                "books":
-                [
-                    {
-                        "issueNumber": 605,
-                        "variantLetter": "",
-                        "isOwned": true,
-                        "coverImageID": ""
-                    },
-                     {
-                        "issueNumber": 606,
-                        "variantLetter": "c",
-                        "isOwned": true,
-                        "coverImageID": ""
-                    }
-                ]
-            },
-            {
-                "seriesPublisher": "DC Comics",
-                "seriesTitle": "Batman",
-                "seriesEra": 1950,
-                "seriesFirstIssue": 5,
-                "seriesCurrentIssue": 8,
-                "seriesSkippedIssues": 0,
-                "seriesExtraIssues": 0,
-                "books":
-                [
-                    {
-                        "issueNumber": 7,
-                        "variantLetter": "",
-                        "isOwned": true,
-                        "coverImageID": ""
-                    },
-                     {
-                        "issueNumber": 8,
-                        "variantLetter": "c",
-                        "isOwned": true,
-                        "coverImageID": ""
-                    }
-                ]
-            }]
+        {
+            "series":
+            [
+                {
+                    "seriesPublisher": "Marvel Entertainment",
+                    "seriesTitle": "Daredevil",
+                    "seriesEra": 2017,
+                    "seriesFirstIssue": 595,
+                    "seriesCurrentIssue": 608,
+                    "seriesSkippedIssues": 1,
+                    "seriesExtraIssues": 1,
+                    "books":
+                    [
+                        {
+                            "issueNumber": 605,
+                            "variantLetter": "",
+                            "isOwned": true,
+                            "coverImageID": ""
+                        },
+                         {
+                            "issueNumber": 606,
+                            "variantLetter": "c",
+                            "isOwned": true,
+                            "coverImageID": ""
+                        }
+                    ]
+                },
+                {
+                    "seriesPublisher": "DC Comics",
+                    "seriesTitle": "Batman",
+                    "seriesEra": 1950,
+                    "seriesFirstIssue": 5,
+                    "seriesCurrentIssue": 8,
+                    "seriesSkippedIssues": 0,
+                    "seriesExtraIssues": 0,
+                    "books":
+                    [
+                        {
+                            "issueNumber": 7,
+                            "variantLetter": "",
+                            "isOwned": true,
+                            "coverImageID": ""
+                        },
+                         {
+                            "issueNumber": 8,
+                            "variantLetter": "c",
+                            "isOwned": true,
+                            "coverImageID": ""
+                        }
+                    ]
+                }
+            ],
+            "selectedSeriesIndex": 0,
+            "selectedBookIndex": 0
+        }
         """
         
         comicbooks = Comicbook.createFrom(jsonString: jsonString)!

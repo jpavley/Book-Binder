@@ -44,28 +44,29 @@ class Comicbook {
 extension Comicbook {
     
     /// Returns a series URI from a JsonModel
-    static func createSeriesURIFrom(jsonModel: JsonModel) -> BookBinderURI {
-        let uriString = "\(jsonModel.seriesPublisher)/\(jsonModel.seriesTitle)/\(jsonModel.seriesEra)//"
+    static func createSeriesURIFrom(jsonSeries: JsonModel.JsonSeries) -> BookBinderURI {
+        
+        let uriString = "\(jsonSeries.seriesPublisher)/\(jsonSeries.seriesTitle)/\(jsonSeries.seriesEra)//"
         return BookBinderURI(fromURIString: uriString)
     }
     
     /// Returns an array of Comicbooks from a JsonModel
     /// - A JsonModel contains data for 0 to n Comicbooks
-    static func createFrom(jsonModel: [JsonModel]) -> [Comicbook] {
+    static func createFrom(jsonModel: JsonModel) -> [Comicbook] {
         
         var comicbooks = [Comicbook]()
         
-        for jsonComic in jsonModel {
+        for jsonSeries in jsonModel.series {
         
-            let seriesURI = createSeriesURIFrom(jsonModel: jsonComic)
+            let seriesURI = createSeriesURIFrom(jsonSeries: jsonSeries)
             let comicbook = Comicbook(seriesURI: seriesURI)
             
-            comicbook.series.seriesFirstIssue = jsonComic.seriesFirstIssue
-            comicbook.series.seriesCurrentIssue = jsonComic.seriesCurrentIssue
-            comicbook.series.seriesSkippedIssues = jsonComic.seriesSkippedIssues
-            comicbook.series.seriesExtraIssues = jsonComic.seriesExtraIssues
+            comicbook.series.seriesFirstIssue = jsonSeries.seriesFirstIssue
+            comicbook.series.seriesCurrentIssue = jsonSeries.seriesCurrentIssue
+            comicbook.series.seriesSkippedIssues = jsonSeries.seriesSkippedIssues
+            comicbook.series.seriesExtraIssues = jsonSeries.seriesExtraIssues
                         
-            for jsonBook in jsonComic.books {
+            for jsonBook in jsonSeries.books {
                 let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
                 comicbook.books[book.bookURI] = book
             }
@@ -81,10 +82,11 @@ extension Comicbook {
     static func createFrom(jsonData: Data) -> [Comicbook]? {
         do {
             let decoder = JSONDecoder()
-            let jsonModel = try decoder.decode([JsonModel].self, from: jsonData)
+            let jsonModel = try decoder.decode(JsonModel.self, from: jsonData)
             return Comicbook.createFrom(jsonModel: jsonModel)
         } catch {
             // TODO: Probably malformed JSON data
+            print(error)
         }
         return nil
     }
