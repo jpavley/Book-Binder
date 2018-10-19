@@ -152,9 +152,9 @@
 			children = (
 				484CC0DC2157DD380012CD42 /* BookModel.swift */,
 				484CC0DE2157DD890012CD42 /* SeriesModel.swift */,
+				48ED2CA62166423300945BED /* JsonModel.swift */,
 				484CC0E02157DFC00012CD42 /* BookBinderURI.swift */,
 				48CBB67E215D5EDF003D1870 /* books.json */,
-				48ED2CA62166423300945BED /* JsonModel.swift */,
 				48ED2CA82166BFA400945BED /* Comicbook.swift */,
 				482FABCF216CE3D700E64D05 /* BookBinder.swift */,
 			);
