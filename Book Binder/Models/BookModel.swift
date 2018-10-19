@@ -52,7 +52,6 @@ extension BookModel {
     /// URI that identifies this book
     /// - Publisher/Series/Era/Issue/variant/consumption
     var bookURI: BookBinderURI {
-                
         return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)")
     }
     
