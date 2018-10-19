@@ -73,8 +73,8 @@ class SummaryViewController: UIViewController {
     }
     func updateBookBinderData() {
         
-        if let comicbooks = loadComicbookDataFromJSON() {
-            bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = loadComicbookDataFromJSON() {
+            bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
             return
         }
         
@@ -82,7 +82,7 @@ class SummaryViewController: UIViewController {
         bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: ""))], selectedComicbookIndex: 0, selectedIssueIndex: 0)
     }
     
-    func loadComicbookDataFromJSON() -> [Comicbook]? {
+    func loadComicbookDataFromJSON() -> ([Comicbook], Int, Int)? {
         if let path = Bundle.main.path(forResource: "books", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)

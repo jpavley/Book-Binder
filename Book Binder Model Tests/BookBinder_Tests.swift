@@ -11,6 +11,8 @@ import XCTest
 class BookBinder_Tests: XCTestCase {
     
     var comicbooks = [Comicbook]()
+    var selectedSeriesIndex = 0
+    var selectedBookIndex = 0
     var seriesURIStrings = [String]()
     var bookURIStrings = [String]()
 
@@ -69,12 +71,12 @@ class BookBinder_Tests: XCTestCase {
                     ]
                 }
             ],
-            "selectedSeriesIndex": 0,
-            "selectedBookIndex": 0
+            "selectedSeriesIndex": 1,
+            "selectedBookIndex": 1
         }
         """
         
-        comicbooks = Comicbook.createFrom(jsonString: jsonString)!
+        (comicbooks, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonString: jsonString)!
         seriesURIStrings.append("Marvel Entertainment/Daredevil/2017//") // 0
         seriesURIStrings.append("DC Comics/Batman/1950//")               // 1
 
@@ -98,12 +100,12 @@ class BookBinder_Tests: XCTestCase {
     
     func testCreateBookBinder() {
         
-        let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedSeriesIndex, selectedIssueIndex: selectedBookIndex)
         
         XCTAssertEqual(bookBinder.comicbooks.count, comicbooks.count)
         XCTAssertEqual(bookBinder.comicbooks[0].series.seriesPublisher, comicbooks[0].series.seriesPublisher)
-        XCTAssertEqual(bookBinder.selectedIssueIndex, 0)
-        XCTAssertEqual(bookBinder.selectedComicbookIndex, 0)
+        XCTAssertEqual(bookBinder.selectedIssueIndex, 1)
+        XCTAssertEqual(bookBinder.selectedComicbookIndex, 1)
     }
     
     func testGetSelectedComicbook() {

@@ -67,8 +67,8 @@ class Comicbook_Tests: XCTestCase {
                     ]
                 }
             ],
-            "selectedSeriesIndex": 0,
-            "selectedBookIndex": 0
+            "selectedSeriesIndex": 1,
+            "selectedBookIndex": 1
         }
         """
     }
@@ -112,23 +112,26 @@ class Comicbook_Tests: XCTestCase {
     
     func testCreateComicbookFromFactory() {
         
-        let comicbook = Comicbook.createFrom(jsonString: jsonString)
+        let (comicbook, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonString: jsonString)!
         let testURIString = "Marvel Entertainment/Daredevil/2017//"
         let testURI = BookBinderURI(fromURIString: testURIString)
 
         XCTAssertNotNil(comicbook)
-        XCTAssertEqual(comicbook![0].books.count, 2)
-        XCTAssertEqual(comicbook![0].series.publishedIssueCount, 14)
+        XCTAssertEqual(comicbook[0].books.count, 2)
+        XCTAssertEqual(comicbook[0].series.publishedIssueCount, 14)
         
-        for (_,value) in comicbook![0].books {
+        XCTAssertEqual(selectedSeriesIndex, 1)
+        XCTAssertEqual(selectedBookIndex, 1)
+        
+        for (_,value) in comicbook[0].books {
             XCTAssertEqual(value.seriesURI.description, testURI.description)
         }
     }
     
     func testOwnedIssues() {
         
-        let comicbook = Comicbook.createFrom(jsonString: jsonString)
-        XCTAssertEqual(comicbook![0].ownedIssues(), ["605", "606"])
+        let (comicbook, _, _) = Comicbook.createFrom(jsonString: jsonString)!
+        XCTAssertEqual(comicbook[0].ownedIssues(), ["605", "606"])
 
     }
     
@@ -137,25 +140,23 @@ class Comicbook_Tests: XCTestCase {
         let bookURI1 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/605/")
         let bookURI2 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/606/c")
 
-        let comicbooks = Comicbook.createFrom(jsonString: jsonString)
+        let (comicbooks, _, _) = Comicbook.createFrom(jsonString: jsonString)!
         
         
-        if let comicbooks = comicbooks {
-            let comicbook = comicbooks[0]
-            
-            for (k,v) in comicbook.books {
-                XCTAssertEqual("\(k.description)", "\(v.bookURI.description)")
-            }
-            
-            let testBook1 = comicbook.books[bookURI1]
-            let testBook2 = comicbook.books[bookURI2]
-            
-            let testBook3 = comicbook.getBookBy(issueNumber: 605).first!
-            let testBook4 = comicbook.getBookBy(issueNumber: 606).first!
-            
-            XCTAssertEqual(testBook1?.bookURI.description, testBook3.bookURI.description)
-            XCTAssertEqual(testBook2?.bookURI.description, testBook4.bookURI.description)
+        let comicbook = comicbooks[0]
+        
+        for (k,v) in comicbook.books {
+            XCTAssertEqual("\(k.description)", "\(v.bookURI.description)")
         }
+        
+        let testBook1 = comicbook.books[bookURI1]
+        let testBook2 = comicbook.books[bookURI2]
+        
+        let testBook3 = comicbook.getBookBy(issueNumber: 605).first!
+        let testBook4 = comicbook.getBookBy(issueNumber: 606).first!
+        
+        XCTAssertEqual(testBook1?.bookURI.description, testBook3.bookURI.description)
+        XCTAssertEqual(testBook2?.bookURI.description, testBook4.bookURI.description)
 
     }    
 }

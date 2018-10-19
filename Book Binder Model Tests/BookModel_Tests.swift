@@ -61,6 +61,5 @@ class BookModel_Tests: XCTestCase {
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"
 
         XCTAssertEqual(bookModel.bookURI.description, testString2)
-
     }
 }

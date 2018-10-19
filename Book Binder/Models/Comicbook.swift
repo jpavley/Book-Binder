@@ -52,7 +52,7 @@ extension Comicbook {
     
     /// Returns an array of Comicbooks from a JsonModel
     /// - A JsonModel contains data for 0 to n Comicbooks
-    static func createFrom(jsonModel: JsonModel) -> [Comicbook] {
+    static func createFrom(jsonModel: JsonModel) -> ([Comicbook], Int, Int) {
         
         var comicbooks = [Comicbook]()
         
@@ -73,13 +73,16 @@ extension Comicbook {
             
             comicbooks.append(comicbook)
         }
+        
+        let selectedSeriesIndex = jsonModel.selectedSeriesIndex
+        let selectedBookIndex = jsonModel.selectedBookIndex
 
-        return comicbooks
+        return (comicbooks, selectedSeriesIndex, selectedBookIndex)
     }
     
     /// Returns an optional array of Comicbooks from data that encodes a JsonModel
     /// - Calls createFrom(jsonModel:)
-    static func createFrom(jsonData: Data) -> [Comicbook]? {
+    static func createFrom(jsonData: Data) -> ([Comicbook], Int, Int)? {
         do {
             let decoder = JSONDecoder()
             let jsonModel = try decoder.decode(JsonModel.self, from: jsonData)
@@ -93,7 +96,7 @@ extension Comicbook {
     
     /// Returns an optional array of Comicbooks from a string that expresses a JsonModel
     /// - Calls createFrom(jsonString:)
-    static func createFrom(jsonString: String) -> [Comicbook]? {
+    static func createFrom(jsonString: String) -> ([Comicbook], Int, Int)? {
         let jsonData = jsonString.data(using: .utf8)!
         return createFrom(jsonData: jsonData)
     }
