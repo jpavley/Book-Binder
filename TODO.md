@@ -2,8 +2,7 @@
 
 ## Open
 
-- Need to update to include the idea of showing all the books in a Series
-Object. This means a detail view for series as well as books. So now we're
+- Need a detail view for series as well as books. So now we're
 looking at a four or five view app as we'll want to separate capture from
 Book Object Detail View as well. Capture view enables shooting a photo to
 add a book to a collection. Capturing may create or extend a Series Object
@@ -19,6 +18,14 @@ total count, cost, and value.
 all refer to the same thing; Book and issue likewise. Probably Comicbook and book
 need to go. A book is an "owned" issue of a series and can just be renamed issue. A Comicbook
 is an object with that contains a series and a list of associated books.
+
+- Object architecture/design is complied. BookBinder, Comicbook, and JsonModel are all similar and tightly
+coupled to the idea of collecting comic books. Need to use protocols and make sure the book binder
+does care about what type of "book" it is binding: Comicbook, Novel, 4K Ultra HD Blue-Ray, etc...
+
+- New user use case: Start with popular collections? Start blank?
+
+- Placeholder comicbook covers only look good on iPhone SE! Sad!
 
 - Really need a web backend for this app. Giant database of comicbooks in the sky with only
 part of a user's collection stored locally. 
