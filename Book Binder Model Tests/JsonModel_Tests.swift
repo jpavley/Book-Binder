@@ -127,5 +127,15 @@ class JsonModel_Tests: XCTestCase {
         XCTAssertEqual(testBook.coverImageID, "the-amory-wars-v2-i2")
     }
     
-    
+    func testInitFromSeriesArray() {
+        let jsonBook1 = JsonModel.JsonSeries.JsonBook(issueNumber: 2, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
+        let jsonBook2 = JsonModel.JsonSeries.JsonBook(issueNumber: 3, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonSeries = JsonModel.JsonSeries(seriesPublisher: "Image", seriesTitle: "The Amory Wars", seriesEra: 2008, seriesFirstIssue: 1, seriesCurrentIssue: 5, seriesSkippedIssues: 0, seriesExtraIssues: 0, books: [jsonBook1, jsonBook2])
+        
+        let jsonModel = JsonModel(series: [jsonSeries], selectedSeriesIndex: 0, selectedBookIndex: 0)
+        
+        XCTAssertNotNil(jsonModel)
+        XCTAssertEqual(jsonModel.selectedBookIndex, 0)
+        XCTAssertEqual(jsonModel.series[0].books[0].issueNumber, 2)
+    }
 }

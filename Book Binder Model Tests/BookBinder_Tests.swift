@@ -15,10 +15,11 @@ class BookBinder_Tests: XCTestCase {
     var selectedBookIndex = 0
     var seriesURIStrings = [String]()
     var bookURIStrings = [String]()
+    var jsonString = ""
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let jsonString = """
+        jsonString = """
         {
             "series":
             [
@@ -210,6 +211,15 @@ class BookBinder_Tests: XCTestCase {
         XCTAssertEqual(selectedComicbook.books.count, 2)
         XCTAssertEqual(bookThatWasUpdated?.isOwned, false)
         XCTAssertEqual(bookThatWasUpdated?.coverImageID, "x-men-101")
+    }
+    
+    func testJsonModelComputedVar() {
+        let bookbinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 1)
+        let computedJsonModel = bookbinder.jsonModel
+        XCTAssertNotNil(computedJsonModel)
+        XCTAssertEqual(computedJsonModel.selectedBookIndex, 1)
+        XCTAssertEqual(computedJsonModel.selectedSeriesIndex, 0)
+        XCTAssertEqual(computedJsonModel.series[0].seriesTitle, "Daredevil")
     }
 
 

@@ -62,4 +62,14 @@ class BookModel_Tests: XCTestCase {
 
         XCTAssertEqual(bookModel.bookURI.description, testString2)
     }
+    
+    func testCustomDebugStringConvertable() {
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
+        let seriesURI = BookBinderURI(fromURIString: testString1)
+        let bookModel = BookModel(seriesURI: seriesURI, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
+        let testString2 = "bookURI: Marvel Entertainment/Doctor Strange/2018/1/a, isOwned: false, coverImageID: x-men-101"
+        
+        XCTAssertEqual(bookModel.debugDescription, testString2)
+
+    }
 }

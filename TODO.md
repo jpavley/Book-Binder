@@ -43,7 +43,6 @@ part of a user's collection stored locally.
 - Make skipped issues and extra issues lists
 
 ## In progress
-- write missing unit tests!
 
 
 ## Closed
@@ -66,6 +65,8 @@ sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which w
 the book URI as the key!
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 - Implement saving and loading the current book binder
+- write missing unit tests!
+
 
 
 
