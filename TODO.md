@@ -38,8 +38,12 @@ part of a user's collection stored locally.
 - Implement series view to view and edit a series.
 - Implement add in summary view to add a book to a series.
 - Implement add series action in summary view.
+- Add volume property to book model
+- Add issue type to book model (regular, annual, special)
+- Make skipped issues and extra issues lists
 
 ## In progress
+- write missing unit tests!
 
 
 ## Closed
