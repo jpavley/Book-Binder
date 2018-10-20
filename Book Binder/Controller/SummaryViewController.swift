@@ -73,6 +73,16 @@ class SummaryViewController: UIViewController {
     }
     func updateBookBinderData() {
         
+        // load from user defaults
+        let defaults = UserDefaults.standard
+        if let savedJsonModel = defaults.object(forKey: "savedJsonModel") as? Data {
+            if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonData: savedJsonModel) {
+                bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
+                return
+            }
+        }
+        
+        // load from JSON
         if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = loadComicbookDataFromJSON() {
             bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
             return

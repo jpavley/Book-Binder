@@ -25,8 +25,13 @@ class DetailViewController: UIViewController {
         let selectedBook = bookBinder.getSelectedIssue()
         selectedBook.isOwned = isOwnedSwitch.isOn
         
-        // TODO: if the book is not in the list of books add it.
         bookBinder.updateBooks(with: selectedBook)
+        
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(bookBinder.jsonModel) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "savedJsonModel")
+        }
         
         updateUX()
     }

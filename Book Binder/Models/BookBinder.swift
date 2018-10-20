@@ -13,6 +13,34 @@ class BookBinder {
     var selectedComicbookIndex: Int
     var selectedIssueIndex: Int
     
+    var jsonModel: JsonModel {
+        
+        var jsonSeriesArray = [JsonModel.JsonSeries]()
+        var jsonBookArray = [JsonModel.JsonSeries.JsonBook]()
+        
+        for comicbook in comicbooks {
+            
+            for (_, book) in comicbook.books {
+                let jsonBook = JsonModel.JsonSeries.JsonBook(issueNumber: book.issueNumber, variantLetter: book.variantLetter, isOwned: book.isOwned, coverImageID: book.coverImageID)
+                jsonBookArray.append(jsonBook)
+            }
+            
+            
+            let jsonSeries = JsonModel.JsonSeries(seriesPublisher: comicbook.series.seriesPublisher,
+                                                  seriesTitle: comicbook.series.seriesTitle,
+                                                  seriesEra: Int(comicbook.series.seriesEra)!,
+                                                  seriesFirstIssue: comicbook.series.seriesFirstIssue,
+                                                  seriesCurrentIssue: comicbook.series.seriesCurrentIssue,
+                                                  seriesSkippedIssues: comicbook.series.seriesSkippedIssues,
+                                                  seriesExtraIssues: comicbook.series.seriesExtraIssues,
+                                                  books: jsonBookArray)
+            jsonSeriesArray.append(jsonSeries)
+
+        }
+        
+        return JsonModel(series: jsonSeriesArray, selectedSeriesIndex: selectedComicbookIndex, selectedBookIndex: selectedIssueIndex)
+    }
+    
     init(comicbooks: [Comicbook], selectedComicbookIndex: Int, selectedIssueIndex: Int) {
         self.comicbooks = comicbooks
         self.selectedComicbookIndex = selectedComicbookIndex
@@ -71,7 +99,6 @@ class BookBinder {
             return "golden-age-placeholder-1"
         }
     }
-
     
     func selectNextComicbook() {
         

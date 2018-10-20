@@ -25,12 +25,38 @@ struct JsonModel: Codable {
             let variantLetter: String
             let isOwned: Bool
             let coverImageID: String
+            
+            init(issueNumber: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
+                self.issueNumber = issueNumber
+                self.variantLetter = variantLetter
+                self.isOwned = isOwned
+                self.coverImageID = coverImageID
+            }
+        }
+        
+        init(seriesPublisher: String, seriesTitle: String, seriesEra: Int, seriesFirstIssue: Int, seriesCurrentIssue: Int, seriesSkippedIssues: Int, seriesExtraIssues: Int, books: [JsonBook]) {
+            
+            self.seriesPublisher = seriesPublisher
+            self.seriesTitle = seriesTitle
+            self.seriesEra = seriesEra
+            self.seriesFirstIssue = seriesFirstIssue
+            self.seriesCurrentIssue = seriesCurrentIssue
+            self.seriesSkippedIssues = seriesSkippedIssues
+            self.seriesExtraIssues = seriesExtraIssues
+            self.books = books
         }
     }
     
     let series: [JsonSeries]
     let selectedSeriesIndex: Int
     let selectedBookIndex: Int
+    
+    init(series: [JsonSeries], selectedSeriesIndex: Int, selectedBookIndex: Int) {
+        
+        self.series = series
+        self.selectedSeriesIndex = selectedSeriesIndex
+        self.selectedBookIndex = selectedBookIndex
+    }
 }
 
 

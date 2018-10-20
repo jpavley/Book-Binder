@@ -33,7 +33,6 @@ part of a user's collection stored locally.
 - Implement add series action in summary view.
 
 ## In progress
-- Implement saving and loading the current book binder
 
 
 ## Closed
@@ -55,6 +54,8 @@ sould look like this "Publisher/Title/Era/Issue Number/Varient Letter". (Which w
 (owned and unowned) should be in the books array and the books array should be a books dictionary with
 the book URI as the key!
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
+- Implement saving and loading the current book binder
+
 
 
 
