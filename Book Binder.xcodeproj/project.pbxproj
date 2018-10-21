@@ -28,6 +28,7 @@
 		484CC0F721585C8C0012CD42 /* BookBinderURI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0F621585C8C0012CD42 /* BookBinderURI_Tests.swift */; };
 		484CC1072159668F0012CD42 /* BookModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC1062159668F0012CD42 /* BookModel_Tests.swift */; };
 		48699AEF215AE7710038864A /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48699AEE215AE7710038864A /* CollectionReusableView.swift */; };
+		489B8F1B217C1E630031DCA4 /* book-binder-class-diagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 489B8F1A217C1E630031DCA4 /* book-binder-class-diagram.png */; };
 		48CBB67F215D5EDF003D1870 /* books.json in Resources */ = {isa = PBXBuildFile; fileRef = 48CBB67E215D5EDF003D1870 /* books.json */; };
 		48ED2CA72166423300945BED /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED2CA62166423300945BED /* JsonModel.swift */; };
 		48ED2CA92166BFA400945BED /* Comicbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED2CA82166BFA400945BED /* Comicbook.swift */; };
@@ -73,6 +74,8 @@
 		484CC0F621585C8C0012CD42 /* BookBinderURI_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookBinderURI_Tests.swift; sourceTree = "<group>"; };
 		484CC1062159668F0012CD42 /* BookModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel_Tests.swift; sourceTree = "<group>"; };
 		48699AEE215AE7710038864A /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		489B8F19217BE1ED0031DCA4 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
+		489B8F1A217C1E630031DCA4 /* book-binder-class-diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-binder-class-diagram.png"; sourceTree = "<group>"; };
 		48CBB67E215D5EDF003D1870 /* books.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = books.json; sourceTree = "<group>"; };
 		48ED2CA62166423300945BED /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		48ED2CA82166BFA400945BED /* Comicbook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comicbook.swift; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 		483C61AB214ED8E9008C69D8 = {
 			isa = PBXGroup;
 			children = (
+				489B8F1A217C1E630031DCA4 /* book-binder-class-diagram.png */,
+				489B8F19217BE1ED0031DCA4 /* ARCHITECTURE.md */,
 				484CC0E22157F3540012CD42 /* TODO.md */,
 				48FBD3042151405000D2A14B /* README.md */,
 				48FBD3072151409400D2A14B /* FEATURES.md */,
@@ -275,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48CBB67F215D5EDF003D1870 /* books.json in Resources */,
+				489B8F1B217C1E630031DCA4 /* book-binder-class-diagram.png in Resources */,
 				483C61C2214ED8EB008C69D8 /* LaunchScreen.storyboard in Resources */,
 				483C61BF214ED8EB008C69D8 /* Assets.xcassets in Resources */,
 				48FBD3062151405000D2A14B /* README.md in Resources */,
