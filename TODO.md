@@ -14,11 +14,6 @@ book. Update Detail and Summary Views to report on costs and value. This
 points to the need for an overview of the collection which could include it's
 total count, cost, and value.
 
-- Models and metaphor confusion: Comicbook, book, and series could potentially 
-all refer to the same thing; Book and issue likewise. Probably Comicbook and book
-need to go. A book is an "owned" issue of a series and can just be renamed issue. A Comicbook
-is an object with that contains a series and a list of associated books.
-
 - Object architecture/design is complied. BookBinder, Comicbook, and JsonModel are all similar and tightly
 coupled to the idea of collecting comic books. Need to use protocols and make sure the book binder
 does care about what type of "book" it is binding: Comicbook, Novel, 4K Ultra HD Blue-Ray, etc...
@@ -43,6 +38,7 @@ part of a user's collection stored locally.
 - Make skipped issues and extra issues lists
 
 ## In progress
+- Update classes to match architecture
 
 
 ## Closed
