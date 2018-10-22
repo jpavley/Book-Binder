@@ -25,6 +25,8 @@ enum URIPart: Int {
 /// - Empty URI: "////"
 struct BookBinderURI: CustomStringConvertible {
     
+    static let emptyURIString = "////"
+    
     /// Number of slashes that should be in every well formed URI
     static let slashCount = 4
     
