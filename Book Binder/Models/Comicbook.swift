@@ -44,10 +44,15 @@ class Comicbook {
 extension Comicbook {
     
     /// Returns a series URI from a JsonModel
-    static func createSeriesURIFrom(jsonSeries: JsonModel.JsonSeries) -> BookBinderURI {
+    static func createSeriesURIFrom(jsonSeries: JsonModel.JsonSeries) -> BookBinderURI? {
         
         let uriString = "\(jsonSeries.seriesPublisher)/\(jsonSeries.seriesTitle)/\(jsonSeries.seriesEra)//"
-        return BookBinderURI(fromURIString: uriString)
+        if let uri = BookBinderURI(fromURIString: uriString) {
+            return uri
+        } else {
+            return nil
+        }
+
     }
     
     /// Returns an array of Comicbooks from a JsonModel
@@ -58,20 +63,22 @@ extension Comicbook {
         
         for jsonSeries in jsonModel.series {
         
-            let seriesURI = createSeriesURIFrom(jsonSeries: jsonSeries)
-            let comicbook = Comicbook(seriesURI: seriesURI)
+            if let seriesURI = createSeriesURIFrom(jsonSeries: jsonSeries) {
+                
+                let comicbook = Comicbook(seriesURI: seriesURI)
             
-            comicbook.series.seriesFirstIssue = jsonSeries.seriesFirstIssue
-            comicbook.series.seriesCurrentIssue = jsonSeries.seriesCurrentIssue
-            comicbook.series.seriesSkippedIssues = jsonSeries.seriesSkippedIssues
-            comicbook.series.seriesExtraIssues = jsonSeries.seriesExtraIssues
-                        
-            for jsonBook in jsonSeries.books {
-                let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
-                comicbook.books[book.bookURI] = book
+                comicbook.series.seriesFirstIssue = jsonSeries.seriesFirstIssue
+                comicbook.series.seriesCurrentIssue = jsonSeries.seriesCurrentIssue
+                comicbook.series.seriesSkippedIssues = jsonSeries.seriesSkippedIssues
+                comicbook.series.seriesExtraIssues = jsonSeries.seriesExtraIssues
+                
+                for jsonBook in jsonSeries.books {
+                    let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+                    comicbook.books[book.bookURI] = book
+                }
+                
+                comicbooks.append(comicbook)
             }
-            
-            comicbooks.append(comicbook)
         }
         
         let selectedSeriesIndex = jsonModel.selectedSeriesIndex

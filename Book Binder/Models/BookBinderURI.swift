@@ -8,72 +8,101 @@
 
 import Foundation
 
+/// Parts of a URI mapped to postion in a URI string.
+/// publisher/title/era/volume/printing/issue/variant
 enum URIPart: Int {
     case publisher = 0
-    case series = 1
+    case title = 1
     case era = 2
-    case issue = 3
-    case variant = 4
+    case volume = 3
+    case printing = 4
+    case issue = 5
+    case variant = 6
 }
 
 /// MVP 1: Simple URI format.
-/// - Publisher/Series/Era/Issue/variant
-/// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/v"
-/// - Missing Parts URI: "Marvel Entertainment//2018//"
-/// - No variant URI: "Ziff Davis/GI Joe/1950/10/"
-/// - Series URI: "DC/Superman/2005"
-/// - Empty URI: "////"
+/// "publisher/title/era/volume/printing/issue/variant".
+/// - Full URI: "Marvel Entertainment/DoctorStrange/2018/1/1/1/v".
+/// - Series URI: "Marvel Entertainment/DoctorStrange/2018/1///".
+/// - Work URI: "////1/1/v".
+/// - Empty URI: "//////".
 struct BookBinderURI: CustomStringConvertible {
     
-    static let emptyURIString = "////"
+    /// Empty URI constant with the correct number of slashes.
+    static let emptyURIString = "//////"
     
-    /// Number of slashes that should be in every well formed URI
-    static let slashCount = 4
+    /// Number of slashes that should be in every well formed URI.
+    static let slashCount = 6
     
-    /// String that represents a publisher like "Ziff Davis"
-    var publisherID: String
+    /// String that represents a publisher like "Ziff Davis".
+    var publisherPart: String
     
-    /// String that represents a series like "ROM Spaceknight"
-    var seriesID: String
+    /// String that represents the title of a series like "ROM Spaceknight".
+    var titlePart: String
     
-    /// String that represents an era date like "1950"
-    var eraID: String
+    /// String that represents an era date like "1950".
+    var eraPart: String
+    
+    /// String that represents an volume number like "1".
+    /// Most works have an implicit volume number.
+    var volumePart: String
+    
+    /// String that represents a printing designation like "first".
+    /// Most works have an implicit printing designation unless they are popular enough to be reprinted.
+    var printingPart: String
     
     /// String that represents an issue number like "608"
-    var issueID: String
+    var issuePart: String
     
     /// String that represents a variant letter like "c"
-    var variantID: String
+    var variantPart: String
     
     /// Builds a string version of an URI based on the value of it's parts
     ///
-    /// - URI format: publisher/series/era/issue/variant/consumption
+    /// - Part Names: publisher/title/era/volume/printing/issue/variant
+    /// - Parts Index: 0/1/2/3/4/5/6
     var description: String {
         
         var result = ""
         
-        result += publisherID != "" ? "\(publisherID)" : ""
-        result += seriesID != "" ? "/\(seriesID)" : "/"
-        result += eraID != "" ? "/\(eraID)" : "/"
-        result += issueID != "" ? "/\(issueID)" : "/"
-        result += variantID != "" ? "/\(variantID)" : "/"
+        result += publisherPart != "" ? "\(publisherPart)" : ""
+        result += titlePart != "" ? "/\(titlePart)" : "/"
+        result += eraPart != "" ? "/\(eraPart)" : "/"
+        result += volumePart != "" ? "/\(volumePart)" : "/"
+        result += printingPart != "" ? "/\(printingPart)" : "/"
+        result += issuePart != "" ? "/\(issuePart)" : "/"
+        result += variantPart != "" ? "/\(variantPart)" : "/"
         
         return result
     }
     
-    init(fromURIString s: String) {
+    /// Initialize a URI from a well formed URI string
+    ///
+    /// - Part Names: publisher/title/era/volume/printing/issue/variant
+    /// - Parts Index: 0/1/2/3/4/5/6
+    init?(fromURIString s: String) {
         
-        publisherID = BookBinderURI.part(fromURIString: s, partID: .publisher)
-        seriesID = BookBinderURI.part(fromURIString: s, partID: .series)
-        eraID = BookBinderURI.part(fromURIString: s, partID: .era)
-        issueID = BookBinderURI.part(fromURIString: s, partID: .issue)
-        variantID = BookBinderURI.part(fromURIString: s, partID: .variant)
-  }
+        if !BookBinderURI.isWellFormed(uriString: s) {
+            return nil
+        }
+        
+        publisherPart = BookBinderURI.part(fromURIString: s, partID: .publisher)
+        titlePart = BookBinderURI.part(fromURIString: s, partID: .title)
+        eraPart = BookBinderURI.part(fromURIString: s, partID: .era)
+        volumePart = BookBinderURI.part(fromURIString: s, partID: .volume)
+        printingPart = BookBinderURI.part(fromURIString: s, partID: .printing)
+        issuePart = BookBinderURI.part(fromURIString: s, partID: .issue)
+        variantPart = BookBinderURI.part(fromURIString: s, partID: .variant)
+    }
     
+    /// Returns the specified part of an URI
+    ///
+    /// - Part Names: publisher/title/era/volume/printing/issue/variant
+    /// - Parts Index: 0/1/2/3/4/5/6
     static func part(fromURIString s: String, partID: URIPart) -> String {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
-            return "////"
+            return BookBinderURI.emptyURIString
         }
         
         let parts = s.components(separatedBy: "/")
@@ -86,21 +115,28 @@ struct BookBinderURI: CustomStringConvertible {
         }
     }
     
+    /// Returns the just the series parts of an URI
+    ///
+    /// - Part Names: publisher/title/era/volume///
     static func extractSeriesURI(fromURIString s: String) -> String {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
-            return "//"
+            return BookBinderURI.emptyURIString
         }
         
         let parts = s.components(separatedBy: "/")
         
-        let publisherID = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
-        let seriesID = parts.count >= URIPart.series.rawValue + 1 ? parts[URIPart.series.rawValue] : ""
-        let eraID = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
-
-        return "\(publisherID)/\(seriesID)/\(eraID)//"
+        let publisherPart = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
+        let titlePart = parts.count >= URIPart.title.rawValue + 1 ? parts[URIPart.title.rawValue] : ""
+        let eraPart = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
+        let volumePart = parts.count >= URIPart.volume.rawValue + 1 ? parts[URIPart.volume.rawValue] : ""
+        
+        return "\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)///"
     }
     
+    /// Returns returns true if a URI contains the correct number of "/"s
+    ///
+    /// - Part Names: //////
     static func isWellFormed(uriString: String) -> Bool {
         let regex = try? NSRegularExpression(pattern: "/", options: .caseInsensitive)
         let count = regex?.matches(in: uriString, options: [], range: NSRange(location: 0, length: uriString.count)).count

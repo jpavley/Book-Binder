@@ -10,6 +10,7 @@
 		482093A32159BACB00A0C00D /* SeriesModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482093A22159BACB00A0C00D /* SeriesModel_Tests.swift */; };
 		4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */ = {isa = PBXBuildFile; fileRef = 4824760021528AF70039399D /* UX for Book Binder Summary View.png */; };
 		4829C1EB216D1B3F00D4B94D /* BookBinder_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4829C1EA216D1B3F00D4B94D /* BookBinder_Tests.swift */; };
+		482C15C9217DF6750037216E /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C15C8217DF6750037216E /* Series.swift */; };
 		482FABD0216CE3D700E64D05 /* BookBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FABCF216CE3D700E64D05 /* BookBinder.swift */; };
 		482FABD1216D19FA00E64D05 /* BookBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482FABCF216CE3D700E64D05 /* BookBinder.swift */; };
 		483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B7214ED8E9008C69D8 /* AppDelegate.swift */; };
@@ -58,6 +59,7 @@
 		482093A22159BACB00A0C00D /* SeriesModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel_Tests.swift; sourceTree = "<group>"; };
 		4824760021528AF70039399D /* UX for Book Binder Summary View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UX for Book Binder Summary View.png"; sourceTree = "<group>"; };
 		4829C1EA216D1B3F00D4B94D /* BookBinder_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinder_Tests.swift; sourceTree = "<group>"; };
+		482C15C8217DF6750037216E /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		482FABCF216CE3D700E64D05 /* BookBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinder.swift; sourceTree = "<group>"; };
 		483C61B4214ED8E9008C69D8 /* Book Binder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Binder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		483C61B7214ED8E9008C69D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				4855D951217CCBEF00A16332 /* Trackable.swift */,
+				482C15C8217DF6750037216E /* Series.swift */,
 				484CC0DC2157DD380012CD42 /* BookModel.swift */,
 				484CC0DE2157DD890012CD42 /* SeriesModel.swift */,
 				48ED2CA62166423300945BED /* JsonModel.swift */,
@@ -322,6 +325,7 @@
 				484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */,
 				483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */,
 				482FABD0216CE3D700E64D05 /* BookBinder.swift in Sources */,
+				482C15C9217DF6750037216E /* Series.swift in Sources */,
 				484CC0E12157DFC00012CD42 /* BookBinderURI.swift in Sources */,
 				4855D952217CCBEF00A16332 /* Trackable.swift in Sources */,
 			);

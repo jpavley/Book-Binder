@@ -62,7 +62,7 @@ class SeriesModel {
     
     /// Initalization by URI
     convenience init(fromURI: BookBinderURI) {
-        self.init(seriesPublisher: fromURI.publisherID, seriesTitle: fromURI.seriesID, seriesEra: fromURI.eraID)
+        self.init(seriesPublisher: fromURI.publisherPart, seriesTitle: fromURI.titlePart, seriesEra: fromURI.eraPart)
     }
     
     func updatePublishedIssues() {
@@ -85,7 +85,7 @@ extension SeriesModel {
     /// URI that identifies this series
     /// - Publisher/Series/Era/
     var seriesURI: BookBinderURI {
-        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)//")
+        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)////")!
     }
     
     /// Number of possible issues if no numbers are skipped

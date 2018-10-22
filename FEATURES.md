@@ -161,6 +161,7 @@ Minimum about if info that needs to be serialized in JSON for a factory to creat
             "seriesPublisher": "",
             "seriesTitle": "",
             "seriesEra": 0,
+            "seriesVolume": 1,
             "seriesFirstIssue": 0,
             "seriesCurrentIssue": 0,
             "seriesSkippedIssues":0,
@@ -168,6 +169,7 @@ Minimum about if info that needs to be serialized in JSON for a factory to creat
             "books":
             [
                 {
+                    "printing": 1,
                     "issueNumber": 0,
                     "variantLetter": "",
                     "isOwned": true

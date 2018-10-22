@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var publisherLabel: UILabel!
     @IBOutlet private weak var issueNumberLabel: UILabel!
     @IBOutlet private weak var variantLetterLabel: UILabel!
+    @IBOutlet weak var VolumePrintingLabel: UILabel!
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!

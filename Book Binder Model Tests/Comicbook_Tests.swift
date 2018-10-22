@@ -87,7 +87,7 @@ class Comicbook_Tests: XCTestCase {
         let testURIString = "\(series.seriesPublisher)/\(series.seriesTitle)/\(series.seriesEra)//"
         let testURI = BookBinderURI(fromURIString: testURIString)
         
-        let comicbook = Comicbook(seriesURI: testURI)
+        let comicbook = Comicbook(seriesURI: testURI!)
         comicbook.series.seriesFirstIssue = series.seriesFirstIssue
         comicbook.series.seriesCurrentIssue = series.seriesCurrentIssue
         comicbook.series.seriesSkippedIssues = series.seriesSkippedIssues
@@ -96,7 +96,7 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         
         for jsonBook in series.books {
-            let book = BookModel(seriesURI: testURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+            let book = BookModel(seriesURI: testURI!, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
             comicbook.books[book.bookURI] = book
         }
@@ -105,7 +105,7 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertEqual(comicbook.series.publishedIssueCount, 14)
         
         for (_,value) in comicbook.books {
-            XCTAssertEqual(value.seriesURI.description, testURI.description)
+            XCTAssertEqual(value.seriesURI.description, testURI!.description)
         }
         
     }
@@ -124,7 +124,7 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertEqual(selectedBookIndex, 1)
         
         for (_,value) in comicbook[0].books {
-            XCTAssertEqual(value.seriesURI.description, testURI.description)
+            XCTAssertEqual(value.seriesURI.description, testURI!.description)
         }
     }
     
@@ -149,8 +149,8 @@ class Comicbook_Tests: XCTestCase {
             XCTAssertEqual("\(k.description)", "\(v.bookURI.description)")
         }
         
-        let testBook1 = comicbook.books[bookURI1]
-        let testBook2 = comicbook.books[bookURI2]
+        let testBook1 = comicbook.books[bookURI1!]
+        let testBook2 = comicbook.books[bookURI2!]
         
         let testBook3 = comicbook.getBookBy(issueNumber: 605).first!
         let testBook4 = comicbook.getBookBy(issueNumber: 606).first!

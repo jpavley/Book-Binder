@@ -89,14 +89,14 @@ class SummaryViewController: UIViewController {
         }
         
         // No comic book data, create an empty book binder
-        bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: ""))], selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: "")!)], selectedComicbookIndex: 0, selectedIssueIndex: 0)
     }
     
     func loadComicbookDataFromJSON() -> ([Comicbook], Int, Int)? {
         if let path = Bundle.main.path(forResource: "books", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                return Comicbook.createFrom(jsonData: data)!
+                return Comicbook.createFrom(jsonData: data)
             } catch {
                 // TODO: books.json probably not found
                 print(error)

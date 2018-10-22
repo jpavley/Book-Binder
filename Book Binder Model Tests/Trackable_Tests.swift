@@ -33,7 +33,7 @@ class Trackable_Tests: XCTestCase {
         }
         
         init() {
-            uri = BookBinderURI(fromURIString: BookBinderURI.emptyURIString)
+            uri = BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
             tags = []
             dateStamp = Date()
             guid = UUID()
@@ -60,7 +60,7 @@ class Trackable_Tests: XCTestCase {
     
     func testCreateFromUIR() {
         let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
-        let testObject = TestObject(uri: testURI)
+        let testObject = TestObject(uri: testURI!)
         
         XCTAssertNotNil(testObject)
         XCTAssertEqual(testObject.uri, testURI)
@@ -68,7 +68,7 @@ class Trackable_Tests: XCTestCase {
     
     func testTags() {
         let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
-        let testObject = TestObject(uri: testURI)
+        let testObject = TestObject(uri: testURI!)
         let testTag1 = "cat"
         let testTag2 = "dog"
         let testTag3 = "cat"
@@ -89,7 +89,7 @@ class Trackable_Tests: XCTestCase {
     
     func testDateStamp() {
         let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
-        let testObject = TestObject(uri: testURI)
+        let testObject = TestObject(uri: testURI!)
         
         XCTAssertNotNil(testObject.dateStamp)
         print("testObject.dateStamp \(testObject.dateStamp)")
@@ -97,7 +97,7 @@ class Trackable_Tests: XCTestCase {
     
     func testGuid() {
         let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
-        let testObject = TestObject(uri: testURI)
+        let testObject = TestObject(uri: testURI!)
         
         XCTAssertNotNil(testObject.guid)
         print("testObject.guid \(testObject.guid)")
@@ -107,9 +107,9 @@ class Trackable_Tests: XCTestCase {
         let testURI1 = BookBinderURI(fromURIString: "a/b/c/d/e")
         let testURI2 = BookBinderURI(fromURIString: "a/b/c/d/f")
         
-        let testObject1 = TestObject(uri: testURI1)
-        let testObject2 = TestObject(uri: testURI2)
-        let testObject3 = TestObject(uri: testURI2)
+        let testObject1 = TestObject(uri: testURI1!)
+        let testObject2 = TestObject(uri: testURI2!)
+        let testObject3 = TestObject(uri: testURI2!)
         
         XCTAssertNotEqual(testObject1 == testObject2, true)
         XCTAssertEqual(testObject2 == testObject3, true)

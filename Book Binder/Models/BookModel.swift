@@ -38,8 +38,8 @@ class BookModel {
     /// - Publisher/Series/Era/Issue/variant
     init(fromURI: BookBinderURI, isOwned: Bool, coverImageID: String) {
         self.seriesURI = SeriesModel(fromURI: fromURI).seriesURI
-        self.issueNumber = Int(fromURI.issueID)!
-        self.variantLetter = fromURI.variantID
+        self.issueNumber = Int(fromURI.issuePart)!
+        self.variantLetter = fromURI.variantPart
         self.isOwned = isOwned
         self.coverImageID = coverImageID
     }
@@ -52,19 +52,19 @@ extension BookModel {
     /// URI that identifies this book
     /// - Publisher/Series/Era/Issue/variant/consumption
     var bookURI: BookBinderURI {
-        return BookBinderURI(fromURIString: "\(seriesURI.publisherID)/\(seriesURI.seriesID)/\(seriesURI.eraID)/\(issueNumber)/\(variantLetter)")
+        return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(issueNumber)/\(variantLetter)")!
     }
     
     var bookPublisher: String {
-        return seriesURI.publisherID
+        return seriesURI.publisherPart
     }
     
     var bookTitle: String {
-        return seriesURI.seriesID
+        return seriesURI.titlePart
     }
     
     var bookEra: String {
-        return seriesURI.eraID
+        return seriesURI.eraPart
     }
 }
 
