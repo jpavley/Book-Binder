@@ -19,9 +19,9 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testCreateBookModelFromProperies() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI!, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
+        let bookModel = BookModel(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
         
         XCTAssertEqual(bookModel.seriesURI.description, testString1)
         XCTAssertEqual(bookModel.issueNumber, 1)
@@ -32,7 +32,7 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testCreateBookModelFromURI() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/1/1/v"
         let bookURI = BookBinderURI(fromURIString: testString1)
         let bookModel = BookModel(fromURI: bookURI!, isOwned: true, coverImageID: "x-men-101")
         
@@ -43,10 +43,10 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testComputedProperties() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI!, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"
+        let bookModel = BookModel(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
+        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/1/1/a"
         
         XCTAssertEqual(bookModel.bookURI.description, testString2)
         XCTAssertEqual(bookModel.bookPublisher, "Marvel Entertainment")
@@ -55,19 +55,19 @@ class BookModel_Tests: XCTestCase {
     }
     
     func testBookURIUnowned() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI!, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/a"
+        let bookModel = BookModel(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
+        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/1/1/a"
 
         XCTAssertEqual(bookModel.bookURI.description, testString2)
     }
     
     func testCustomDebugStringConvertable() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018//"
+        let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = BookModel(seriesURI: seriesURI!, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
-        let testString2 = "bookURI: Marvel Entertainment/Doctor Strange/2018/1/a, isOwned: false, coverImageID: x-men-101"
+        let bookModel = BookModel(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
+        let testString2 = "bookURI: Marvel Entertainment/Doctor Strange/2018/1/1/1/a, isOwned: false, coverImageID: x-men-101"
         
         XCTAssertEqual(bookModel.debugDescription, testString2)
 

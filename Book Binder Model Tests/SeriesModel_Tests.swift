@@ -10,8 +10,12 @@ import XCTest
 
 class SeriesModel_Tests: XCTestCase {
     
+    var seriesModel: SeriesModel!
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950", seriesVolume: "1")
+
     }
     
     override func tearDown() {
@@ -19,8 +23,7 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testCreateSeriesModelFromProperties() {
-        let testString1 = "Ziff Davis/GI Joe/1950//"
-        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        let testString1 = "Ziff Davis/GI Joe/1950/1///"
         
         XCTAssertEqual(seriesModel.seriesURI.description, testString1)
         XCTAssertEqual(seriesModel.seriesTitle, "GI Joe")
@@ -28,7 +31,7 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testCreateSeriesModelFromURI() {
-        let testString1 = "Ziff Davis/GI Joe/1950//"
+        let testString1 = "Ziff Davis/GI Joe/1950/0///"
         let testURI = BookBinderURI(fromURIString: testString1)
         let testSeriesModel = SeriesModel(fromURI: testURI!)
         
@@ -38,7 +41,6 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testSeriesIssueManagement() {
-        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         XCTAssertEqual(seriesModel.seriesFirstIssue, 1)
         XCTAssertEqual(seriesModel.seriesCurrentIssue, 1)
@@ -48,7 +50,6 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testSeriesMutipleIssues() {
-        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
         
         seriesModel.seriesFirstIssue = 1
         seriesModel.seriesCurrentIssue = 2
@@ -72,15 +73,15 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testSeriesOutOfSequeenceIssues() {
-        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        
         seriesModel.seriesFirstIssue = 1
         seriesModel.seriesCurrentIssue = 100
         XCTAssertEqual(seriesModel.publishedIssueCount, 100)
         
         seriesModel.seriesSkippedIssues = 10
         seriesModel.seriesExtraIssues = 0
-       XCTAssertEqual(seriesModel.publishedIssueCount, 90)
-
+        XCTAssertEqual(seriesModel.publishedIssueCount, 90)
+        
         seriesModel.seriesSkippedIssues = 5
         seriesModel.seriesExtraIssues = 5
         XCTAssertEqual(seriesModel.publishedIssueCount, 100)
@@ -90,10 +91,10 @@ class SeriesModel_Tests: XCTestCase {
     }
     
     func testPublishedIssues() {
-        let seriesModel = SeriesModel(seriesPublisher: "Ziff Davis", seriesTitle: "GI Joe", seriesEra: "1950")
+        
         seriesModel.seriesFirstIssue = 5
         seriesModel.seriesCurrentIssue = 10
         XCTAssertEqual(seriesModel.publishedIssues, [5, 6, 7, 8, 9, 10])
-
+        
     }
 }

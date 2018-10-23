@@ -46,7 +46,7 @@ extension Comicbook {
     /// Returns a series URI from a JsonModel
     static func createSeriesURIFrom(jsonSeries: JsonModel.JsonSeries) -> BookBinderURI? {
         
-        let uriString = "\(jsonSeries.seriesPublisher)/\(jsonSeries.seriesTitle)/\(jsonSeries.seriesEra)//"
+        let uriString = "\(jsonSeries.seriesPublisher)/\(jsonSeries.seriesTitle)/\(jsonSeries.seriesEra)/\(jsonSeries.seriesVolume)///"
         if let uri = BookBinderURI(fromURIString: uriString) {
             return uri
         } else {
@@ -66,14 +66,14 @@ extension Comicbook {
             if let seriesURI = createSeriesURIFrom(jsonSeries: jsonSeries) {
                 
                 let comicbook = Comicbook(seriesURI: seriesURI)
-            
+                
                 comicbook.series.seriesFirstIssue = jsonSeries.seriesFirstIssue
                 comicbook.series.seriesCurrentIssue = jsonSeries.seriesCurrentIssue
                 comicbook.series.seriesSkippedIssues = jsonSeries.seriesSkippedIssues
                 comicbook.series.seriesExtraIssues = jsonSeries.seriesExtraIssues
                 
                 for jsonBook in jsonSeries.books {
-                    let book = BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+                    let book = BookModel(seriesURI: comicbook.series.seriesURI, printing: jsonBook.printing,issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
                     comicbook.books[book.bookURI] = book
                 }
                 

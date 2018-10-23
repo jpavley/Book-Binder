@@ -108,6 +108,12 @@ class DetailViewController: UIViewController {
         issueNumberLabel.text = "#\(selectedBook.issueNumber)"
         variantLetterLabel.text = "\(selectedBook.variantLetter)"
         
+        let volume = calcVolume(volume: Int(selectedBook.bookVolume)!)
+        let printing = calcPrinting(printing: selectedBook.printing)
+        let conjunction = (printing == "") ? "" : ", "
+        
+        VolumePrintingLabel.text = "\(volume)\(conjunction)\(printing)"
+        
         coverImageView.alpha = 0
         coverImageView.image = UIImage(named: "\(selectedBook.coverImageID)")
         UIView.animate(withDuration: 1.0, animations: {
@@ -116,5 +122,47 @@ class DetailViewController: UIViewController {
         
         isOwnedSwitch.setOn(selectedBook.isOwned, animated: true)
         navigationController?.isToolbarHidden = false
+    }
+    
+    func calcVolume(volume: Int) -> String {
+        switch volume {
+        case 0:
+            return ""
+        case 1:
+            return "volume I"
+        case 2:
+            return "volume II"
+        case 3:
+            return "volume III"
+        case 4:
+            return "volume IV"
+        case 5:
+            return "volume V"
+        case 6:
+            return "volume VI"
+        default:
+            return "volume \(volume)"
+        }
+    }
+    
+    func calcPrinting(printing: Int) -> String {
+        switch printing {
+        case 0:
+            return ""
+        case 1:
+            return "first printing"
+        case 2:
+            return "second printing"
+        case 3:
+            return "third printing"
+        case 4:
+            return "fourth printing"
+        case 5:
+            return "fifth printing"
+        case 6:
+            return "sixth printing"
+        default:
+            return "\(printing)th printing"
+        }
     }
 }

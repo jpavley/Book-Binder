@@ -14,6 +14,8 @@ class BookModel {
     /// Used to tie this book to a series
     var seriesURI: BookBinderURI
     
+    var printing: Int
+    
     /// The number of this book
     var issueNumber: Int
     
@@ -26,8 +28,9 @@ class BookModel {
     /// Is there are photo of this issue's cover?
     var coverImageID: String
     
-    init(seriesURI: BookBinderURI, issueNumber: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
+    init(seriesURI: BookBinderURI, printing: Int, issueNumber: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
         self.seriesURI = seriesURI
+        self.printing = printing
         self.issueNumber = issueNumber
         self.variantLetter = variantLetter
         self.isOwned = isOwned
@@ -38,6 +41,7 @@ class BookModel {
     /// - Publisher/Series/Era/Issue/variant
     init(fromURI: BookBinderURI, isOwned: Bool, coverImageID: String) {
         self.seriesURI = SeriesModel(fromURI: fromURI).seriesURI
+        self.printing = Int(fromURI.printingPart)!
         self.issueNumber = Int(fromURI.issuePart)!
         self.variantLetter = fromURI.variantPart
         self.isOwned = isOwned
@@ -50,9 +54,9 @@ class BookModel {
 extension BookModel {
     
     /// URI that identifies this book
-    /// - Publisher/Series/Era/Issue/variant/consumption
+    /// - Publisher/Series/Era/Volume/Printing/Issue/variant
     var bookURI: BookBinderURI {
-        return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(issueNumber)/\(variantLetter)")!
+        return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)/\(printing)/\(issueNumber)/\(variantLetter)")!
     }
     
     var bookPublisher: String {
@@ -65,6 +69,10 @@ extension BookModel {
     
     var bookEra: String {
         return seriesURI.eraPart
+    }
+    
+    var bookVolume: String {
+        return seriesURI.volumePart
     }
 }
 

@@ -19,14 +19,16 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testCompleteURI() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v//"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/1/1/v"
         let uri1 = BookBinderURI(fromURIString: testString1)
         
-        XCTAssertTrue(uri1!.publisherPart == "Marvel Entertainment")
-        XCTAssertTrue(uri1!.titlePart == "DoctorStrange")
-        XCTAssertTrue(uri1!.eraPart == "2018")
-        XCTAssertTrue(uri1!.issuePart == "1")
-        XCTAssertTrue(uri1!.variantPart == "v")
+        XCTAssertEqual(uri1!.publisherPart, "Marvel Entertainment")
+        XCTAssertEqual(uri1!.titlePart, "DoctorStrange")
+        XCTAssertEqual(uri1!.eraPart, "2018")
+        XCTAssertEqual(uri1!.volumePart, "1")
+        XCTAssertEqual(uri1!.printingPart, "1")
+        XCTAssertEqual(uri1!.issuePart, "1")
+        XCTAssertEqual(uri1!.variantPart, "v")
     }
     
     func testNoVariantURI() {
@@ -132,7 +134,7 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testPartFromURIStringWrongURI() {
-        let testString1 = "DC/Superman/2005//"
+        let testString1 = "DC/Superman/2005/1///"
         
         let publisherPart = BookBinderURI.part(fromURIString: testString1, partID: .publisher)
         XCTAssertEqual(publisherPart, "DC")
@@ -151,13 +153,13 @@ class BookBinderURI_Tests: XCTestCase {
     }
     
     func testExtractSeriesURI() {
-        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/v"
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/1/1/v"
         let extractedURIString = BookBinderURI.extractSeriesURI(fromURIString: testString1)
-        XCTAssertEqual(extractedURIString, "Marvel Entertainment/DoctorStrange/2018//")
+        XCTAssertEqual(extractedURIString, "Marvel Entertainment/DoctorStrange/2018/1///")
         
-        let testString2 = "/////"
+        let testString2 = BookBinderURI.emptyURIString
         let extractedURIString2 = BookBinderURI.extractSeriesURI(fromURIString: testString2)
-        XCTAssertEqual(extractedURIString2, "//")
+        XCTAssertEqual(extractedURIString2, "//////")
     }
 
 }

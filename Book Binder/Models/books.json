@@ -5,7 +5,7 @@
             "seriesPublisher": "Marvel Entertainment",
             "seriesTitle": "Daredevil",
             "seriesEra": 2017,
-            "seriesVolume": 1,
+            "seriesVolume": 0,
             "seriesFirstIssue": 595,
             "seriesCurrentIssue": 608,
             "seriesSkippedIssues": 0,
@@ -13,14 +13,14 @@
             "books":
             [
                 {
-                    "printing": 1,
+                    "printing": 0,
                     "issueNumber": 605,
                     "variantLetter": "",
                     "isOwned": true,
                     "coverImageID": "marvel-placeholder-1"
                 },
                 {
-                    "printing": 1,
+                    "printing": 0,
                     "issueNumber": 606,
                     "variantLetter": "",
                     "isOwned": true,
@@ -28,14 +28,14 @@
 
                 },
                 {
-                    "printing": 1,
+                    "printing": 0,
                     "issueNumber": 607,
                     "variantLetter": "",
                     "isOwned": true,
                     "coverImageID": "marvel-placeholder-1"
                 },
                 {
-                    "printing": 1,
+                    "printing": 0,
                     "issueNumber": 608,
                     "variantLetter": "",
                     "isOwned": true,

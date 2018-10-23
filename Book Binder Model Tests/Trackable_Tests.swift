@@ -59,7 +59,7 @@ class Trackable_Tests: XCTestCase {
     }
     
     func testCreateFromUIR() {
-        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
+        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e/f/g")
         let testObject = TestObject(uri: testURI!)
         
         XCTAssertNotNil(testObject)
@@ -67,7 +67,7 @@ class Trackable_Tests: XCTestCase {
     }
     
     func testTags() {
-        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
+        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e/f/g")
         let testObject = TestObject(uri: testURI!)
         let testTag1 = "cat"
         let testTag2 = "dog"
@@ -88,7 +88,7 @@ class Trackable_Tests: XCTestCase {
     }
     
     func testDateStamp() {
-        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
+        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e/f/g")
         let testObject = TestObject(uri: testURI!)
         
         XCTAssertNotNil(testObject.dateStamp)
@@ -96,7 +96,7 @@ class Trackable_Tests: XCTestCase {
     }
     
     func testGuid() {
-        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e")
+        let testURI = BookBinderURI(fromURIString: "a/b/c/d/e/f/g")
         let testObject = TestObject(uri: testURI!)
         
         XCTAssertNotNil(testObject.guid)
@@ -104,8 +104,8 @@ class Trackable_Tests: XCTestCase {
     }
     
     func testHashing() {
-        let testURI1 = BookBinderURI(fromURIString: "a/b/c/d/e")
-        let testURI2 = BookBinderURI(fromURIString: "a/b/c/d/f")
+        let testURI1 = BookBinderURI(fromURIString: "a/b/c/d/e/f/g")
+        let testURI2 = BookBinderURI(fromURIString: "a/b/c/d/e/f/h")
         
         let testObject1 = TestObject(uri: testURI1!)
         let testObject2 = TestObject(uri: testURI2!)

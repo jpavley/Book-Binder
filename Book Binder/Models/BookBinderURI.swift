@@ -83,6 +83,7 @@ struct BookBinderURI: CustomStringConvertible {
     init?(fromURIString s: String) {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
+            print("** BAD URI \(s)")
             return nil
         }
         

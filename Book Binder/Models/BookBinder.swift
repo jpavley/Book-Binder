@@ -21,7 +21,7 @@ class BookBinder {
         for comicbook in comicbooks {
             
             for (_, book) in comicbook.books {
-                let jsonBook = JsonModel.JsonSeries.JsonBook(issueNumber: book.issueNumber, variantLetter: book.variantLetter, isOwned: book.isOwned, coverImageID: book.coverImageID)
+                let jsonBook = JsonModel.JsonSeries.JsonBook(printing: book.printing, issueNumber: book.issueNumber, variantLetter: book.variantLetter, isOwned: book.isOwned, coverImageID: book.coverImageID)
                 jsonBookArray.append(jsonBook)
             }
             
@@ -29,6 +29,7 @@ class BookBinder {
             let jsonSeries = JsonModel.JsonSeries(seriesPublisher: comicbook.series.seriesPublisher,
                                                   seriesTitle: comicbook.series.seriesTitle,
                                                   seriesEra: Int(comicbook.series.seriesEra)!,
+                                                  seriesVolume: Int(comicbook.series.seriesVolume),
                                                   seriesFirstIssue: comicbook.series.seriesFirstIssue,
                                                   seriesCurrentIssue: comicbook.series.seriesCurrentIssue,
                                                   seriesSkippedIssues: comicbook.series.seriesSkippedIssues,
@@ -86,7 +87,7 @@ class BookBinder {
         // This is a book the user doesn't own yet...
         let publisherID = BookBinderURI.part(fromURIString: comicbook.series.seriesURI.description, partID: .publisher)
         let colverImageID = publisherCover(for: publisherID)
-        return BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: colverImageID)
+        return BookModel(seriesURI: comicbook.series.seriesURI, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: colverImageID)
     }
     
     func publisherCover(for publisher: String) -> String {

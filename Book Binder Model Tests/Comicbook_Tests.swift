@@ -15,61 +15,67 @@ class Comicbook_Tests: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         jsonString = """
-        {
-            "series":
-            [
-                {
-                    "seriesPublisher": "Marvel Entertainment",
-                    "seriesTitle": "Daredevil",
-                    "seriesEra": 2017,
-                    "seriesFirstIssue": 595,
-                    "seriesCurrentIssue": 608,
-                    "seriesSkippedIssues": 1,
-                    "seriesExtraIssues": 1,
-                    "books":
-                    [
-                        {
-                            "issueNumber": 605,
-                            "variantLetter": "",
-                            "isOwned": true,
-                            "coverImageID": ""
-                        },
-                         {
-                            "issueNumber": 606,
-                            "variantLetter": "c",
-                            "isOwned": true,
-                            "coverImageID": ""
-                        }
-                    ]
-                },
-                {
-                    "seriesPublisher": "DC Comics",
-                    "seriesTitle": "Batman",
-                    "seriesEra": 1950,
-                    "seriesFirstIssue": 5,
-                    "seriesCurrentIssue": 8,
-                    "seriesSkippedIssues": 0,
-                    "seriesExtraIssues": 0,
-                    "books":
-                    [
-                        {
-                            "issueNumber": 7,
-                            "variantLetter": "",
-                            "isOwned": true,
-                            "coverImageID": ""
-                        },
-                         {
-                            "issueNumber": 8,
-                            "variantLetter": "c",
-                            "isOwned": true,
-                            "coverImageID": ""
-                        }
-                    ]
-                }
-            ],
-            "selectedSeriesIndex": 1,
-            "selectedBookIndex": 1
-        }
+            {
+                "series":
+                [
+                    {
+                        "seriesPublisher": "Marvel Entertainment",
+                        "seriesTitle": "Daredevil",
+                        "seriesEra": 2017,
+                        "seriesVolume": 1,
+                        "seriesFirstIssue": 595,
+                        "seriesCurrentIssue": 608,
+                        "seriesSkippedIssues": 1,
+                        "seriesExtraIssues": 1,
+                        "books":
+                        [
+                            {
+                                "printing": 1,
+                                "issueNumber": 605,
+                                "variantLetter": "",
+                                "isOwned": true,
+                                "coverImageID": ""
+                            },
+                            {
+                                "printing": 1,
+                                "issueNumber": 606,
+                                "variantLetter": "c",
+                                "isOwned": true,
+                                "coverImageID": ""
+                            }
+                        ]
+                    },
+                    {
+                        "seriesPublisher": "DC Comics",
+                        "seriesTitle": "Batman",
+                        "seriesEra": 1950,
+                        "seriesVolume": 1,
+                        "seriesFirstIssue": 5,
+                        "seriesCurrentIssue": 8,
+                        "seriesSkippedIssues": 0,
+                        "seriesExtraIssues": 0,
+                        "books":
+                        [
+                            {
+                                "printing": 1,
+                                "issueNumber": 7,
+                                "variantLetter": "",
+                                "isOwned": true,
+                                "coverImageID": ""
+                            },
+                            {
+                                "printing": 1,
+                                "issueNumber": 8,
+                                "variantLetter": "c",
+                                "isOwned": true,
+                                "coverImageID": ""
+                            }
+                        ]
+                    }
+                ],
+                "selectedSeriesIndex": 1,
+                "selectedBookIndex": 1
+            }
         """
     }
 
@@ -84,7 +90,7 @@ class Comicbook_Tests: XCTestCase {
         let jsonModel = try! decoder.decode(JsonModel.self, from: jsonData)
         let series = jsonModel.series.first!
         
-        let testURIString = "\(series.seriesPublisher)/\(series.seriesTitle)/\(series.seriesEra)//"
+        let testURIString = "\(series.seriesPublisher)/\(series.seriesTitle)/\(series.seriesEra)/\(series.seriesVolume)///"
         let testURI = BookBinderURI(fromURIString: testURIString)
         
         let comicbook = Comicbook(seriesURI: testURI!)
@@ -96,7 +102,7 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         
         for jsonBook in series.books {
-            let book = BookModel(seriesURI: testURI!, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+            let book = BookModel(seriesURI: testURI!, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
             comicbook.books[book.bookURI] = book
         }
@@ -113,7 +119,7 @@ class Comicbook_Tests: XCTestCase {
     func testCreateComicbookFromFactory() {
         
         let (comicbook, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonString: jsonString)!
-        let testURIString = "Marvel Entertainment/Daredevil/2017//"
+        let testURIString = "Marvel Entertainment/Daredevil/2017/1///"
         let testURI = BookBinderURI(fromURIString: testURIString)
 
         XCTAssertNotNil(comicbook)
@@ -137,8 +143,8 @@ class Comicbook_Tests: XCTestCase {
     
     func testGetBookBy() {
         
-        let bookURI1 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/605/")
-        let bookURI2 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/606/c")
+        let bookURI1 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/605/")
+        let bookURI2 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")
 
         let (comicbooks, _, _) = Comicbook.createFrom(jsonString: jsonString)!
         

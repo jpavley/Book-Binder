@@ -26,6 +26,8 @@ class SeriesModel {
     /// Era of the series
     var seriesEra: String
     
+    var seriesVolume: Int
+    
     /// Assume that the first issue in a series is number 1
     var seriesFirstIssue: Int {
         didSet {
@@ -51,10 +53,11 @@ class SeriesModel {
     var publishedIssues: [Int]
     
     /// Initialization by properties
-    init(seriesPublisher: String, seriesTitle: String, seriesEra: String) {
+    init(seriesPublisher: String, seriesTitle: String, seriesEra: String, seriesVolume: String) {
         self.seriesPublisher = seriesPublisher
         self.seriesTitle = seriesTitle
         self.seriesEra = seriesEra
+        self.seriesVolume = Int(seriesVolume) ?? 0
         self.publishedIssues = [Int]()
         self.seriesFirstIssue = 1
         self.seriesCurrentIssue = 1
@@ -62,7 +65,7 @@ class SeriesModel {
     
     /// Initalization by URI
     convenience init(fromURI: BookBinderURI) {
-        self.init(seriesPublisher: fromURI.publisherPart, seriesTitle: fromURI.titlePart, seriesEra: fromURI.eraPart)
+        self.init(seriesPublisher: fromURI.publisherPart, seriesTitle: fromURI.titlePart, seriesEra: fromURI.eraPart, seriesVolume: fromURI.volumePart)
     }
     
     func updatePublishedIssues() {
@@ -85,7 +88,7 @@ extension SeriesModel {
     /// URI that identifies this series
     /// - Publisher/Series/Era/
     var seriesURI: BookBinderURI {
-        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)////")!
+        return BookBinderURI(fromURIString: "\(seriesPublisher)/\(seriesTitle)/\(seriesEra)/\(seriesVolume)///")!
     }
     
     /// Number of possible issues if no numbers are skipped

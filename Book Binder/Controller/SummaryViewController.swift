@@ -294,7 +294,7 @@ extension SummaryViewController {
         }
         
         // This is a book the user doesn't own yet...
-        return BookModel(seriesURI: comicbook.series.seriesURI, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
+        return BookModel(seriesURI: comicbook.series.seriesURI, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
         // DUPE: 100 end
     }
 }
