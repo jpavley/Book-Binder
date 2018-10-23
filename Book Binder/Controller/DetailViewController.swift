@@ -125,44 +125,10 @@ class DetailViewController: UIViewController {
     }
     
     func calcVolume(volume: Int) -> String {
-        switch volume {
-        case 0:
-            return ""
-        case 1:
-            return "volume I"
-        case 2:
-            return "volume II"
-        case 3:
-            return "volume III"
-        case 4:
-            return "volume IV"
-        case 5:
-            return "volume V"
-        case 6:
-            return "volume VI"
-        default:
-            return "volume \(volume)"
-        }
+        return "Vol. \(volume)"
     }
     
     func calcPrinting(printing: Int) -> String {
-        switch printing {
-        case 0:
-            return ""
-        case 1:
-            return "first printing"
-        case 2:
-            return "second printing"
-        case 3:
-            return "third printing"
-        case 4:
-            return "fourth printing"
-        case 5:
-            return "fifth printing"
-        case 6:
-            return "sixth printing"
-        default:
-            return "\(printing)th printing"
-        }
+        return "Printing \(printing)"
     }
 }
