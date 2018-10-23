@@ -87,7 +87,7 @@ class BookBinder {
         // This is a book the user doesn't own yet...
         let publisherID = BookBinderURI.part(fromURIString: comicbook.series.seriesURI.description, partID: .publisher)
         let colverImageID = publisherCover(for: publisherID)
-        return BookModel(seriesURI: comicbook.series.seriesURI, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: colverImageID)
+        return BookModel(seriesURI: comicbook.series.seriesURI, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: colverImageID)
     }
     
     func publisherCover(for publisher: String) -> String {

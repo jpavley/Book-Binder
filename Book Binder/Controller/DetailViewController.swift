@@ -110,7 +110,7 @@ class DetailViewController: UIViewController {
         
         let volume = calcVolume(volume: Int(selectedBook.bookVolume)!)
         let printing = calcPrinting(printing: selectedBook.printing)
-        let conjunction = (printing == "") ? "" : ", "
+        let conjunction = (volume == "") || (printing == "") ? "" : ", "
         
         VolumePrintingLabel.text = "\(volume)\(conjunction)\(printing)"
         
