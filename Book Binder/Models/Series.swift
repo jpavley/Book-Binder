@@ -15,11 +15,23 @@ class Series {
     var publisher: String
     var title: String
     var era: Int
-    var volume: Int
-    var firstIssue: Int
-    var currentIssue: Int
+    var volumeNumber: Int
+    
+    var firstIssue: Int {
+        didSet {
+            updatePublishedIssues()
+        }
+    }
+    
+    var currentIssue: Int {
+        didSet {
+            updatePublishedIssues()
+        }
+    }
     var skippedIssues: [Int]
     var extraIssues: [Int]
+    var publishedIssues: [Int]
+    
     var works: [BookModel]
     
     // Trackable properties
@@ -34,14 +46,19 @@ class Series {
         tags = []
         dateStamp = Date()
         guid = UUID()
+        
         publisher = ""
         title = ""
         era = 0
-        volume = 0
+        volumeNumber = 0
+        
         firstIssue = 0
         currentIssue = 0
+        
         skippedIssues = [Int]()
         extraIssues = [Int]()
+        publishedIssues = [Int]()
+        
         works = [BookModel]()
     }
     
@@ -49,24 +66,61 @@ class Series {
         self.init()
         self.publisher = BookBinderURI.part(fromURIString: uri.description, partID: .publisher)
         self.title = BookBinderURI.part(fromURIString: uri.description, partID: .title)
-        self.era = Int(BookBinderURI.part(fromURIString: uri.description, partID: .era))!
-        self.volume = Int(BookBinderURI.part(fromURIString: uri.description, partID: .volume))!
+        self.era = Int(BookBinderURI.part(fromURIString: uri.description, partID: .era)) ?? 0
+        self.volumeNumber = Int(BookBinderURI.part(fromURIString: uri.description, partID: .volume)) ?? 0
         self.firstIssue = firstIssue
         self.currentIssue = currentIssue
     }
 }
 
+// Calculated Vars
+
+extension Series {
+    
+    /// Number of possible issues if no numbers are skipped
+    var publishedIssueCount: Int {
+        // TODO: update to work with arrays for published, extra and skipped issues
+        let sequentialIssues = currentIssue - (firstIssue - 1)
+        return sequentialIssues + extraIssues.count - skippedIssues.count
+    }
+}
+
+
+// Methods
+
+extension Series {
+    
+    func updatePublishedIssues() {
+        
+        if firstIssue > currentIssue {
+            return
+        }
+        
+        publishedIssues = [Int]()
+        
+        for n in firstIssue...currentIssue {
+            publishedIssues.append(n)
+        }
+        
+        publishedIssues += extraIssues
+        publishedIssues = publishedIssues.filter { !skippedIssues.contains($0) }
+    }
+}
+
+// Trackable
+
 extension Series: Trackable {
     
+    /// Publisher\Title\Era\Volume
     var uri: BookBinderURI {
         get {
-            return BookBinderURI(fromURIString: "\(publisher)/\(title)/\(era)/\(volume)")!
+            return BookBinderURI(fromURIString: "\(publisher)/\(title)/\(era)/\(volumeNumber)")!
         }
         set {
             publisher = newValue.publisherPart
             title = newValue.titlePart
             era = Int(newValue.eraPart)!
-            volume = Int(newValue.volumePart)!
+            volumeNumber = Int(newValue.volumePart)!
         }
     }
     

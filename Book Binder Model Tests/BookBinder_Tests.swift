@@ -54,7 +54,7 @@ class BookBinder_Tests: XCTestCase {
                     "seriesPublisher": "DC Comics",
                     "seriesTitle": "Batman",
                     "seriesEra": 1950,
-                    "seriesVolume": 1,
+                    "seriesVolume": 0,
                     "seriesFirstIssue": 5,
                     "seriesCurrentIssue": 8,
                     "seriesSkippedIssues": 0,
@@ -62,14 +62,14 @@ class BookBinder_Tests: XCTestCase {
                     "books":
                     [
                         {
-                            "printing": 1,
+                            "printing": 0,
                             "issueNumber": 7,
                             "variantLetter": "",
                             "isOwned": true,
                             "coverImageID": ""
                         },
                          {
-                            "printing": 1,
+                            "printing": 0,
                             "issueNumber": 8,
                             "variantLetter": "c",
                             "isOwned": true,
@@ -78,25 +78,25 @@ class BookBinder_Tests: XCTestCase {
                     ]
                 }
             ],
-            "selectedSeriesIndex": 1,
-            "selectedBookIndex": 1
+            "selectedSeriesIndex": 0,
+            "selectedBookIndex": 0
         }
         """
         
         (comicbooks, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonString: jsonString)!
         seriesURIStrings.append("Marvel Entertainment/Daredevil/2017/1///") // 0
-        seriesURIStrings.append("DC Comics/Batman/1950/1///")               // 1
+        seriesURIStrings.append("DC Comics/Batman/1950/0///")               // 1
 
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/1/595/") // 0
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/1/596/") // 1
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/1/597/") // 2
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/1/598/") // 3
-        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/1/599/") // 4
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/0/595/") // 0
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/0/596/") // 1
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/0/597/") // 2
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/0/598/") // 3
+        bookURIStrings.append("Marvel Entertainment/Daredevil/2017/1/0/599/") // 4
         
-        bookURIStrings.append("DC Comics/Batman/1950/1/1/5/")  // 5
-        bookURIStrings.append("DC Comics/Batman/1950/1/1/6/")  // 6
-        bookURIStrings.append("DC Comics/Batman/1950/1/1/7/")  // 7
-        bookURIStrings.append("DC Comics/Batman/1950/1/1/8/c") // 8
+        bookURIStrings.append("DC Comics/Batman/1950/0/0/5/")  // 5
+        bookURIStrings.append("DC Comics/Batman/1950/0/0/6/")  // 6
+        bookURIStrings.append("DC Comics/Batman/1950/0/0/7/")  // 7
+        bookURIStrings.append("DC Comics/Batman/1950/0/0/8/c") // 8
 
 
     }
@@ -111,8 +111,8 @@ class BookBinder_Tests: XCTestCase {
         
         XCTAssertEqual(bookBinder.comicbooks.count, comicbooks.count)
         XCTAssertEqual(bookBinder.comicbooks[0].series.seriesPublisher, comicbooks[0].series.seriesPublisher)
-        XCTAssertEqual(bookBinder.selectedIssueIndex, 1)
-        XCTAssertEqual(bookBinder.selectedComicbookIndex, 1)
+        XCTAssertEqual(bookBinder.selectedIssueIndex, 0)
+        XCTAssertEqual(bookBinder.selectedComicbookIndex, 0)
     }
     
     func testGetSelectedComicbook() {
