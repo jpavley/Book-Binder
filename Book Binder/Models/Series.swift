@@ -17,19 +17,9 @@ class Series {
     var era: Int
     var volumeNumber: Int
     
-    var firstIssue: Int {
-        didSet {
-            updatePublishedIssues()
-        }
-    }
-    
-    var currentIssue: Int {
-        didSet {
-            updatePublishedIssues()
-        }
-    }
+    var firstIssue: Int
+    var currentIssue: Int
     var skippedIssues: [Int]
-    var publishedIssues: [Int]
     
     var works: [BookModel]
     
@@ -55,7 +45,6 @@ class Series {
         currentIssue = 0
         
         skippedIssues = [Int]()
-        publishedIssues = [Int]()
         
         works = [BookModel]()
     }
@@ -68,7 +57,6 @@ class Series {
         self.volumeNumber = Int(BookBinderURI.part(fromURIString: uri.description, partID: .volume)) ?? 0
         self.firstIssue = firstIssue
         self.currentIssue = currentIssue
-        updatePublishedIssues()
     }
 }
 
@@ -76,11 +64,15 @@ class Series {
 
 extension Series {
     
+    var publishedIssues: [Int] {
+        return updatePublishedIssues()
+    }
+    
     /// Number of possible issues if no numbers are skipped
     var publishedIssueCount: Int {
         // TODO: update to work with arrays for published, extra and skipped issues
         let sequentialIssues = currentIssue - (firstIssue - 1)
-        return sequentialIssues + skippedIssues.count
+        return sequentialIssues - skippedIssues.count
     }
 }
 
@@ -89,19 +81,19 @@ extension Series {
 
 extension Series {
     
-    func updatePublishedIssues() {
+    func updatePublishedIssues() -> [Int] {
+        
+        var result = [Int]()
         
         if firstIssue > currentIssue {
-            return
+            return result
         }
-        
-        publishedIssues = [Int]()
         
         for n in firstIssue...currentIssue {
-            publishedIssues.append(n)
+            result.append(n)
         }
         
-        publishedIssues = publishedIssues.filter { !skippedIssues.contains($0) }
+        return result.filter { !skippedIssues.contains($0) }
     }
 }
 

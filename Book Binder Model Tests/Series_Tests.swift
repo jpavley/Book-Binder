@@ -101,10 +101,10 @@ class Series_Tests: XCTestCase {
         XCTAssertEqual(testSeries.publishedIssueCount, 100)
         
         testSeries.skippedIssues.append(contentsOf: [11,12,13,14,15,16,17,18,19,20])
-        XCTAssertEqual(testSeries.publishedIssueCount, 110)
+        XCTAssertEqual(testSeries.publishedIssueCount, 90)
         
         testSeries.firstIssue = 20
-        XCTAssertEqual(testSeries.publishedIssueCount, 91)
+        XCTAssertEqual(testSeries.publishedIssueCount, 71)
     }
     
     func testPublishedIssues() {
@@ -145,6 +145,12 @@ class Series_Tests: XCTestCase {
         XCTAssertEqual(testSeries.currentIssue, 101)
         XCTAssertEqual(testSeries.publishedIssues, [100])
         XCTAssertEqual(testSeries.publishedIssueCount, 1)
+        
+        testSeries.skippedIssues = [Int]()
+        XCTAssertEqual(testSeries.firstIssue, 100)
+        XCTAssertEqual(testSeries.currentIssue, 101)
+        XCTAssertEqual(testSeries.publishedIssues, [100, 101])
+        XCTAssertEqual(testSeries.publishedIssueCount, 2)
         
     }
 }
