@@ -29,7 +29,6 @@ class Series {
         }
     }
     var skippedIssues: [Int]
-    var extraIssues: [Int]
     var publishedIssues: [Int]
     
     var works: [BookModel]
@@ -56,7 +55,6 @@ class Series {
         currentIssue = 0
         
         skippedIssues = [Int]()
-        extraIssues = [Int]()
         publishedIssues = [Int]()
         
         works = [BookModel]()
@@ -81,7 +79,7 @@ extension Series {
     var publishedIssueCount: Int {
         // TODO: update to work with arrays for published, extra and skipped issues
         let sequentialIssues = currentIssue - (firstIssue - 1)
-        return sequentialIssues + extraIssues.count - skippedIssues.count
+        return sequentialIssues + skippedIssues.count
     }
 }
 
@@ -102,7 +100,6 @@ extension Series {
             publishedIssues.append(n)
         }
         
-        publishedIssues += extraIssues
         publishedIssues = publishedIssues.filter { !skippedIssues.contains($0) }
     }
 }
@@ -114,23 +111,23 @@ extension Series: Trackable {
     /// Publisher\Title\Era\Volume
     var uri: BookBinderURI {
         get {
-            return BookBinderURI(fromURIString: "\(publisher)/\(title)/\(era)/\(volumeNumber)")!
+            return BookBinderURI(fromURIString: "\(publisher)/\(title)/\(era)/\(volumeNumber)///")!
         }
         set {
             publisher = newValue.publisherPart
             title = newValue.titlePart
-            era = Int(newValue.eraPart)!
-            volumeNumber = Int(newValue.volumePart)!
+            era = Int(newValue.eraPart) ?? 0
+            volumeNumber = Int(newValue.volumePart) ?? 0
         }
     }
     
     
     var description: String {
-        return "\(uri.description)"
+        return "Series \(uri.description)"
     }
     
     var debugDescription: String {
-        return "uri \(uri.description), dateStamp: \(dateStamp), guid \(guid), tags: \(tags)"
+        return "Series uri \(uri.description), dateStamp: \(dateStamp), guid \(guid), tags: \(tags)"
     }
     
     static func == (lhs: Series, rhs: Series) -> Bool {
