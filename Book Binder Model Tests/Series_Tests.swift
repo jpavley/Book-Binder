@@ -25,7 +25,7 @@ class Series_Tests: XCTestCase {
     var volumeNumber2: Int!
     var testSeries2: Series!
     
-
+    
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         publisher = "Ziff Davis"
@@ -43,9 +43,9 @@ class Series_Tests: XCTestCase {
         testURIString2 = "\(publisher!)/\(title!)/\(era!)/\(volumeNumber2!)///"
         testURI2 = BookBinderURI(fromURIString: testURIString2)
         testSeries2 = Series(uri: testURI2, firstIssue: firstIssue, currentIssue: currentIssue)
-
+        
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -70,7 +70,7 @@ class Series_Tests: XCTestCase {
         XCTAssertEqual(testSeries.skippedIssues.count, 0)
         XCTAssertEqual(testSeries.publishedIssueCount, currentIssue)
     }
-
+    
     func testSeriesMutipleIssues() {
         
         testSeries.firstIssue = 1
@@ -106,7 +106,7 @@ class Series_Tests: XCTestCase {
         testSeries.firstIssue = 20
         XCTAssertEqual(testSeries.publishedIssueCount, 91)
     }
-
+    
     func testPublishedIssues() {
         
         testSeries.firstIssue = 5
@@ -120,9 +120,31 @@ class Series_Tests: XCTestCase {
         XCTAssertEqual(testSeries.title, "b")
         XCTAssertEqual(testSeries.era, 0)
         XCTAssertEqual(testSeries.volumeNumber, 0)
-   }
+    }
     
     func testDescriptions() {
         XCTAssertEqual(testSeries.description, "Series \(testURIString!)")
+    }
+    
+    func testFirstIssueUpdatePublishedIssues() {
+        XCTAssertEqual(testSeries.firstIssue, firstIssue)
+        XCTAssertEqual(testSeries.currentIssue, currentIssue)
+        XCTAssertEqual(testSeries.publishedIssues, [1,2,3,4,5,6,7,8,9,10])
+        XCTAssertEqual(testSeries.publishedIssueCount, 10)
+        
+        testSeries.firstIssue = 100
+        testSeries.currentIssue = 101
+        
+        XCTAssertEqual(testSeries.firstIssue, 100)
+        XCTAssertEqual(testSeries.currentIssue, 101)
+        XCTAssertEqual(testSeries.publishedIssues, [100,101])
+        XCTAssertEqual(testSeries.publishedIssueCount, 2)
+        
+        testSeries.skippedIssues = [101]
+        XCTAssertEqual(testSeries.firstIssue, 100)
+        XCTAssertEqual(testSeries.currentIssue, 101)
+        XCTAssertEqual(testSeries.publishedIssues, [100])
+        XCTAssertEqual(testSeries.publishedIssueCount, 1)
+        
     }
 }

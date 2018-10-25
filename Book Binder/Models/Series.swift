@@ -68,6 +68,7 @@ class Series {
         self.volumeNumber = Int(BookBinderURI.part(fromURIString: uri.description, partID: .volume)) ?? 0
         self.firstIssue = firstIssue
         self.currentIssue = currentIssue
+        updatePublishedIssues()
     }
 }
 
