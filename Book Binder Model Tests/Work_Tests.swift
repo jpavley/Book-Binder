@@ -36,7 +36,7 @@ class Work_Tests: XCTestCase {
         let bookURI = BookBinderURI(fromURIString: testString1)
         let bookModel = Work(fromURI: bookURI!, isOwned: true, coverImageID: "x-men-101")
         
-        XCTAssertEqual(bookModel.bookURI.description, testString1)
+        XCTAssertEqual(bookModel.uri.description, testString1)
         XCTAssertEqual(bookModel.issueNumber, 1)
         XCTAssertEqual(bookModel.variantLetter, "v")
         XCTAssertEqual(bookModel.isOwned, true)
@@ -48,7 +48,7 @@ class Work_Tests: XCTestCase {
         let bookModel = Work(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/1/1/a"
         
-        XCTAssertEqual(bookModel.bookURI.description, testString2)
+        XCTAssertEqual(bookModel.uri.description, testString2)
         XCTAssertEqual(bookModel.bookPublisher, "Marvel Entertainment")
         XCTAssertEqual(bookModel.bookTitle, "Doctor Strange")
         XCTAssertEqual(bookModel.bookEra, "2018")
@@ -60,16 +60,6 @@ class Work_Tests: XCTestCase {
         let bookModel = Work(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/1/1/a"
 
-        XCTAssertEqual(bookModel.bookURI.description, testString2)
-    }
-    
-    func testCustomDebugStringConvertable() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
-        let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = Work(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
-        let testString2 = "bookURI: Marvel Entertainment/Doctor Strange/2018/1/1/1/a, isOwned: false, coverImageID: x-men-101"
-        
-        XCTAssertEqual(bookModel.debugDescription, testString2)
-
+        XCTAssertEqual(bookModel.uri.description, testString2)
     }
 }

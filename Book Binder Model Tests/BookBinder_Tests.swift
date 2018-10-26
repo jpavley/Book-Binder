@@ -124,12 +124,12 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
         let selectedIssue = bookBinder.getSelectedIssue()
         
-        XCTAssertEqual(selectedIssue.bookURI.description, bookURIStrings[0])
+        XCTAssertEqual(selectedIssue.uri.description, bookURIStrings[0])
         
         let bookBinder2 = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 1)
         let selectedIssue2 = bookBinder2.getSelectedIssue()
         
-        XCTAssertEqual(selectedIssue2.bookURI.description, bookURIStrings[1])
+        XCTAssertEqual(selectedIssue2.uri.description, bookURIStrings[1])
     }
     
     func testSelectNextComicbook() {
@@ -161,7 +161,7 @@ class BookBinder_Tests: XCTestCase {
         
         bookbinder.selectNextIssue()
         let selectedIssue = bookbinder.getSelectedIssue()
-        XCTAssertEqual(selectedIssue.bookURI.description, bookURIStrings[2])
+        XCTAssertEqual(selectedIssue.uri.description, bookURIStrings[2])
         
         bookbinder.selectNextComicbook()
         let selectedComicbook = bookbinder.getSelectedComicbook()
@@ -171,7 +171,7 @@ class BookBinder_Tests: XCTestCase {
         
         for i in 0...3 {
             selectedIssue3 = bookbinder.getSelectedIssue()
-            XCTAssertEqual(selectedIssue3.bookURI.description, bookURIStrings[5 + i])
+            XCTAssertEqual(selectedIssue3.uri.description, bookURIStrings[5 + i])
             bookbinder.selectNextIssue()
         }
         
@@ -182,7 +182,7 @@ class BookBinder_Tests: XCTestCase {
         
         bookbinder.selectPreviousIssue()
         let selectedIssue = bookbinder.getSelectedIssue()
-        XCTAssertEqual(selectedIssue.bookURI.description, bookURIStrings[0])
+        XCTAssertEqual(selectedIssue.uri.description, bookURIStrings[0])
         
         bookbinder.selectPreviousComicbook()
         let selectedComicbook = bookbinder.getSelectedComicbook()
@@ -193,7 +193,7 @@ class BookBinder_Tests: XCTestCase {
         
         for i in (0...3).reversed() {
             selectedIssue3 = bookbinder.getSelectedIssue()
-            XCTAssertEqual(selectedIssue3.bookURI.description, bookURIStrings[5 + i])
+            XCTAssertEqual(selectedIssue3.uri.description, bookURIStrings[5 + i])
             bookbinder.selectPreviousIssue()
         }
         

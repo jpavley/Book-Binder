@@ -101,7 +101,7 @@ class Comicbook_Tests: XCTestCase {
         for jsonBook in series.books {
             let book = Work(seriesURI: testURI!, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
-            comicbook.books[book.bookURI] = book
+            comicbook.books[book.uri] = book
         }
         
         XCTAssertEqual(comicbook.books.count, series.books.count)
@@ -149,7 +149,7 @@ class Comicbook_Tests: XCTestCase {
         let comicbook = comicbooks[0]
         
         for (k,v) in comicbook.books {
-            XCTAssertEqual("\(k.description)", "\(v.bookURI.description)")
+            XCTAssertEqual("\(k.description)", "\(v.uri.description)")
         }
         
         let testBook1 = comicbook.books[bookURI1!]
@@ -158,8 +158,8 @@ class Comicbook_Tests: XCTestCase {
         let testBook3 = comicbook.getBookBy(issueNumber: 605).first!
         let testBook4 = comicbook.getBookBy(issueNumber: 606).first!
         
-        XCTAssertEqual(testBook1?.bookURI.description, testBook3.bookURI.description)
-        XCTAssertEqual(testBook2?.bookURI.description, testBook4.bookURI.description)
+        XCTAssertEqual(testBook1?.uri.description, testBook3.uri.description)
+        XCTAssertEqual(testBook2?.uri.description, testBook4.uri.description)
 
     }    
 }

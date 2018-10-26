@@ -58,7 +58,7 @@ class BookBinder {
             return
         }
         
-        if let oldValue = books.updateValue(modifiedBook, forKey: modifiedBook.bookURI) {
+        if let oldValue = books.updateValue(modifiedBook, forKey: modifiedBook.uri) {
             assert(true, "BOOKBINDERAPP: the old value of \(oldValue.debugDescription) was replaced with \(modifiedBook.debugDescription)")
         } else {
             assert(true, "BOOKBINDERAPP: no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")

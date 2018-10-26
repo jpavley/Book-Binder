@@ -73,7 +73,7 @@ extension Comicbook {
                 
                 for jsonBook in jsonSeries.books {
                     let book = Work(seriesURI: comicbook.series.uri, printing: jsonBook.printing,issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
-                    comicbook.books[book.bookURI] = book
+                    comicbook.books[book.uri] = book
                 }
                 
                 comicbooks.append(comicbook)

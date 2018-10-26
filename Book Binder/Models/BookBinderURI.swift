@@ -135,6 +135,10 @@ struct BookBinderURI: CustomStringConvertible {
         return "\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)///"
     }
     
+    var seriesPart: BookBinderURI {
+        return BookBinderURI(fromURIString: BookBinderURI.extractSeriesURI(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+    }
+    
     /// Returns returns true if a URI contains the correct number of "/"s
     ///
     /// - Part Names: //////
