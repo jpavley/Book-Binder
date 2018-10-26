@@ -40,7 +40,7 @@ class BookModel {
     /// initalization from a full URI
     /// - Publisher/Series/Era/Issue/variant
     init(fromURI: BookBinderURI, isOwned: Bool, coverImageID: String) {
-        self.seriesURI = SeriesModel(fromURI: fromURI).seriesURI
+        self.seriesURI = Series(uri: fromURI, firstIssue: 0, currentIssue: 0).uri
         self.printing = Int(fromURI.printingPart)!
         self.issueNumber = Int(fromURI.issuePart)!
         self.variantLetter = fromURI.variantPart

@@ -25,8 +25,7 @@ class Comicbook_Tests: XCTestCase {
                         "seriesVolume": 1,
                         "seriesFirstIssue": 595,
                         "seriesCurrentIssue": 608,
-                        "seriesSkippedIssues": 1,
-                        "seriesExtraIssues": 1,
+                        "seriesSkippedIssues": [],
                         "books":
                         [
                             {
@@ -52,8 +51,7 @@ class Comicbook_Tests: XCTestCase {
                         "seriesVolume": 1,
                         "seriesFirstIssue": 5,
                         "seriesCurrentIssue": 8,
-                        "seriesSkippedIssues": 0,
-                        "seriesExtraIssues": 0,
+                        "seriesSkippedIssues": [],
                         "books":
                         [
                             {
@@ -94,10 +92,9 @@ class Comicbook_Tests: XCTestCase {
         let testURI = BookBinderURI(fromURIString: testURIString)
         
         let comicbook = Comicbook(seriesURI: testURI!)
-        comicbook.series.seriesFirstIssue = series.seriesFirstIssue
-        comicbook.series.seriesCurrentIssue = series.seriesCurrentIssue
-        comicbook.series.seriesSkippedIssues = series.seriesSkippedIssues
-        comicbook.series.seriesExtraIssues = series.seriesExtraIssues
+        comicbook.series.firstIssue = series.seriesFirstIssue
+        comicbook.series.currentIssue = series.seriesCurrentIssue
+        comicbook.series.skippedIssues = series.seriesSkippedIssues
         
         XCTAssertNotNil(comicbook)
         

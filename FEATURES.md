@@ -150,7 +150,7 @@ Minimum about if info that needs to be serialized in JSON for a factory to creat
             "seriesFirstIssue": 0,
             "seriesCurrentIssue": 0,
             "seriesSkippedIssues":0,
-            "seriesExtraIssues":0,
+            "seriesExtraIssues": [],
             "books":
             [
                 {

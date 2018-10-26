@@ -17,8 +17,7 @@ struct JsonModel: Codable {
         let seriesVolume: Int
         let seriesFirstIssue: Int
         let seriesCurrentIssue: Int
-        let seriesSkippedIssues: Int
-        let seriesExtraIssues: Int
+        let seriesSkippedIssues: [Int]
         let books: [JsonBook]
         
         struct JsonBook: Codable {
@@ -37,16 +36,15 @@ struct JsonModel: Codable {
             }
         }
         
-        init(seriesPublisher: String, seriesTitle: String, seriesEra: Int, seriesVolume: Int, seriesFirstIssue: Int, seriesCurrentIssue: Int, seriesSkippedIssues: Int, seriesExtraIssues: Int, books: [JsonBook]) {
+        init(publisher: String, title: String, era: Int, volumeNumber: Int, firstIssue: Int, currentIssue: Int, skippedIssues: [Int], books: [JsonBook]) {
             
-            self.seriesPublisher = seriesPublisher
-            self.seriesTitle = seriesTitle
-            self.seriesEra = seriesEra
-            self.seriesVolume = seriesVolume
-            self.seriesFirstIssue = seriesFirstIssue
-            self.seriesCurrentIssue = seriesCurrentIssue
-            self.seriesSkippedIssues = seriesSkippedIssues
-            self.seriesExtraIssues = seriesExtraIssues
+            self.seriesPublisher = publisher
+            self.seriesTitle = title
+            self.seriesEra = era
+            self.seriesVolume = volumeNumber
+            self.seriesFirstIssue = firstIssue
+            self.seriesCurrentIssue = currentIssue
+            self.seriesSkippedIssues = skippedIssues
             self.books = books
         }
     }

@@ -30,8 +30,7 @@ class BookBinder_Tests: XCTestCase {
                     "seriesVolume": 1,
                     "seriesFirstIssue": 595,
                     "seriesCurrentIssue": 608,
-                    "seriesSkippedIssues": 1,
-                    "seriesExtraIssues": 1,
+                    "seriesSkippedIssues": [],
                     "books":
                     [
                         {
@@ -57,8 +56,7 @@ class BookBinder_Tests: XCTestCase {
                     "seriesVolume": 0,
                     "seriesFirstIssue": 5,
                     "seriesCurrentIssue": 8,
-                    "seriesSkippedIssues": 0,
-                    "seriesExtraIssues": 0,
+                    "seriesSkippedIssues": [],
                     "books":
                     [
                         {
@@ -110,7 +108,7 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedSeriesIndex, selectedIssueIndex: selectedBookIndex)
         
         XCTAssertEqual(bookBinder.comicbooks.count, comicbooks.count)
-        XCTAssertEqual(bookBinder.comicbooks[0].series.seriesPublisher, comicbooks[0].series.seriesPublisher)
+        XCTAssertEqual(bookBinder.comicbooks[0].series.publisher, comicbooks[0].series.publisher)
         XCTAssertEqual(bookBinder.selectedIssueIndex, 0)
         XCTAssertEqual(bookBinder.selectedComicbookIndex, 0)
     }
@@ -119,7 +117,7 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
         let selectedComicbook = bookBinder.getSelectedComicbook()
         
-        XCTAssertEqual(selectedComicbook.series.seriesURI.description, seriesURIStrings[0])
+        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[0])
     }
     
     func testGetSelectedIssue() {
@@ -139,11 +137,11 @@ class BookBinder_Tests: XCTestCase {
         
         bookBinder.selectNextComicbook()
         let selectedComicbook = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.seriesURI.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
         
         bookBinder.selectNextComicbook()
         let selectedComicbook2 = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook2.series.seriesURI.description, seriesURIStrings[0])
+        XCTAssertEqual(selectedComicbook2.series.uri.description, seriesURIStrings[0])
     }
     
     func testSelectPreviousComicbook() {
@@ -151,11 +149,11 @@ class BookBinder_Tests: XCTestCase {
         
         bookBinder.selectPreviousComicbook()
         let selectedComicbook = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.seriesURI.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
         
         bookBinder.selectPreviousComicbook()
         let selectedComicbook2 = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook2.series.seriesURI.description, seriesURIStrings[0])
+        XCTAssertEqual(selectedComicbook2.series.uri.description, seriesURIStrings[0])
     }
     
     func testSelectNextIssue() {
@@ -167,7 +165,7 @@ class BookBinder_Tests: XCTestCase {
         
         bookbinder.selectNextComicbook()
         let selectedComicbook = bookbinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.seriesURI.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
 
         var selectedIssue3: BookModel
         
@@ -188,7 +186,7 @@ class BookBinder_Tests: XCTestCase {
         
         bookbinder.selectPreviousComicbook()
         let selectedComicbook = bookbinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.seriesURI.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
         
         var selectedIssue3: BookModel
         bookbinder.selectedIssueIndex = 3

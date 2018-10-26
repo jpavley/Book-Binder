@@ -26,14 +26,13 @@ class BookBinder {
             }
             
             
-            let jsonSeries = JsonModel.JsonSeries(seriesPublisher: comicbook.series.seriesPublisher,
-                                                  seriesTitle: comicbook.series.seriesTitle,
-                                                  seriesEra: Int(comicbook.series.seriesEra)!,
-                                                  seriesVolume: Int(comicbook.series.seriesVolume),
-                                                  seriesFirstIssue: comicbook.series.seriesFirstIssue,
-                                                  seriesCurrentIssue: comicbook.series.seriesCurrentIssue,
-                                                  seriesSkippedIssues: comicbook.series.seriesSkippedIssues,
-                                                  seriesExtraIssues: comicbook.series.seriesExtraIssues,
+            let jsonSeries = JsonModel.JsonSeries(publisher: comicbook.series.publisher,
+                                                  title: comicbook.series.title,
+                                                  era: comicbook.series.era,
+                                                  volumeNumber: comicbook.series.volumeNumber,
+                                                  firstIssue: comicbook.series.firstIssue,
+                                                  currentIssue: comicbook.series.currentIssue,
+                                                  skippedIssues: comicbook.series.skippedIssues,
                                                   books: jsonBookArray)
             jsonSeriesArray.append(jsonSeries)
 
@@ -54,7 +53,7 @@ class BookBinder {
         let selectedComicbook = getSelectedComicbook()
         var books = selectedComicbook.books
         
-        if selectedComicbook.series.seriesURI.description != modifiedBook.seriesURI.description {
+        if selectedComicbook.series.uri.description != modifiedBook.seriesURI.description {
             assert(true, "BOOKBINDERAPP: you can't add or modify a book with a series URI different from the comicbook's series URI!")
             return
         }
@@ -85,9 +84,9 @@ class BookBinder {
         }
         
         // This is a book the user doesn't own yet...
-        let publisherID = BookBinderURI.part(fromURIString: comicbook.series.seriesURI.description, partID: .publisher)
+        let publisherID = BookBinderURI.part(fromURIString: comicbook.series.uri.description, partID: .publisher)
         let coverImageID = publisherCover(for: publisherID)
-        return BookModel(seriesURI: comicbook.series.seriesURI, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: coverImageID)
+        return BookModel(seriesURI: comicbook.series.uri, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: coverImageID)
     }
     
     func publisherCover(for publisher: String) -> String {

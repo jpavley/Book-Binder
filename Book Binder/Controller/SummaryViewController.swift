@@ -129,10 +129,10 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! CollectionReusableView
             
-            let seriesModel = getSeriesModelFor(indexPath: indexPath)
+            let series = getSeriesFor(indexPath: indexPath)
             
-            headerView.titleLabel.text = "\(seriesModel.seriesTitle) \(seriesModel.seriesEra)"
-            headerView.subTitleLabel.text = seriesModel.seriesPublisher
+            headerView.titleLabel.text = "\(series.title) \(series.era)"
+            headerView.subTitleLabel.text = series.publisher
             
             return headerView
             
@@ -146,10 +146,10 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
                         numberOfItemsInSection section: Int) -> Int {
         
         let indexPath = IndexPath(row: 0, section: section)
-        let seriesModel = getSeriesModelFor(indexPath: indexPath)
+        let series = getSeriesFor(indexPath: indexPath)
         
         // add 2 to the published issues count for the ... and + icons
-        let result = seriesModel.publishedIssues.count + 2
+        let result = series.publishedIssues.count + 2
         return result
     }
     
@@ -173,17 +173,17 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     /// The current issue string is either ..., +, or a published issue number.
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
-        let seriesModel = getSeriesModelFor(indexPath: indexPath)
+        let series = getSeriesFor(indexPath: indexPath)
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
         
         // The first cell (0) should be the ... icon for editing the series
-        // The last cell (seriesModel.publishedIssues.count + 2) should be the + icon for adding a book
+        // The last cell (series.publishedIssues.count + 2) should be the + icon for adding a book
         
         if indexPath.row == 0 {
             
             currentIssueString = "..."
             
-        } else if indexPath.row == (seriesModel.publishedIssues.count + 1) {
+        } else if indexPath.row == (series.publishedIssues.count + 1) {
             
             // offset the published issue count by 1 to account for ... and + icons
             currentIssueString = "+"
@@ -272,13 +272,13 @@ extension SummaryViewController {
         return bookBinder.comicbooks[indexPath.section]
     }
     
-    func getSeriesModelFor(indexPath: IndexPath) -> SeriesModel {
+    func getSeriesFor(indexPath: IndexPath) -> Series {
         return getComicbookFor(indexPath: indexPath).series
     }
     
     func getPublishedIssueFor(indexPath: IndexPath) -> Int {
-        let seriesModel = getSeriesModelFor(indexPath: indexPath)
-        return seriesModel.publishedIssues[indexPath.row]
+        let series = getSeriesFor(indexPath: indexPath)
+        return series.publishedIssues[indexPath.row]
     }
     
     func getBookModelFor(indexPath: IndexPath) -> BookModel {
@@ -294,7 +294,7 @@ extension SummaryViewController {
         }
         
         // This is a book the user doesn't own yet...
-        return BookModel(seriesURI: comicbook.series.seriesURI, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
+        return BookModel(seriesURI: comicbook.series.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
         // DUPE: 100 end
     }
 }

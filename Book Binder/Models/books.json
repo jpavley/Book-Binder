@@ -8,8 +8,7 @@
             "seriesVolume": 0,
             "seriesFirstIssue": 595,
             "seriesCurrentIssue": 608,
-            "seriesSkippedIssues": 0,
-            "seriesExtraIssues": 0,
+            "seriesSkippedIssues": [],
             "books":
             [
                 {
@@ -50,8 +49,7 @@
             "seriesVolume": 1,
             "seriesFirstIssue": 1,
             "seriesCurrentIssue": 6,
-            "seriesSkippedIssues":0,
-            "seriesExtraIssues":0,
+            "seriesSkippedIssues": [],
             "books":
             [
                 {
@@ -105,8 +103,7 @@
             "seriesVolume": 1,
             "seriesFirstIssue": 1,
             "seriesCurrentIssue": 28,
-            "seriesSkippedIssues":0,
-            "seriesExtraIssues":0,
+            "seriesSkippedIssues": [],
             "books":
             [
                 {
