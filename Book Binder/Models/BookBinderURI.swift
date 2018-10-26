@@ -119,7 +119,7 @@ struct BookBinderURI: CustomStringConvertible {
     /// Returns the just the series parts of an URI
     ///
     /// - Part Names: publisher/title/era/volume///
-    static func extractSeriesURI(fromURIString s: String) -> String {
+    static func extractSeriesURIString(fromURIString s: String) -> String {
         
         if !BookBinderURI.isWellFormed(uriString: s) {
             return BookBinderURI.emptyURIString
@@ -136,7 +136,7 @@ struct BookBinderURI: CustomStringConvertible {
     }
     
     var seriesPart: BookBinderURI {
-        return BookBinderURI(fromURIString: BookBinderURI.extractSeriesURI(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+        return BookBinderURI(fromURIString: BookBinderURI.extractSeriesURIString(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
     }
     
     /// Returns returns true if a URI contains the correct number of "/"s
