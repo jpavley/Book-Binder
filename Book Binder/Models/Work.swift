@@ -1,5 +1,5 @@
 //
-//  BookModel.swift
+//  Work.swift
 //  Book Binder
 //
 //  Created by John Pavley on 9/23/18.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// MVP 1: Just enough to get the Summary View displayed
-class BookModel {
+class Work {
     
     /// Used to tie this book to a series
     var seriesURI: BookBinderURI
@@ -51,7 +51,7 @@ class BookModel {
 
 // MARK: Calculated Vars
 
-extension BookModel {
+extension Work {
     
     /// URI that identifies this book
     /// - Publisher/Series/Era/Volume/Printing/Issue/variant
@@ -76,7 +76,7 @@ extension BookModel {
     }
 }
 
-extension BookModel: CustomDebugStringConvertible {
+extension Work: CustomDebugStringConvertible {
     var debugDescription: String {
         return "bookURI: \(bookURI.description), isOwned: \(isOwned), coverImageID: \(coverImageID)"
     }

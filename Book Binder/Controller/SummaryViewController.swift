@@ -281,7 +281,7 @@ extension SummaryViewController {
         return series.publishedIssues[indexPath.row]
     }
     
-    func getBookModelFor(indexPath: IndexPath) -> BookModel {
+    func getBookModelFor(indexPath: IndexPath) -> Work {
         // DUPE: 100 start
         let comicbook = getComicbookFor(indexPath: indexPath)
         let issueNumber = getPublishedIssueFor(indexPath: indexPath)
@@ -294,7 +294,7 @@ extension SummaryViewController {
         }
         
         // This is a book the user doesn't own yet...
-        return BookModel(seriesURI: comicbook.series.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
+        return Work(seriesURI: comicbook.series.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
         // DUPE: 100 end
     }
 }

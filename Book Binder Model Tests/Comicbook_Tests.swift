@@ -99,7 +99,7 @@ class Comicbook_Tests: XCTestCase {
         XCTAssertNotNil(comicbook)
         
         for jsonBook in series.books {
-            let book = BookModel(seriesURI: testURI!, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+            let book = Work(seriesURI: testURI!, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
             comicbook.books[book.bookURI] = book
         }

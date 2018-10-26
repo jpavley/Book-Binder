@@ -167,7 +167,7 @@ class BookBinder_Tests: XCTestCase {
         let selectedComicbook = bookbinder.getSelectedComicbook()
         XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
 
-        var selectedIssue3: BookModel
+        var selectedIssue3: Work
         
         for i in 0...3 {
             selectedIssue3 = bookbinder.getSelectedIssue()
@@ -188,7 +188,7 @@ class BookBinder_Tests: XCTestCase {
         let selectedComicbook = bookbinder.getSelectedComicbook()
         XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
         
-        var selectedIssue3: BookModel
+        var selectedIssue3: Work
         bookbinder.selectedIssueIndex = 3
         
         for i in (0...3).reversed() {
@@ -202,7 +202,7 @@ class BookBinder_Tests: XCTestCase {
     func testUpdateBook() {
         let bookbinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 1)
         let selectedComicbook = bookbinder.getSelectedComicbook()
-        let testBook = BookModel(fromURI: BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!, isOwned: false, coverImageID: "x-men-101")
+        let testBook = Work(fromURI: BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!, isOwned: false, coverImageID: "x-men-101")
         let bookToBeUpdated = selectedComicbook.books[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
         
         XCTAssertEqual(selectedComicbook.books.count, 2)

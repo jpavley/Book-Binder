@@ -19,9 +19,9 @@
 		483C61C2214ED8EB008C69D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483C61C0214ED8EB008C69D8 /* LaunchScreen.storyboard */; };
 		484CC0D621567A180012CD42 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0D521567A180012CD42 /* DetailViewController.swift */; };
 		484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0D72156CC310012CD42 /* CollectionViewCell.swift */; };
-		484CC0DD2157DD380012CD42 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0DC2157DD380012CD42 /* BookModel.swift */; };
+		484CC0DD2157DD380012CD42 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0DC2157DD380012CD42 /* Work.swift */; };
 		484CC0E12157DFC00012CD42 /* BookBinderURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0E02157DFC00012CD42 /* BookBinderURI.swift */; };
-		484CC0F1215850540012CD42 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0DC2157DD380012CD42 /* BookModel.swift */; };
+		484CC0F1215850540012CD42 /* Work.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0DC2157DD380012CD42 /* Work.swift */; };
 		484CC0F3215850540012CD42 /* BookBinderURI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0E02157DFC00012CD42 /* BookBinderURI.swift */; };
 		484CC0F721585C8C0012CD42 /* BookBinderURI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0F621585C8C0012CD42 /* BookBinderURI_Tests.swift */; };
 		484CC1072159668F0012CD42 /* BookModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC1062159668F0012CD42 /* BookModel_Tests.swift */; };
@@ -69,7 +69,7 @@
 		483C61C3214ED8EB008C69D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		484CC0D521567A180012CD42 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		484CC0D72156CC310012CD42 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		484CC0DC2157DD380012CD42 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		484CC0DC2157DD380012CD42 /* Work.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Work.swift; sourceTree = "<group>"; };
 		484CC0DE2157DD890012CD42 /* SeriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesModel.swift; sourceTree = "<group>"; };
 		484CC0E02157DFC00012CD42 /* BookBinderURI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookBinderURI.swift; sourceTree = "<group>"; };
 		484CC0E22157F3540012CD42 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				48BC6B402183C3610004D2A2 /* deprecated */,
 				4855D951217CCBEF00A16332 /* Trackable.swift */,
 				482C15C8217DF6750037216E /* Series.swift */,
-				484CC0DC2157DD380012CD42 /* BookModel.swift */,
+				484CC0DC2157DD380012CD42 /* Work.swift */,
 				48ED2CA62166423300945BED /* JsonModel.swift */,
 				484CC0E02157DFC00012CD42 /* BookBinderURI.swift */,
 				48CBB67E215D5EDF003D1870 /* books.json */,
@@ -333,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48699AEF215AE7710038864A /* CollectionReusableView.swift in Sources */,
-				484CC0DD2157DD380012CD42 /* BookModel.swift in Sources */,
+				484CC0DD2157DD380012CD42 /* Work.swift in Sources */,
 				48ED2CA72166423300945BED /* JsonModel.swift in Sources */,
 				48ED2CA92166BFA400945BED /* Comicbook.swift in Sources */,
 				484CC0D621567A180012CD42 /* DetailViewController.swift in Sources */,
@@ -363,7 +363,7 @@
 				484CC0F3215850540012CD42 /* BookBinderURI.swift in Sources */,
 				48ED2CAF2167D47C00945BED /* Comicbook_Tests.swift in Sources */,
 				482FABD1216D19FA00E64D05 /* BookBinder.swift in Sources */,
-				484CC0F1215850540012CD42 /* BookModel.swift in Sources */,
+				484CC0F1215850540012CD42 /* Work.swift in Sources */,
 				4855D954217CD01200A16332 /* Trackable_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

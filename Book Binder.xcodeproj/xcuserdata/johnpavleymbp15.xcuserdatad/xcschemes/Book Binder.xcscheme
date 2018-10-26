@@ -48,6 +48,11 @@
                BlueprintName = "Book Binder Model Tests"
                ReferencedContainer = "container:Book Binder.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SeriesModel_Tests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

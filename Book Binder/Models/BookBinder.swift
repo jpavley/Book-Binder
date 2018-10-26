@@ -49,7 +49,7 @@ class BookBinder {
     
     /// Modifies the selected comicbook's books array by either updating an existing book
     /// or adding a book if it doesn't exist
-    func updateBooks(with modifiedBook: BookModel) {
+    func updateBooks(with modifiedBook: Work) {
         let selectedComicbook = getSelectedComicbook()
         var books = selectedComicbook.books
         
@@ -72,7 +72,7 @@ class BookBinder {
         return comicbooks[selectedComicbookIndex]
     }
     
-    func getSelectedIssue() -> BookModel {
+    func getSelectedIssue() -> Work {
         let comicbook = getSelectedComicbook()
         let issueNumber = comicbook.series.publishedIssues[selectedIssueIndex]
         
@@ -86,7 +86,7 @@ class BookBinder {
         // This is a book the user doesn't own yet...
         let publisherID = BookBinderURI.part(fromURIString: comicbook.series.uri.description, partID: .publisher)
         let coverImageID = publisherCover(for: publisherID)
-        return BookModel(seriesURI: comicbook.series.uri, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: coverImageID)
+        return Work(seriesURI: comicbook.series.uri, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: coverImageID)
     }
     
     func publisherCover(for publisher: String) -> String {

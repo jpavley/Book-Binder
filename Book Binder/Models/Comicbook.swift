@@ -10,11 +10,11 @@ import Foundation
 
 class Comicbook {
     var series: Series
-    var books: [BookBinderURI: BookModel]
+    var books: [BookBinderURI: Work]
     
     init(seriesURI: BookBinderURI) {
         series = Series(uri: seriesURI, firstIssue: 0, currentIssue: 0)
-        books = [BookBinderURI: BookModel]()
+        books = [BookBinderURI: Work]()
     }
     
     /// Returns a list of owned issue numbers as a string
@@ -25,10 +25,10 @@ class Comicbook {
     
     /// Returns a list of books that match the issue number.
     /// Because of varients this could be more than one.
-    func getBookBy(issueNumber: Int) -> [BookModel] {
+    func getBookBy(issueNumber: Int) -> [Work] {
         //return books.filter { $0.value.issueNumber == issueNumber}.first
         
-        var result = [BookModel]()
+        var result = [Work]()
         
         for (_, value) in books {
             if value.issueNumber == issueNumber {
@@ -72,7 +72,7 @@ extension Comicbook {
                 comicbook.series.skippedIssues = jsonSeries.seriesSkippedIssues
                 
                 for jsonBook in jsonSeries.books {
-                    let book = BookModel(seriesURI: comicbook.series.uri, printing: jsonBook.printing,issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+                    let book = Work(seriesURI: comicbook.series.uri, printing: jsonBook.printing,issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
                     comicbook.books[book.bookURI] = book
                 }
                 

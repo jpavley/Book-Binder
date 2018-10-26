@@ -21,7 +21,7 @@ class Series {
     var currentIssue: Int
     var skippedIssues: [Int]
     
-    var works: [BookModel]
+    var works: [Work]
     
     // Trackable properties
     
@@ -46,7 +46,7 @@ class Series {
         
         skippedIssues = [Int]()
         
-        works = [BookModel]()
+        works = [Work]()
     }
     
     convenience init(uri: BookBinderURI, firstIssue: Int, currentIssue: Int) {
