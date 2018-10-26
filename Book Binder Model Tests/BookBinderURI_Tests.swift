@@ -161,5 +161,17 @@ class BookBinderURI_Tests: XCTestCase {
         let extractedURIString2 = BookBinderURI.extractSeriesURI(fromURIString: testString2)
         XCTAssertEqual(extractedURIString2, "//////")
     }
+    
+    func testSeriesPart() {
+        
+        let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/1/1/v"
+        let uri = BookBinderURI(fromURIString: testString1)
+        let seriesPart = uri?.seriesPart
+        XCTAssertEqual(seriesPart?.description, "Marvel Entertainment/DoctorStrange/2018/1///")
+        
+        let extractedURIString = BookBinderURI.extractSeriesURI(fromURIString: testString1)
+        XCTAssertEqual(seriesPart?.description, extractedURIString)
+
+    }
 
 }
