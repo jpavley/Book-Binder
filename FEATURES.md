@@ -9,7 +9,7 @@
 
 ## Views
 
- Book Binder has four views: detail, timeline, summary, and camera. These views enable users to manage 
+ Book Binder has four views: detail, timeline, summary, and camera. These views enable users to manage
  their collections at the work and series level as well as a chronological feed or a ordered list. The Camera
  view lets users shoot a picture of a cover and derives enough data to add  the work it represents to a
  series.
@@ -35,10 +35,10 @@ References
 * <https://schema.org/Product> and specific types
 
 * Identity
-    * Printing
-    * Issue Number
-    * Varant Letter
-    * Cover Image
+  * Printing
+  * Issue Number
+  * Variant Letter
+  * Cover Image
 
 * Dates
   * Date Published
@@ -68,15 +68,15 @@ References
 
 ## Timeline View
 
- The Timeline View is a chronological feed of Work Events based on property updates. A Work Event can appear 
- multiple times in the Timeline as the work is added, updated, consumed, shared, or deleted. If these actions 
- happen immediately one after the other then Work Events are aggregated so that the Timeline is not cluttered 
+ The Timeline View is a chronological feed of Work Events based on property updates. A Work Event can appear
+ multiple times in the Timeline as the work is added, updated, consumed, shared, or deleted. If these actions
+ happen immediately one after the other then Work Events are aggregated so that the Timeline is not cluttered
  with duplicates. From the Timeline a user can navigate to either a series or a work (Summary or Detail Views).
 
 ### Work Event
 
  A Work Event is an record in the user's timeline of an action related to a work object. For example, an addition,
- update, purchase, deletion, or share of a work. Work Events are recorded based on the date of the action, the 
+ update, purchase, deletion, or share of a work. Work Events are recorded based on the date of the action, the
  type of action, and its proximity to actions related to the same work object.
 
 #### Work Event Properties and Actions
@@ -97,8 +97,8 @@ References
 
 ## Summary View
 
-The Summary View is a list of series that shows which works are collected and which are missing. For example 
-if the user is collecting Water Bottle Hero, which is a series of 10 comic books, Summary view shows which 
+The Summary View is a list of series that shows which works are collected and which are missing. For example
+if the user is collecting Water Bottle Hero, which is a series of 10 comic books, Summary view shows which
 issues are owned and which issues are unowned. For series with more than ten works Summary View
 can be configured to show only a range of works (such as the last 10).
 
@@ -112,7 +112,7 @@ A Series Object is a collection of Work Objects that extrapolates missing works 
 in a series. If there are four novels in _Cat Wars_ and the user has read books one and and four, the Series Object
 that represents _Cat Wars_ will infer that books two and three are unread (uncollected).
 
-A Series Object always assumes that a sequel, an additional work, could be published, and make is easy for the 
+A Series Object always assumes that a sequel, an additional work, could be published, and make is easy for the
 user to add that work with a single touch.
 
 #### Series Object Properties and Actions
@@ -154,11 +154,11 @@ Minimum about if info that needs to be serialized in JSON for a factory to creat
             "books":
             [
                 {
-                    "printing": 1,
                     "issueNumber": 0,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "",
                             "isOwned": true

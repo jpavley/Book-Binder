@@ -12,11 +12,11 @@
             "books":
             [
                 {
-                    "printing": 0,
                     "issueNumber": 605,
                     "variants":
                     [
                         {
+                            "printing": 0,
                             "letter": "",
                             "coverImageID": "american-standard-marvel",
                             "isOwned": true
@@ -24,11 +24,11 @@
                     ]
                 },
                 {
-                    "printing": 0,
                     "issueNumber": 606,
                     "variants":
                     [
                         {
+                            "printing": 0,
                             "letter": "",
                             "coverImageID": "american-standard-marvel",
                             "isOwned": true
@@ -37,11 +37,11 @@
 
                 },
                 {
-                    "printing": 0,
                     "issueNumber": 607,
                     "variants":
                     [
                         {
+                            "printing": 0,
                             "letter": "",
                             "coverImageID": "american-standard-marvel",
                             "isOwned": true
@@ -49,11 +49,11 @@
                     ]
                 },
                 {
-                    "printing": 0,
                     "issueNumber": 608,
                     "variants":
                     [
                         {
+                            "printing": 0,
                             "letter": "",
                             "coverImageID": "american-standard-marvel",
                             "isOwned": true
@@ -73,11 +73,11 @@
             "books":
             [
                 {
-                    "printing": 1,
                     "issueNumber": 1,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-dc",
                             "isOwned": true
@@ -85,11 +85,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 2,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-dc",
                             "isOwned": true
@@ -97,11 +97,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 3,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-dc",
                             "isOwned": true
@@ -109,11 +109,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 4,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-dc",
                             "isOwned": true
@@ -121,11 +121,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 5,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-dc",
                             "isOwned": true
@@ -133,11 +133,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 6,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-dc",
                             "isOwned": true
@@ -157,11 +157,11 @@
             "books":
             [
                 {
-                    "printing": 1,
                     "issueNumber": 1,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -169,11 +169,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 2,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -181,11 +181,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 4,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -193,11 +193,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 5,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -205,11 +205,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 8,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -217,11 +217,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 9,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -229,11 +229,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 10,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -241,11 +241,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 11,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -253,11 +253,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 12,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -265,11 +265,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 13,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -277,11 +277,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 14,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -289,11 +289,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 15,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -301,11 +301,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 16,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -313,11 +313,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 17,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -325,11 +325,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 18,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -337,11 +337,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 19,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -349,11 +349,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 21,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -361,11 +361,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 22,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -373,11 +373,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 24,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -385,11 +385,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 26,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
@@ -397,11 +397,11 @@
                     ]
                 },
                 {
-                    "printing": 1,
                     "issueNumber": 27,
                     "variants":
                     [
                         {
+                            "printing": 1,
                             "letter": "",
                             "coverImageID": "american-standard-ga",
                             "isOwned": true
