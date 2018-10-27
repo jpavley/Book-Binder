@@ -10,7 +10,7 @@ import XCTest
 
 class BookBinder_Tests: XCTestCase {
     
-    var comicbooks = [Comicbook]()
+    var comicbooks = [ComicbookSeries]()
     var selectedSeriesIndex = 0
     var selectedBookIndex = 0
     var seriesURIStrings = [String]()
@@ -81,7 +81,7 @@ class BookBinder_Tests: XCTestCase {
         }
         """
         
-        (comicbooks, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonString: jsonString)!
+        (comicbooks, selectedSeriesIndex, selectedBookIndex) = ComicbookSeries.createFrom(jsonString: jsonString)!
         seriesURIStrings.append("Marvel Entertainment/Daredevil/2017/1///") // 0
         seriesURIStrings.append("DC Comics/Batman/1950/0///")               // 1
 

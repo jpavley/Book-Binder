@@ -1,5 +1,5 @@
 //
-//  Comicbook.swift
+//  ComicbookSeries.swift
 //  Book Binder
 //
 //  Created by John Pavley on 10/4/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Comicbook {
+class ComicbookSeries {
     var series: Series
     var books: [BookBinderURI: Work]
     
@@ -41,7 +41,7 @@ class Comicbook {
 }
 // MARk: Comicbook Factories
 
-extension Comicbook {
+extension ComicbookSeries {
     
     /// Returns a series URI from a JsonModel
     static func createSeriesURIFrom(jsonSeries: JsonModel.JsonSeries) -> BookBinderURI? {
@@ -57,15 +57,15 @@ extension Comicbook {
     
     /// Returns an array of Comicbooks from a JsonModel
     /// - A JsonModel contains data for 0 to n Comicbooks
-    static func createFrom(jsonModel: JsonModel) -> ([Comicbook], Int, Int) {
+    static func createFrom(jsonModel: JsonModel) -> ([ComicbookSeries], Int, Int) {
         
-        var comicbooks = [Comicbook]()
+        var comicbooks = [ComicbookSeries]()
         
         for jsonSeries in jsonModel.series {
         
             if let seriesURI = createSeriesURIFrom(jsonSeries: jsonSeries) {
                 
-                let comicbook = Comicbook(seriesURI: seriesURI)
+                let comicbook = ComicbookSeries(seriesURI: seriesURI)
                 
                 comicbook.series.firstIssue = jsonSeries.seriesFirstIssue
                 comicbook.series.currentIssue = jsonSeries.seriesCurrentIssue
@@ -88,11 +88,11 @@ extension Comicbook {
     
     /// Returns an optional array of Comicbooks from data that encodes a JsonModel
     /// - Calls createFrom(jsonModel:)
-    static func createFrom(jsonData: Data) -> ([Comicbook], Int, Int)? {
+    static func createFrom(jsonData: Data) -> ([ComicbookSeries], Int, Int)? {
         do {
             let decoder = JSONDecoder()
             let jsonModel = try decoder.decode(JsonModel.self, from: jsonData)
-            return Comicbook.createFrom(jsonModel: jsonModel)
+            return ComicbookSeries.createFrom(jsonModel: jsonModel)
         } catch {
             // TODO: Probably malformed JSON data
             print(error)
@@ -102,7 +102,7 @@ extension Comicbook {
     
     /// Returns an optional array of Comicbooks from a string that expresses a JsonModel
     /// - Calls createFrom(jsonString:)
-    static func createFrom(jsonString: String) -> ([Comicbook], Int, Int)? {
+    static func createFrom(jsonString: String) -> ([ComicbookSeries], Int, Int)? {
         let jsonData = jsonString.data(using: .utf8)!
         return createFrom(jsonData: jsonData)
     }

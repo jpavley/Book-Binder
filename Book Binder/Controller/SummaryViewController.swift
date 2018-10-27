@@ -76,7 +76,7 @@ class SummaryViewController: UIViewController {
         // load from user defaults
         let defaults = UserDefaults.standard
         if let savedJsonModel = defaults.object(forKey: "savedJsonModel") as? Data {
-            if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonData: savedJsonModel) {
+            if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = ComicbookSeries.createFrom(jsonData: savedJsonModel) {
                 bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
                 return
             }
@@ -89,14 +89,14 @@ class SummaryViewController: UIViewController {
         }
         
         // No comic book data, create an empty book binder
-        bookBinder = BookBinder(comicbooks: [Comicbook(seriesURI: BookBinderURI(fromURIString: "")!)], selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        bookBinder = BookBinder(comicbooks: [ComicbookSeries(seriesURI: BookBinderURI(fromURIString: "")!)], selectedComicbookIndex: 0, selectedIssueIndex: 0)
     }
     
-    func loadComicbookDataFromJSON() -> ([Comicbook], Int, Int)? {
+    func loadComicbookDataFromJSON() -> ([ComicbookSeries], Int, Int)? {
         if let path = Bundle.main.path(forResource: "books", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                return Comicbook.createFrom(jsonData: data)
+                return ComicbookSeries.createFrom(jsonData: data)
             } catch {
                 // TODO: books.json probably not found
                 print(error)
@@ -268,7 +268,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 extension SummaryViewController {
     
-    func getComicbookFor(indexPath: IndexPath) -> Comicbook {
+    func getComicbookFor(indexPath: IndexPath) -> ComicbookSeries {
         return bookBinder.comicbooks[indexPath.section]
     }
     

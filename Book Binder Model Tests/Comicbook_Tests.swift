@@ -91,7 +91,7 @@ class Comicbook_Tests: XCTestCase {
         let testURIString = "\(series.seriesPublisher)/\(series.seriesTitle)/\(series.seriesEra)/\(series.seriesVolume)///"
         let testURI = BookBinderURI(fromURIString: testURIString)
         
-        let comicbook = Comicbook(seriesURI: testURI!)
+        let comicbook = ComicbookSeries(seriesURI: testURI!)
         comicbook.series.firstIssue = series.seriesFirstIssue
         comicbook.series.currentIssue = series.seriesCurrentIssue
         comicbook.series.skippedIssues = series.seriesSkippedIssues
@@ -115,7 +115,7 @@ class Comicbook_Tests: XCTestCase {
     
     func testCreateComicbookFromFactory() {
         
-        let (comicbook, selectedSeriesIndex, selectedBookIndex) = Comicbook.createFrom(jsonString: jsonString)!
+        let (comicbook, selectedSeriesIndex, selectedBookIndex) = ComicbookSeries.createFrom(jsonString: jsonString)!
         let testURIString = "Marvel Entertainment/Daredevil/2017/1///"
         let testURI = BookBinderURI(fromURIString: testURIString)
 
@@ -133,7 +133,7 @@ class Comicbook_Tests: XCTestCase {
     
     func testOwnedIssues() {
         
-        let (comicbook, _, _) = Comicbook.createFrom(jsonString: jsonString)!
+        let (comicbook, _, _) = ComicbookSeries.createFrom(jsonString: jsonString)!
         XCTAssertEqual(comicbook[0].ownedIssues(), ["605", "606"])
 
     }
@@ -143,7 +143,7 @@ class Comicbook_Tests: XCTestCase {
         let bookURI1 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/605/")
         let bookURI2 = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")
 
-        let (comicbooks, _, _) = Comicbook.createFrom(jsonString: jsonString)!
+        let (comicbooks, _, _) = ComicbookSeries.createFrom(jsonString: jsonString)!
         
         
         let comicbook = comicbooks[0]

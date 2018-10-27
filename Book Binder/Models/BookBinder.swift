@@ -9,7 +9,7 @@
 import Foundation
 
 class BookBinder {
-    var comicbooks: [Comicbook]
+    var comicbooks: [ComicbookSeries]
     var selectedComicbookIndex: Int
     var selectedIssueIndex: Int
     
@@ -41,7 +41,7 @@ class BookBinder {
         return JsonModel(series: jsonSeriesArray, selectedSeriesIndex: selectedComicbookIndex, selectedBookIndex: selectedIssueIndex)
     }
     
-    init(comicbooks: [Comicbook], selectedComicbookIndex: Int, selectedIssueIndex: Int) {
+    init(comicbooks: [ComicbookSeries], selectedComicbookIndex: Int, selectedIssueIndex: Int) {
         self.comicbooks = comicbooks
         self.selectedComicbookIndex = selectedComicbookIndex
         self.selectedIssueIndex = selectedIssueIndex
@@ -67,7 +67,7 @@ class BookBinder {
         selectedComicbook.books = books
     }
     
-    func getSelectedComicbook() -> Comicbook {
+    func getSelectedComicbook() -> ComicbookSeries {
         // TODO: nil and range checking
         return comicbooks[selectedComicbookIndex]
     }
