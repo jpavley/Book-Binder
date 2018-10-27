@@ -1,5 +1,5 @@
 //
-//  ComicBookVariant_Tests.swift
+//  WorkVariant_Tests.swift
 //  Book Binder Model Tests
 //
 //  Created by John Pavley on 10/27/18.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class ComicBookVariant_Tests: XCTestCase {
+class WorkVariant_Tests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,7 +19,7 @@ class ComicBookVariant_Tests: XCTestCase {
     }
     
     func testCreateComicBookVariant() {
-        let comicBookVariant = ComicBookVarient(letter: "a", coverImageID: "x-men-101")
+        let comicBookVariant = WorkVarient(letter: "a", coverImageID: "x-men-101")
         
         XCTAssertNotNil(comicBookVariant)
         XCTAssertEqual(comicBookVariant.letter, "a")
