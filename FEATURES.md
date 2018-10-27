@@ -156,8 +156,14 @@ Minimum about if info that needs to be serialized in JSON for a factory to creat
                 {
                     "printing": 1,
                     "issueNumber": 0,
-                    "variantLetter": "",
-                    "isOwned": true
+                    "variants":
+                    [
+                        {
+                            "letter": "",
+                            "coverImageID": "",
+                            "isOwned": true
+                        }
+                   ]
                 }
             ]
         }

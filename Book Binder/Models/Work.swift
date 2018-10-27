@@ -11,22 +11,18 @@ import Foundation
 /// MVP 1: Just enough to get the Summary View displayed
 class Work {
     
-    /// Used to tie this book to a series
+    /// Used to tie this work to a series
     var seriesURI: BookBinderURI
     
+    /// The printing number of this work
     var printing: Int
     
-    /// The number of this book
+    /// The number of this work
     var issueNumber: Int
     
-    /// The number of this issue's variant
-    var variantLetter: String
-    
-    /// Does the user own this issue?
-    var isOwned: Bool
-    
-    /// Is there are photo of this issue's cover?
-    var coverImageID: String
+    /// The variants associated with this work
+    /// Every work has a "default variant" with the empty string as it's variant letter
+    var variants: [WorkVarient]
     
     // Trackable properties
     
@@ -41,9 +37,7 @@ class Work {
         seriesURI = BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
         printing = 0
         issueNumber = 0
-        variantLetter = ""
-        isOwned = false
-        coverImageID = ""
+        variants = [WorkVarient]()
     }
     
     convenience init(seriesURI: BookBinderURI, printing: Int, issueNumber: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
@@ -51,21 +45,19 @@ class Work {
         self.seriesURI = seriesURI
         self.printing = printing
         self.issueNumber = issueNumber
-        self.variantLetter = variantLetter
-        self.isOwned = isOwned
-        self.coverImageID = coverImageID
+        let variant = WorkVarient(letter: variantLetter, coverImageID: coverImageID, isOwned: isOwned)
+        self.variants.append(variant)
     }
     
     /// initalization from a full URI
-    /// - Publisher/Series/Era/Issue/variant
+    /// - Publisher/Series/Era/Volume/Printing/Issue/Variant
     convenience init(fromURI: BookBinderURI, isOwned: Bool, coverImageID: String) {
         self.init()
         self.seriesURI = Series(uri: fromURI, firstIssue: 0, currentIssue: 0).uri
         self.printing = Int(fromURI.printingPart)!
         self.issueNumber = Int(fromURI.issuePart)!
-        self.variantLetter = fromURI.variantPart
-        self.isOwned = isOwned
-        self.coverImageID = coverImageID
+        let variant = WorkVarient(letter: fromURI.variantPart, coverImageID: coverImageID, isOwned: isOwned)
+        self.variants.append(variant)
     }
 }
 
@@ -91,21 +83,25 @@ extension Work {
 }
 
 extension Work: Trackable {
+    
+    /// Returns work URI with default variant
+    /// - Publisher/Series/Era/Volume/Printing/Issue/Variant
     var uri: BookBinderURI {
         get {
-            return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)/\(printing)/\(issueNumber)/\(variantLetter)")!
+            return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)/\(printing)/\(issueNumber)/\("")")!
         }
         set {
             self.seriesURI = newValue.seriesPart
             self.printing = Int(newValue.printingPart) ?? 0
             self.issueNumber = Int(newValue.issuePart) ?? 0
-            self.variantLetter = newValue.variantPart
+            let variant = WorkVarient(letter: newValue.variantPart, coverImageID: "", isOwned: false)
+            self.variants.append(variant)
         }
     }
     
     
     var description: String {
-        return "Work: uri \(uri.description), isOwned: \(isOwned), coverImageID: \(coverImageID) "
+        return "Work: uri \(uri.description), variants \(variants) "
     }
     
     var debugDescription: String {
