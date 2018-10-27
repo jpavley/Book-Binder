@@ -92,11 +92,11 @@ class BookBinder {
     func publisherCover(for publisher: String) -> String {
         switch publisher {
         case "Marvel Entertainment":
-            return "marvel-placeholder-1"
+            return "american-standard-marvel"
         case "DC Comics":
-            return "dc-placeholder-1"
+            return "american-standard-dc"
         default:
-            return "golden-age-placeholder-1"
+            return "american-standard-ga"
         }
     }
     

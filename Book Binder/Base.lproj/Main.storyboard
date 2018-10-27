@@ -149,7 +149,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" image="marvel-placeholder-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZQM-w5-72L">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" image="american-standard-dc" translatesAutoresizingMaskIntoConstraints="NO" id="ZQM-w5-72L">
                                         <rect key="frame" x="0.0" y="54.5" width="288" height="329"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Vol. 1, Printing 1" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rug-gg-fZM">
@@ -251,6 +251,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="marvel-placeholder-1" width="612" height="792"/>
+        <image name="american-standard-dc" width="478" height="738"/>
     </resources>
 </document>
