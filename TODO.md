@@ -36,6 +36,8 @@ part of a user's collection stored locally.
 - Add volume property to book model
 - Add issue type to book model (regular, annual, special)
 - Make skipped issues and extra issues lists
+- Implement comicbook variant as an object as a collection belonging to work. A variant has a letter and a
+cover image.
 
 ## In progress
 
