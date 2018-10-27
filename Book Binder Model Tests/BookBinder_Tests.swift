@@ -108,7 +108,7 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedSeriesIndex, selectedIssueIndex: selectedBookIndex)
         
         XCTAssertEqual(bookBinder.comicbooks.count, comicbooks.count)
-        XCTAssertEqual(bookBinder.comicbooks[0].series.publisher, comicbooks[0].series.publisher)
+        XCTAssertEqual(bookBinder.comicbooks[0].publisher, comicbooks[0].publisher)
         XCTAssertEqual(bookBinder.selectedIssueIndex, 0)
         XCTAssertEqual(bookBinder.selectedComicbookIndex, 0)
     }
@@ -117,7 +117,7 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
         let selectedComicbook = bookBinder.getSelectedComicbook()
         
-        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[0])
+        XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[0])
     }
     
     func testGetSelectedIssue() {
@@ -137,11 +137,11 @@ class BookBinder_Tests: XCTestCase {
         
         bookBinder.selectNextComicbook()
         let selectedComicbook = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
         
         bookBinder.selectNextComicbook()
         let selectedComicbook2 = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook2.series.uri.description, seriesURIStrings[0])
+        XCTAssertEqual(selectedComicbook2.uri.description, seriesURIStrings[0])
     }
     
     func testSelectPreviousComicbook() {
@@ -149,11 +149,11 @@ class BookBinder_Tests: XCTestCase {
         
         bookBinder.selectPreviousComicbook()
         let selectedComicbook = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
         
         bookBinder.selectPreviousComicbook()
         let selectedComicbook2 = bookBinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook2.series.uri.description, seriesURIStrings[0])
+        XCTAssertEqual(selectedComicbook2.uri.description, seriesURIStrings[0])
     }
     
     func testSelectNextIssue() {
@@ -165,7 +165,7 @@ class BookBinder_Tests: XCTestCase {
         
         bookbinder.selectNextComicbook()
         let selectedComicbook = bookbinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
 
         var selectedIssue3: Work
         
@@ -186,7 +186,7 @@ class BookBinder_Tests: XCTestCase {
         
         bookbinder.selectPreviousComicbook()
         let selectedComicbook = bookbinder.getSelectedComicbook()
-        XCTAssertEqual(selectedComicbook.series.uri.description, seriesURIStrings[1])
+        XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
         
         var selectedIssue3: Work
         bookbinder.selectedIssueIndex = 3
@@ -203,16 +203,16 @@ class BookBinder_Tests: XCTestCase {
         let bookbinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 1)
         let selectedComicbook = bookbinder.getSelectedComicbook()
         let testBook = Work(fromURI: BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!, isOwned: false, coverImageID: "x-men-101")
-        let bookToBeUpdated = selectedComicbook.books[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
+        let bookToBeUpdated = selectedComicbook.works[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
         
-        XCTAssertEqual(selectedComicbook.books.count, 2)
+        XCTAssertEqual(selectedComicbook.works.count, 2)
         XCTAssertEqual(bookToBeUpdated?.isOwned, true)
         XCTAssertEqual(bookToBeUpdated?.coverImageID, "")
         
         bookbinder.updateBooks(with: testBook)
         
-        let bookThatWasUpdated = selectedComicbook.books[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
-        XCTAssertEqual(selectedComicbook.books.count, 2)
+        let bookThatWasUpdated = selectedComicbook.works[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
+        XCTAssertEqual(selectedComicbook.works.count, 2)
         XCTAssertEqual(bookThatWasUpdated?.isOwned, false)
         XCTAssertEqual(bookThatWasUpdated?.coverImageID, "x-men-101")
     }

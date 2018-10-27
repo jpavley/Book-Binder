@@ -20,19 +20,19 @@ class BookBinder {
         
         for comicbook in comicbooks {
             
-            for (_, book) in comicbook.books {
+            for (_, book) in comicbook.works {
                 let jsonBook = JsonModel.JsonSeries.JsonBook(printing: book.printing, issueNumber: book.issueNumber, variantLetter: book.variantLetter, isOwned: book.isOwned, coverImageID: book.coverImageID)
                 jsonBookArray.append(jsonBook)
             }
             
             
-            let jsonSeries = JsonModel.JsonSeries(publisher: comicbook.series.publisher,
-                                                  title: comicbook.series.title,
-                                                  era: comicbook.series.era,
-                                                  volumeNumber: comicbook.series.volumeNumber,
-                                                  firstIssue: comicbook.series.firstIssue,
-                                                  currentIssue: comicbook.series.currentIssue,
-                                                  skippedIssues: comicbook.series.skippedIssues,
+            let jsonSeries = JsonModel.JsonSeries(publisher: comicbook.publisher,
+                                                  title: comicbook.title,
+                                                  era: comicbook.era,
+                                                  volumeNumber: comicbook.volumeNumber,
+                                                  firstIssue: comicbook.firstIssue,
+                                                  currentIssue: comicbook.currentIssue,
+                                                  skippedIssues: comicbook.skippedIssues,
                                                   books: jsonBookArray)
             jsonSeriesArray.append(jsonSeries)
 
@@ -51,9 +51,9 @@ class BookBinder {
     /// or adding a book if it doesn't exist
     func updateBooks(with modifiedBook: Work) {
         let selectedComicbook = getSelectedComicbook()
-        var books = selectedComicbook.books
+        var books = selectedComicbook.works
         
-        if selectedComicbook.series.uri.description != modifiedBook.seriesURI.description {
+        if selectedComicbook.uri.description != modifiedBook.seriesURI.description {
             assert(true, "BOOKBINDERAPP: you can't add or modify a book with a series URI different from the comicbook's series URI!")
             return
         }
@@ -64,7 +64,7 @@ class BookBinder {
             assert(true, "BOOKBINDERAPP: no old value for \(modifiedBook.debugDescription) was found so it was added as a new value")
         }
         
-        selectedComicbook.books = books
+        selectedComicbook.works = books
     }
     
     func getSelectedComicbook() -> ComicbookSeries {
@@ -74,9 +74,9 @@ class BookBinder {
     
     func getSelectedIssue() -> Work {
         let comicbook = getSelectedComicbook()
-        let issueNumber = comicbook.series.publishedIssues[selectedIssueIndex]
+        let issueNumber = comicbook.publishedIssues[selectedIssueIndex]
         
-        for (_, value) in comicbook.books {
+        for (_, value) in comicbook.works {
             if issueNumber == value.issueNumber {
                 // This ia a book the user owns or is tracking
                 return value
@@ -84,9 +84,9 @@ class BookBinder {
         }
         
         // This is a book the user doesn't own yet...
-        let publisherID = BookBinderURI.part(fromURIString: comicbook.series.uri.description, partID: .publisher)
+        let publisherID = BookBinderURI.part(fromURIString: comicbook.uri.description, partID: .publisher)
         let coverImageID = publisherCover(for: publisherID)
-        return Work(seriesURI: comicbook.series.uri, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: coverImageID)
+        return Work(seriesURI: comicbook.uri, printing: 0, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: coverImageID)
     }
     
     func publisherCover(for publisher: String) -> String {
@@ -123,7 +123,7 @@ class BookBinder {
     func selectNextIssue() {
         let currentComicbook = getSelectedComicbook()
         var nextIssueIndex = selectedIssueIndex + 1
-        if nextIssueIndex >= currentComicbook.series.publishedIssues.count {
+        if nextIssueIndex >= currentComicbook.publishedIssues.count {
             nextIssueIndex = 0
         }
         selectedIssueIndex = nextIssueIndex
@@ -134,7 +134,7 @@ class BookBinder {
         let currentComicbook = getSelectedComicbook()
         var previousIssueIndex = selectedIssueIndex - 1
         if previousIssueIndex < 0 {
-            previousIssueIndex = currentComicbook.series.publishedIssues.count - 1
+            previousIssueIndex = currentComicbook.publishedIssues.count - 1
         }
         selectedIssueIndex = previousIssueIndex
         

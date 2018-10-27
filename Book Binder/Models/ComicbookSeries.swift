@@ -8,18 +8,15 @@
 
 import Foundation
 
-class ComicbookSeries {
-    var series: Series
-    var books: [BookBinderURI: Work]
+class ComicbookSeries: Series {
     
-    init(seriesURI: BookBinderURI) {
-        series = Series(uri: seriesURI, firstIssue: 0, currentIssue: 0)
-        books = [BookBinderURI: Work]()
+    convenience init(seriesURI: BookBinderURI) {
+        self.init(uri: seriesURI, firstIssue: 0, currentIssue: 0)
     }
     
     /// Returns a list of owned issue numbers as a string
     func ownedIssues() -> [String] {
-        let foundIssues = books.map { $0.value.isOwned ? "\($0.value.issueNumber)" : "" }
+        let foundIssues = works.map { $0.value.isOwned ? "\($0.value.issueNumber)" : "" }
         return foundIssues.sorted()
     }
     
@@ -30,7 +27,7 @@ class ComicbookSeries {
         
         var result = [Work]()
         
-        for (_, value) in books {
+        for (_, value) in works {
             if value.issueNumber == issueNumber {
                 result.append(value)
             }
@@ -59,31 +56,31 @@ extension ComicbookSeries {
     /// - A JsonModel contains data for 0 to n Comicbooks
     static func createFrom(jsonModel: JsonModel) -> ([ComicbookSeries], Int, Int) {
         
-        var comicbooks = [ComicbookSeries]()
+        var comicbookSeriesList = [ComicbookSeries]()
         
         for jsonSeries in jsonModel.series {
         
             if let seriesURI = createSeriesURIFrom(jsonSeries: jsonSeries) {
                 
-                let comicbook = ComicbookSeries(seriesURI: seriesURI)
+                let comicbookSeries = ComicbookSeries(seriesURI: seriesURI)
                 
-                comicbook.series.firstIssue = jsonSeries.seriesFirstIssue
-                comicbook.series.currentIssue = jsonSeries.seriesCurrentIssue
-                comicbook.series.skippedIssues = jsonSeries.seriesSkippedIssues
+                comicbookSeries.firstIssue = jsonSeries.seriesFirstIssue
+                comicbookSeries.currentIssue = jsonSeries.seriesCurrentIssue
+                comicbookSeries.skippedIssues = jsonSeries.seriesSkippedIssues
                 
                 for jsonBook in jsonSeries.books {
-                    let book = Work(seriesURI: comicbook.series.uri, printing: jsonBook.printing,issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
-                    comicbook.books[book.uri] = book
+                    let book = Work(seriesURI: comicbookSeries.uri, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+                    comicbookSeries.works[book.uri] = book
                 }
                 
-                comicbooks.append(comicbook)
+                comicbookSeriesList.append(comicbookSeries)
             }
         }
         
         let selectedSeriesIndex = jsonModel.selectedSeriesIndex
         let selectedBookIndex = jsonModel.selectedBookIndex
 
-        return (comicbooks, selectedSeriesIndex, selectedBookIndex)
+        return (comicbookSeriesList, selectedSeriesIndex, selectedBookIndex)
     }
     
     /// Returns an optional array of Comicbooks from data that encodes a JsonModel

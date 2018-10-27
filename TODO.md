@@ -38,7 +38,6 @@ part of a user's collection stored locally.
 - Make skipped issues and extra issues lists
 
 ## In progress
-- Update classes to match architecture
 
 
 ## Closed
@@ -62,6 +61,7 @@ the book URI as the key!
 - Create a placeholder comic book cover for each of the major publishers plus an indy cover.
 - Implement saving and loading the current book binder
 - write missing unit tests!
+- Update classes to match architecture
 
 
 

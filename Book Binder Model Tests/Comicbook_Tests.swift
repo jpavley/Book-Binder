@@ -92,22 +92,22 @@ class Comicbook_Tests: XCTestCase {
         let testURI = BookBinderURI(fromURIString: testURIString)
         
         let comicbook = ComicbookSeries(seriesURI: testURI!)
-        comicbook.series.firstIssue = series.seriesFirstIssue
-        comicbook.series.currentIssue = series.seriesCurrentIssue
-        comicbook.series.skippedIssues = series.seriesSkippedIssues
+        comicbook.firstIssue = series.seriesFirstIssue
+        comicbook.currentIssue = series.seriesCurrentIssue
+        comicbook.skippedIssues = series.seriesSkippedIssues
         
         XCTAssertNotNil(comicbook)
         
         for jsonBook in series.books {
             let book = Work(seriesURI: testURI!, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
             XCTAssertNotNil(book)
-            comicbook.books[book.uri] = book
+            comicbook.works[book.uri] = book
         }
         
-        XCTAssertEqual(comicbook.books.count, series.books.count)
-        XCTAssertEqual(comicbook.series.publishedIssueCount, 14)
+        XCTAssertEqual(comicbook.works.count, series.books.count)
+        XCTAssertEqual(comicbook.publishedIssueCount, 14)
         
-        for (_,value) in comicbook.books {
+        for (_,value) in comicbook.works {
             XCTAssertEqual(value.seriesURI.description, testURI!.description)
         }
         
@@ -120,13 +120,13 @@ class Comicbook_Tests: XCTestCase {
         let testURI = BookBinderURI(fromURIString: testURIString)
 
         XCTAssertNotNil(comicbook)
-        XCTAssertEqual(comicbook[0].books.count, 2)
-        XCTAssertEqual(comicbook[0].series.publishedIssueCount, 14)
+        XCTAssertEqual(comicbook[0].works.count, 2)
+        XCTAssertEqual(comicbook[0].publishedIssueCount, 14)
         
         XCTAssertEqual(selectedSeriesIndex, 1)
         XCTAssertEqual(selectedBookIndex, 1)
         
-        for (_,value) in comicbook[0].books {
+        for (_,value) in comicbook[0].works {
             XCTAssertEqual(value.seriesURI.description, testURI!.description)
         }
     }
@@ -148,12 +148,12 @@ class Comicbook_Tests: XCTestCase {
         
         let comicbook = comicbooks[0]
         
-        for (k,v) in comicbook.books {
+        for (k,v) in comicbook.works {
             XCTAssertEqual("\(k.description)", "\(v.uri.description)")
         }
         
-        let testBook1 = comicbook.books[bookURI1!]
-        let testBook2 = comicbook.books[bookURI2!]
+        let testBook1 = comicbook.works[bookURI1!]
+        let testBook2 = comicbook.works[bookURI2!]
         
         let testBook3 = comicbook.getBookBy(issueNumber: 605).first!
         let testBook4 = comicbook.getBookBy(issueNumber: 606).first!

@@ -273,7 +273,7 @@ extension SummaryViewController {
     }
     
     func getSeriesFor(indexPath: IndexPath) -> Series {
-        return getComicbookFor(indexPath: indexPath).series
+        return getComicbookFor(indexPath: indexPath)
     }
     
     func getPublishedIssueFor(indexPath: IndexPath) -> Int {
@@ -286,7 +286,7 @@ extension SummaryViewController {
         let comicbook = getComicbookFor(indexPath: indexPath)
         let issueNumber = getPublishedIssueFor(indexPath: indexPath)
         
-        for (_, value) in comicbook.books {
+        for (_, value) in comicbook.works {
             if issueNumber == value.issueNumber {
                 // This ia a book the user owns or is tracking
                 return value
@@ -294,7 +294,7 @@ extension SummaryViewController {
         }
         
         // This is a book the user doesn't own yet...
-        return Work(seriesURI: comicbook.series.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
+        return Work(seriesURI: comicbook.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
         // DUPE: 100 end
     }
 }
