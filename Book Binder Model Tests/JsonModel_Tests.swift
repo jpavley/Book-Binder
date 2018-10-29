@@ -30,18 +30,28 @@ class JsonModel_Tests: XCTestCase {
                     "books":
                     [
                         {
-                            "printing": 1,
                             "issueNumber": 605,
-                            "variantLetter": "",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         },
                         {
-                            "printing": 1,
                             "issueNumber": 606,
-                            "variantLetter": "c",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "c",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         }
                     ]
                 },
@@ -56,18 +66,28 @@ class JsonModel_Tests: XCTestCase {
                     "books":
                     [
                         {
-                            "printing": 1,
                             "issueNumber": 7,
-                            "variantLetter": "",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         },
                         {
-                            "printing": 1,
                             "issueNumber": 8,
-                            "variantLetter": "c",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "c",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         }
                     ]
                 }
@@ -102,9 +122,11 @@ class JsonModel_Tests: XCTestCase {
         
         XCTAssertNotNil(book)
         XCTAssertEqual(book.issueNumber, 605)
-        XCTAssertEqual(book.variantLetter, "")
-        XCTAssertEqual(book.isOwned, true)
-    }
+        XCTAssertEqual(book.variants.first!.letter, "")
+        XCTAssertEqual(book.variants.first!.isOwned, true)
+        XCTAssertEqual(book.variants.first!.printing, 1)
+        XCTAssertEqual(book.variants.first!.coverImageID, "")
+   }
     
     func testCreateSeriesArray() {
         
@@ -119,20 +141,28 @@ class JsonModel_Tests: XCTestCase {
     }
     
     func testInitFromProperties() {
-        let jsonBook1 = JsonModel.JsonSeries.JsonBook(printing: 1, issueNumber: 2, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
-        let jsonBook2 = JsonModel.JsonSeries.JsonBook(printing: 1, issueNumber: 3, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonWorkVariant1 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
+        let jsonBook1 = JsonModel.JsonSeries.JsonBook(issueNumber: 2, variants: [jsonWorkVariant1])
+        
+        let jsonWorkVariant2 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonBook2 = JsonModel.JsonSeries.JsonBook(issueNumber: 3, variants: [jsonWorkVariant2])
+
         let jsonSeries = JsonModel.JsonSeries(publisher: "Image", title: "The Amory Wars", era: 2008, volumeNumber: 1, firstIssue: 1, currentIssue: 5, skippedIssues: [Int](), books: [jsonBook1, jsonBook2])
         
         XCTAssertNotNil(jsonSeries)
         XCTAssertEqual(jsonSeries.books.count, 2)
         
         let testBook = jsonSeries.books[0]
-        XCTAssertEqual(testBook.coverImageID, "the-amory-wars-v2-i2")
+        XCTAssertEqual(testBook.variants.first!.coverImageID, "the-amory-wars-v2-i2")
     }
     
     func testInitFromSeriesArray() {
-        let jsonBook1 = JsonModel.JsonSeries.JsonBook(printing: 1, issueNumber: 2, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
-        let jsonBook2 = JsonModel.JsonSeries.JsonBook(printing: 1, issueNumber: 3, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonWorkVariant1 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
+        let jsonBook1 = JsonModel.JsonSeries.JsonBook(issueNumber: 2, variants: [jsonWorkVariant1])
+        
+        let jsonWorkVariant2 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonBook2 = JsonModel.JsonSeries.JsonBook(issueNumber: 3, variants: [jsonWorkVariant2])
+        
         let jsonSeries = JsonModel.JsonSeries(publisher: "Image", title: "The Amory Wars", era: 2008, volumeNumber: 1, firstIssue: 1, currentIssue: 5, skippedIssues: [Int](), books: [jsonBook1, jsonBook2])
         
         let jsonModel = JsonModel(series: [jsonSeries], selectedSeriesIndex: 0, selectedBookIndex: 0)

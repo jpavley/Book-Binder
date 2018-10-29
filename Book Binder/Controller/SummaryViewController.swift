@@ -89,7 +89,44 @@ class SummaryViewController: UIViewController {
         }
         
         // No comic book data, create an empty book binder
-        bookBinder = BookBinder(comicbooks: [ComicbookSeries(seriesURI: BookBinderURI(fromURIString: "")!)], selectedComicbookIndex: 0, selectedIssueIndex: 0)
+        let emptyComicBookSeriesJsonString = """
+        {
+            "series":
+            [
+                {
+                    "seriesPublisher": "",
+                    "seriesTitle": "",
+                    "seriesEra": 0,
+                    "seriesVolume": 1,
+                    "seriesFirstIssue": 0,
+                    "seriesCurrentIssue": 0,
+                    "seriesSkippedIssues":0,
+                    "seriesExtraIssues": [],
+                    "books":
+                    [
+                        {
+                            "issueNumber": 0,
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "coverImageID": "",
+                                    "isOwned": true
+                                }
+                           ]
+                        }
+                    ]
+                }
+            ],
+            "selectedSeriesIndex": 0,
+            "selectedBookIndex": 0
+        }
+
+        """
+        if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = ComicbookSeries.createFrom(jsonString: emptyComicBookSeriesJsonString) {
+            bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
+        }
     }
     
     func loadComicbookDataFromJSON() -> ([ComicbookSeries], Int, Int)? {
@@ -281,21 +318,22 @@ extension SummaryViewController {
         return series.publishedIssues[indexPath.row]
     }
     
-    func getBookModelFor(indexPath: IndexPath) -> Work {
-        // DUPE: 100 start
-        let comicbook = getComicbookFor(indexPath: indexPath)
-        let issueNumber = getPublishedIssueFor(indexPath: indexPath)
-        
-        for (_, value) in comicbook.works {
-            if issueNumber == value.issueNumber {
-                // This ia a book the user owns or is tracking
-                return value
-            }
-        }
-        
-        // This is a book the user doesn't own yet...
-        return Work(seriesURI: comicbook.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
-        // DUPE: 100 end
-    }
+    // TODO: Delete
+//    func getBookModelFor(indexPath: IndexPath) -> Work {
+//        // DUPE: 100 start
+//        let comicbook = getComicbookFor(indexPath: indexPath)
+//        let issueNumber = getPublishedIssueFor(indexPath: indexPath)
+//
+//        for (_, value) in comicbook.works {
+//            if issueNumber == value.issueNumber {
+//                // This ia a book the user owns or is tracking
+//                return value
+//            }
+//        }
+//
+//        // This is a book the user doesn't own yet...
+//        return Work(seriesURI: comicbook.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
+//        // DUPE: 100 end
+//    }
 }
 

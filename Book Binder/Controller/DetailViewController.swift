@@ -24,9 +24,13 @@ class DetailViewController: UIViewController {
     @IBAction func isOwnedAction(_ sender: Any) {
         
         let selectedBook = bookBinder.getSelectedIssue()
-        selectedBook.isOwned = isOwnedSwitch.isOn
-        
-        bookBinder.updateBooks(with: selectedBook)
+        let selectedVariant = selectedBook.defaultVariant
+        let modifiedVariant = WorkVarient(printing: selectedVariant.printing,
+                                          letter: selectedVariant.letter,
+                                          coverImageID: selectedVariant.coverImageID,
+                                          isOwned: isOwnedSwitch.isOn)
+                
+        bookBinder.updateBooks(with: selectedBook, and: modifiedVariant)
         
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(bookBinder.jsonModel) {
@@ -102,33 +106,34 @@ class DetailViewController: UIViewController {
     func updateUX() {
         
         let selectedBook = bookBinder.getSelectedIssue()
+        let selectedVariant = selectedBook.defaultVariant
         
         titleLabel.text = "\(selectedBook.bookTitle)"
         publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
         issueNumberLabel.text = "#\(selectedBook.issueNumber)"
-        variantLetterLabel.text = "\(selectedBook.variantLetter)"
+        variantLetterLabel.text = "\(selectedVariant.letter)"
         
-        let volume = calcVolume(volume: Int(selectedBook.bookVolume)!)
-        let printing = calcPrinting(printing: selectedBook.printing)
+        let volume = calcVolumeText(volume: Int(selectedBook.bookVolume)!)
+        let printing = calcPrintingText(printing: selectedVariant.printing)
         let conjunction = (volume == "") || (printing == "") ? "" : ", "
         
         VolumePrintingLabel.text = "\(volume)\(conjunction)\(printing)"
         
         coverImageView.alpha = 0
-        coverImageView.image = UIImage(named: "\(selectedBook.coverImageID)")
+        coverImageView.image = UIImage(named: "\(selectedVariant.coverImageID)")
         UIView.animate(withDuration: 1.0, animations: {
             self.coverImageView.alpha = 1.0
         }, completion: nil)
         
-        isOwnedSwitch.setOn(selectedBook.isOwned, animated: true)
+        isOwnedSwitch.setOn(selectedVariant.isOwned, animated: true)
         navigationController?.isToolbarHidden = false
     }
     
-    func calcVolume(volume: Int) -> String {
+    func calcVolumeText(volume: Int) -> String {
         return "Vol. \(volume)"
     }
     
-    func calcPrinting(printing: Int) -> String {
+    func calcPrintingText(printing: Int) -> String {
         return "Printing \(printing)"
     }
 }

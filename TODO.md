@@ -35,7 +35,9 @@ part of a user's collection stored locally.
 - Implement add series action in summary view.
 - Add volume property to book model
 - Add issue type to book model (regular, annual, special)
-- Make skipped issues and extra issues lists
+- Do not return SkippedIssues.
+- Remove unowned issues from the list of works
+
 
 ## In progress
 - Implement comicbook variant as an object as a collection belonging to work. A variant has a letter and a
@@ -63,6 +65,8 @@ the book URI as the key!
 - Implement saving and loading the current book binder
 - write missing unit tests!
 - Update classes to match architecture
+- Make skipped issues and extra issues lists
+
 
 
 

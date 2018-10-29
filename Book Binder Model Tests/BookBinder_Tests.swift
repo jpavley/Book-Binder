@@ -30,22 +30,32 @@ class BookBinder_Tests: XCTestCase {
                     "seriesVolume": 1,
                     "seriesFirstIssue": 595,
                     "seriesCurrentIssue": 608,
-                    "seriesSkippedIssues": [],
+                    "seriesSkippedIssues": [1],
                     "books":
                     [
                         {
-                            "printing": 1,
                             "issueNumber": 605,
-                            "variantLetter": "",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         },
-                         {
-                            "printing": 1,
+                        {
                             "issueNumber": 606,
-                            "variantLetter": "c",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "c",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         }
                     ]
                 },
@@ -53,25 +63,35 @@ class BookBinder_Tests: XCTestCase {
                     "seriesPublisher": "DC Comics",
                     "seriesTitle": "Batman",
                     "seriesEra": 1950,
-                    "seriesVolume": 0,
+                    "seriesVolume": 1,
                     "seriesFirstIssue": 5,
                     "seriesCurrentIssue": 8,
                     "seriesSkippedIssues": [],
                     "books":
                     [
                         {
-                            "printing": 0,
                             "issueNumber": 7,
-                            "variantLetter": "",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         },
-                         {
-                            "printing": 0,
+                        {
                             "issueNumber": 8,
-                            "variantLetter": "c",
-                            "isOwned": true,
-                            "coverImageID": ""
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "c",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
                         }
                     ]
                 }
@@ -115,7 +135,7 @@ class BookBinder_Tests: XCTestCase {
     
     func testGetSelectedComicbook() {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
-        let selectedComicbook = bookBinder.getSelectedComicbook()
+        let selectedComicbook = bookBinder.getSelectedComicbookSeries()
         
         XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[0])
     }
@@ -136,11 +156,11 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
         
         bookBinder.selectNextComicbook()
-        let selectedComicbook = bookBinder.getSelectedComicbook()
+        let selectedComicbook = bookBinder.getSelectedComicbookSeries()
         XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
         
         bookBinder.selectNextComicbook()
-        let selectedComicbook2 = bookBinder.getSelectedComicbook()
+        let selectedComicbook2 = bookBinder.getSelectedComicbookSeries()
         XCTAssertEqual(selectedComicbook2.uri.description, seriesURIStrings[0])
     }
     
@@ -148,11 +168,11 @@ class BookBinder_Tests: XCTestCase {
         let bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 0)
         
         bookBinder.selectPreviousComicbook()
-        let selectedComicbook = bookBinder.getSelectedComicbook()
+        let selectedComicbook = bookBinder.getSelectedComicbookSeries()
         XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
         
         bookBinder.selectPreviousComicbook()
-        let selectedComicbook2 = bookBinder.getSelectedComicbook()
+        let selectedComicbook2 = bookBinder.getSelectedComicbookSeries()
         XCTAssertEqual(selectedComicbook2.uri.description, seriesURIStrings[0])
     }
     
@@ -164,7 +184,7 @@ class BookBinder_Tests: XCTestCase {
         XCTAssertEqual(selectedIssue.uri.description, bookURIStrings[2])
         
         bookbinder.selectNextComicbook()
-        let selectedComicbook = bookbinder.getSelectedComicbook()
+        let selectedComicbook = bookbinder.getSelectedComicbookSeries()
         XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
 
         var selectedIssue3: Work
@@ -185,7 +205,7 @@ class BookBinder_Tests: XCTestCase {
         XCTAssertEqual(selectedIssue.uri.description, bookURIStrings[0])
         
         bookbinder.selectPreviousComicbook()
-        let selectedComicbook = bookbinder.getSelectedComicbook()
+        let selectedComicbook = bookbinder.getSelectedComicbookSeries()
         XCTAssertEqual(selectedComicbook.uri.description, seriesURIStrings[1])
         
         var selectedIssue3: Work
@@ -201,20 +221,23 @@ class BookBinder_Tests: XCTestCase {
     
     func testUpdateBook() {
         let bookbinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: 0, selectedIssueIndex: 1)
-        let selectedComicbook = bookbinder.getSelectedComicbook()
-        let testBook = Work(fromURI: BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!, isOwned: false, coverImageID: "x-men-101")
+        let selectedComicbook = bookbinder.getSelectedComicbookSeries()
         let bookToBeUpdated = selectedComicbook.works[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
-        
+
         XCTAssertEqual(selectedComicbook.works.count, 2)
-        XCTAssertEqual(bookToBeUpdated?.isOwned, true)
-        XCTAssertEqual(bookToBeUpdated?.coverImageID, "")
+        XCTAssertEqual(bookToBeUpdated?.variants[0].isOwned, true)
+        XCTAssertEqual(bookToBeUpdated?.variants[0].coverImageID, "")
         
-        bookbinder.updateBooks(with: testBook)
+        let testURI = BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!
+        let testBook = Work(fromURI: testURI, isOwned: false, coverImageID: "x-men-101")
+        let testVariant = WorkVarient(printing: Int(testURI.printingPart) ?? 0, letter: testURI.variantPart, coverImageID: "x-men-101", isOwned: false)
+        
+        bookbinder.updateBooks(with: testBook, and: testVariant)
         
         let bookThatWasUpdated = selectedComicbook.works[BookBinderURI(fromURIString: "Marvel Entertainment/Daredevil/2017/1/1/606/c")!]
         XCTAssertEqual(selectedComicbook.works.count, 2)
-        XCTAssertEqual(bookThatWasUpdated?.isOwned, false)
-        XCTAssertEqual(bookThatWasUpdated?.coverImageID, "x-men-101")
+        XCTAssertEqual(bookThatWasUpdated?.variants[0].isOwned, false)
+        XCTAssertEqual(bookThatWasUpdated?.variants[0].coverImageID, "x-men-101")
     }
     
     func testJsonModelComputedVar() {

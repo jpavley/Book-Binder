@@ -15,65 +15,85 @@ class Comicbook_Tests: XCTestCase {
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         jsonString = """
-            {
-                "series":
-                [
-                    {
-                        "seriesPublisher": "Marvel Entertainment",
-                        "seriesTitle": "Daredevil",
-                        "seriesEra": 2017,
-                        "seriesVolume": 1,
-                        "seriesFirstIssue": 595,
-                        "seriesCurrentIssue": 608,
-                        "seriesSkippedIssues": [],
-                        "books":
-                        [
-                            {
-                                "printing": 1,
-                                "issueNumber": 605,
-                                "variantLetter": "",
-                                "isOwned": true,
-                                "coverImageID": ""
-                            },
-                            {
-                                "printing": 1,
-                                "issueNumber": 606,
-                                "variantLetter": "c",
-                                "isOwned": true,
-                                "coverImageID": ""
-                            }
-                        ]
-                    },
-                    {
-                        "seriesPublisher": "DC Comics",
-                        "seriesTitle": "Batman",
-                        "seriesEra": 1950,
-                        "seriesVolume": 1,
-                        "seriesFirstIssue": 5,
-                        "seriesCurrentIssue": 8,
-                        "seriesSkippedIssues": [],
-                        "books":
-                        [
-                            {
-                                "printing": 1,
-                                "issueNumber": 7,
-                                "variantLetter": "",
-                                "isOwned": true,
-                                "coverImageID": ""
-                            },
-                            {
-                                "printing": 1,
-                                "issueNumber": 8,
-                                "variantLetter": "c",
-                                "isOwned": true,
-                                "coverImageID": ""
-                            }
-                        ]
-                    }
-                ],
-                "selectedSeriesIndex": 1,
-                "selectedBookIndex": 1
-            }
+        {
+            "series":
+            [
+                {
+                    "seriesPublisher": "Marvel Entertainment",
+                    "seriesTitle": "Daredevil",
+                    "seriesEra": 2017,
+                    "seriesVolume": 1,
+                    "seriesFirstIssue": 595,
+                    "seriesCurrentIssue": 608,
+                    "seriesSkippedIssues": [1],
+                    "books":
+                    [
+                        {
+                            "issueNumber": 605,
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
+                        },
+                        {
+                            "issueNumber": 606,
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "c",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "seriesPublisher": "DC Comics",
+                    "seriesTitle": "Batman",
+                    "seriesEra": 1950,
+                    "seriesVolume": 1,
+                    "seriesFirstIssue": 5,
+                    "seriesCurrentIssue": 8,
+                    "seriesSkippedIssues": [],
+                    "books":
+                    [
+                        {
+                            "issueNumber": 7,
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
+                        },
+                        {
+                            "issueNumber": 8,
+                            "variants":
+                            [
+                                {
+                                    "printing": 1,
+                                    "letter": "c",
+                                    "isOwned": true,
+                                    "coverImageID": ""
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "selectedSeriesIndex": 0,
+            "selectedBookIndex": 0
+        }
         """
     }
 
@@ -98,8 +118,16 @@ class Comicbook_Tests: XCTestCase {
         
         XCTAssertNotNil(comicbook)
         
+        var workVariantList = [WorkVarient]()
         for jsonBook in series.books {
-            let book = Work(seriesURI: testURI!, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+            
+            for variant in jsonBook.variants {
+                let workVariant = WorkVarient(printing: variant.printing, letter: variant.letter, coverImageID: variant.coverImageID, isOwned: variant.isOwned)
+                XCTAssertNil(workVariant)
+                workVariantList.append(workVariant)
+            }
+            
+            let book = Work(seriesURI: testURI!, issueNumber: jsonBook.issueNumber, variants: workVariantList)
             XCTAssertNotNil(book)
             comicbook.works[book.uri] = book
         }

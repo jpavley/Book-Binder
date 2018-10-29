@@ -9,11 +9,13 @@
 import Foundation
 
 class WorkVarient {
+    var printing: Int
     var letter: String
     var coverImageID: String
     var isOwned: Bool
     
-    init(letter: String, coverImageID: String, isOwned: Bool) {
+    init(printing: Int, letter: String, coverImageID: String, isOwned: Bool) {
+        self.printing = printing
         self.letter = letter
         self.coverImageID = coverImageID
         self.isOwned = isOwned

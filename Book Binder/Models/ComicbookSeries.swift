@@ -14,10 +14,12 @@ class ComicbookSeries: Series {
         self.init(uri: seriesURI, firstIssue: 0, currentIssue: 0)
     }
     
-    /// Returns a list of owned issue numbers as a string
+    /// Returns a list of owned issue numbers as a string.
+    /// For each issue find out if any of the varients are owned.
     func ownedIssues() -> [String] {
-        let foundIssues = works.map { $0.value.isOwned ? "\($0.value.issueNumber)" : "" }
-        return foundIssues.sorted()
+        let foundIssues = works.map { $0.value.anyOwned }
+        let flatFoundIssues = foundIssues.joined()
+        return flatFoundIssues.sorted()
     }
     
     /// Returns a list of books that match the issue number.
@@ -52,11 +54,12 @@ extension ComicbookSeries {
 
     }
     
-    /// Returns an array of Comicbooks from a JsonModel
-    /// - A JsonModel contains data for 0 to n Comicbooks
+    /// Returns an array of Comicbooks from a JsonModel.
+    /// - A JsonModel contains data for 0 to n Comicbooks.
     static func createFrom(jsonModel: JsonModel) -> ([ComicbookSeries], Int, Int) {
         
         var comicbookSeriesList = [ComicbookSeries]()
+        var issueVariantList = [WorkVarient]()
         
         for jsonSeries in jsonModel.series {
         
@@ -69,7 +72,13 @@ extension ComicbookSeries {
                 comicbookSeries.skippedIssues = jsonSeries.seriesSkippedIssues
                 
                 for jsonBook in jsonSeries.books {
-                    let book = Work(seriesURI: comicbookSeries.uri, printing: jsonBook.printing, issueNumber: jsonBook.issueNumber, variantLetter: jsonBook.variantLetter, isOwned: jsonBook.isOwned, coverImageID: jsonBook.coverImageID)
+                    
+                    for jsonVariant in jsonBook.variants {
+                        let variant = WorkVarient(printing: jsonVariant.printing, letter: jsonVariant.letter, coverImageID: jsonVariant.coverImageID, isOwned: jsonVariant.isOwned)
+                        issueVariantList.append(variant)
+                    }
+                    
+                    let book = Work(seriesURI: comicbookSeries.uri, issueNumber: jsonBook.issueNumber, variants: issueVariantList)
                     comicbookSeries.works[book.uri] = book
                 }
                 

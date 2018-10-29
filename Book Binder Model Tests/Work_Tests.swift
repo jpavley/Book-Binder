@@ -21,45 +21,46 @@ class Work_Tests: XCTestCase {
     func testCreateBookModelFromProperies() {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = Work(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
+        let workVariant = WorkVarient(printing: 1, letter: "a", coverImageID: "x-men-101", isOwned: true)
+        let work = Work(seriesURI: seriesURI!, issueNumber: 1, variants: [workVariant])
         
-        XCTAssertEqual(bookModel.seriesURI.description, testString1)
-        XCTAssertEqual(bookModel.issueNumber, 1)
-        XCTAssertEqual(bookModel.variantLetter, "a")
-        XCTAssertEqual(bookModel.isOwned, true)
-        XCTAssertEqual(bookModel.coverImageID, "x-men-101")
+        XCTAssertEqual(work.seriesURI.description, testString1)
+        XCTAssertEqual(work.issueNumber, 1)
+        XCTAssertEqual(work.variants.count, 1)
+        XCTAssertEqual(work.defaultVariant.letter, work.variants[0].letter)
+        XCTAssertEqual(work.defaultVariant.letter, "a")
+        XCTAssertEqual(work.defaultVariant.isOwned, true)
+        XCTAssertEqual(work.defaultVariant.coverImageID, "x-men-101")
 
     }
     
     func testCreateBookModelFromURI() {
         let testString1 = "Marvel Entertainment/DoctorStrange/2018/1/1/1/v"
         let bookURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = Work(fromURI: bookURI!, isOwned: true, coverImageID: "x-men-101")
+        let work = Work(fromURI: bookURI!, isOwned: true, coverImageID: "x-men-101")
         
-        XCTAssertEqual(bookModel.uri.description, testString1)
-        XCTAssertEqual(bookModel.issueNumber, 1)
-        XCTAssertEqual(bookModel.variantLetter, "v")
-        XCTAssertEqual(bookModel.isOwned, true)
+        XCTAssertEqual(work.uri.description, testString1)
+        XCTAssertEqual(work.issueNumber, 1)
+        XCTAssertEqual(work.variants.count, 1)
+        XCTAssertEqual(work.defaultVariant.letter, work.variants[0].letter)
+        XCTAssertEqual(work.defaultVariant.letter, "v")
+        XCTAssertEqual(work.defaultVariant.printing, 1)
+        XCTAssertEqual(work.defaultVariant.isOwned, true)
+        XCTAssertEqual(work.defaultVariant.coverImageID, "x-men-101")
     }
     
     func testComputedProperties() {
         let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
         let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = Work(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: true, coverImageID: "x-men-101")
+        let workVariant = WorkVarient(printing: 1, letter: "a", coverImageID: "x-men-101", isOwned: true)
+        let work = Work(seriesURI: seriesURI!, issueNumber: 1, variants: [workVariant])
         let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/1/1/a"
         
-        XCTAssertEqual(bookModel.uri.description, testString2)
-        XCTAssertEqual(bookModel.bookPublisher, "Marvel Entertainment")
-        XCTAssertEqual(bookModel.bookTitle, "Doctor Strange")
-        XCTAssertEqual(bookModel.bookEra, "2018")
-    }
-    
-    func testBookURIUnowned() {
-        let testString1 = "Marvel Entertainment/Doctor Strange/2018/1///"
-        let seriesURI = BookBinderURI(fromURIString: testString1)
-        let bookModel = Work(seriesURI: seriesURI!, printing: 1, issueNumber: 1, variantLetter: "a", isOwned: false, coverImageID: "x-men-101")
-        let testString2 = "Marvel Entertainment/Doctor Strange/2018/1/1/1/a"
-
-        XCTAssertEqual(bookModel.uri.description, testString2)
+        XCTAssertEqual(work.uri.description, testString2)
+        XCTAssertEqual(work.bookPublisher, "Marvel Entertainment")
+        XCTAssertEqual(work.bookTitle, "Doctor Strange")
+        XCTAssertEqual(work.bookEra, "2018")
+        XCTAssertEqual(work.anyOwned.count, 1)
+        XCTAssertEqual(work.defaultVariant.letter, "a")
     }
 }

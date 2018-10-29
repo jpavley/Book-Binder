@@ -21,18 +21,26 @@ struct JsonModel: Codable {
         let books: [JsonBook]
         
         struct JsonBook: Codable {
-            let printing: Int
             let issueNumber: Int
-            let variantLetter: String
-            let isOwned: Bool
-            let coverImageID: String
+            let variants: [JsonVariant]
             
-            init(printing: Int, issueNumber: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
-                self.printing = printing
+            struct JsonVariant: Codable {
+                let printing: Int
+                let letter: String
+                let isOwned: Bool
+                let coverImageID: String
+                
+                init(printing: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
+                    self.printing = printing
+                    self.letter = variantLetter
+                    self.isOwned = isOwned
+                    self.coverImageID = coverImageID
+                }
+           }
+            
+            init(issueNumber: Int, variants: [JsonVariant]) {
                 self.issueNumber = issueNumber
-                self.variantLetter = variantLetter
-                self.isOwned = isOwned
-                self.coverImageID = coverImageID
+                self.variants = variants
             }
         }
         

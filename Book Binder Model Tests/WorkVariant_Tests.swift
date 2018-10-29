@@ -19,11 +19,13 @@ class WorkVariant_Tests: XCTestCase {
     }
     
     func testCreateComicBookVariant() {
-        let comicBookVariant = WorkVarient(letter: "a", coverImageID: "x-men-101")
+        let comicBookVariant = WorkVarient(printing: 1, letter: "a", coverImageID: "x-men-101", isOwned: true)
         
         XCTAssertNotNil(comicBookVariant)
+        XCTAssertEqual(comicBookVariant.printing, 1)
         XCTAssertEqual(comicBookVariant.letter, "a")
         XCTAssertEqual(comicBookVariant.coverImageID, "x-men-101")
+        XCTAssertEqual(comicBookVariant.isOwned, true)
     }
 
 
