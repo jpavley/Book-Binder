@@ -81,7 +81,6 @@ extension ComicbookSeries {
                     
                     let book = Work(seriesURI: comicbookSeries.uri, issueNumber: jsonBook.issueNumber, variants: issueVariantList)
                     comicbookSeries.works[book.uri] = book
-                    //comicbookSeries.works[book.uri] = book
                 }
                 
                 comicbookSeriesList.append(comicbookSeries)
