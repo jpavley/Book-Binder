@@ -37,6 +37,7 @@ part of a user's collection stored locally.
 - Add issue type to book model (regular, annual, special)
 - Do not return SkippedIssues.
 - Remove unowned issues from the list of works
+- Use URI to ID a work + a particular variant
 
 
 ## In progress

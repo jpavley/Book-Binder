@@ -59,7 +59,6 @@ extension ComicbookSeries {
     static func createFrom(jsonModel: JsonModel) -> ([ComicbookSeries], Int, Int) {
         
         var comicbookSeriesList = [ComicbookSeries]()
-        var issueVariantList = [WorkVarient]()
         
         for jsonSeries in jsonModel.series {
         
@@ -73,6 +72,8 @@ extension ComicbookSeries {
                 
                 for jsonBook in jsonSeries.books {
                     
+                    var issueVariantList = [WorkVarient]()
+                    
                     for jsonVariant in jsonBook.variants {
                         let variant = WorkVarient(printing: jsonVariant.printing, letter: jsonVariant.letter, coverImageID: jsonVariant.coverImageID, isOwned: jsonVariant.isOwned)
                         issueVariantList.append(variant)
@@ -80,6 +81,7 @@ extension ComicbookSeries {
                     
                     let book = Work(seriesURI: comicbookSeries.uri, issueNumber: jsonBook.issueNumber, variants: issueVariantList)
                     comicbookSeries.works[book.uri] = book
+                    //comicbookSeries.works[book.uri] = book
                 }
                 
                 comicbookSeriesList.append(comicbookSeries)

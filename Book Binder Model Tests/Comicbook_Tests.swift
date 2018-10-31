@@ -91,8 +91,8 @@ class Comicbook_Tests: XCTestCase {
                     ]
                 }
             ],
-            "selectedSeriesIndex": 0,
-            "selectedBookIndex": 0
+            "selectedSeriesIndex": 1,
+            "selectedBookIndex": 1
         }
         """
     }
@@ -123,7 +123,7 @@ class Comicbook_Tests: XCTestCase {
             
             for variant in jsonBook.variants {
                 let workVariant = WorkVarient(printing: variant.printing, letter: variant.letter, coverImageID: variant.coverImageID, isOwned: variant.isOwned)
-                XCTAssertNil(workVariant)
+                XCTAssertNotNil(workVariant)
                 workVariantList.append(workVariant)
             }
             
@@ -133,7 +133,7 @@ class Comicbook_Tests: XCTestCase {
         }
         
         XCTAssertEqual(comicbook.works.count, series.books.count)
-        XCTAssertEqual(comicbook.publishedIssueCount, 14)
+        XCTAssertEqual(comicbook.publishedIssueCount, 13)
         
         for (_,value) in comicbook.works {
             XCTAssertEqual(value.seriesURI.description, testURI!.description)
@@ -149,7 +149,7 @@ class Comicbook_Tests: XCTestCase {
 
         XCTAssertNotNil(comicbook)
         XCTAssertEqual(comicbook[0].works.count, 2)
-        XCTAssertEqual(comicbook[0].publishedIssueCount, 14)
+        XCTAssertEqual(comicbook[0].publishedIssueCount, 13)
         
         XCTAssertEqual(selectedSeriesIndex, 1)
         XCTAssertEqual(selectedBookIndex, 1)
@@ -162,7 +162,7 @@ class Comicbook_Tests: XCTestCase {
     func testOwnedIssues() {
         
         let (comicbook, _, _) = ComicbookSeries.createFrom(jsonString: jsonString)!
-        XCTAssertEqual(comicbook[0].ownedIssues(), ["605", "606"])
+        XCTAssertEqual(comicbook[0].ownedIssues(), ["605", "606c"])
 
     }
     

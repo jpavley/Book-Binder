@@ -30,9 +30,9 @@ struct JsonModel: Codable {
                 let isOwned: Bool
                 let coverImageID: String
                 
-                init(printing: Int, variantLetter: String, isOwned: Bool, coverImageID: String) {
+                init(printing: Int, letter: String, isOwned: Bool, coverImageID: String) {
                     self.printing = printing
-                    self.letter = variantLetter
+                    self.letter = letter
                     self.isOwned = isOwned
                     self.coverImageID = coverImageID
                 }

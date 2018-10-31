@@ -63,7 +63,7 @@ class BookBinder_Tests: XCTestCase {
                     "seriesPublisher": "DC Comics",
                     "seriesTitle": "Batman",
                     "seriesEra": 1950,
-                    "seriesVolume": 1,
+                    "seriesVolume": 0,
                     "seriesFirstIssue": 5,
                     "seriesCurrentIssue": 8,
                     "seriesSkippedIssues": [],
@@ -74,7 +74,7 @@ class BookBinder_Tests: XCTestCase {
                             "variants":
                             [
                                 {
-                                    "printing": 1,
+                                    "printing": 0,
                                     "letter": "",
                                     "isOwned": true,
                                     "coverImageID": ""
@@ -86,7 +86,7 @@ class BookBinder_Tests: XCTestCase {
                             "variants":
                             [
                                 {
-                                    "printing": 1,
+                                    "printing": 0,
                                     "letter": "c",
                                     "isOwned": true,
                                     "coverImageID": ""

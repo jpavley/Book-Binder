@@ -116,7 +116,7 @@ struct BookBinderURI: CustomStringConvertible {
         }
     }
     
-    /// Returns the just the series parts of an URI
+    /// Returns just the series parts of an URI
     ///
     /// - Part Names: publisher/title/era/volume///
     static func extractSeriesURIString(fromURIString s: String) -> String {
@@ -135,9 +135,35 @@ struct BookBinderURI: CustomStringConvertible {
         return "\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)///"
     }
     
+    /// Returns the series and books parts of an URI
+    ///
+    /// - Part Names: publisher/title/era/volume//issue/
+    static func extractBookURIString(fromURIString s: String) -> String {
+        
+        if !BookBinderURI.isWellFormed(uriString: s) {
+            return BookBinderURI.emptyURIString
+        }
+        
+        let parts = s.components(separatedBy: "/")
+        
+        let publisherPart = parts.count >= URIPart.publisher.rawValue + 1 ? parts[URIPart.publisher.rawValue] : ""
+        let titlePart = parts.count >= URIPart.title.rawValue + 1 ? parts[URIPart.title.rawValue] : ""
+        let eraPart = parts.count >= URIPart.era.rawValue + 1 ? parts[URIPart.era.rawValue] : ""
+        let volumePart = parts.count >= URIPart.volume.rawValue + 1 ? parts[URIPart.volume.rawValue] : ""
+        let issuePart = parts.count >= URIPart.issue.rawValue + 1 ? parts[URIPart.issue.rawValue] : ""
+        
+        return "\(publisherPart)/\(titlePart)/\(eraPart)/\(volumePart)//\(issuePart)/"
+    }
+
+    
     var seriesPart: BookBinderURI {
         return BookBinderURI(fromURIString: BookBinderURI.extractSeriesURIString(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
     }
+    
+    var bookPart: BookBinderURI {
+        return BookBinderURI(fromURIString: BookBinderURI.extractBookURIString(fromURIString: self.description)) ?? BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
+    }
+
     
     /// Returns returns true if a URI contains the correct number of "/"s
     ///

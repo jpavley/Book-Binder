@@ -21,7 +21,7 @@ class Work {
     var variants: [WorkVarient]
     
     /// Every work has a "default variant" which represent the work in all its variant forms.
-    var defaultVariantID: String
+    var defaultVariantID: String  // TODO: instead of a default URI, I need a selected URI, so I know what to return when the Book URI is asked for.
     
     // Trackable properties
     
@@ -84,7 +84,24 @@ extension Work {
     }
     
     var defaultVariant: WorkVarient {
-        return variants.filter { $0.letter == defaultVariantID }.first!
+        
+        let found = variants.filter { $0.letter == defaultVariantID }.first
+        
+        if found != nil {
+            
+            // if the default varient exists, return it
+            return found!
+        } else if variants.count > 0 {
+            
+            // if not return the first variant
+            return variants.first!
+        } else {
+            
+            // if there are no variants create a default variant and return it
+            let newVariant = WorkVarient(printing: 0, letter: "", coverImageID: "", isOwned: false)
+            variants.append(newVariant)
+            return newVariant
+        }
     }
 }
 

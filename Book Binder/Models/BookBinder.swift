@@ -27,7 +27,7 @@ class BookBinder {
                 
                 for variant in book.variants {
                     jsonVariantArray.append(JsonModel.JsonSeries.JsonBook.JsonVariant(printing: variant.printing,
-                                                                                      variantLetter: variant.letter,
+                                                                                      letter: variant.letter,
                                                                                       isOwned: variant.isOwned,
                                                                                       coverImageID: variant.coverImageID))
                 }
@@ -114,12 +114,12 @@ class BookBinder {
         
         for (_, value) in comicbookSeries.works {
             if issueNumber == value.issueNumber {
-                // This ia a book the user owns or is tracking
+                // print("** this is book the user owns...")
                 return value
             }
         }
         
-        // This is a book the user doesn't own yet...
+        // print("** this is book the user doesn't own...")
         let publisherID = BookBinderURI.part(fromURIString: comicbookSeries.uri.description, partID: .publisher)
         let coverImageID = publisherCover(for: publisherID)
         let variant = WorkVarient(printing: 0, letter: "", coverImageID: coverImageID, isOwned: false)

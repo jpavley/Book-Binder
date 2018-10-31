@@ -141,10 +141,10 @@ class JsonModel_Tests: XCTestCase {
     }
     
     func testInitFromProperties() {
-        let jsonWorkVariant1 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
+        let jsonWorkVariant1 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, letter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
         let jsonBook1 = JsonModel.JsonSeries.JsonBook(issueNumber: 2, variants: [jsonWorkVariant1])
         
-        let jsonWorkVariant2 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonWorkVariant2 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, letter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
         let jsonBook2 = JsonModel.JsonSeries.JsonBook(issueNumber: 3, variants: [jsonWorkVariant2])
 
         let jsonSeries = JsonModel.JsonSeries(publisher: "Image", title: "The Amory Wars", era: 2008, volumeNumber: 1, firstIssue: 1, currentIssue: 5, skippedIssues: [Int](), books: [jsonBook1, jsonBook2])
@@ -157,10 +157,10 @@ class JsonModel_Tests: XCTestCase {
     }
     
     func testInitFromSeriesArray() {
-        let jsonWorkVariant1 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
+        let jsonWorkVariant1 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, letter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i2")
         let jsonBook1 = JsonModel.JsonSeries.JsonBook(issueNumber: 2, variants: [jsonWorkVariant1])
         
-        let jsonWorkVariant2 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, variantLetter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
+        let jsonWorkVariant2 = JsonModel.JsonSeries.JsonBook.JsonVariant(printing: 1, letter: "", isOwned: true, coverImageID: "the-amory-wars-v2-i3")
         let jsonBook2 = JsonModel.JsonSeries.JsonBook(issueNumber: 3, variants: [jsonWorkVariant2])
         
         let jsonSeries = JsonModel.JsonSeries(publisher: "Image", title: "The Amory Wars", era: 2008, volumeNumber: 1, firstIssue: 1, currentIssue: 5, skippedIssues: [Int](), books: [jsonBook1, jsonBook2])
