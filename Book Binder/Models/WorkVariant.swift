@@ -57,6 +57,8 @@ class WorkVarient: Trackable {
     var coverImageID: String
     var isOwned: Bool
     
+    // initalization
+    
     init() {
         tags = []
         dateStamp = Date()

@@ -24,7 +24,6 @@ class DetailViewController: UIViewController {
     @IBAction func isOwnedAction(_ sender: Any) {
         
         let selectedBook = bookBinder.getSelectedIssue()
-        let selectedVariant = selectedBook.defaultVariant
         let modifiedVariant = WorkVarient(printing: selectedVariant.printing,
                                           letter: selectedVariant.letter,
                                           coverImageID: selectedVariant.coverImageID,

@@ -9,9 +9,8 @@
 import Foundation
 
 class BookBinder {
-    var comicbooks: [ComicbookSeries]
-    var selectedComicbookIndex: Int
-    var selectedIssueIndex: Int
+    var comicbooks: [BookBinderURI: ComicbookSeries]
+    var selectedURI: BookBinderURI
     
     /// Returns a JsonModel for the current ComicbookSeries in this BookBinder.
     /// (Serialization to JSON.)
@@ -21,11 +20,11 @@ class BookBinder {
         var jsonBookArray = [JsonModel.JsonSeries.JsonBook]()
         var jsonVariantArray = [JsonModel.JsonSeries.JsonBook.JsonVariant]()
         
-        for comicbook in comicbooks {
+        for (_, comicbook) in comicbooks {
             
             for (_, book) in comicbook.works {
                 
-                for variant in book.variants {
+                for (_, variant) in book.variants {
                     jsonVariantArray.append(JsonModel.JsonSeries.JsonBook.JsonVariant(printing: variant.printing,
                                                                                       letter: variant.letter,
                                                                                       isOwned: variant.isOwned,
@@ -49,57 +48,56 @@ class BookBinder {
 
         }
         
-        return JsonModel(series: jsonSeriesArray, selectedSeriesIndex: selectedComicbookIndex, selectedBookIndex: selectedIssueIndex)
+        return JsonModel(series: jsonSeriesArray, selectedURI: selectedURI.description)
     }
     
-    init(comicbooks: [ComicbookSeries], selectedComicbookIndex: Int, selectedIssueIndex: Int) {
+    init(comicbooks: [BookBinderURI: ComicbookSeries], selectedURI: BookBinderURI) {
         self.comicbooks = comicbooks
-        self.selectedComicbookIndex = selectedComicbookIndex
-        self.selectedIssueIndex = selectedIssueIndex
+        self.selectedURI = selectedURI
     }
     
-    /// Modifies the selected comicbook's books array by either updating an existing book
-    /// or adding a book if it doesn't exist.
-    func updateBooks(with modifiedBook: Work, and modifiedVariant: WorkVarient) {
-        let selectedComicbook = getSelectedComicbookSeries()
-        var books = selectedComicbook.works
-        
-        if selectedComicbook.uri.description != modifiedBook.seriesURI.description {
-            assert(true, "BOOKBINDERAPP: you can't add or modify a book with a series URI different from the comicbook's series URI!")
-            return
-        }
-        
-        // replace an existing variant with the modified variant
-        // copy over all the variants but replace the changed variant with the modified variant
-        var updatedVariantList = modifiedBook.variants
-        
-        for variant in modifiedBook.variants {
-            
-            if variant.letter == modifiedVariant.letter {
-                
-                updatedVariantList.append(modifiedVariant)
-            } else {
-                
-                updatedVariantList.append(variant)
-            }
-        }
-        
-        // copy over the updated list of variants into an updated book
-        let updatedBook = Work(seriesURI: modifiedBook.seriesURI, issueNumber: modifiedBook.issueNumber, variants: updatedVariantList)
-        
-        // try to update the books dictionary or add a new book
-        if let oldValue = books.updateValue(updatedBook, forKey: updatedBook.uri) {
-            assert(true, "BOOKBINDERAPP: the old value of \(oldValue.debugDescription) was replaced with \(updatedBook.debugDescription)")
-        } else {
-            assert(true, "BOOKBINDERAPP: no old value for \(updatedBook.debugDescription) was found so it was added as a new value")
-        }
-        
-        selectedComicbook.works = books
-    }
+//    /// Modifies the selected comicbook's books array by either updating an existing book
+//    /// or adding a book if it doesn't exist.
+//    func updateBooks(with modifiedBook: Work) {
+//        let selectedComicbook = getSelectedComicbookSeries()
+//        var books = selectedComicbook.works
+//        
+//        if selectedComicbook.uri.description != modifiedBook.seriesURI.description {
+//            assert(true, "BOOKBINDERAPP: you can't add or modify a book with a series URI different from the comicbook's series URI!")
+//            return
+//        }
+//        
+//        // replace an existing variant with the modified variant
+//        // copy over all the variants but replace the changed variant with the modified variant
+//        var updatedVariantList = modifiedBook.variants
+//        
+//        for variant in modifiedBook.variants {
+//            
+//            if variant.letter == modifiedVariant.letter {
+//                
+//                updatedVariantList.append(modifiedVariant)
+//            } else {
+//                
+//                updatedVariantList.append(variant)
+//            }
+//        }
+//        
+//        // copy over the updated list of variants into an updated book
+//        let updatedBook = Work(seriesURI: modifiedBook.seriesURI, issueNumber: modifiedBook.issueNumber, variants: updatedVariantList)
+//        
+//        // try to update the books dictionary or add a new book
+//        if let oldValue = books.updateValue(updatedBook, forKey: updatedBook.uri) {
+//            assert(true, "BOOKBINDERAPP: the old value of \(oldValue.debugDescription) was replaced with \(updatedBook.debugDescription)")
+//        } else {
+//            assert(true, "BOOKBINDERAPP: no old value for \(updatedBook.debugDescription) was found so it was added as a new value")
+//        }
+//        
+//        selectedComicbook.works = books
+//    }
     
-    func getSelectedComicbookSeries() -> ComicbookSeries {
+    func getSelectedComicbookSeries() -> ComicbookSeries? {
         // TODO: nil and range checking
-        return comicbooks[selectedComicbookIndex]
+        return comicbooks[selectedURI]
     }
     
     /// One of the most important functions in the whole app!
@@ -123,7 +121,10 @@ class BookBinder {
         let publisherID = BookBinderURI.part(fromURIString: comicbookSeries.uri.description, partID: .publisher)
         let coverImageID = publisherCover(for: publisherID)
         let variant = WorkVarient(printing: 0, letter: "", coverImageID: coverImageID, isOwned: false)
-        return Work(seriesURI: comicbookSeries.uri, issueNumber: issueNumber, variants: [variant])
+        let key = variant.uri
+        let variantDict = [key: variant]
+        
+        return Work(seriesURI: comicbookSeries.uri, issueNumber: issueNumber, variants: variantDict)
     }
     
     func publisherCover(for publisher: String) -> String {

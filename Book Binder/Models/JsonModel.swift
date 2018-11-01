@@ -58,14 +58,12 @@ struct JsonModel: Codable {
     }
     
     let series: [JsonSeries]
-    let selectedSeriesIndex: Int
-    let selectedBookIndex: Int
+    let selectedURI: String
     
-    init(series: [JsonSeries], selectedSeriesIndex: Int, selectedBookIndex: Int) {
+    init(series: [JsonSeries], selectedURI: String) {
         
         self.series = series
-        self.selectedSeriesIndex = selectedSeriesIndex
-        self.selectedBookIndex = selectedBookIndex
+        self.selectedURI = selectedURI
     }
 }
 

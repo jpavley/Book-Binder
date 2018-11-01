@@ -72,14 +72,14 @@ extension ComicbookSeries {
                 
                 for jsonBook in jsonSeries.books {
                     
-                    var issueVariantList = [WorkVarient]()
+                    var issueVariantDict: [BookBinderURI:WorkVarient] = [:]
                     
                     for jsonVariant in jsonBook.variants {
                         let variant = WorkVarient(printing: jsonVariant.printing, letter: jsonVariant.letter, coverImageID: jsonVariant.coverImageID, isOwned: jsonVariant.isOwned)
-                        issueVariantList.append(variant)
+                        issueVariantDict[variant.uri] = variant
                     }
                     
-                    let book = Work(seriesURI: comicbookSeries.uri, issueNumber: jsonBook.issueNumber, variants: issueVariantList)
+                    let book = Work(seriesURI: comicbookSeries.uri, issueNumber: jsonBook.issueNumber, variants: issueVariantDict)
                     comicbookSeries.works[book.uri] = book
                 }
                 

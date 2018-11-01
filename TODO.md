@@ -38,6 +38,8 @@ part of a user's collection stored locally.
 - Do not return SkippedIssues.
 - Remove unowned issues from the list of works
 - Use URI to ID a work + a particular variant
+- Reorder the URI Parts: from publisher/title/era/volume/printing/issue/variant to publisher/title/era/volume/issue/printing/variant
+- Move volume from detail to summary view
 
 
 ## In progress

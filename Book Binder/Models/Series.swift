@@ -21,7 +21,11 @@ class Series {
     var currentIssue: Int
     var skippedIssues: [Int]
     
-    var works: [BookBinderURI: Work]
+    /// Works the user added to their collection
+    var trackedWorks: [BookBinderURI: Work]
+    
+    /// URIs of all works available to be collected based on first issue and current
+    var publishedURIs: [BookBinderURI]
     
     // Trackable properties
     
@@ -46,7 +50,8 @@ class Series {
         
         skippedIssues = [Int]()
         
-        works = [:]
+        trackedWorks = [:]
+        publishedURIs = [BookBinderURI]()
     }
     
     convenience init(uri: BookBinderURI, firstIssue: Int, currentIssue: Int) {
@@ -57,16 +62,13 @@ class Series {
         self.volumeNumber = Int(BookBinderURI.part(fromURIString: uri.description, partID: .volume)) ?? 0
         self.firstIssue = firstIssue
         self.currentIssue = currentIssue
+        self.updatePublishedWorks()
     }
 }
 
 // Calculated Vars
 
 extension Series {
-    
-    var publishedIssues: [Int] {
-        return updatePublishedIssues()
-    }
     
     /// Number of possible issues if no numbers are skipped
     var publishedIssueCount: Int {
@@ -81,15 +83,14 @@ extension Series {
 
 extension Series {
     
-    func updatePublishedIssues() -> [Int] {
-        
-        var result = [Int]()
+    func updatePublishedWorks() {
         
         if firstIssue > currentIssue {
             return result
         }
         
         for n in firstIssue...currentIssue {
+            let key =
             result.append(n)
         }
         

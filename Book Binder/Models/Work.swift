@@ -18,10 +18,7 @@ class Work {
     var issueNumber: Int
     
     /// The variants associated with this work.
-    var variants: [WorkVarient]
-    
-    /// Every work has a "default variant" which represent the work in all its variant forms.
-    var defaultVariantID: String  // TODO: instead of a default URI, I need a selected URI, so I know what to return when the Book URI is asked for.
+    var variants: [BookBinderURI: WorkVarient]
     
     // Trackable properties
     
@@ -35,11 +32,10 @@ class Work {
         guid = UUID()
         seriesURI = BookBinderURI(fromURIString: BookBinderURI.emptyURIString)!
         issueNumber = 0
-        variants = [WorkVarient]()
-        defaultVariantID = ""
+        variants = [:]
     }
     
-    convenience init(seriesURI: BookBinderURI, issueNumber: Int, variants: [WorkVarient]) {
+    convenience init(seriesURI: BookBinderURI, issueNumber: Int, variants: [BookBinderURI: WorkVarient]) {
         self.init()
         self.seriesURI = seriesURI
         self.issueNumber = issueNumber
@@ -53,8 +49,10 @@ class Work {
         self.seriesURI = Series(uri: fromURI, firstIssue: 0, currentIssue: 0).uri
         self.issueNumber = Int(fromURI.issuePart) ?? 0
         let printing = Int(fromURI.printingPart) ?? 0
-        let variant = WorkVarient(printing: printing, letter: fromURI.variantPart, coverImageID: coverImageID, isOwned: isOwned)
-        self.variants.append(variant)
+        let letter = fromURI.variantPart
+        let key = BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)/\(printing)/\(issueNumber)/\(letter)")!
+        let variant = WorkVarient(printing: printing, letter: letter, coverImageID: coverImageID, isOwned: isOwned)
+        self.variants[key] = variant
     }
 }
 
@@ -79,46 +77,30 @@ extension Work {
     }
     
     var anyOwned: [String] {
-        let ownedVariants = variants.map { $0.isOwned ? "\(issueNumber)\($0.letter)" : "" }
+        let ownedVariants = variants.map { $0.value.isOwned ? "\(issueNumber)\($0.value.letter)" : "" }
         return ownedVariants.sorted()
-    }
-    
-    var defaultVariant: WorkVarient {
-        
-        let found = variants.filter { $0.letter == defaultVariantID }.first
-        
-        if found != nil {
-            
-            // if the default varient exists, return it
-            return found!
-        } else if variants.count > 0 {
-            
-            // if not return the first variant
-            return variants.first!
-        } else {
-            
-            // if there are no variants create a default variant and return it
-            let newVariant = WorkVarient(printing: 0, letter: "", coverImageID: "", isOwned: false)
-            variants.append(newVariant)
-            return newVariant
-        }
     }
 }
 
 extension Work: Trackable {
     
-    /// Returns work URI with default variant
-    /// - Publisher/Series/Era/Volume/Printing/Issue/Variant
+    /// Returns work URI
+    /// - Series URI:      Publisher/Series/Era/Volume///
+    /// - Work URI:        Publisher/Series/Era/Volume//Issue/
+    /// - WorkVariant URI: Publisher/Series/Era/Volume/Printing/Issue/Variant
     var uri: BookBinderURI {
         get {
-            return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)/\(0)/\(issueNumber)/\("")")!
+            return BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)//\(issueNumber)/\("")")!
         }
         set {
-            self.seriesURI = newValue.seriesPart
+            seriesURI = newValue.seriesPart
             let printing = Int(newValue.printingPart) ?? 0
-            self.issueNumber = Int(newValue.issuePart) ?? 0
+            issueNumber = Int(newValue.issuePart) ?? 0
+            let letter = newValue.variantPart
+            
+            let key = BookBinderURI(fromURIString: "\(seriesURI.publisherPart)/\(seriesURI.titlePart)/\(seriesURI.eraPart)/\(seriesURI.volumePart)/\(printing)/\(issueNumber)/\(letter)")!
             let variant = WorkVarient(printing: printing, letter: newValue.variantPart, coverImageID: "", isOwned: false)
-            self.variants.append(variant)
+            variants[key] = variant
         }
     }
     
