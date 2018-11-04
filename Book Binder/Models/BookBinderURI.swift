@@ -81,7 +81,7 @@ struct BookBinderURI: CustomStringConvertible {
     /// - Part Names: publisher/title/era/volume/printing/issue/variant
     /// - Parts Index: 0/1/2/3/4/5/6
     init?(fromURIString s: String) {
-        
+                
         if !BookBinderURI.isWellFormed(uriString: s) {
             print("** BAD URI \(s)")
             return nil
