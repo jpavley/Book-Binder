@@ -20,6 +20,20 @@ class ComicBookCollection {
     var comicBookModel: JsonModel
     var comicBookDictionary: [IndexPath: BookBinderURI]
     
+    var comicBookSeriesVolumesCount: Int {
+        var result = 0
+        
+        for publisher in comicBookModel.publishers {
+            for series in publisher.series {
+                for _ in series.volumes {
+                    result += 1
+                }
+            }
+        }
+        
+        return result
+    }
+    
     init(comicBookModel: JsonModel) {
         self.comicBookModel = comicBookModel
         self.comicBookDictionary = ComicBookCollection.createComicBookDictionary(comicBookModel: comicBookModel)

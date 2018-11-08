@@ -19,22 +19,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     
-    var bookBinder: BookBinder!
+    var comicBookCollection: ComicBookCollection!
     
     @IBAction func isOwnedAction(_ sender: Any) {
         
-        let selectedBook = bookBinder.getSelectedIssue()
-        let modifiedVariant = WorkVarient(printing: selectedVariant.printing,
-                                          letter: selectedVariant.letter,
-                                          coverImageID: selectedVariant.coverImageID,
-                                          isOwned: isOwnedSwitch.isOn)
-                
-        bookBinder.updateBooks(with: selectedBook, and: modifiedVariant)
-        
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(bookBinder.jsonModel) {
-            let defaults = UserDefaults.standard
-            defaults.set(encoded, forKey: "savedJsonModel")
+        if isOwnedSwitch.isOn {
+            let df = DateFormatter()
+            df.dateFormat = "MM/dd/yyyy"
+            let dateCollected = df.string(from: Date())
+            // TODO: update comicBookModel
+            // comicBookCollectible.variant.dateConsumed = dateCollected
+        } else {
+            // TODO: update comicBookModel
+            // comicBookCollectible.variant.dateConsumed = ""
         }
         
         updateUX()
@@ -104,27 +101,27 @@ class DetailViewController: UIViewController {
     
     func updateUX() {
         
-        let selectedBook = bookBinder.getSelectedIssue()
-        let selectedVariant = selectedBook.defaultVariant
+        let uri = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
+        let collectible = comicBookCollection.comicBookCollectibleBy(uri: uri!)
         
-        titleLabel.text = "\(selectedBook.bookTitle)"
-        publisherLabel.text = "\(selectedBook.bookPublisher) \(selectedBook.bookEra)"
-        issueNumberLabel.text = "#\(selectedBook.issueNumber)"
-        variantLetterLabel.text = "\(selectedVariant.letter)"
+        titleLabel.text = "\(collectible.series.title)"
+        publisherLabel.text = "\(collectible.publisher.name) \(collectible.volume.era)"
+        issueNumberLabel.text = "#\(collectible.work.number)"
+        variantLetterLabel.text = "\(collectible.variant.letter)"
         
-        let volume = calcVolumeText(volume: Int(selectedBook.bookVolume)!)
-        let printing = calcPrintingText(printing: selectedVariant.printing)
+        let volume = calcVolumeText(volume: Int(collectible.volume.number))
+        let printing = calcPrintingText(printing: collectible.variant.printing)
         let conjunction = (volume == "") || (printing == "") ? "" : ", "
         
         VolumePrintingLabel.text = "\(volume)\(conjunction)\(printing)"
         
         coverImageView.alpha = 0
-        coverImageView.image = UIImage(named: "\(selectedVariant.coverImageID)")
+        coverImageView.image = UIImage(named: "\(collectible.variant.coverID)")
         UIView.animate(withDuration: 1.0, animations: {
             self.coverImageView.alpha = 1.0
         }, completion: nil)
         
-        isOwnedSwitch.setOn(selectedVariant.isOwned, animated: true)
+        isOwnedSwitch.setOn(collectible.isOwned, animated: true)
         navigationController?.isToolbarHidden = false
     }
     

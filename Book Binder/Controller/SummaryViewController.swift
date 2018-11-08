@@ -24,7 +24,7 @@ class SummaryViewController: UIViewController {
     
     // MARK:- Properties -
     
-    var bookBinder: BookBinder!
+    var comicBookCollection: ComicBookCollection!
     
     // MARK:- Actions -
     
@@ -65,81 +65,64 @@ class SummaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if bookBinder == nil {
-            updateBookBinderData()
+        if comicBookCollection == nil {
+            updateComicBookCollectionData()
         } else {
             collectionView.reloadData()
         }
     }
-    func updateBookBinderData() {
+    func updateComicBookCollectionData() {
+        
+        var jsonModel: JsonModel!
         
         // load from user defaults
         let defaults = UserDefaults.standard
-        if let savedJsonModel = defaults.object(forKey: "savedJsonModel") as? Data {
-            if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = ComicbookSeries.createFrom(jsonData: savedJsonModel) {
-                bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
-                return
+        do {
+            // Encode the JsonModel as JSON
+            let encoder = JSONEncoder()
+            let encoded = try encoder.encode(jsonModel)
+            
+            // Save the JSON to user defaults with the key savedJsonModel
+            defaults.set(encoded, forKey: "savedJsonModel")
+            
+            // Load the JSON back from user defaults with the key savedJsonModel
+            if let savedJsonModel = defaults.object(forKey: "savedJsonModel") as? Data {
+                
+                // Decode the JSON as a JsonModel
+                let decoder = JSONDecoder()
+                jsonModel = try decoder.decode(JsonModel.self, from: savedJsonModel)
+                
+                // Create a ComicBookCollection with the JsonModel
+                comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
             }
-        }
-        
-        // load from JSON
-        if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = loadComicbookDataFromJSON() {
-            bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
-            return
-        }
-        
-        // No comic book data, create an empty book binder
-        let emptyComicBookSeriesJsonString = """
-        {
-            "series":
-            [
-                {
-                    "seriesPublisher": "",
-                    "seriesTitle": "",
-                    "seriesEra": 0,
-                    "seriesVolume": 1,
-                    "seriesFirstIssue": 0,
-                    "seriesCurrentIssue": 0,
-                    "seriesSkippedIssues":0,
-                    "seriesExtraIssues": [],
-                    "books":
-                    [
-                        {
-                            "issueNumber": 0,
-                            "variants":
-                            [
-                                {
-                                    "printing": 1,
-                                    "letter": "",
-                                    "coverImageID": "",
-                                    "isOwned": true
-                                }
-                           ]
-                        }
-                    ]
-                }
-            ],
-            "selectedSeriesIndex": 0,
-            "selectedBookIndex": 0
+        } catch {
+            // failing -> can't load data!
+            print(error)
         }
 
-        """
-        if let (comicbooks, selectedSeriesIndex, selectedBookIndex) = ComicbookSeries.createFrom(jsonString: emptyComicBookSeriesJsonString) {
-            bookBinder = BookBinder(comicbooks: comicbooks, selectedComicbookIndex: selectedBookIndex, selectedIssueIndex: selectedSeriesIndex)
-        }
-    }
-    
-    func loadComicbookDataFromJSON() -> ([ComicbookSeries], Int, Int)? {
-        if let path = Bundle.main.path(forResource: "books", ofType: "json") {
+
+        // load from JSON
+        if let path = Bundle.main.path(forResource: "sample1", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                return ComicbookSeries.createFrom(jsonData: data)
+                
+                do {
+                    let decoder = JSONDecoder()
+                    jsonModel = try decoder.decode(JsonModel.self, from: data)
+                    
+                    // succeeding -> data loaded and decoded
+                    comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
+                } catch {
+                    // failing -> can't decode!
+                    print(error)
+                }
+                
             } catch {
-                // TODO: books.json probably not found
+                // failing -> can't load data!
                 print(error)
             }
         }
-        return nil
+
     }
     
     // pull to refresh
@@ -166,10 +149,10 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! CollectionReusableView
             
-            let series = getSeriesFor(indexPath: indexPath)
+            let collectible = getComicbookCollectibleFor(indexPath: indexPath)
             
-            headerView.titleLabel.text = "\(series.title) \(series.era)"
-            headerView.subTitleLabel.text = series.publisher
+            headerView.titleLabel.text = "\(collectible.series.title) \(collectible.volume.era)"
+            headerView.subTitleLabel.text = collectible.publisher.name
             
             return headerView
             
@@ -183,15 +166,16 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
                         numberOfItemsInSection section: Int) -> Int {
         
         let indexPath = IndexPath(row: 0, section: section)
-        let series = getSeriesFor(indexPath: indexPath)
+        let uri = comicBookCollection.comicBookDictionary[indexPath]
+        let collectible = comicBookCollection.comicBookCollectibleBy(uri: uri!)
         
         // add 2 to the published issues count for the ... and + icons
-        let result = series.publishedIssues.count + 2
+        let result = collectible.publishedIssues.count + 2
         return result
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return bookBinder.comicbooks.count
+        return comicBookCollection.comicBookSeriesVolumesCount
     }
     
     /// The offset index path takes into account that the first cell is the ... icon.
@@ -210,9 +194,10 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     /// The current issue string is either ..., +, or a published issue number.
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
-        let series = getSeriesFor(indexPath: indexPath)
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        
+        let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
+        let collectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
+
         // The first cell (0) should be the ... icon for editing the series
         // The last cell (series.publishedIssues.count + 2) should be the + icon for adding a book
         
@@ -220,7 +205,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             currentIssueString = "..."
             
-        } else if indexPath.row == (series.publishedIssues.count + 1) {
+        } else if indexPath.row == (collectable.publishedIssues.count + 1) {
             
             // offset the published issue count by 1 to account for ... and + icons
             currentIssueString = "+"
@@ -236,9 +221,9 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     /// Blue strings are either the icons or the issues the user owns.
     func calcBlueStrings(indexPath: IndexPath) -> [String] {
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        let comicbook = getComicbookFor(indexPath: offsetIndexPath)
+        let collectible = getComicbookCollectibleFor(indexPath: offsetIndexPath)
         var blueStrings = ["..."]
-        blueStrings.append(contentsOf: comicbook.ownedIssues())
+        blueStrings.append(contentsOf: collectible.ownedIssues)
         blueStrings.append("+")
         return blueStrings
     }
@@ -293,10 +278,10 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
             
             let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-            bookBinder.selectedComicbookIndex = offsetIndexPath.section
-            bookBinder.selectedIssueIndex = offsetIndexPath.row
+            let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
+            comicBookCollection.comicBookModel.selectedURI = uri!.description
             
-            dest.bookBinder = bookBinder
+            dest.comicBookCollection = comicBookCollection
         }
     }
 }
@@ -305,35 +290,16 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 extension SummaryViewController {
     
-    func getComicbookFor(indexPath: IndexPath) -> ComicbookSeries {
-        return bookBinder.comicbooks[indexPath.section]
-    }
-    
-    func getSeriesFor(indexPath: IndexPath) -> Series {
-        return getComicbookFor(indexPath: indexPath)
+    func getComicbookCollectibleFor(indexPath: IndexPath) -> ComicBookCollectible {
+        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
+        let comicBookCollectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
+        return comicBookCollectable
     }
     
     func getPublishedIssueFor(indexPath: IndexPath) -> Int {
-        let series = getSeriesFor(indexPath: indexPath)
-        return series.publishedIssues[indexPath.row]
+        let collectible = getComicbookCollectibleFor(indexPath: indexPath)
+        return collectible.work.number
     }
-    
-    // TODO: Delete
-//    func getBookModelFor(indexPath: IndexPath) -> Work {
-//        // DUPE: 100 start
-//        let comicbook = getComicbookFor(indexPath: indexPath)
-//        let issueNumber = getPublishedIssueFor(indexPath: indexPath)
-//
-//        for (_, value) in comicbook.works {
-//            if issueNumber == value.issueNumber {
-//                // This ia a book the user owns or is tracking
-//                return value
-//            }
-//        }
-//
-//        // This is a book the user doesn't own yet...
-//        return Work(seriesURI: comicbook.uri, printing: 1, issueNumber: issueNumber, variantLetter: "", isOwned: false, coverImageID: "")
-//        // DUPE: 100 end
-//    }
 }
 
