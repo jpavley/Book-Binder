@@ -19,21 +19,7 @@ class ComicBookCollection {
     
     var comicBookModel: JsonModel
     var comicBookDictionary: [IndexPath: BookBinderURI]
-    
-    var comicBookSeriesVolumesCount: Int {
-        var result = 0
         
-        for publisher in comicBookModel.publishers {
-            for series in publisher.series {
-                for _ in series.volumes {
-                    result += 1
-                }
-            }
-        }
-        
-        return result
-    }
-    
     init(comicBookModel: JsonModel) {
         self.comicBookModel = comicBookModel
         self.comicBookDictionary = ComicBookCollection.createComicBookDictionary(comicBookModel: comicBookModel)
@@ -57,15 +43,15 @@ class ComicBookCollection {
                             let value = BookBinderURI(versionPart: "1", publisherPart: publisher.name, seriesPart: series.title, volumePart: String(volume.era), issuePart: String(work.number), variantPart: variant.letter)
                             
                             comicBookDictionary[key] = value
-                            // print("key sec:\(key.section), itm: \(key.item), value \(value.seriesPart) \(value.volumePart)  #\(value.issuePart)\(value.variantPart)")
+                            //print("key [\(key.section), \(key.item)] value [\(value.publisherPart) \(value.seriesPart) \(value.volumePart) #\(value.issuePart)\(value.variantPart)]")
                             item += 1
                         }
                     }
+                    section += 1
                 }
-                section += 1
             }
         }
-        
+        print(comicBookDictionary.keys.sorted())
         return comicBookDictionary
     }
     
@@ -181,3 +167,23 @@ class ComicBookCollection {
         setDateConsumed(uri: uri, setting: "")
     }
 }
+
+extension ComicBookCollection {
+    
+    func selectNextIssue() {
+        // TODO: do it!
+    }
+    
+    func selectPreviousIssue() {
+        // TODO: do it!
+    }
+    
+    func selectNextSeries() {
+        // TODO: do it!
+    }
+    
+    func selectPreviousSeries() {
+        // TODO: do it!
+    }
+}
+

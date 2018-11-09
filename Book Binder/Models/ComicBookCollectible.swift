@@ -32,29 +32,4 @@ struct ComicBookCollectible {
     var wasRead: Bool {
         return variant.dateConsumed != ""
     }
-    
-    var ownedIssues: [String] {
-        var result = [String]()
-        var issueID = ""
-
-        for work in volume.works {
-            issueID += "\(work.number)"
-            for variant in work.variants {
-                issueID += "\(variant.letter)"
-            }
-            result.append(issueID)
-            issueID = ""
-        }
-        
-        return result
-    }
-    
-    var publishedIssues: [Int] {
-        var result = [Int]()
-        for i in volume.firstWorkNumber...volume.currentWorkNumber {
-            if !volume.skippedWorkNumbers.contains(i) {
-                result.append(i)
-            }
-        }
-    }
 }

@@ -82,16 +82,16 @@ class DetailViewController: UIViewController {
         switch gesture.direction {
         case .left:
             // next book
-            bookBinder.selectNextIssue()
+            comicBookCollection.selectNextIssue()
         case .right:
             // previous book
-            bookBinder.selectPreviousIssue()
+            comicBookCollection.selectPreviousIssue()
         case .up:
             // next series
-            bookBinder.selectNextComicbook()
+            comicBookCollection.selectNextSeries()
         case .down:
             // previous book
-            bookBinder.selectPreviousComicbook()
+            comicBookCollection.selectPreviousSeries()
         default:
             assert(false, "BOOKBINDERAPP: unsupported gesture")
         }

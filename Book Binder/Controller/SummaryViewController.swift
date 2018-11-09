@@ -164,30 +164,28 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        
-        let indexPath = IndexPath(row: 0, section: section)
-        let uri = comicBookCollection.comicBookDictionary[indexPath]
-        let collectible = comicBookCollection.comicBookCollectibleBy(uri: uri!)
-        
-        // add 2 to the published issues count for the ... and + icons
-        let result = collectible.publishedIssues.count + 2
-        return result
+        return 3
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return comicBookCollection.comicBookSeriesVolumesCount
+        
+        let keys = comicBookCollection.comicBookDictionary.keys.sorted()
+        let lastKey = keys.last!
+        let sections = lastKey.section + 1
+        
+        return sections
     }
     
     /// The offset index path takes into account that the first cell is the ... icon.
     func calcOffsetIndexPath(indexPath: IndexPath) -> IndexPath {
         // offset by -1 because first cell contains ... icon
-        return IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        return IndexPath(row: indexPath.item - 1, section: indexPath.section)
     }
     
     /// The offset index path takes into account that the first cell is the ... icon.
     func calcResetIndexPath(indexPath: IndexPath) -> IndexPath {
         // offset by 1 because first cell contains ... icon
-        return IndexPath(row: indexPath.row + 1, section: indexPath.section)
+        return IndexPath(row: indexPath.item + 1, section: indexPath.section)
     }
 
     
@@ -195,35 +193,36 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
-        let collectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
 
         // The first cell (0) should be the ... icon for editing the series
         // The last cell (series.publishedIssues.count + 2) should be the + icon for adding a book
         
-        if indexPath.row == 0 {
-            
-            currentIssueString = "..."
-            
-        } else if indexPath.row == (collectable.publishedIssues.count + 1) {
-            
-            // offset the published issue count by 1 to account for ... and + icons
-            currentIssueString = "+"
-            
-        } else {
-            
-            let publishedIssue = getPublishedIssueFor(indexPath: offsetIndexPath)
-            currentIssueString = "\(publishedIssue)"
-        }
+//        if indexPath.row == 0 {
+//
+//            currentIssueString = "..."
+//
+//        } else if indexPath.row == (collectable.publishedIssues.count + 1) {
+//
+//            // offset the published issue count by 1 to account for ... and + icons
+//            currentIssueString = "+"
+//
+//        } else {
+//
+//            let uri = comicBookCollection.comicBookDictionary[indexPath]
+//            let collectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
+//            let publishedIssue = getPublishedIssueFor(indexPath: offsetIndexPath)
+//            currentIssueString = "\(publishedIssue)"
+//        }
         return currentIssueString
     }
     
     /// Blue strings are either the icons or the issues the user owns.
     func calcBlueStrings(indexPath: IndexPath) -> [String] {
-        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        let collectible = getComicbookCollectibleFor(indexPath: offsetIndexPath)
+        //let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        //let collectible = getComicbookCollectibleFor(indexPath: offsetIndexPath)
+        let collectible = getComicbookCollectibleFor(indexPath: indexPath)
         var blueStrings = ["..."]
-        blueStrings.append(contentsOf: collectible.ownedIssues)
+        blueStrings.append(contentsOf: ["1","2","3"])
         blueStrings.append("+")
         return blueStrings
     }
@@ -291,8 +290,9 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension SummaryViewController {
     
     func getComicbookCollectibleFor(indexPath: IndexPath) -> ComicBookCollectible {
-        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
+        //let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        //let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
+        let uri = comicBookCollection.comicBookDictionary[indexPath]
         let comicBookCollectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
         return comicBookCollectable
     }
