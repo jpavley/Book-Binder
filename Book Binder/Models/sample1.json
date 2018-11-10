@@ -1,238 +1,203 @@
 {
-    "selectedURI": "1/Marble Entertainment/The People Under The Chair/1950/3/b",
-    "publishers": [
+    "selectedVolumeIndex": 0,
+    "volumes": [
         {
-            "name": "Marble Entertainment",
-            "series": [
+            "publisherName": "Marble Entertainment",
+            "seriesName": "Limo Man",
+            "era": 1950,
+            "volumeNumber": 1,
+            "firstWorkNumber": 1,
+            "currentWorkNumber": 10,
+            "kind": "series",
+            "selectedWorkIndex": 0,
+            "works": [
                 {
-                    "title": "The People Under The Chair",
-                    "characters": ["Larry", "Moe", "Sally"],
-                    "volumes": [
-                        {
-                            "kind": "on-going",
-                            "era": 1950,
-                            "number": 1,
-                            "firstWorkNumber": 1,
-                            "currentWorkNumber": 12,
-                            "skippedWorkNumbers": [2, 8],
-                            "works": [
-                                {
-                                    "number": 1,
-                                    "variants": [
-                                        {
-                                            "datePublished": "1/1/1950",
-                                            "kind": "magazine",
-                                            "printing": 1,
-                                            "letter": "",
-                                            "coverID": "under-chair-people-1",
-                                            "dateCollected": "2/3/2014",
-                                            "dateConsumed": "4/5/2015"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "number": 3,
-                                    "variants": [
-                                        {
-                                            "datePublished": "3/1/1950",
-                                            "kind": "magazine",
-                                            "printing": 1,
-                                            "letter": "b",
-                                            "coverID": "under-chair-people-3b",
-                                            "dateCollected": "2/3/2014",
-                                            "dateConsumed": "4/6/2015"
-                                        },
-                                        {
-                                            "datePublished": "3/1/1950",
-                                            "kind": "magazine",
-                                            "printing": 2,
-                                            "letter": "c",
-                                            "coverID": "under-chair-people-3c",
-                                            "dateCollected": "2/3/2014",
-                                            "dateConsumed": ""
-                                        }
-                                    ]
-                                }
-
-                            ]
-                        },
-                        {
-                            "kind": "on-going",
-                            "era": 1960,
-                            "number": 2,
-                            "firstWorkNumber": 1,
-                            "currentWorkNumber": 24,
-                            "skippedWorkNumbers": [3, 5, 7],
-                            "works": [
-                                {
-                                    "number": 1,
-                                    "variants": [
-                                        {
-                                            "datePublished": "1/1/1960",
-                                            "kind": "magazine",
-                                            "printing": 1,
-                                            "letter": "",
-                                            "coverID": "under-chair-people-v2-i1",
-                                            "dateCollected": "2/3/2014",
-                                            "dateConsumed": "4/5/2015"
-                                        },
-                                        {
-                                            "datePublished": "1/1/1960",
-                                            "kind": "magazine",
-                                            "printing": 3,
-                                            "letter": "x",
-                                            "coverID": "under-chair-people-v2-i1x",
-                                            "dateCollected": "2/3/2014",
-                                            "dateConsumed": "4/5/2015"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "number": 4,
-                                    "variants": [
-                                        {
-                                            "datePublished": "4/1/1960",
-                                            "kind": "magazine",
-                                            "printing": 1,
-                                            "letter": "",
-                                            "coverID": "under-chair-people-v2-i4",
-                                            "dateCollected": "3/5/2016",
-                                            "dateConsumed": "3/7/2017"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "number": 8,
-                                    "variants": [
-                                        {
-                                            "datePublished": "8/1/1960",
-                                            "kind": "magazine",
-                                            "printing": 0,
-                                            "letter": "n",
-                                            "coverID": "under-chair-people-v2-i8m",
-                                            "dateCollected": "3/5/2016",
-                                            "dateConsumed": "3/7/2017"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": true
                 },
                 {
-                    "title": "Eternal Bells",
-                    "characters": ["BellMan", "BellWoman", "BellGirl", "BellBoy", "BellDog"],
-                    "volumes": [
-                        {
-                            "kind": "miniseries",
-                            "era": 1970,
-                            "number": 1,
-                            "firstWorkNumber": 1,
-                            "currentWorkNumber": 5,
-                            "skippedWorkNumbers": [],
-                            "works": [
-                                {
-                                    "number": 1,
-                                    "variants": [
-                                        {
-                                            "datePublished": "1/1/1970",
-                                            "kind": "magazine",
-                                            "printing": 0,
-                                            "letter": "",
-                                            "coverID": "eternal-bells-1",
-                                            "dateCollected": "",
-                                            "dateConsumed": "4/5/2015"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "number": 2,
-                                    "variants": [
-                                        {
-                                            "datePublished": "2/1/1971",
-                                            "kind": "magazine",
-                                            "printing": 0,
-                                            "letter": "",
-                                            "coverID": "eternal-bells-2",
-                                            "dateCollected": "2/3/2018",
-                                            "dateConsumed": ""
-                                        }
-                                    ]
-                                },
-                                {
-                                    "number": 5,
-                                    "variants": [
-                                        {
-                                            "datePublished": "5/1/1974",
-                                            "kind": "magazine",
-                                            "printing": 0,
-                                            "letter": "",
-                                            "coverID": "eternal-bells-5",
-                                            "dateCollected": "2/3/2018",
-                                            "dateConsumed": "2/3/2018"
-                                        },
-                                        {
-                                            "datePublished": "5/1/1974",
-                                            "kind": "magazine",
-                                            "printing": 10,
-                                            "letter": "a",
-                                            "coverID": "eternal-bells-5a",
-                                            "dateCollected": "2/5/2018",
-                                            "dateConsumed": "2/8/2018"
-                                        },
-                                        {
-                                            "datePublished": "5/1/1974",
-                                            "kind": "magazine",
-                                            "printing": 1,
-                                            "letter": "c",
-                                            "coverID": "eternal-bells-5c",
-                                            "dateCollected": "2/4/2018",
-                                            "dateConsumed": "2/4/2018"
-                                        }
-
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }                
+                    "issueNumber": 1,
+                    "variantLetter": "a",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "b",
+                    "coverImage": "",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "b",
+                    "coverImage": "",
+                    "isOwned": true
+                }
             ]
         },
         {
-            "name": "Eek Comics",
-            "series": [
+            "publisherName": "Marble Entertainment",
+            "seriesName": "Atomic Woman",
+            "era": 1990,
+            "volumeNumber": 1,
+            "firstWorkNumber": 5,
+            "currentWorkNumber": 15,
+            "kind": "mini-series",
+            "selectedWorkIndex": 0,
+            "works": [
                 {
-                    "title": "The Human Animal",
-                    "characters": ["Pickles", "Not Boo"],
-                    "volumes": [
-                        {
-                            "kind": "one-shot",
-                            "era": 2010,
-                            "number": 1,
-                            "firstWorkNumber": 1,
-                            "currentWorkNumber": 1,
-                            "skippedWorkNumbers": [],
-                            "works": [
-                                {
-                                    "number": 1,
-                                    "variants": [
-                                        {
-                                            "datePublished": "7/8/2010",
-                                            "kind": "digital",
-                                            "printing": 0,
-                                            "letter": "",
-                                            "coverID": "human-animal",
-                                            "dateCollected": "7/8/2010",
-                                            "dateConsumed": "7/8/2010"
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
+                    "issueNumber": 10,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 11,
+                    "variantLetter": "a",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 12,
+                    "variantLetter": "b",
+                    "coverImage": "",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 13,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 13,
+                    "variantLetter": "b",
+                    "coverImage": "",
+                    "isOwned": true
+                }
+            ]
+        },
+        {
+            "publisherName": "Marble Entertainment",
+            "seriesName": "Atomic Woman",
+            "era": 2010,
+            "volumeNumber": 2,
+            "firstWorkNumber": 1,
+            "currentWorkNumber": 9,
+            "kind": "series",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "a",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 2,
+                    "variantLetter": "b",
+                    "coverImage": "",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "b",
+                    "coverImage": "",
+                    "isOwned": true
+                }
+            ]
+        },
+        {
+            "publisherName": "EKK Comics",
+            "seriesName": "Massive Cat Attack",
+            "era": 2011,
+            "volumeNumber": 1,
+            "firstWorkNumber": 1,
+            "currentWorkNumber": 1,
+            "kind": "one-short",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "a",
+                    "coverImage": "",
+                    "isOwned": true
+                }
+            ]
+        },
+        {
+            "publisherName": "EKK Comics",
+            "seriesName": "Darling Dog",
+            "era": 1942,
+            "volumeNumber": 1,
+            "firstWorkNumber": 1,
+            "currentWorkNumber": 6,
+            "kind": "annual",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "a",
+                    "coverImage": "",
+                    "isOwned": true
+                }
+            ]
+        },
+        {
+            "publisherName": "EKK Comics",
+            "seriesName": "Darling Dog",
+            "era": 1952,
+            "volumeNumber": 2,
+            "firstWorkNumber": 7,
+            "currentWorkNumber": 12,
+            "kind": "annual",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "",
+                    "coverImage": "",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 11,
+                    "variantLetter": "a",
+                    "coverImage": "dd_v2_11_a",
+                    "isOwned": false
                 }
             ]
         }
-
     ]
 }

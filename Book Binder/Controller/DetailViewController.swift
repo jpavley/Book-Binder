@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     
-    var comicBookCollection: ComicBookCollection!
+    var comicBookCollection: JsonModel!
     
     @IBAction func isOwnedAction(_ sender: Any) {
         
