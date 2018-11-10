@@ -252,4 +252,25 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel2.selectedVolume.seriesName, "Horrible Ugly Misrable Dog")
         XCTAssertEqual(testModel2.selectedVolume.era, 1992)
     }
+
+    func testPublishedWorks() {
+        let publishedWorks = testModel2.publishedWorks
+        XCTAssertEqual(publishedWorks.count, 10)
+        XCTAssertEqual(publishedWorks.first!, "1")
+        XCTAssertEqual(publishedWorks.last!, "10")
+    }
+    
+    func testCollectedWorks() {
+        let collectedWorks = testModel2.collectedWorks
+        XCTAssertEqual(collectedWorks.count, 5)
+        XCTAssertEqual(collectedWorks.first!, "1")
+        XCTAssertEqual(collectedWorks.last!, "8b")
+    }
+    
+    func testCompleteWorks() {
+        let completeWorks = testModel2.completeWorks
+        XCTAssertEqual(completeWorks.count, 13)
+        XCTAssertEqual(completeWorks, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
+        print(completeWorks)
+    }
 }

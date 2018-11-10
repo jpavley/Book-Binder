@@ -23,17 +23,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func isOwnedAction(_ sender: Any) {
         
-        if isOwnedSwitch.isOn {
-            let df = DateFormatter()
-            df.dateFormat = "MM/dd/yyyy"
-            let dateCollected = df.string(from: Date())
-            // TODO: update comicBookModel
-            // comicBookCollectible.variant.dateConsumed = dateCollected
-        } else {
-            // TODO: update comicBookModel
-            // comicBookCollectible.variant.dateConsumed = ""
-        }
-        
+        comicBookCollection.selectedWork.isOwned = isOwnedSwitch.isOn
         updateUX()
     }
     
@@ -80,19 +70,24 @@ class DetailViewController: UIViewController {
     
     @objc func respondToSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
+            
         case .left:
-            // next book
-            comicBookCollection.selectNextIssue()
+            // next work
+            print("next work")
+            
         case .right:
-            // previous book
-            comicBookCollection.selectPreviousIssue()
+            // previous work
+            print("previous work")
+            
         case .up:
-            // next series
-            comicBookCollection.selectNextSeries()
+            // next volume
+            print("next volume")
+
         case .down:
-            // previous book
-            comicBookCollection.selectPreviousSeries()
-        default:
+            // previous volume
+            print("next volume")
+            
+       default:
             assert(false, "BOOKBINDERAPP: unsupported gesture")
         }
         
@@ -101,35 +96,29 @@ class DetailViewController: UIViewController {
     
     func updateUX() {
         
-        let uri = BookBinderURI(from: comicBookCollection.comicBookModel.selectedURI)
-        let collectible = comicBookCollection.comicBookCollectibleBy(uri: uri!)
+        let seriesTitle = comicBookCollection.selectedVolume.seriesName
+        let publisherName = comicBookCollection.selectedVolume.publisherName
+        let era = comicBookCollection.selectedVolume.era
+        let workNumber = comicBookCollection.selectedWork.issueNumber
+        let variantLetter = comicBookCollection.selectedWork.variantLetter
+        let volumeNumber = comicBookCollection.selectedVolume.volumeNumber
+        let coverImage = comicBookCollection.selectedWork.coverImage
+        let isOwned = comicBookCollection.selectedWork.isOwned
         
-        titleLabel.text = "\(collectible.series.title)"
-        publisherLabel.text = "\(collectible.publisher.name) \(collectible.volume.era)"
-        issueNumberLabel.text = "#\(collectible.work.number)"
-        variantLetterLabel.text = "\(collectible.variant.letter)"
         
-        let volume = calcVolumeText(volume: Int(collectible.volume.number))
-        let printing = calcPrintingText(printing: collectible.variant.printing)
-        let conjunction = (volume == "") || (printing == "") ? "" : ", "
-        
-        VolumePrintingLabel.text = "\(volume)\(conjunction)\(printing)"
+        titleLabel.text = seriesTitle
+        publisherLabel.text = "\(publisherName) \(era)"
+        issueNumberLabel.text = "#\(workNumber)"
+        variantLetterLabel.text = "\(variantLetter)"
+        VolumePrintingLabel.text = "Vol. \(volumeNumber)"
         
         coverImageView.alpha = 0
-        coverImageView.image = UIImage(named: "\(collectible.variant.coverID)")
+        coverImageView.image = UIImage(named: coverImage)
         UIView.animate(withDuration: 1.0, animations: {
             self.coverImageView.alpha = 1.0
         }, completion: nil)
         
-        isOwnedSwitch.setOn(collectible.isOwned, animated: true)
+        isOwnedSwitch.setOn(isOwned, animated: true)
         navigationController?.isToolbarHidden = false
-    }
-    
-    func calcVolumeText(volume: Int) -> String {
-        return "Vol. \(volume)"
-    }
-    
-    func calcPrintingText(printing: Int) -> String {
-        return "Printing \(printing)"
     }
 }

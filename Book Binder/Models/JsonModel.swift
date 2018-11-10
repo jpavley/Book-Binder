@@ -79,4 +79,45 @@ extension JsonModel {
     var selectedWorksCount: Int {
         return selectedVolume.works.count
     }
+    
+    var publishedWorks: [String] {
+        var result = [String]()
+        for i in selectedVolume.firstWorkNumber...selectedVolume.currentWorkNumber {
+            result.append("\(i)")
+            // TODO: Add variant works
+        }
+        
+        return result
+    }
+    
+    var collectedWorks: [String] {
+        var result = [String]()
+        
+        for work in selectedVolume.works {
+            result.append("\(work.issueNumber)\(work.variantLetter)")
+        }
+        
+        return result
+    }
+    
+    var completeWorks: [String] {
+        
+        let rawWorks = publishedWorks
+        var sharedWorks = [String]()
+        
+        for work in selectedVolume.works {
+            
+            // if a variant has the same number as a published work
+            // but doesn't have a variant letter...
+            
+            if rawWorks.contains("\(work.issueNumber)") && work.variantLetter != "" {
+                sharedWorks.append("\(work.issueNumber)\(work.variantLetter)")
+            }
+        }
+        
+        let unsorted = sharedWorks + rawWorks
+        let sorted = unsorted.sorted {$0.localizedStandardCompare($1) == .orderedAscending}
+        
+        return sorted
+    }
 }

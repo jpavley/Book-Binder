@@ -24,7 +24,7 @@ class SummaryViewController: UIViewController {
     
     // MARK:- Properties -
     
-    var comicBookCollection: ComicBookCollection!
+    var comicBookCollection: JsonModel!
     
     // MARK:- Actions -
     
@@ -73,56 +73,13 @@ class SummaryViewController: UIViewController {
     }
     func updateComicBookCollectionData() {
         
-        var jsonModel: JsonModel!
-        
-        // load from user defaults
-        let defaults = UserDefaults.standard
-        do {
-            // Encode the JsonModel as JSON
-            let encoder = JSONEncoder()
-            let encoded = try encoder.encode(jsonModel)
-            
-            // Save the JSON to user defaults with the key savedJsonModel
-            defaults.set(encoded, forKey: "savedJsonModel")
-            
-            // Load the JSON back from user defaults with the key savedJsonModel
-            if let savedJsonModel = defaults.object(forKey: "savedJsonModel") as? Data {
-                
-                // Decode the JSON as a JsonModel
-                let decoder = JSONDecoder()
-                jsonModel = try decoder.decode(JsonModel.self, from: savedJsonModel)
-                
-                // Create a ComicBookCollection with the JsonModel
-                comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
-            }
-        } catch {
-            // failing -> can't load data!
-            print(error)
+        if let savedCollection = readUserDefaults(for: defaultsKey) {
+            self.comicBookCollection = savedCollection
+        } else if let sampleCollection = initFromBundle(forResource: "sample1", ofType: "json") {
+            self.comicBookCollection = sampleCollection
+        } else {
+            print("no data in local phone stroage or in application bundle")
         }
-
-
-        // load from JSON
-        if let path = Bundle.main.path(forResource: "sample1", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                
-                do {
-                    let decoder = JSONDecoder()
-                    jsonModel = try decoder.decode(JsonModel.self, from: data)
-                    
-                    // succeeding -> data loaded and decoded
-                    comicBookCollection = ComicBookCollection(comicBookModel: jsonModel)
-                } catch {
-                    // failing -> can't decode!
-                    print(error)
-                }
-                
-            } catch {
-                // failing -> can't load data!
-                print(error)
-            }
-        }
-
     }
     
     // pull to refresh
@@ -149,10 +106,14 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "HeaderView", for: indexPath) as! CollectionReusableView
             
-            let collectible = getComicbookCollectibleFor(indexPath: indexPath)
+            comicBookCollection.selectedVolumeIndex = indexPath.section
             
-            headerView.titleLabel.text = "\(collectible.series.title) \(collectible.volume.era)"
-            headerView.subTitleLabel.text = collectible.publisher.name
+            let title = comicBookCollection.selectedVolume.seriesName
+            let era = comicBookCollection.selectedVolume.era
+            let publisher = comicBookCollection.selectedVolume.publisherName
+            
+            headerView.titleLabel.text = "\(title) \(era)"
+            headerView.subTitleLabel.text = publisher
             
             return headerView
             
@@ -169,11 +130,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        let keys = comicBookCollection.comicBookDictionary.keys.sorted()
-        let lastKey = keys.last!
-        let sections = lastKey.section + 1
-        
-        return sections
+        return comicBookCollection.volumes.count
     }
     
     /// The offset index path takes into account that the first cell is the ... icon.
@@ -193,38 +150,32 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        comicBookCollection.selectedVolumeIndex = offsetIndexPath.section
 
         // The first cell (0) should be the ... icon for editing the series
         // The last cell (series.publishedIssues.count + 2) should be the + icon for adding a book
         
-//        if indexPath.row == 0 {
-//
-//            currentIssueString = "..."
-//
-//        } else if indexPath.row == (collectable.publishedIssues.count + 1) {
-//
-//            // offset the published issue count by 1 to account for ... and + icons
-//            currentIssueString = "+"
-//
-//        } else {
-//
-//            let uri = comicBookCollection.comicBookDictionary[indexPath]
-//            let collectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
-//            let publishedIssue = getPublishedIssueFor(indexPath: offsetIndexPath)
-//            currentIssueString = "\(publishedIssue)"
-//        }
+        if indexPath.item == 0 {
+
+            currentIssueString = "..."
+
+        } else if indexPath.item == (comicBookCollection.completeWorks.count + 1) {
+
+            // offset the published issue count by 1 to account for ... and + icons
+            currentIssueString = "+"
+
+        } else {
+
+            currentIssueString = "\(comicBookCollection.completeWorks[offsetIndexPath.item])"
+        }
         return currentIssueString
     }
     
     /// Blue strings are either the icons or the issues the user owns.
     func calcBlueStrings(indexPath: IndexPath) -> [String] {
-        //let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        //let collectible = getComicbookCollectibleFor(indexPath: offsetIndexPath)
-        let collectible = getComicbookCollectibleFor(indexPath: indexPath)
-        var blueStrings = ["..."]
-        blueStrings.append(contentsOf: ["1","2","3"])
-        blueStrings.append("+")
-        return blueStrings
+        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
+        comicBookCollection.selectedVolumeIndex = offsetIndexPath.section
+        return comicBookCollection.collectedWorks
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -277,29 +228,11 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
             
             let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-            let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
-            comicBookCollection.comicBookModel.selectedURI = uri!.description
+            
+            comicBookCollection.selectedVolumeIndex = offsetIndexPath.section
+            comicBookCollection.selectedVolume.selectedWorkIndex = offsetIndexPath.item
             
             dest.comicBookCollection = comicBookCollection
         }
     }
 }
-
-// MARK: - Get objects by index path -
-
-extension SummaryViewController {
-    
-    func getComicbookCollectibleFor(indexPath: IndexPath) -> ComicBookCollectible {
-        //let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        //let uri = comicBookCollection.comicBookDictionary[offsetIndexPath]
-        let uri = comicBookCollection.comicBookDictionary[indexPath]
-        let comicBookCollectable = comicBookCollection.comicBookCollectibleBy(uri: uri!)
-        return comicBookCollectable
-    }
-    
-    func getPublishedIssueFor(indexPath: IndexPath) -> Int {
-        let collectible = getComicbookCollectibleFor(indexPath: indexPath)
-        return collectible.work.number
-    }
-}
-
