@@ -172,14 +172,14 @@ class JsonModelTests: XCTestCase {
         XCTAssertNotNil(testModel2)
         
         XCTAssertEqual(testModel2.selectedVolume.publisherName, "Marble Entertainment")
-        XCTAssertEqual(testModel2.selectedWork.issueNumber, 1)
+        XCTAssertEqual(testModel2.selectedCollectedWork.issueNumber, 1)
         
         testModel2.selectedVolumeIndex = 3
         XCTAssertEqual(testModel2.selectedVolume.publisherName, "EKK Comics")
-        XCTAssertEqual(testModel2.selectedWork.isOwned, true)
+        XCTAssertEqual(testModel2.selectedCollectedWork.isOwned, true)
         
         testModel2.selectedVolume.selectedWorkIndex = 1
-        XCTAssertEqual(testModel2.selectedWork.variantLetter, "a")
+        XCTAssertEqual(testModel2.selectedCollectedWork.variantLetter, "a")
         
         testModel2.selectedVolumeIndex = 5
         XCTAssertEqual(testModel2.selectedVolume.seriesName, "Darling Dog")
@@ -194,13 +194,13 @@ class JsonModelTests: XCTestCase {
         let imageList = ["american-standard-ga", "american-standard-ga"]
         let ownList = [true, false]
         
-        for i in 0..<testModel2.selectedWorksCount {
+        for i in 0..<testModel2.selectedVolume.works.count {
             testModel2.selectedVolume.selectedWorkIndex = i
             
-            XCTAssertEqual(testModel2.selectedWork.issueNumber, issueList[i])
-            XCTAssertEqual(testModel2.selectedWork.variantLetter, variantList[i])
-            XCTAssertEqual(testModel2.selectedWork.coverImage, imageList[i])
-            XCTAssertEqual(testModel2.selectedWork.isOwned, ownList[i])
+            XCTAssertEqual(testModel2.selectedCollectedWork.issueNumber, issueList[i])
+            XCTAssertEqual(testModel2.selectedCollectedWork.variantLetter, variantList[i])
+            XCTAssertEqual(testModel2.selectedCollectedWork.coverImage, imageList[i])
+            XCTAssertEqual(testModel2.selectedCollectedWork.isOwned, ownList[i])
         }
 
     }
@@ -211,9 +211,9 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel1.selectedVolume.publisherName, "a")
         XCTAssertEqual(testModel1.selectedVolume.works.count, 3)
         
-        XCTAssertEqual(testModel1.selectedWork.issueNumber, 1)
-        XCTAssertEqual(testModel1.selectedWork.variantLetter, "a")
-        XCTAssertEqual(testModel1.selectedWork.isOwned, true)
+        XCTAssertEqual(testModel1.selectedCollectedWork.issueNumber, 1)
+        XCTAssertEqual(testModel1.selectedCollectedWork.variantLetter, "a")
+        XCTAssertEqual(testModel1.selectedCollectedWork.isOwned, true)
     }
     
     func testSaveAndLoadUserDefaults() {
@@ -272,5 +272,39 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(completeWorks.count, 13)
         XCTAssertEqual(completeWorks, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
         print(completeWorks)
+    }
+    
+    func testSelectedWork() {
+        testModel2.selectedVolumeIndex = 1
+        
+        let issueList = [5, 6, 7, 8, 9, 10, 11, 11, 12, 12, 13, 13, 14, 15]
+        let variantList = ["", "", "", "", "", "", "", "a", "", "b", "", "b", "", ""]
+        let imageList = ["american-standard-dc",        // [0] 5
+                         "american-standard-dc",        // [1] 6
+                         "american-standard-dc",        // [2] 7
+                         "american-standard-dc",        // [3] 8
+                         "american-standard-dc",        // [4] 9
+                         "american-standard-marvel",    // [5] 10 isOwned
+                         "american-standard-dc",        // [6] 11
+                         "american-standard-marvel",    // [7] 11a isOwned
+                         "american-standard-dc",        // [8] 12
+                         "american-standard-marvel",    // [9] 12b
+                         "american-standard-marvel",    // [10] 13
+                         "american-standard-marvel",    // [11] 13b isOwned
+                         "american-standard-dc",        // [12] 14
+                         "american-standard-dc"         // [13] 15
+        ]
+        let ownList = [false, false, false, false, false, true, false, true, false, false, false, true, false, false]
+
+        
+        for i in 0..<testModel2.completeWorks.count {
+            testModel2.selectedVolume.selectedWorkIndex = i
+            
+            XCTAssertEqual(testModel2.selectedWork.issueNumber, issueList[i])
+            XCTAssertEqual(testModel2.selectedWork.variantLetter, variantList[i])
+            XCTAssertEqual(testModel2.selectedWork.coverImage, imageList[i])
+            XCTAssertEqual(testModel2.selectedWork.isOwned, ownList[i])
+            
+        }
     }
 }

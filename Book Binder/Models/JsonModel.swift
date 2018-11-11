@@ -72,6 +72,10 @@ extension JsonModel {
         return volumes[selectedVolumeIndex]
     }
     
+    var selectedCollectedWork: JsonVolume.JsonWork {
+        return selectedVolume.works[selectedVolume.selectedWorkIndex]
+    }
+    
     var selectedWork: JsonVolume.JsonWork {
         
         // return either a published work or collected work based in selectedWorkIndex
@@ -92,7 +96,7 @@ extension JsonModel {
         return uncollectedWork
     }
     
-    var selectedWorksCount: Int {
+    var selectedVolumeWorksCount: Int {
         return selectedVolume.works.count
     }
     
