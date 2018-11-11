@@ -254,7 +254,7 @@ class JsonModelTests: XCTestCase {
     }
 
     func testPublishedWorks() {
-        let publishedWorks = testModel2.publishedWorks
+        let publishedWorks = testModel2.selectedVolumePublishedWorkIDs
         XCTAssertEqual(publishedWorks.count, 10)
         XCTAssertEqual(publishedWorks.first!, "1")
         XCTAssertEqual(publishedWorks.last!, "10")

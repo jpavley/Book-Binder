@@ -100,11 +100,10 @@ extension JsonModel {
         return selectedVolume.works.count
     }
     
-    var publishedWorks: [String] {
+    var selectedVolumePublishedWorkIDs: [String] {
         var result = [String]()
         for i in selectedVolume.firstWorkNumber...selectedVolume.currentWorkNumber {
             result.append("\(i)")
-            // TODO: Add variant works
         }
         
         return result
@@ -122,7 +121,7 @@ extension JsonModel {
     
     var completeWorks: [String] {
         
-        let rawWorks = publishedWorks
+        let rawWorks = selectedVolumePublishedWorkIDs
         var sharedWorks = [String]()
         
         for work in selectedVolume.works {
