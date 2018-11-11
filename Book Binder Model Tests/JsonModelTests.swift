@@ -268,7 +268,7 @@ class JsonModelTests: XCTestCase {
     }
     
     func testCompleteWorks() {
-        let completeWorks = testModel2.completeWorks
+        let completeWorks = testModel2.selectedVolumeCompleteWorkIDs
         XCTAssertEqual(completeWorks.count, 13)
         XCTAssertEqual(completeWorks, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
         print(completeWorks)
@@ -297,7 +297,7 @@ class JsonModelTests: XCTestCase {
         let ownList = [false, false, false, false, false, true, false, true, false, false, false, true, false, false]
 
         
-        for i in 0..<testModel2.completeWorks.count {
+        for i in 0..<testModel2.selectedVolumeCompleteWorkIDs.count {
             testModel2.selectedVolume.selectedWorkIndex = i
             
             XCTAssertEqual(testModel2.selectedWork.issueNumber, issueList[i])

@@ -80,7 +80,7 @@ extension JsonModel {
         
         // return either a published work or collected work based in selectedWorkIndex
         
-        let selectedWorkID = completeWorks[selectedVolume.selectedWorkIndex]
+        let selectedWorkID = selectedVolumeCompleteWorkIDs[selectedVolume.selectedWorkIndex]
         
         for work in selectedVolume.works {
             let workID = "\(work.issueNumber)\(work.variantLetter)"
@@ -119,7 +119,7 @@ extension JsonModel {
         return result
     }
     
-    var completeWorks: [String] {
+    var selectedVolumeCompleteWorkIDs: [String] {
         
         let rawWorks = selectedVolumePublishedWorkIDs
         var sharedWorks = [String]()
