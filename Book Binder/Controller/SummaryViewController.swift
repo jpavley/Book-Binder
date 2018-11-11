@@ -176,7 +176,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func calcBlueStrings(indexPath: IndexPath) -> [String] {
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
         comicBookCollection.selectedVolumeIndex = offsetIndexPath.section
-        return comicBookCollection.collectedWorks
+        return comicBookCollection.selectedVolumeCollectedWorkIDs
     }
     
     func collectionView(_ collectionView: UICollectionView,

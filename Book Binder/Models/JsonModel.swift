@@ -109,7 +109,7 @@ extension JsonModel {
         return result
     }
     
-    var collectedWorks: [String] {
+    var selectedVolumeCollectedWorkIDs: [String] {
         var result = [String]()
         
         for work in selectedVolume.works {
