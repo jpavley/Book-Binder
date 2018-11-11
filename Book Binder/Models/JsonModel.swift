@@ -11,6 +11,10 @@ import Foundation
 /// Models a serializable collection of collectiables as a list of `Volumes` which contain a list of
 /// `works` in JSON. In a UICollectionView volumes are equalent to sections and works are equavalent
 /// to items.
+/// - Note:
+///     - A collected work is in a volume's works list.
+///     - An uncollected work is not in a volume's works list but was published based on firstWorkNumber and currentWorkNumber.
+///     - A published work may or may not be in a volume's works list but was published based on firstWorkNumber and currentWorkNumber.
 class JsonModel: Codable {
     
     var volumes: [JsonVolume]
@@ -68,14 +72,20 @@ class JsonModel: Codable {
 
 extension JsonModel {
     
+    
+    /// The currently selected volume by selectedVolumeIndex.
     var selectedVolume: JsonVolume {
         return volumes[selectedVolumeIndex]
     }
     
+    /// The currently selected work in the collection of the currently selected volume by selectedVolumeIndex and selectedWorkIndex.
     var selectedVolumeSelectedCollectedWork: JsonVolume.JsonWork {
         return selectedVolume.works[selectedVolume.selectedWorkIndex]
     }
     
+    
+    /// The currently selected work from the complete list of collection and uncollected works of the currently selected volume by selectedVolumeIndex and selectedWorkIndex.
+    /// If a work is not in the works list a new work is created and returned.
     var selectedVolumeSelectedWork: JsonVolume.JsonWork {
         
         // return either a published work or collected work based in selectedWorkIndex
@@ -96,10 +106,12 @@ extension JsonModel {
         return uncollectedWork
     }
     
+    /// The number of works in the collection of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeWorksCount: Int {
         return selectedVolume.works.count
     }
     
+    /// A list of IDs (issue numbers as strings) from the list of published works of the currently selected volume by selectedVolumeIndex.
     var selectedVolumePublishedWorkIDs: [String] {
         var result = [String]()
         for i in selectedVolume.firstWorkNumber...selectedVolume.currentWorkNumber {
@@ -109,6 +121,7 @@ extension JsonModel {
         return result
     }
     
+    /// A list of IDs (issue numbers and variant letters as strings) from the list of collected works of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeCollectedWorkIDs: [String] {
         var result = [String]()
         
@@ -119,6 +132,7 @@ extension JsonModel {
         return result
     }
     
+    /// A list of IDs (issue numbers and variant letters as strings) from the complete list of collected and uncollected works of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeCompleteWorkIDs: [String] {
         
         let rawWorks = selectedVolumePublishedWorkIDs
