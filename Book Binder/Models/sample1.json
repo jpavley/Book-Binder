@@ -26,7 +26,7 @@
                 {
                     "issueNumber": 1,
                     "variantLetter": "b",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
@@ -139,8 +139,8 @@
             "works": [
                 {
                     "issueNumber": 1,
-                    "variantLetter": "american-standard-ga",
-                    "coverImage": "",
+                    "variantLetter": "",
+                    "coverImage": "american-standard-ga",
                     "isOwned": true
                 },
                 {
