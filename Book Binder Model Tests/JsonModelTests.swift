@@ -191,7 +191,7 @@ class JsonModelTests: XCTestCase {
         
         let issueList = [9, 11]
         let variantList = ["", "a"]
-        let imageList = ["", "dd_v2_11_a"]
+        let imageList = ["american-standard-ga", "american-standard-ga"]
         let ownList = [true, false]
         
         for i in 0..<testModel2.selectedWorksCount {

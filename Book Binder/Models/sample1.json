@@ -14,13 +14,13 @@
                 {
                     "issueNumber": 1,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 1,
                     "variantLetter": "a",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 },
                 {
@@ -32,13 +32,13 @@
                 {
                     "issueNumber": 5,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
                     "issueNumber": 8,
                     "variantLetter": "b",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 }
             ]
@@ -56,31 +56,31 @@
                 {
                     "issueNumber": 10,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 11,
                     "variantLetter": "a",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 12,
                     "variantLetter": "b",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
                     "issueNumber": 13,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
                     "issueNumber": 13,
                     "variantLetter": "b",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 }
             ]
@@ -98,31 +98,31 @@
                 {
                     "issueNumber": 1,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 1,
                     "variantLetter": "a",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 2,
                     "variantLetter": "b",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
                     "issueNumber": 8,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
                     "issueNumber": 9,
                     "variantLetter": "b",
-                    "coverImage": "",
+                    "coverImage": "american-standard-marvel",
                     "isOwned": true
                 }
             ]
@@ -139,14 +139,14 @@
             "works": [
                 {
                     "issueNumber": 1,
-                    "variantLetter": "",
+                    "variantLetter": "american-standard-ga",
                     "coverImage": "",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 1,
                     "variantLetter": "a",
-                    "coverImage": "",
+                    "coverImage": "american-standard-ga",
                     "isOwned": true
                 }
             ]
@@ -164,13 +164,13 @@
                 {
                     "issueNumber": 4,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-ga",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 6,
                     "variantLetter": "a",
-                    "coverImage": "",
+                    "coverImage": "american-standard-ga",
                     "isOwned": true
                 }
             ]
@@ -188,13 +188,13 @@
                 {
                     "issueNumber": 9,
                     "variantLetter": "",
-                    "coverImage": "",
+                    "coverImage": "american-standard-ga",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 11,
                     "variantLetter": "a",
-                    "coverImage": "dd_v2_11_a",
+                    "coverImage": "american-standard-ga",
                     "isOwned": false
                 }
             ]
