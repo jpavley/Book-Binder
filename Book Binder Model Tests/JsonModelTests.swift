@@ -300,10 +300,10 @@ class JsonModelTests: XCTestCase {
         for i in 0..<testModel2.selectedVolumeCompleteWorkIDs.count {
             testModel2.selectedVolume.selectedWorkIndex = i
             
-            XCTAssertEqual(testModel2.selectedWork.issueNumber, issueList[i])
-            XCTAssertEqual(testModel2.selectedWork.variantLetter, variantList[i])
-            XCTAssertEqual(testModel2.selectedWork.coverImage, imageList[i])
-            XCTAssertEqual(testModel2.selectedWork.isOwned, ownList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedWork.issueNumber, issueList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedWork.variantLetter, variantList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedWork.coverImage, imageList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedWork.isOwned, ownList[i])
             
         }
     }

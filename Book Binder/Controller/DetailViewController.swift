@@ -23,7 +23,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func isOwnedAction(_ sender: Any) {
         
-        comicBookCollection.selectedWork.isOwned = isOwnedSwitch.isOn
+        comicBookCollection.selectedVolumeSelectedWork.isOwned = isOwnedSwitch.isOn
         updateUX()
     }
     
@@ -99,11 +99,11 @@ class DetailViewController: UIViewController {
         let seriesTitle = comicBookCollection.selectedVolume.seriesName
         let publisherName = comicBookCollection.selectedVolume.publisherName
         let era = comicBookCollection.selectedVolume.era
-        let workNumber = comicBookCollection.selectedWork.issueNumber
-        let variantLetter = comicBookCollection.selectedWork.variantLetter
+        let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
+        let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
         let volumeNumber = comicBookCollection.selectedVolume.volumeNumber
-        let coverImage = comicBookCollection.selectedWork.coverImage
-        let isOwned = comicBookCollection.selectedWork.isOwned
+        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
+        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
         
         titleLabel.text = seriesTitle
