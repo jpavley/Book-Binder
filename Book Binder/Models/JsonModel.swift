@@ -73,7 +73,23 @@ extension JsonModel {
     }
     
     var selectedWork: JsonVolume.JsonWork {
-        return selectedVolume.works[selectedVolume.selectedWorkIndex]
+        
+        // return either a published work or collected work based in selectedWorkIndex
+        
+        let selectedWorkID = completeWorks[selectedVolume.selectedWorkIndex]
+        
+        for work in selectedVolume.works {
+            let workID = "\(work.issueNumber)\(work.variantLetter)"
+            if selectedWorkID == workID {
+                return work
+            }
+        }
+        
+        // if a collected work is not found return an uncollected work
+        let issueNumber = Int(selectedWorkID)!
+        
+        let uncollectedWork = JsonVolume.JsonWork(issueNumber: issueNumber, variantLetter: "", coverImage: "american-standard-dc", isOwned: false)
+        return uncollectedWork
     }
     
     var selectedWorksCount: Int {

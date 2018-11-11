@@ -126,7 +126,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         comicBookCollection.selectedVolumeIndex = section
-        return comicBookCollection.selectedVolume.works.count + 2 // for ... and +
+        return comicBookCollection.completeWorks.count + 2 // for ... and +
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
