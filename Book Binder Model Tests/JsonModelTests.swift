@@ -172,14 +172,14 @@ class JsonModelTests: XCTestCase {
         XCTAssertNotNil(testModel2)
         
         XCTAssertEqual(testModel2.selectedVolume.publisherName, "Marble Entertainment")
-        XCTAssertEqual(testModel2.selectedCollectedWork.issueNumber, 1)
+        XCTAssertEqual(testModel2.selectedVolumeSelectedWork.issueNumber, 1)
         
         testModel2.selectedVolumeIndex = 3
         XCTAssertEqual(testModel2.selectedVolume.publisherName, "EKK Comics")
-        XCTAssertEqual(testModel2.selectedCollectedWork.isOwned, true)
+        XCTAssertEqual(testModel2.selectedVolumeSelectedCollectedWork.isOwned, true)
         
         testModel2.selectedVolume.selectedWorkIndex = 1
-        XCTAssertEqual(testModel2.selectedCollectedWork.variantLetter, "a")
+        XCTAssertEqual(testModel2.selectedVolumeSelectedCollectedWork.variantLetter, "a")
         
         testModel2.selectedVolumeIndex = 5
         XCTAssertEqual(testModel2.selectedVolume.seriesName, "Darling Dog")
@@ -197,10 +197,10 @@ class JsonModelTests: XCTestCase {
         for i in 0..<testModel2.selectedVolume.works.count {
             testModel2.selectedVolume.selectedWorkIndex = i
             
-            XCTAssertEqual(testModel2.selectedCollectedWork.issueNumber, issueList[i])
-            XCTAssertEqual(testModel2.selectedCollectedWork.variantLetter, variantList[i])
-            XCTAssertEqual(testModel2.selectedCollectedWork.coverImage, imageList[i])
-            XCTAssertEqual(testModel2.selectedCollectedWork.isOwned, ownList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedCollectedWork.issueNumber, issueList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedCollectedWork.variantLetter, variantList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedCollectedWork.coverImage, imageList[i])
+            XCTAssertEqual(testModel2.selectedVolumeSelectedCollectedWork.isOwned, ownList[i])
         }
 
     }
@@ -211,9 +211,9 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel1.selectedVolume.publisherName, "a")
         XCTAssertEqual(testModel1.selectedVolume.works.count, 3)
         
-        XCTAssertEqual(testModel1.selectedCollectedWork.issueNumber, 1)
-        XCTAssertEqual(testModel1.selectedCollectedWork.variantLetter, "a")
-        XCTAssertEqual(testModel1.selectedCollectedWork.isOwned, true)
+        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.issueNumber, 1)
+        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.variantLetter, "a")
+        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.isOwned, true)
     }
     
     func testSaveAndLoadUserDefaults() {

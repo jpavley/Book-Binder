@@ -72,7 +72,7 @@ extension JsonModel {
         return volumes[selectedVolumeIndex]
     }
     
-    var selectedCollectedWork: JsonVolume.JsonWork {
+    var selectedVolumeSelectedCollectedWork: JsonVolume.JsonWork {
         return selectedVolume.works[selectedVolume.selectedWorkIndex]
     }
     
