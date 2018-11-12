@@ -307,4 +307,17 @@ class JsonModelTests: XCTestCase {
             
         }
     }
+    
+    func testAddWorkToSelectedVolume() {
+        let newWork = JsonModel.JsonVolume.JsonWork(issueNumber: 100, variantLetter: "z", coverImage: "image123", isOwned: true)
+        let newWorkID = "\(newWork.issueNumber)\(newWork.variantLetter)"
+        XCTAssertFalse(testModel2.selectedVolumeCollectedWorkIDs.contains(newWorkID))
+        
+        testModel2.addWorkToSelectedVolume(newWork)
+        XCTAssertTrue(testModel2.selectedVolumeCollectedWorkIDs.contains(newWorkID))
+        XCTAssertTrue(testModel2.selectedVolumeCompleteWorkIDs.contains(newWorkID))
+        
+//        print(testModel2.selectedVolumeCompleteWorkIDs)
+//        let uncollectedWork = testModel2.selectedVolumeSelectedWork
+    }
 }

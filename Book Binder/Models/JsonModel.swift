@@ -146,11 +146,23 @@ extension JsonModel {
             if rawWorks.contains("\(work.issueNumber)") && work.variantLetter != "" {
                 sharedWorks.append("\(work.issueNumber)\(work.variantLetter)")
             }
+            
+            // TODO: User added a new work to collected works but the number is greater than currentWorkNumber
+            //       - New issue (currentWorkNumber + 1)
+            //       - Random issue (any number outside the range of firstWorkNumber...currentWorkNumber
+            //       - If we add it do we have to update currentWorkNumber? 1...10 + 11 yes, but 1...10 + 100 ??
         }
         
         let unsorted = sharedWorks + rawWorks
         let sorted = unsorted.sorted {$0.localizedStandardCompare($1) == .orderedAscending}
         
         return sorted
+    }
+    
+    func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
+        let newWorkID = "\(w.issueNumber)\(w.variantLetter)"
+        if !selectedVolumeCollectedWorkIDs.contains(newWorkID) {
+            selectedVolume.works.append(w)
+        }
     }
 }
