@@ -24,9 +24,14 @@ class DetailViewController: UIViewController {
     @IBAction func isOwnedAction(_ sender: Any) {
         
         comicBookCollection.selectedVolumeSelectedWork.isOwned = isOwnedSwitch.isOn
-        comicBookCollection.addWorkToSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
-        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         
+        if isOwnedSwitch.isOn {
+            comicBookCollection.addWorkToSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
+        } else {
+            comicBookCollection.removeWorkFromSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
+        }
+        
+        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         updateUX()
     }
     

@@ -165,4 +165,12 @@ extension JsonModel {
             selectedVolume.works.append(w)
         }
     }
+    
+    func removeWorkFromSelectedVolume(_ w: JsonVolume.JsonWork) {
+        let oldWorkID = "\(w.issueNumber)\(w.variantLetter)"
+        if selectedVolumeCollectedWorkIDs.contains(oldWorkID) {
+            let filteredList = selectedVolume.works.filter {!($0.issueNumber == w.issueNumber) && !($0.variantLetter == w.variantLetter)}
+            selectedVolume.works = filteredList
+        }
+    }
 }
