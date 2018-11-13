@@ -24,12 +24,19 @@ class DetailViewController: UIViewController {
     @IBAction func isOwnedAction(_ sender: Any) {
         let sw = sender as! UISwitch
         
-        comicBookCollection.selectedVolumeSelectedWork.isOwned = sw.isOn
+        // BUGFIX: if a work is uncollected comicBookCollection.selectedVolumeSelectedWork returns
+        //         a new work with isOwned == false. And it can't be set to true!
+        //         comicBookCollection.selectedVolumeSelectedWork.isOwned = true fails!
+        //         So, make a copy of the work and set it's property to UISwitch.isOn!
+        //         work.isOwned = true never fails!
         
-        if comicBookCollection.selectedVolumeSelectedWork.isOwned {
-            comicBookCollection.addWorkToSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
+        let work = comicBookCollection.selectedVolumeSelectedWork
+        work.isOwned = sw.isOn
+        
+        if work.isOwned {
+            comicBookCollection.addWorkToSelectedVolume(work)
         } else {
-            comicBookCollection.removeWorkFromSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
+            comicBookCollection.removeWorkFromSelectedVolume(work)
         }
         
         saveUserDefaults(for: defaultsKey, with: comicBookCollection)
