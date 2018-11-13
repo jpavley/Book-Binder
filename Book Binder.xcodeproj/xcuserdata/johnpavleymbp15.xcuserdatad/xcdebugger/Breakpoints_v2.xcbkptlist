@@ -10,28 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Book Binder/Controller/DetailViewController.swift"
-            timestampString = "563764156.868323"
+            timestampString = "563822524.347791"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "isOwnedAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Book Binder/Controller/DetailViewController.swift"
-            timestampString = "563764156.8689131"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "updateUX()"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "respondToSwipe(gesture:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

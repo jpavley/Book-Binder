@@ -33,6 +33,9 @@ class DetailViewController: UIViewController {
         let work = comicBookCollection.selectedVolumeSelectedWork
         work.isOwned = sw.isOn
         
+        
+        // TODO: Do this upon exiting the detail view in case the user wants to "undo"
+        //       One the work is removed it's gone forever!
         if work.isOwned {
             comicBookCollection.addWorkToSelectedVolume(work)
         } else {

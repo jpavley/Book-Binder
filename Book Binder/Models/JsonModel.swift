@@ -173,4 +173,15 @@ extension JsonModel {
             selectedVolume.works = filteredList
         }
     }
+    
+    func addCurrentWork(for volumeID: Int) {
+        selectedVolumeIndex = volumeID
+        
+        let currentWorkNumber = selectedVolume.currentWorkNumber
+        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "american-standard-dc", isOwned: true)
+        
+        selectedVolume.works.append(currentWork)
+        selectedVolume.currentWorkNumber += 1
+    }
+
 }

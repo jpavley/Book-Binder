@@ -223,11 +223,16 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             // return if these are the special cells that represent other actions
             let issueString = calcCurrentIssueString(indexPath: indexPath)
             if issueString == "..." || issueString == "+" {
-                return
+                print(issueString, indexPath.section)
+                
+                comicBookCollection.addCurrentWork(for: indexPath.section)
+                collectionView.reloadData()
+                saveUserDefaults(for: defaultsKey, with: comicBookCollection)
+            } else {
+                // continue to detail view control to display selected book
+                performSegue(withIdentifier: "DetailSegue", sender: indexPath)
             }
             
-            // continue to detail view control to display selected book
-            performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
     }
     
