@@ -22,11 +22,11 @@ class DetailViewController: UIViewController {
     var comicBookCollection: JsonModel!
     
     @IBAction func isOwnedAction(_ sender: Any) {
-        print("isOwnedAction: \(isOwnedSwitch.isOn)")
+        let sw = sender as! UISwitch
         
-        comicBookCollection.selectedVolumeSelectedWork.isOwned = isOwnedSwitch.isOn
+        comicBookCollection.selectedVolumeSelectedWork.isOwned = sw.isOn
         
-        if isOwnedSwitch.isOn {
+        if comicBookCollection.selectedVolumeSelectedWork.isOwned {
             comicBookCollection.addWorkToSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
         } else {
             comicBookCollection.removeWorkFromSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
@@ -51,7 +51,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwipeGestureRecognisers()
-        updateUX()
+        updateUXOnLoad()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -103,6 +103,15 @@ class DetailViewController: UIViewController {
         updateUX()
     }
     
+    /// When loading the view set the isOwnedSwitch
+    func updateUXOnLoad() {
+        updateUX()
+        
+        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
+        isOwnedSwitch.setOn(isOwned, animated: true)
+    }
+    
+    /// When loading the view don't set the isOwnedSwith, because that reloads it!
     func updateUX() {
         
         let seriesTitle = comicBookCollection.selectedVolume.seriesName
@@ -112,7 +121,6 @@ class DetailViewController: UIViewController {
         let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
         let volumeNumber = comicBookCollection.selectedVolume.volumeNumber
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
-        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
         
         titleLabel.text = seriesTitle
@@ -127,7 +135,6 @@ class DetailViewController: UIViewController {
             self.coverImageView.alpha = 1.0
         }, completion: nil)
         
-        isOwnedSwitch.setOn(isOwned, animated: true)
         navigationController?.isToolbarHidden = false
     }
 }
