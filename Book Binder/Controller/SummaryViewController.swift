@@ -66,14 +66,17 @@ class SummaryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         if comicBookCollection == nil {
+            //print("viewWillAppear: comicBookCollection == nil")
             updateComicBookCollectionData()
         } else {
+            //print("viewWillAppear: \(comicBookCollection.selectedVolumeSelectedWork.isOwned)")
             collectionView.reloadData()
         }
     }
     func updateComicBookCollectionData() {
         
         if let savedCollection = readUserDefaults(for: defaultsKey) {
+            //print("updateComicBookCollectionData: readUserDefaults")
             self.comicBookCollection = savedCollection
         } else if let sampleCollection = initFromBundle(forResource: "sample1", ofType: "json") {
             self.comicBookCollection = sampleCollection
@@ -174,9 +177,13 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     /// Blue strings are either the icons or the issues the user owns.
     func calcBlueStrings(indexPath: IndexPath) -> [String] {
-        let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
-        comicBookCollection.selectedVolumeIndex = offsetIndexPath.section
-        return comicBookCollection.selectedVolumeCollectedWorkIDs
+        
+        comicBookCollection.selectedVolumeIndex = indexPath.section
+        var blueStrings = comicBookCollection.selectedVolumeCollectedWorkIDs
+        blueStrings.append("...")
+        blueStrings.append("+")
+        
+        return blueStrings
     }
     
     func collectionView(_ collectionView: UICollectionView,
