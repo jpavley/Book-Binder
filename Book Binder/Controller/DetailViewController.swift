@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
         
         comicBookCollection.selectedVolumeSelectedWork.isOwned = isOwnedSwitch.isOn
         comicBookCollection.addWorkToSelectedVolume(comicBookCollection.selectedVolumeSelectedWork)
+        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         
         updateUX()
     }
