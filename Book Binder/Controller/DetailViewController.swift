@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
     var comicBookCollection: JsonModel!
     
     @IBAction func isOwnedAction(_ sender: Any) {
+        print("isOwnedAction: \(isOwnedSwitch.isOn)")
         
         comicBookCollection.selectedVolumeSelectedWork.isOwned = isOwnedSwitch.isOn
         
