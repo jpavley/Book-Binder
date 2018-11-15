@@ -174,14 +174,14 @@ extension JsonModel {
         }
     }
     
-    func addCurrentWork(for volumeID: Int) {
+    func addNextWork(for volumeID: Int) {
         selectedVolumeIndex = volumeID
         
+        selectedVolume.currentWorkNumber += 1
         let currentWorkNumber = selectedVolume.currentWorkNumber
         let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "american-standard-dc", isOwned: true)
         
         selectedVolume.works.append(currentWork)
-        selectedVolume.currentWorkNumber += 1
     }
 
 }

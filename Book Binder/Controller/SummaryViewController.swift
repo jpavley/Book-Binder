@@ -213,7 +213,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
-    /// Did Select Item At
+    // MARK:- Did Select Item At
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         
@@ -225,7 +225,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             if issueString == "..." || issueString == "+" {
                 print(issueString, indexPath.section)
                 
-                comicBookCollection.addCurrentWork(for: indexPath.section)
+                comicBookCollection.addNextWork(for: indexPath.section)
                 collectionView.reloadData()
                 saveUserDefaults(for: defaultsKey, with: comicBookCollection)
             } else {
