@@ -16,7 +16,6 @@
 		484CC0D621567A180012CD42 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0D521567A180012CD42 /* DetailViewController.swift */; };
 		484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484CC0D72156CC310012CD42 /* CollectionViewCell.swift */; };
 		48699AEF215AE7710038864A /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48699AEE215AE7710038864A /* CollectionReusableView.swift */; };
-		489B8F1B217C1E630031DCA4 /* book-binder-class-diagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 489B8F1A217C1E630031DCA4 /* book-binder-class-diagram.png */; };
 		48FBD3052151405000D2A14B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3032151405000D2A14B /* LICENSE */; };
 		48FBD3062151405000D2A14B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3042151405000D2A14B /* README.md */; };
 		B8F41CA3219768520042C446 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = B8F41CA1219768520042C446 /* sample1.json */; };
@@ -51,10 +50,8 @@
 		484CC0E22157F3540012CD42 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		484CC0E7215850350012CD42 /* Book Binder Model Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Book Binder Model Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		484CC0EB215850350012CD42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		484EAB952195134200D822FD /* TESTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TESTING.md; sourceTree = "<group>"; };
 		48699AEE215AE7710038864A /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		489B8F19217BE1ED0031DCA4 /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
-		489B8F1A217C1E630031DCA4 /* book-binder-class-diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-binder-class-diagram.png"; sourceTree = "<group>"; };
 		48FBD3032151405000D2A14B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		48FBD3042151405000D2A14B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		48FBD3072151409400D2A14B /* FEATURES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FEATURES.md; sourceTree = "<group>"; };
@@ -93,8 +90,6 @@
 		483C61AB214ED8E9008C69D8 = {
 			isa = PBXGroup;
 			children = (
-				484EAB952195134200D822FD /* TESTING.md */,
-				489B8F1A217C1E630031DCA4 /* book-binder-class-diagram.png */,
 				489B8F19217BE1ED0031DCA4 /* ARCHITECTURE.md */,
 				484CC0E22157F3540012CD42 /* TODO.md */,
 				48FBD3042151405000D2A14B /* README.md */,
@@ -249,7 +244,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				489B8F1B217C1E630031DCA4 /* book-binder-class-diagram.png in Resources */,
 				483C61C2214ED8EB008C69D8 /* LaunchScreen.storyboard in Resources */,
 				483C61BF214ED8EB008C69D8 /* Assets.xcassets in Resources */,
 				48FBD3062151405000D2A14B /* README.md in Resources */,

@@ -43,8 +43,6 @@ part of a user's collection stored locally.
 
 
 ## In progress
-- Implement comicbook variant as an object as a collection belonging to work. A variant has a letter and a
-cover image.
 
 ## Closed
 - Rename ViewController to SummaryViewController.
@@ -69,6 +67,9 @@ the book URI as the key!
 - write missing unit tests!
 - Update classes to match architecture
 - Make skipped issues and extra issues lists
+- Implement comicbook variant as an object as a collection belonging to work. A variant has a letter and a
+cover image.
+
 
 
 
