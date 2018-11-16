@@ -148,28 +148,28 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         // offset by 1 because first cell contains ... icon
         return IndexPath(row: indexPath.item + 1, section: indexPath.section)
     }
-
+    
     
     /// The current issue string is either ..., +, or a published issue number.
     func calcCurrentIssueString(indexPath: IndexPath) -> String {
         var currentIssueString = ""
         let offsetIndexPath = calcOffsetIndexPath(indexPath: indexPath)
         comicBookCollection.selectedVolumeIndex = offsetIndexPath.section
-
+        
         // The first cell (0) should be the ... icon for editing the series
         // The last cell (series.publishedIssues.count + 2) should be the + icon for adding a book
         
         if indexPath.item == 0 {
-
+            
             currentIssueString = "..."
-
+            
         } else if indexPath.item == (comicBookCollection.selectedVolumeCompleteWorkIDs.count + 1) {
-
+            
             // offset the published issue count by 1 to account for ... and + icons
             currentIssueString = "+"
-
+            
         } else {
-
+            
             currentIssueString = "\(comicBookCollection.selectedVolumeCompleteWorkIDs[offsetIndexPath.item])"
         }
         return currentIssueString
@@ -179,7 +179,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func calcBlueStrings(indexPath: IndexPath) -> [String] {
         
         comicBookCollection.selectedVolumeIndex = indexPath.section
-        var blueStrings = comicBookCollection.selectedVolumeCollectedWorkIDs
+        var blueStrings = comicBookCollection.selectedVolumeOwnedWorkIDs
         blueStrings.append("...")
         blueStrings.append("+")
         
@@ -220,19 +220,25 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         if isEditing {
             navigationController?.isToolbarHidden = false
         } else {
-            // return if these are the special cells that represent other actions
+            // is this a special issue?
             let issueString = calcCurrentIssueString(indexPath: indexPath)
-            if issueString == "..." || issueString == "+" {
-                print(issueString, indexPath.section)
+            
+            switch issueString {
+                
+            case "...":
+                
+                // go to the series view
+                print("issueString: \(issueString)")
+            case "+":
                 
                 comicBookCollection.addNextWork(for: indexPath.section)
                 collectionView.reloadData()
                 saveUserDefaults(for: defaultsKey, with: comicBookCollection)
-            } else {
-                // continue to detail view control to display selected book
+            default:
+                
+                // go to detail view control to display selected book
                 performSegue(withIdentifier: "DetailSegue", sender: indexPath)
             }
-            
         }
     }
     
