@@ -38,8 +38,6 @@ class DetailViewController: UIViewController {
         //       One the work is removed it's gone forever!
         if work.isOwned {
             comicBookCollection.addWorkToSelectedVolume(work)
-        } else {
-            comicBookCollection.removeWorkFromSelectedVolume(work)
         }
         
         saveUserDefaults(for: defaultsKey, with: comicBookCollection)
