@@ -31,5 +31,23 @@ class CollectionViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    override func draw(_ rect: CGRect) {
+        
+        if titleLabel.text != "..." && titleLabel.text != "+" {
+            return
+        }
+        
+        if let context = UIGraphicsGetCurrentContext() {
+            let circleFrame = CGRect(origin: CGPoint(x: rect.midX/2.5, y: rect.minY), size: CGSize(width: rect.size.height, height: rect.size.height))
+            let newRect = circleFrame.insetBy(dx: 6.0, dy: 6.0)
+            context.addEllipse(in: newRect)
+            context.setStrokeColor(UIColor.blue.cgColor)
+            context.setLineWidth(1.0)
+            context.strokePath()
+            
+        }
+    }
+
 }
 
