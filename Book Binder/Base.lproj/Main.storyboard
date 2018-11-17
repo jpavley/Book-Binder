@@ -64,7 +64,7 @@
                                             <constraint firstItem="7Xm-CH-IWv" firstAttribute="centerX" secondItem="NKw-ev-Cdh" secondAttribute="centerX" id="w7e-Fq-HKl"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="icomImage" destination="L0x-F6-hEi" id="eRP-Om-S91"/>
+                                            <outlet property="iconImage" destination="L0x-F6-hEi" id="eRP-Om-S91"/>
                                             <outlet property="titleLabel" destination="7Xm-CH-IWv" id="qQu-I1-lEP"/>
                                         </connections>
                                     </collectionViewCell>

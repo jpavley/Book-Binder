@@ -196,18 +196,18 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
         case "+":
             cell.titleLabel.isHidden = true
-            cell.icomImage.isHidden = false
-            cell.icomImage.image = UIImage(named: "Add-New-Issue")
+            cell.iconImage.isHidden = false
+            cell.iconImage.image = UIImage(named: "Add-New-Issue")
             
         case "...":
             cell.titleLabel.isHidden = true
-            cell.icomImage.isHidden = false
-            cell.icomImage.image = UIImage(named: "Edit-Series")
+            cell.iconImage.isHidden = false
+            cell.iconImage.image = UIImage(named: "Edit-Series")
             
             
         default:
             cell.titleLabel.isHidden = false
-            cell.icomImage.isHidden = true
+            cell.iconImage.isHidden = true
             let blueStrings = calcBlueStrings(indexPath: indexPath)
             var attributes: [NSAttributedString.Key: Any]
             
