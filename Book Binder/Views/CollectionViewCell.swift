@@ -16,8 +16,6 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var selectionImage: UIImageView!
     @IBOutlet weak var icomImage: UIImageView!
     
-    var lableText = ""
-    
     var isEditing: Bool = false {
         didSet {
             // if isEditing is true show the selection image
@@ -34,31 +32,5 @@ class CollectionViewCell: UICollectionViewCell {
             }
         }
     }
-        
-//    override func draw(_ rect: CGRect) {
-//        
-//        lableText = titleLabel.text!
-//
-//        if titleLabel.text! != "..." && titleLabel.text! != "+" {
-//            return
-//        }
-//
-//        if let context = UIGraphicsGetCurrentContext() {
-//            let newRect = rect.insetBy(dx: 6.0, dy: 6.0)
-//            let newSize = CGSize(width: newRect.size.height, height: newRect.size.height)
-//            let newX = newRect.midX - newSize.width/2
-//            let newOrigin = CGPoint(x: newX, y: newRect.minY)
-//
-//            print(newSize.width)
-//
-//            let circleFrame = CGRect(origin: newOrigin, size: newSize)
-//            context.addEllipse(in: circleFrame)
-//            context.setStrokeColor(UIColor.blue.cgColor)
-//            context.setLineWidth(1.0)
-//            context.strokePath()
-//
-//        }
-//    }
-
 }
 
