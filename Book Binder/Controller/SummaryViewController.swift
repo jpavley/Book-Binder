@@ -197,13 +197,21 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         case "+":
             cell.titleLabel.isHidden = true
             cell.iconImage.isHidden = false
-            cell.iconImage.image = UIImage(named: "Add-New-Issue")
+            
+            let original =  UIImage(named: "Add-New-Issue")
+            let tinted = original?.withRenderingMode(.alwaysTemplate)
+            cell.iconImage.image = tinted
+            cell.tintColor = UIColor.blue
+            
             
         case "...":
             cell.titleLabel.isHidden = true
             cell.iconImage.isHidden = false
-            cell.iconImage.image = UIImage(named: "Edit-Series")
             
+            let original =  UIImage(named: "Edit-Series")
+            let tinted = original?.withRenderingMode(.alwaysTemplate)
+            cell.iconImage.image = tinted
+            cell.tintColor = UIColor.blue
             
         default:
             cell.titleLabel.isHidden = false
