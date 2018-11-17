@@ -49,10 +49,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Add-New-Issue" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-F6-hEi">
-                                                    <rect key="frame" x="15" y="5" width="30" height="30"/>
+                                                    <rect key="frame" x="16" y="6" width="28" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="4s9-qA-qcN"/>
-                                                        <constraint firstAttribute="height" constant="30" id="Ukp-z7-Y6K"/>
+                                                        <constraint firstAttribute="width" constant="28" id="4s9-qA-qcN"/>
+                                                        <constraint firstAttribute="height" constant="28" id="Ukp-z7-Y6K"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
