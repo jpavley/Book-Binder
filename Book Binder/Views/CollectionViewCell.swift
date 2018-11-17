@@ -39,9 +39,13 @@ class CollectionViewCell: UICollectionViewCell {
         }
         
         if let context = UIGraphicsGetCurrentContext() {
-            let circleFrame = CGRect(origin: CGPoint(x: rect.midX/2.5, y: rect.minY), size: CGSize(width: rect.size.height, height: rect.size.height))
-            let newRect = circleFrame.insetBy(dx: 6.0, dy: 6.0)
-            context.addEllipse(in: newRect)
+            let newRect = rect.insetBy(dx: 6.0, dy: 6.0)
+            let newSize = CGSize(width: newRect.size.height, height: newRect.size.height)
+            let newX = newRect.midX - newSize.width/2
+            let newOrigin = CGPoint(x: newX, y: newRect.minY)
+            
+            let circleFrame = CGRect(origin: newOrigin, size: newSize)
+            context.addEllipse(in: circleFrame)
             context.setStrokeColor(UIColor.blue.cgColor)
             context.setLineWidth(1.0)
             context.strokePath()
