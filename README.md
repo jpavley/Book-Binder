@@ -1,12 +1,16 @@
 # Book Binder
 
-iOS app that manages of IRL published media. If you collect comics, books, albums, movies, and similar physical 
-manifestations of art and culture printed, pressed, burned, recordered, pressed, or otherwise available to hold in
-your hand then Book Binder might be for you. Open source, MIT license. Written in Swift for iOS 11 and beyond.
+iOS app that manages of "IRL" published comic books. If you read and collect comics, the kind you can hold  in
+your hand then Book Binder might be for you. Open source, MIT license. Written in Swift for iOS and iPhone.
 
-## Current State
+## Navigating this Repo
 
-Good progress on summary and detail views. If you'd like to contribute reach out on Twitter to @jpavley.
+You'll need a GitHub account to clone or fork the code and documentation.
+
+### Code 
+- Standard Xcode 10 project, nothing exciting like pods yet
+- Mostly test driven and you'll find the tests in _Book Binder Model Tests_ directory
+- Screen designs are found int the _UX Desgins_ directory
 
 ## Planned Features
 
