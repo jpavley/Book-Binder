@@ -185,7 +185,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return blueStrings
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
