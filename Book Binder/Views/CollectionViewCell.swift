@@ -14,6 +14,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectionImage: UIImageView!
+    @IBOutlet weak var icomImage: UIImageView!
     
     var lableText = ""
     

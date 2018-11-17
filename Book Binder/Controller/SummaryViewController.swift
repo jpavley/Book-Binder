@@ -185,31 +185,50 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return blueStrings
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let currentIssueString = calcCurrentIssueString(indexPath: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        let blueStrings = calcBlueStrings(indexPath: indexPath)
-        var attributes: [NSAttributedString.Key: Any]
         
-        if blueStrings.contains(currentIssueString) {
+        switch currentIssueString {
             
-            attributes = [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                NSAttributedString.Key.foregroundColor: UIColor.blue
-            ]
-        } else {
+        case "+":
+            cell.titleLabel.isHidden = true
+            cell.icomImage.isHidden = false
+            cell.icomImage.image = UIImage(named: "Add-New-Issue")
             
-            attributes = [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
-                NSAttributedString.Key.foregroundColor: UIColor.red,
-                NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
-            ]
+        case "...":
+            cell.titleLabel.isHidden = true
+            cell.icomImage.isHidden = false
+            cell.icomImage.image = UIImage(named: "Edit-Series")
+            
+            
+        default:
+            cell.titleLabel.isHidden = false
+            cell.icomImage.isHidden = true
+            let blueStrings = calcBlueStrings(indexPath: indexPath)
+            var attributes: [NSAttributedString.Key: Any]
+            
+            if blueStrings.contains(currentIssueString) {
+                
+                attributes = [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                    NSAttributedString.Key.foregroundColor: UIColor.blue
+                ]
+            } else {
+                
+                attributes = [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17),
+                    NSAttributedString.Key.foregroundColor: UIColor.red,
+                    NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+                ]
+            }
+            
+            cell.titleLabel.attributedText = NSAttributedString(string: currentIssueString, attributes: attributes)
         }
         
-        cell.titleLabel.attributedText = NSAttributedString(string: currentIssueString, attributes: attributes)
         return cell
     }
     
