@@ -189,29 +189,26 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        func configureIconImage(for cell: CollectionViewCell, with name: String) {
+            cell.titleLabel.isHidden = true
+            cell.iconImage.isHidden = false
+            
+            let original =  UIImage(named: name)
+            let tinted = original?.withRenderingMode(.alwaysTemplate)
+            cell.iconImage.image = tinted
+            cell.tintColor = UIColor.blue
+        }
+        
         let currentIssueString = calcCurrentIssueString(indexPath: indexPath)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
         switch currentIssueString {
             
         case "+":
-            cell.titleLabel.isHidden = true
-            cell.iconImage.isHidden = false
-            
-            let original =  UIImage(named: "Add-New-Issue")
-            let tinted = original?.withRenderingMode(.alwaysTemplate)
-            cell.iconImage.image = tinted
-            cell.tintColor = UIColor.blue
-            
+            configureIconImage(for: cell, with: "Add-New-Issue")
             
         case "...":
-            cell.titleLabel.isHidden = true
-            cell.iconImage.isHidden = false
-            
-            let original =  UIImage(named: "Edit-Series")
-            let tinted = original?.withRenderingMode(.alwaysTemplate)
-            cell.iconImage.image = tinted
-            cell.tintColor = UIColor.blue
+            configureIconImage(for: cell, with: "Edit-Series")
             
         default:
             cell.titleLabel.isHidden = false
