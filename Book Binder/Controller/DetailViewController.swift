@@ -13,8 +13,6 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var publisherLabel: UILabel!
     @IBOutlet private weak var issueNumberLabel: UILabel!
-    @IBOutlet private weak var variantLetterLabel: UILabel!
-    @IBOutlet weak var VolumePrintingLabel: UILabel!
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
@@ -44,8 +42,8 @@ class DetailViewController: UIViewController {
         updateUX()
     }
     
-    @IBAction func deleteAction(_ sender: Any) {
-        print("delete action")
+    @IBAction func editAction(_ sender: Any) {
+        print("edit action")
     }
     
     @IBAction func cameraAction(_ sender: Any) {
@@ -60,10 +58,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         addSwipeGestureRecognisers()
         updateUXOnLoad()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func addSwipeGestureRecognisers() {
@@ -127,15 +121,12 @@ class DetailViewController: UIViewController {
         let era = comicBookCollection.selectedVolume.era
         let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
         let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
-        let volumeNumber = comicBookCollection.selectedVolume.volumeNumber
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
         
         
-        titleLabel.text = seriesTitle
-        publisherLabel.text = "\(publisherName) \(era)"
-        issueNumberLabel.text = "#\(workNumber)"
-        variantLetterLabel.text = "\(variantLetter)"
-        VolumePrintingLabel.text = "Vol. \(volumeNumber)"
+        titleLabel.text = "\(seriesTitle) \(era)"
+        publisherLabel.text = "\(publisherName)"
+        issueNumberLabel.text = "#\(workNumber)\(variantLetter)"
         
         coverImageView.alpha = 0
         coverImageView.image = UIImage(named: coverImage)

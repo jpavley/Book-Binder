@@ -147,7 +147,7 @@
         <!--Detail View-->
         <scene sceneID="Lhl-Yj-ALX">
             <objects>
-                <viewController title="Book" id="6F6-9h-lCG" userLabel="Detail View" customClass="DetailViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Comic Book" id="6F6-9h-lCG" userLabel="Detail View" customClass="DetailViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLF-Lk-Apy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -168,31 +168,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" image="american-standard-dc" translatesAutoresizingMaskIntoConstraints="NO" id="ZQM-w5-72L">
-                                        <rect key="frame" x="0.0" y="54.5" width="288" height="329"/>
+                                        <rect key="frame" x="0.0" y="54.5" width="288" height="350.5"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Printing 1" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rug-gg-fZM">
-                                        <rect key="frame" x="119.5" y="391.5" width="49.5" height="13.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
-                                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="48" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-X8-AFA">
-                                        <rect key="frame" x="22.5" y="413" width="243" height="31"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-X8-AFA">
+                                        <rect key="frame" x="0.0" y="413" width="288" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1234" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV2-j1-npG">
-                                                <rect key="frame" x="0.0" y="0.0" width="49" height="31"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFf-HI-Ghq">
-                                                <rect key="frame" x="97" y="0.0" width="49" height="31"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#123456" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV2-j1-npG">
+                                                <rect key="frame" x="0.0" y="0.0" width="144" height="31"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UCS-Eo-pEg">
-                                                <rect key="frame" x="194" y="0.0" width="51" height="31"/>
+                                                <rect key="frame" x="239" y="0.0" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="isOwnedAction:" destination="6F6-9h-lCG" eventType="valueChanged" id="ZSy-NV-bvP"/>
                                                 </connections>
@@ -200,6 +188,10 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="BLc-X8-AFA" firstAttribute="leading" secondItem="2uJ-nz-JWE" secondAttribute="leading" id="Gix-FQ-N0b"/>
+                                    <constraint firstAttribute="trailing" secondItem="BLc-X8-AFA" secondAttribute="trailing" id="uMk-82-0nN"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -212,9 +204,9 @@
                         <viewLayoutGuide key="safeArea" id="tjh-zU-fAW"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem systemItem="trash" id="UbO-hQ-cP4">
+                        <barButtonItem systemItem="edit" id="idT-ra-eSi">
                             <connections>
-                                <action selector="deleteAction:" destination="6F6-9h-lCG" id="O2i-QT-lzT"/>
+                                <action selector="editAction:" destination="6F6-9h-lCG" id="9Ef-if-HX0"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zje-wQ-OW7"/>
@@ -232,13 +224,11 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="VolumePrintingLabel" destination="rug-gg-fZM" id="yPy-Za-SD9"/>
                         <outlet property="coverImageView" destination="ZQM-w5-72L" id="wQ9-bl-dFv"/>
                         <outlet property="isOwnedSwitch" destination="UCS-Eo-pEg" id="84O-42-ZrH"/>
                         <outlet property="issueNumberLabel" destination="fV2-j1-npG" id="PC1-7j-Ipd"/>
                         <outlet property="publisherLabel" destination="Hj3-XC-JxU" id="j1g-aX-xNR"/>
                         <outlet property="titleLabel" destination="ToO-mV-afp" id="M5z-8S-HwS"/>
-                        <outlet property="variantLetterLabel" destination="IFf-HI-Ghq" id="rXi-pG-UgO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
