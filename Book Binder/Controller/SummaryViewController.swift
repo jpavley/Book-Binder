@@ -14,7 +14,7 @@ class SummaryViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var addButton: UIBarButtonItem!
-    @IBOutlet private weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     // MARK:- Constants -
     
@@ -29,10 +29,13 @@ class SummaryViewController: UIViewController {
     // MARK:- Actions -
     
     @IBAction func addItem() {
-        collectionView.performBatchUpdates({
-            // TODO: Add series
-        }, completion: nil)
+        print("addItem touched")
     }
+    
+    @IBAction func snapItem(_ sender: Any) {
+        print("snapItem touched")
+    }
+    
     
     // MARK: - Startup -
     
@@ -48,52 +51,28 @@ class SummaryViewController: UIViewController {
             layout.itemSize = CGSize(width: width, height: cellHeight)
         }
         
-        func pullToRefreshSetup() {
-            let refresh = UIRefreshControl()
-            refresh.addTarget(self, action: #selector(self.refresh), for: .valueChanged)
-            collectionView.refreshControl = refresh
-        }
-        
-        func toolbarSetup() {
-            navigationController?.isToolbarHidden = true
-        }
-        
         collectionViewLayout()
-        pullToRefreshSetup()
-        toolbarSetup()
+        navigationController?.isToolbarHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         if comicBookCollection == nil {
-            //print("viewWillAppear: comicBookCollection == nil")
             updateComicBookCollectionData()
         } else {
-            //print("viewWillAppear: \(comicBookCollection.selectedVolumeSelectedWork.isOwned)")
+            navigationController?.isToolbarHidden = false
             collectionView.reloadData()
         }
     }
     func updateComicBookCollectionData() {
         
         if let savedCollection = readUserDefaults(for: defaultsKey) {
-            //print("updateComicBookCollectionData: readUserDefaults")
             self.comicBookCollection = savedCollection
         } else if let sampleCollection = initFromBundle(forResource: "sample1", ofType: "json") {
             self.comicBookCollection = sampleCollection
         } else {
             print("no data in local phone stroage or in application bundle")
         }
-    }
-    
-    // pull to refresh
-    
-    @objc func refresh() {
-        
-        collectionView.performBatchUpdates({
-            // TODO: Update comicbook data from a server
-        }, completion: nil)
-        
-        collectionView.refreshControl?.endRefreshing()
     }
 }
 

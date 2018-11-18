@@ -16,11 +16,11 @@ class CollectionReusableView: UICollectionReusableView {
     override func draw(_ rect: CGRect) {
         
         if let context = UIGraphicsGetCurrentContext() {
-            context.move(to: CGPoint(x: rect.minX + 6.0, y: rect.minY + 6.0))
-            context.addLine(to: CGPoint(x: rect.maxX - 6.0, y: rect.minY + 6.0))
+            context.move(to: CGPoint(x: rect.minX, y: rect.minY))
+            context.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
             context.setStrokeColor(UIColor.lightGray.cgColor)
-            context.setLineWidth(2.0)
-            context.setLineDash(phase: 5.0, lengths: [5.0, 5.0])
+            context.setLineWidth(1.0)
+            //context.setLineDash(phase: 5.0, lengths: [5.0, 5.0])
             context.strokePath()
             
         }
