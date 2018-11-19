@@ -207,7 +207,7 @@
                         <barButtonItem systemItem="edit" id="idT-ra-eSi">
                             <connections>
                                 <action selector="editAction:" destination="6F6-9h-lCG" id="9Ef-if-HX0"/>
-                                <segue destination="Gp3-9j-DlV" kind="presentation" id="Lmz-G1-gJs"/>
+                                <segue destination="Gp3-9j-DlV" kind="presentation" identifier="WorkSegue" id="Lmz-G1-gJs"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="zje-wQ-OW7"/>

@@ -18,6 +18,10 @@ class WorkViewController: UIViewController {
     @IBOutlet weak var variantLetterField: UITextField!
     @IBOutlet weak var coverPhotoImageView: UIImageView!
     
+    // MARK:- Properties
+    
+    var comicBookCollection: JsonModel!
+    
     // MARK:- Actions
     
     @IBAction func takePhotoAction(_ sender: Any) {
@@ -32,16 +36,37 @@ class WorkViewController: UIViewController {
 
     @IBAction func saveAction(_ sender: Any) {
     }
-
-
     
-
-    
+    // MARK:- Overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        updateUX()
+    }
+    
+    // MARK:- Methods
+    
+    func updateUX() {
+        let seriesTitle = comicBookCollection.selectedVolume.seriesName
+        let publisherName = comicBookCollection.selectedVolume.publisherName
+        let era = comicBookCollection.selectedVolume.era
+        let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
+        let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
+        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
+        
+        seriesTitleLabel.text = "\(seriesTitle) \(era)"
+        publisherNameLabel.text = "\(publisherName)"
+        issueNumberField.text = "\(workNumber)"
+        variantLetterField.text = "\(variantLetter)"
+
+        coverPhotoImageView.alpha = 0
+        coverPhotoImageView.image = UIImage(named: coverImage)
+        UIView.animate(withDuration: 1.0, animations: {
+            self.coverPhotoImageView.alpha = 1.0
+        }, completion: nil)
+
     }
     
 

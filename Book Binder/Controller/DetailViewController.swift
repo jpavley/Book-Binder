@@ -136,4 +136,14 @@ class DetailViewController: UIViewController {
         
         navigationController?.isToolbarHidden = false
     }
+    
+    // MARK:- Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let dest = segue.destination as? WorkViewController {
+            dest.comicBookCollection = comicBookCollection
+        }
+    }
+
 }
