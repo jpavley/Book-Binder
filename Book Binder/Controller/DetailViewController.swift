@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    // MARK:- Outlets
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var publisherLabel: UILabel!
     @IBOutlet private weak var issueNumberLabel: UILabel!
@@ -17,7 +19,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     
+    // MARK:- Properties
+    
     var comicBookCollection: JsonModel!
+    var undoData: WorkData!
+    
+    // MARK:- Actions
     
     @IBAction func isOwnedAction(_ sender: Any) {
         let sw = sender as! UISwitch
@@ -39,7 +46,6 @@ class DetailViewController: UIViewController {
         }
         
         saveUserDefaults(for: defaultsKey, with: comicBookCollection)
-        updateUX()
     }
     
     @IBAction func editAction(_ sender: Any) {
@@ -57,7 +63,69 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwipeGestureRecognisers()
+        cacheUndoData()
         updateUXOnLoad()
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            print("cancel changes")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("save changes")
+    }
+    
+    // MARK:- Methods
+    
+    func cacheUndoData() {
+        undoData = WorkData(issueNumber: comicBookCollection.selectedVolumeSelectedWork.issueNumber,
+                            variantLetter: comicBookCollection.selectedVolumeSelectedWork.variantLetter,
+                            coverImage: comicBookCollection.selectedVolumeSelectedWork.coverImage,
+                            isOwned: comicBookCollection.selectedVolumeSelectedWork.isOwned)
+    }
+    
+    func cancelAction(_ sender: Any) {
+        
+        let work = comicBookCollection.selectedVolumeSelectedWork
+        
+        work.issueNumber = undoData.issueNumber
+        work.variantLetter = undoData.variantLetter
+        work.coverImage = undoData.coverImage
+        work.isOwned = undoData.isOwned
+        
+        if work.isOwned {
+            comicBookCollection.addWorkToSelectedVolume(work)
+        }
+        
+        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func save() {
+        let work = comicBookCollection.selectedVolumeSelectedWork
+        
+        work.issueNumber = Int(issueNumberLabel.text ?? "") ?? 0
+        
+        // TODO: Save issue number and variant letter seperately
+        //work.variantLetter = variantLetterField.text ?? ""
+        work.isOwned = isOwnedSwitch.isOn
+        
+        // TODO: Implement cover image
+        // work.coverImage = ?
+        
+        if work.isOwned {
+            comicBookCollection.addWorkToSelectedVolume(work)
+        }
+        
+        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
+        dismiss(animated: true, completion: nil)
+        
     }
     
     func addSwipeGestureRecognisers() {
