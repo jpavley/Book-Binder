@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var publisherLabel: UILabel!
     @IBOutlet private weak var issueNumberLabel: UILabel!
+    @IBOutlet weak var variantLetterLabel: UILabel!
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
@@ -25,29 +26,7 @@ class DetailViewController: UIViewController {
     var undoData: WorkData!
     
     // MARK:- Actions
-    
-    @IBAction func isOwnedAction(_ sender: Any) {
-        let sw = sender as! UISwitch
         
-        // BUGFIX: if a work is uncollected comicBookCollection.selectedVolumeSelectedWork returns
-        //         a new work with isOwned == false. And it can't be set to true!
-        //         comicBookCollection.selectedVolumeSelectedWork.isOwned = true fails!
-        //         So, make a copy of the work and set it's property to UISwitch.isOn!
-        //         work.isOwned = true never fails!
-        
-        let work = comicBookCollection.selectedVolumeSelectedWork
-        work.isOwned = sw.isOn
-        
-        
-        // TODO: Do this upon exiting the detail view in case the user wants to "undo"
-        //       One the work is removed it's gone forever!
-        if work.isOwned {
-            comicBookCollection.addWorkToSelectedVolume(work)
-        }
-        
-        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
-    }
-    
     @IBAction func editAction(_ sender: Any) {
         print("edit action")
     }
@@ -73,12 +52,12 @@ class DetailViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            print("cancel changes")
+            cancel()
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("save changes")
+        save()
     }
     
     // MARK:- Methods
@@ -90,7 +69,7 @@ class DetailViewController: UIViewController {
                             isOwned: comicBookCollection.selectedVolumeSelectedWork.isOwned)
     }
     
-    func cancelAction(_ sender: Any) {
+    func cancel() {
         
         let work = comicBookCollection.selectedVolumeSelectedWork
         
@@ -111,13 +90,11 @@ class DetailViewController: UIViewController {
         let work = comicBookCollection.selectedVolumeSelectedWork
         
         work.issueNumber = Int(issueNumberLabel.text ?? "") ?? 0
-        
-        // TODO: Save issue number and variant letter seperately
-        //work.variantLetter = variantLetterField.text ?? ""
+        work.variantLetter = variantLetterLabel.text ?? ""
         work.isOwned = isOwnedSwitch.isOn
         
-        // TODO: Implement cover image
-        // work.coverImage = ?
+        // TODO: Figure out how to properly implement the ability to change cover photos
+        work.coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
         
         if work.isOwned {
             comicBookCollection.addWorkToSelectedVolume(work)
@@ -194,7 +171,8 @@ class DetailViewController: UIViewController {
         
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
-        issueNumberLabel.text = "\(workNumber)\(variantLetter)"
+        issueNumberLabel.text = "\(workNumber)"
+        variantLetterLabel.text = "\(variantLetter)"
         
         coverImageView.alpha = 0
         coverImageView.image = UIImage(named: coverImage)
@@ -208,10 +186,7 @@ class DetailViewController: UIViewController {
     // MARK:- Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let dest = segue.destination as? WorkViewController {
-            dest.comicBookCollection = comicBookCollection
-        }
+        // No where to seque to!
     }
 
 }

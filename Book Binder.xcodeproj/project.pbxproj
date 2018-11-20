@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */ = {isa = PBXBuildFile; fileRef = 4824760021528AF70039399D /* UX for Book Binder Summary View.png */; };
-		4824DCB021A2F9D300BB0893 /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4824DCAF21A2F9D300BB0893 /* WorkViewController.swift */; };
 		483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B7214ED8E9008C69D8 /* AppDelegate.swift */; };
 		483C61BA214ED8E9008C69D8 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */; };
 		483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 483C61BB214ED8E9008C69D8 /* Main.storyboard */; };
@@ -42,7 +41,6 @@
 
 /* Begin PBXFileReference section */
 		4824760021528AF70039399D /* UX for Book Binder Summary View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UX for Book Binder Summary View.png"; sourceTree = "<group>"; };
-		4824DCAF21A2F9D300BB0893 /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
 		483C61B4214ED8E9008C69D8 /* Book Binder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Book Binder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		483C61B7214ED8E9008C69D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 				483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */,
 				484CC0D521567A180012CD42 /* DetailViewController.swift */,
 				B8F41CA6219769C30042C446 /* DataHelper.swift */,
-				4824DCAF21A2F9D300BB0893 /* WorkViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,7 +279,6 @@
 				483C61BA214ED8E9008C69D8 /* SummaryViewController.swift in Sources */,
 				B8F41CA7219769C30042C446 /* DataHelper.swift in Sources */,
 				B8F41CA4219768520042C446 /* JsonModel.swift in Sources */,
-				4824DCB021A2F9D300BB0893 /* WorkViewController.swift in Sources */,
 				B83DAA1221A468C100EBCC71 /* WorkData.swift in Sources */,
 				484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */,
 				483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */,
