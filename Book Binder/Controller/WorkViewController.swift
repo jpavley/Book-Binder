@@ -47,6 +47,9 @@ class WorkViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
+        isOwnedSwitch.setOn(isOwned, animated: true)
+
         updateUX()
     }
     
@@ -59,15 +62,12 @@ class WorkViewController: UIViewController {
         let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
         let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
-        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
         seriesTitleLabel.text = "\(seriesTitle) \(era)"
         publisherNameLabel.text = "\(publisherName)"
         issueNumberField.text = "\(workNumber)"
         variantLetterField.text = "\(variantLetter)"
         
-        isOwnedSwitch.isOn = isOwned
-
         coverPhotoImageView.alpha = 0
         coverPhotoImageView.image = UIImage(named: coverImage)
         UIView.animate(withDuration: 1.0, animations: {
