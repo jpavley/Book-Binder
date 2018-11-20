@@ -126,7 +126,7 @@ class DetailViewController: UIViewController {
         
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
-        issueNumberLabel.text = "#\(workNumber)\(variantLetter)"
+        issueNumberLabel.text = "\(workNumber)\(variantLetter)"
         
         coverImageView.alpha = 0
         coverImageView.image = UIImage(named: coverImage)

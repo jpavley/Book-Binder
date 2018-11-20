@@ -21,6 +21,7 @@
 		48FBD3062151405000D2A14B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3042151405000D2A14B /* README.md */; };
 		B82641DC21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = B82641DA21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png */; };
 		B82641DD21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */; };
+		B83DAA1221A468C100EBCC71 /* WorkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83DAA1121A468C100EBCC71 /* WorkData.swift */; };
 		B8F41CA3219768520042C446 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = B8F41CA1219768520042C446 /* sample1.json */; };
 		B8F41CA4219768520042C446 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA2219768520042C446 /* JsonModel.swift */; };
 		B8F41CA7219769C30042C446 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA6219769C30042C446 /* DataHelper.swift */; };
@@ -58,6 +59,7 @@
 		48FBD3042151405000D2A14B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B82641DA21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-11-18 at 11.56.43 AM.png"; sourceTree = "<group>"; };
 		B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-11-18 at 11.56.54 AM.png"; sourceTree = "<group>"; };
+		B83DAA1121A468C100EBCC71 /* WorkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkData.swift; sourceTree = "<group>"; };
 		B8F41CA1219768520042C446 /* sample1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample1.json; sourceTree = "<group>"; };
 		B8F41CA2219768520042C446 /* JsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		B8F41CA5219768910042C446 /* JsonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModelTests.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				B8F41CA2219768520042C446 /* JsonModel.swift */,
 				B8F41CA1219768520042C446 /* sample1.json */,
+				B83DAA1121A468C100EBCC71 /* WorkData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				B8F41CA7219769C30042C446 /* DataHelper.swift in Sources */,
 				B8F41CA4219768520042C446 /* JsonModel.swift in Sources */,
 				4824DCB021A2F9D300BB0893 /* WorkViewController.swift in Sources */,
+				B83DAA1221A468C100EBCC71 /* WorkData.swift in Sources */,
 				484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */,
 				483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */,
 			);
