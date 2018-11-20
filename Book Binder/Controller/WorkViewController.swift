@@ -17,6 +17,7 @@ class WorkViewController: UIViewController {
     @IBOutlet weak var issueNumberField: UITextField!
     @IBOutlet weak var variantLetterField: UITextField!
     @IBOutlet weak var coverPhotoImageView: UIImageView!
+    @IBOutlet weak var isOwnedSwitch: UISwitch!
     
     // MARK:- Properties
     
@@ -34,6 +35,9 @@ class WorkViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func isOwnedAction(_ sender: Any) {
+    }
+    
     @IBAction func saveAction(_ sender: Any) {
     }
     
@@ -55,11 +59,14 @@ class WorkViewController: UIViewController {
         let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
         let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
+        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
         seriesTitleLabel.text = "\(seriesTitle) \(era)"
         publisherNameLabel.text = "\(publisherName)"
         issueNumberField.text = "\(workNumber)"
         variantLetterField.text = "\(variantLetter)"
+        
+        isOwnedSwitch.isOn = isOwned
 
         coverPhotoImageView.alpha = 0
         coverPhotoImageView.image = UIImage(named: coverImage)
