@@ -26,16 +26,19 @@ class DetailViewController: UIViewController {
     var undoData: WorkData!
     
     // MARK:- Actions
-        
-    @IBAction func editAction(_ sender: Any) {
-        print("edit action")
+    
+    @IBAction func deleteAction(_ sender: Any) {
+        // TODO: Mark this work for removal from owenership and tracking. It becomes a published, uncollected work.
+        print("delete action")
     }
     
     @IBAction func cameraAction(_ sender: Any) {
+        // TODO: Replace the current cover with a new or existing photo
         print("camera action")
     }
     
     @IBAction func addIssueAction(_ sender: Any) {
+        // TODO: Add an issue to this series
         print("add issue action")
     }
     
@@ -53,6 +56,7 @@ class DetailViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             cancel()
+            updateUXOnLoad()
         }
     }
     
@@ -81,9 +85,6 @@ class DetailViewController: UIViewController {
         if work.isOwned {
             comicBookCollection.addWorkToSelectedVolume(work)
         }
-        
-        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
-        dismiss(animated: true, completion: nil)
     }
     
     func save() {
@@ -128,19 +129,19 @@ class DetailViewController: UIViewController {
         switch gesture.direction {
             
         case .left:
-            // next work
+            // TODO: next work
             print("next work")
             
         case .right:
-            // previous work
+            // TODO: previous work
             print("previous work")
             
         case .up:
-            // next volume
+            // TODO: next volume
             print("next volume")
 
         case .down:
-            // previous volume
+            // TODO: previous volume
             print("next volume")
             
        default:
