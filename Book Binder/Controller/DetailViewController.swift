@@ -29,7 +29,20 @@ class DetailViewController: UIViewController {
     
     @IBAction func deleteAction(_ sender: Any) {
         // TODO: Mark this work for removal from owenership and tracking. It becomes a published, uncollected work.
-        print("delete action")
+        
+        let alert = UIAlertController(title: "Delete Comic Book?", message: "Remove cover image, variant letter, and set owned to false.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
+            // yes delete please
+            let work = self.comicBookCollection.selectedVolumeSelectedWork
+            self.comicBookCollection.removeWorkFromSelectedVolume(work)
+            self.updateUXOnLoad()
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler:  { action in
+            // no don't delete
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func cameraAction(_ sender: Any) {
