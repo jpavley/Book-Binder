@@ -176,8 +176,12 @@ extension JsonModel {
     }
     
     func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
-        let newWorkID = "\(w.issueNumber)\(w.variantLetter)"
-        if !selectedVolumeCollectedWorkIDs.contains(newWorkID) {
+        
+        if w.issueNumber > selectedVolume.currentWorkNumber {
+            selectedVolume.currentWorkNumber = w.issueNumber
+        }
+        
+        if !selectedVolumeCollectedWorkIDs.contains(w.id) {
             selectedVolume.works.append(w)
         }
     }

@@ -316,8 +316,5 @@ class JsonModelTests: XCTestCase {
         testModel2.addWorkToSelectedVolume(newWork)
         XCTAssertTrue(testModel2.selectedVolumeCollectedWorkIDs.contains(newWorkID))
         XCTAssertTrue(testModel2.selectedVolumeCompleteWorkIDs.contains(newWorkID))
-        
-//        print(testModel2.selectedVolumeCompleteWorkIDs)
-//        let uncollectedWork = testModel2.selectedVolumeSelectedWork
     }
 }
