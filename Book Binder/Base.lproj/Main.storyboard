@@ -207,6 +207,9 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UCS-Eo-pEg">
                                                         <rect key="frame" x="57" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="isOwnedAction:" destination="6F6-9h-lCG" eventType="valueChanged" id="cI9-eh-byg"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
@@ -254,12 +257,13 @@
                         <outlet property="issueNumberLabel" destination="fV2-j1-npG" id="PC1-7j-Ipd"/>
                         <outlet property="publisherLabel" destination="Hj3-XC-JxU" id="j1g-aX-xNR"/>
                         <outlet property="titleLabel" destination="ToO-mV-afp" id="M5z-8S-HwS"/>
+                        <outlet property="trashButton" destination="idT-ra-eSi" id="ETZ-eB-2Nd"/>
                         <outlet property="variantLetterLabel" destination="jxF-vG-XTr" id="hoJ-vj-Kgn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1989.375" y="129.92957746478874"/>
+            <point key="canvasLocation" x="1922" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EGV-9L-GyK">

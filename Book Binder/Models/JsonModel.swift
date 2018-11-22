@@ -66,6 +66,10 @@ class JsonModel: Codable {
                 self.isOwned = isOwned
             }
             
+            var id: String {
+                return "\(issueNumber)\(variantLetter)"
+            }
+            
         }
     }
 }
@@ -181,8 +185,13 @@ extension JsonModel {
     func removeWorkFromSelectedVolume(_ w: JsonVolume.JsonWork) {
         let oldWorkID = "\(w.issueNumber)\(w.variantLetter)"
         if selectedVolumeCollectedWorkIDs.contains(oldWorkID) {
+            
+            // TODO: This filter call is not matching any works! This is the BUG!
+            
             let filteredWorks = selectedVolume.works.filter { $0.issueNumber != w.issueNumber &&  $0.variantLetter != w.variantLetter }
             selectedVolume.works = filteredWorks
+            
+            // if there was a variant letter select the prev work
             
             if w.variantLetter != "" {
                 selectedVolume.selectedWorkIndex -= 1

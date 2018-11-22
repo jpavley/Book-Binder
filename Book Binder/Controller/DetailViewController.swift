@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
+    @IBOutlet weak var trashButton: UIBarButtonItem!
     
     // MARK:- Properties
     
@@ -38,6 +39,7 @@ class DetailViewController: UIViewController {
             self.comicBookCollection.removeWorkFromSelectedVolume(work)
             self.updateUXOnLoad()
         }))
+        
         alert.addAction(UIAlertAction(title: "No", style: .default, handler:  { action in
             // no don't delete
         }))
@@ -55,6 +57,12 @@ class DetailViewController: UIViewController {
         print("add issue action")
     }
     
+    
+    @IBAction func isOwnedAction(_ sender: Any) {
+        save()
+        updateUX()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwipeGestureRecognisers()
@@ -68,8 +76,11 @@ class DetailViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
+            // TODO: if there are no changes don't undo
+            // if changes() {
             cancel()
             updateUXOnLoad()
+            // }
         }
     }
     
@@ -175,26 +186,42 @@ class DetailViewController: UIViewController {
     /// When loading the view don't set the isOwnedSwith, because that reloads it!
     func updateUX() {
         
+        func enableTrashButton(_ isOwned: Bool, _ variantLetter: String) {
+            // TODO: Handle custom cover image case
+            
+            if isOwned || variantLetter != "" {
+                trashButton.isEnabled = true
+            } else {
+                trashButton.isEnabled = false
+            }
+        }
+        
+        // get the state
+        
         let seriesTitle = comicBookCollection.selectedVolume.seriesName
         let publisherName = comicBookCollection.selectedVolume.publisherName
         let era = comicBookCollection.selectedVolume.era
         let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
         let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
+        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
+        enableTrashButton(isOwned, variantLetter)
+        
+        // update the fields
         
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
         issueNumberLabel.text = "\(workNumber)"
         variantLetterLabel.text = "\(variantLetter)"
         
+        // udpate the cover
+        
         coverImageView.alpha = 0
         coverImageView.image = UIImage(named: coverImage)
         UIView.animate(withDuration: 1.0, animations: {
             self.coverImageView.alpha = 1.0
         }, completion: nil)
-        
-        navigationController?.isToolbarHidden = false
     }
     
     // MARK:- Navigation
