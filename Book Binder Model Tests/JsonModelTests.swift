@@ -10,6 +10,8 @@ import XCTest
 
 class JsonModelTests: XCTestCase {
     
+    // MARK:- Setup data and objects for testing
+    
     // proptery based
     
     var testWork1: JsonModel.JsonVolume.JsonWork!
@@ -142,6 +144,8 @@ class JsonModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         deleteUserDefaults(for: defaultsKey)
     }
+    
+    // MARK:- Test object creation
 
     func testInitFromPropterties() {
         
@@ -205,16 +209,8 @@ class JsonModelTests: XCTestCase {
 
     }
     
-    func testSelectionShortCutsPropertyInit() {
-        XCTAssertEqual(testModel1.selectedVolume.volumeNumber, 4)
-        XCTAssertEqual(testModel1.selectedVolume.era, 1)
-        XCTAssertEqual(testModel1.selectedVolume.publisherName, "a")
-        XCTAssertEqual(testModel1.selectedVolume.works.count, 3)
-        
-        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.issueNumber, 1)
-        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.variantLetter, "a")
-        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.isOwned, true)
-    }
+    // MARK:- serialization and deserialization
+    
     
     func testSaveAndLoadUserDefaults() {
         let defaults = UserDefaults.standard
@@ -252,50 +248,54 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel2.selectedVolume.seriesName, "Horrible Ugly Misrable Dog")
         XCTAssertEqual(testModel2.selectedVolume.era, 1992)
     }
-
-    func testPublishedWorks() {
-        let publishedWorks = testModel2.selectedVolumePublishedWorkIDs
-        XCTAssertEqual(publishedWorks.count, 10)
-        XCTAssertEqual(publishedWorks.first!, "1")
-        XCTAssertEqual(publishedWorks.last!, "10")
+    
+    // MARK:- computed properties
+    
+    func testSelectedVolume() {
+        XCTAssertEqual(testModel1.selectedVolume.volumeNumber, 4)
+        XCTAssertEqual(testModel1.selectedVolume.era, 1)
+        XCTAssertEqual(testModel1.selectedVolume.publisherName, "a")
+        XCTAssertEqual(testModel1.selectedVolume.works.count, 3)
     }
     
-    func testCollectedWorks() {
-        let collectedWorks = testModel2.selectedVolumeCollectedWorkIDs
-        XCTAssertEqual(collectedWorks.count, 5)
-        XCTAssertEqual(collectedWorks.first!, "1")
-        XCTAssertEqual(collectedWorks.last!, "8b")
+    func testSelectedVolumeSelectedCollectedWork() {
+        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.issueNumber, 1)
+        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.variantLetter, "a")
+        XCTAssertEqual(testModel1.selectedVolumeSelectedCollectedWork.isOwned, true)
     }
     
-    func testCompleteWorks() {
-        let completeWorks = testModel2.selectedVolumeCompleteWorkIDs
-        XCTAssertEqual(completeWorks.count, 13)
-        XCTAssertEqual(completeWorks, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
-        print(completeWorks)
+    func testSelectedVolumeSelectedWork1() {
+        
+        testModel2.selectedVolume.selectedWorkIndex = 2
+        
+        XCTAssertEqual(testModel2.selectedVolumeSelectedWork.issueNumber, 1)
+        XCTAssertEqual(testModel2.selectedVolumeSelectedWork.variantLetter, "b")
+        XCTAssertEqual(testModel2.selectedVolumeSelectedWork.coverImage, "american-standard-marvel")
+        XCTAssertEqual(testModel2.selectedVolumeSelectedWork.isOwned, false)
     }
     
-    func testSelectedWork() {
+    func testSelectedVolumeSelectedWork2() {
         testModel2.selectedVolumeIndex = 1
         
         let issueList = [5, 6, 7, 8, 9, 10, 11, 11, 12, 12, 13, 13, 14, 15]
         let variantList = ["", "", "", "", "", "", "", "a", "", "b", "", "b", "", ""]
         let imageList = ["american-standard-dc",        // [0] 5
-                         "american-standard-dc",        // [1] 6
-                         "american-standard-dc",        // [2] 7
-                         "american-standard-dc",        // [3] 8
-                         "american-standard-dc",        // [4] 9
-                         "american-standard-marvel",    // [5] 10 isOwned
-                         "american-standard-dc",        // [6] 11
-                         "american-standard-marvel",    // [7] 11a isOwned
-                         "american-standard-dc",        // [8] 12
-                         "american-standard-marvel",    // [9] 12b
-                         "american-standard-marvel",    // [10] 13
-                         "american-standard-marvel",    // [11] 13b isOwned
-                         "american-standard-dc",        // [12] 14
-                         "american-standard-dc"         // [13] 15
+            "american-standard-dc",        // [1] 6
+            "american-standard-dc",        // [2] 7
+            "american-standard-dc",        // [3] 8
+            "american-standard-dc",        // [4] 9
+            "american-standard-marvel",    // [5] 10 isOwned
+            "american-standard-dc",        // [6] 11
+            "american-standard-marvel",    // [7] 11a isOwned
+            "american-standard-dc",        // [8] 12
+            "american-standard-marvel",    // [9] 12b
+            "american-standard-marvel",    // [10] 13
+            "american-standard-marvel",    // [11] 13b isOwned
+            "american-standard-dc",        // [12] 14
+            "american-standard-dc"         // [13] 15
         ]
         let ownList = [false, false, false, false, false, true, false, true, false, false, false, true, false, false]
-
+        
         
         for i in 0..<testModel2.selectedVolumeCompleteWorkIDs.count {
             testModel2.selectedVolume.selectedWorkIndex = i
@@ -307,6 +307,52 @@ class JsonModelTests: XCTestCase {
             
         }
     }
+
+    
+    func testSelectedVolumeWorksCount() {
+        
+        let workCounts = [5, 5, 5, 2, 2, 2]
+        
+        for i in 0..<testModel1.volumes.count {
+            testModel2.selectedVolumeIndex = i
+            XCTAssertEqual(testModel2.selectedVolumeWorksCount, workCounts[i])
+        }
+    }
+
+    func testSelectedVolumePublishedWorkIDs() {
+        let publishedWorks = testModel2.selectedVolumePublishedWorkIDs
+        XCTAssertEqual(publishedWorks.count, 10)
+        XCTAssertEqual(publishedWorks.first!, "1")
+        XCTAssertEqual(publishedWorks.last!, "10")
+    }
+    
+    func testSelectedVolumeCollectedWorkIDs() {
+        let collectedWorks = testModel2.selectedVolumeCollectedWorkIDs
+        XCTAssertEqual(collectedWorks.count, 5)
+        XCTAssertEqual(collectedWorks.first!, "1")
+        XCTAssertEqual(collectedWorks.last!, "8b")
+    }
+    
+    func testSelectedVolumeOwnedWorkIDs() {
+        let ownedWorks = testModel2.selectedVolumeOwnedWorkIDs
+        XCTAssertEqual(ownedWorks, ["1", "1a", "8b"])
+    }
+    
+    func testSelectedVolumeCompleteWorkIDs() {
+        let completeWorks = testModel2.selectedVolumeCompleteWorkIDs
+        XCTAssertEqual(completeWorks.count, 13)
+        XCTAssertEqual(completeWorks, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
+        print(completeWorks)
+    }
+    
+    func testWorkID() {
+        testModel2.selectedVolumeIndex = 1
+        testModel2.selectedVolume.selectedWorkIndex = 7
+        
+        XCTAssertEqual(testModel2.selectedVolumeSelectedWork.id, "11a")
+    }
+    
+    // MARK:- Test Functions
     
     func testAddWorkToSelectedVolume() {
         let newWork = JsonModel.JsonVolume.JsonWork(issueNumber: 100, variantLetter: "z", coverImage: "image123", isOwned: true)
@@ -316,5 +362,13 @@ class JsonModelTests: XCTestCase {
         testModel2.addWorkToSelectedVolume(newWork)
         XCTAssertTrue(testModel2.selectedVolumeCollectedWorkIDs.contains(newWorkID))
         XCTAssertTrue(testModel2.selectedVolumeCompleteWorkIDs.contains(newWorkID))
+    }
+    
+    func testRemoveWorkFromSelectedVolume() {
+        // TODO
+    }
+    
+    func testAddNexWork() {
+        // TODO
     }
 }

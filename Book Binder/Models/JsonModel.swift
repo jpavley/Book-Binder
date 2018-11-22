@@ -74,6 +74,8 @@ class JsonModel: Codable {
     }
 }
 
+// MARK: - JsonModel Computed Variables
+
 extension JsonModel {
     
     
@@ -174,6 +176,11 @@ extension JsonModel {
         
         return sorted
     }
+}
+
+// MARK:- JsonModel Functions
+
+extension JsonModel {
     
     func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
         
@@ -205,7 +212,7 @@ extension JsonModel {
             }
         }
     }
-        
+    
     func addNextWork(for volumeID: Int) {
         selectedVolumeIndex = volumeID
         
@@ -215,5 +222,4 @@ extension JsonModel {
         
         selectedVolume.works.append(currentWork)
     }
-
 }
