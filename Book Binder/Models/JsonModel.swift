@@ -194,12 +194,9 @@ extension JsonModel {
     }
     
     func removeWorkFromSelectedVolume(_ w: JsonVolume.JsonWork) {
-        let oldWorkID = "\(w.issueNumber)\(w.variantLetter)"
-        if selectedVolumeCollectedWorkIDs.contains(oldWorkID) {
+        if selectedVolumeCollectedWorkIDs.contains(w.id) {
             
-            // TODO: This filter call is not matching any works! This is the BUG!
-            
-            let filteredWorks = selectedVolume.works.filter { $0.issueNumber != w.issueNumber &&  $0.variantLetter != w.variantLetter }
+            let filteredWorks = selectedVolume.works.filter { $0.id != w.id }
             selectedVolume.works = filteredWorks
             
             // if there was a variant letter select the prev work
@@ -218,7 +215,7 @@ extension JsonModel {
         
         selectedVolume.currentWorkNumber += 1
         let currentWorkNumber = selectedVolume.currentWorkNumber
-        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "american-standard-dc", isOwned: true)
+        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "", isOwned: true)
         
         selectedVolume.works.append(currentWork)
     }

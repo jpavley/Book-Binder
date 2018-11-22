@@ -365,10 +365,33 @@ class JsonModelTests: XCTestCase {
     }
     
     func testRemoveWorkFromSelectedVolume() {
-        // TODO
+        
+        XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1", "1a", "8b"])
+        
+        testModel2.selectedVolumeIndex = 0
+        for work in testModel2.selectedVolume.works {
+            work.isOwned = true
+        }
+        
+        XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1", "1a", "1b", "5", "8b"])
+        
+        let work1 = testModel2.selectedVolume.works[1]
+        XCTAssertEqual(work1.id, "1a")
+        
+        testModel2.removeWorkFromSelectedVolume(work1)
+        XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1", "1b", "5", "8b"])
+        
+        let work2 = testModel2.selectedVolume.works[2]
+        XCTAssertEqual(work2.id, "5")
     }
     
     func testAddNexWork() {
-        // TODO
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
+        
+        testModel2.addNextWork(for: 0)
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10", "11"])
+        
+        let addedWork = testModel2.selectedVolume.works.last!
+        XCTAssertEqual(addedWork.isOwned, true)
     }
 }
