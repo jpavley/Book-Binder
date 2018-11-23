@@ -36,9 +36,10 @@ class JsonModel: Codable {
         var currentWorkNumber: Int
         var kind: String
         var works: [JsonWork]
+        var defaultCoverID: String
         var selectedWorkIndex: Int
         
-        init(publisherName: String, seriesName: String, era: Int, volumeNumber: Int, firstWorkNumber: Int, currentWorkNumber: Int, kind: String, works: [JsonWork], selectedWorkIndex: Int) {
+        init(publisherName: String, seriesName: String, era: Int, volumeNumber: Int, firstWorkNumber: Int, currentWorkNumber: Int, kind: String, works: [JsonWork], defaultCoverID: String, selectedWorkIndex: Int) {
             
             self.publisherName = publisherName
             self.seriesName = seriesName
@@ -48,6 +49,7 @@ class JsonModel: Codable {
             self.currentWorkNumber = currentWorkNumber
             self.kind = kind
             self.works = works
+            self.defaultCoverID = defaultCoverID
             self.selectedWorkIndex = selectedWorkIndex
         }
         

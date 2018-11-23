@@ -9,6 +9,7 @@
             "firstWorkNumber": 1,
             "currentWorkNumber": 10,
             "kind": "series",
+            "defaultCoverID": "american-standard-marvel",
             "selectedWorkIndex": 0,
             "works": [
                 {
@@ -51,6 +52,7 @@
             "firstWorkNumber": 5,
             "currentWorkNumber": 15,
             "kind": "mini-series",
+            "defaultCoverID": "american-standard-marvel",
             "selectedWorkIndex": 0,
             "works": [
                 {
@@ -93,6 +95,7 @@
             "firstWorkNumber": 1,
             "currentWorkNumber": 9,
             "kind": "series",
+            "defaultCoverID": "american-standard-marvel",
             "selectedWorkIndex": 0,
             "works": [
                 {
@@ -135,6 +138,7 @@
             "firstWorkNumber": 1,
             "currentWorkNumber": 1,
             "kind": "one-short",
+            "defaultCoverID": "american-standard-ga",
             "selectedWorkIndex": 0,
             "works": [
                 {
@@ -159,6 +163,7 @@
             "firstWorkNumber": 1,
             "currentWorkNumber": 6,
             "kind": "annual",
+            "defaultCoverID": "american-standard-ga",
             "selectedWorkIndex": 0,
             "works": [
                 {
@@ -183,6 +188,7 @@
             "firstWorkNumber": 7,
             "currentWorkNumber": 12,
             "kind": "annual",
+            "defaultCoverID": "american-standard-ga",
             "selectedWorkIndex": 0,
             "works": [
                 {
