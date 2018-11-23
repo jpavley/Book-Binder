@@ -214,17 +214,12 @@ extension JsonModel {
     
     func addNextWork(for volumeID: Int) {
         
-        func getCoverForPublisher(_ name: String) -> String {
-            return "american-standard-ga"
-        }
-        
         selectedVolumeIndex = volumeID
         
         selectedVolume.currentWorkNumber += 1
         let currentWorkNumber = selectedVolume.currentWorkNumber
-        let coverImage = getCoverForPublisher(selectedVolume.publisherName)
         
-        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: coverImage, isOwned: true)
+        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "", isOwned: true)
         
         selectedVolume.works.append(currentWork)
     }
