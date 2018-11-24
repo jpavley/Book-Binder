@@ -37,9 +37,9 @@ class JsonModelTests: XCTestCase {
         testWork2 = JsonModel.JsonVolume.JsonWork(issueNumber: 2, variantLetter: "b", coverImage: "y", isOwned: false)
         testWork3 = JsonModel.JsonVolume.JsonWork(issueNumber: 3, variantLetter: "c", coverImage: "z", isOwned: true)
         
-        testVolume1 = JsonModel.JsonVolume(publisherName: "a", seriesName: "x", era: 1, volumeNumber: 4, firstWorkNumber: 1, currentWorkNumber: 5, kind: "series", works: [testWork1, testWork2, testWork3], selectedWorkIndex: 0)
-        testVolume2 = JsonModel.JsonVolume(publisherName: "b", seriesName: "y", era: 2, volumeNumber: 5, firstWorkNumber: 1, currentWorkNumber: 10, kind: "one-shot", works: [testWork1, testWork2, testWork3], selectedWorkIndex: 0)
-        testVolume3 = JsonModel.JsonVolume(publisherName: "c", seriesName: "z", era: 3, volumeNumber: 6, firstWorkNumber: 1, currentWorkNumber: 15, kind: "annual", works: [testWork1, testWork2, testWork3], selectedWorkIndex: 0)
+        testVolume1 = JsonModel.JsonVolume(publisherName: "a", seriesName: "x", era: 1, volumeNumber: 4, firstWorkNumber: 1, currentWorkNumber: 5, kind: "series", works: [testWork1, testWork2, testWork3], defaultCoverID: "e", selectedWorkIndex: 0)
+        testVolume2 = JsonModel.JsonVolume(publisherName: "b", seriesName: "y", era: 2, volumeNumber: 5, firstWorkNumber: 1, currentWorkNumber: 10, kind: "one-shot", works: [testWork1, testWork2, testWork3], defaultCoverID: "e", selectedWorkIndex: 0)
+        testVolume3 = JsonModel.JsonVolume(publisherName: "c", seriesName: "z", era: 3, volumeNumber: 6, firstWorkNumber: 1, currentWorkNumber: 15, kind: "annual", works: [testWork1, testWork2, testWork3], defaultCoverID: "e", selectedWorkIndex: 0)
         
         testModel1 = JsonModel(volumes: [testVolume1, testVolume2, testVolume3], selectedVolumeIndex: 0)
     }
@@ -166,7 +166,8 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].era, 1)
         XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].publisherName, "a")
         XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].works.count, 3)
-        
+        XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].defaultCoverID, "e")
+
         XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].works[testModel1.volumes[testModel1.selectedVolumeIndex].selectedWorkIndex].issueNumber, 1)
         XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].works[testModel1.volumes[testModel1.selectedVolumeIndex].selectedWorkIndex].variantLetter, "a")
         XCTAssertEqual(testModel1.volumes[testModel1.selectedVolumeIndex].works[testModel1.volumes[testModel1.selectedVolumeIndex].selectedWorkIndex].isOwned, true)
@@ -177,6 +178,9 @@ class JsonModelTests: XCTestCase {
         
         XCTAssertEqual(testModel2.selectedVolume.publisherName, "Marble Entertainment")
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork.issueNumber, 1)
+        
+        XCTAssertEqual(testModel2.selectedVolume.defaultCoverID, "american-standard-marvel")
+
         
         testModel2.selectedVolumeIndex = 3
         XCTAssertEqual(testModel2.selectedVolume.publisherName, "EKK Comics")
@@ -393,5 +397,6 @@ class JsonModelTests: XCTestCase {
         
         let addedWork = testModel2.selectedVolume.works.last!
         XCTAssertEqual(addedWork.isOwned, true)
+        XCTAssertEqual(addedWork.coverImage, "")
     }
 }
