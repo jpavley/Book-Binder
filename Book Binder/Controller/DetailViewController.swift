@@ -203,7 +203,9 @@ class DetailViewController: UIViewController {
         let era = comicBookCollection.selectedVolume.era
         let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
         let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
-        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
+        
+        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage != "" ? comicBookCollection.selectedVolumeSelectedWork.coverImage : comicBookCollection.selectedVolume.defaultCoverID
+        
         let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
         enableTrashButton(isOwned, variantLetter)
