@@ -132,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				B8F41CA2219768520042C446 /* JsonModel.swift */,
-				B8F41CA1219768520042C446 /* sample1.json */,
 				B83DAA1121A468C100EBCC71 /* WorkData.swift */,
 			);
 			path = Models;
@@ -160,6 +159,7 @@
 		484CC0E8215850350012CD42 /* Book Binder Model Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B8F41CA1219768520042C446 /* sample1.json */,
 				B8F41CA5219768910042C446 /* JsonModelTests.swift */,
 				484CC0EB215850350012CD42 /* Info.plist */,
 			);

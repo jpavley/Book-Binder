@@ -74,7 +74,6 @@ class DetailViewController: UIViewController {
                 
                 // TODO: set selectedWorkIndex to the index this variant
                 // let variantIndex = self.comicBookCollection.selectedVolume.indexFor(work: variantWork)
-                self.comicBookCollection.selectedVolume.selectedWorkIndex += 1
                 self.save()
                 self.updateUX()
                 
