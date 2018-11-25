@@ -223,4 +223,38 @@ extension JsonModel {
         
         selectedVolume.works.append(currentWork)
     }
+    
+    func addVariantWork(volumeIndex: Int, workIndex: Int, letter: String) {
+        
+        // variant letter must be a single character
+        if letter.count < 1 || letter.count > 1 {
+            return
+        }
+        
+        // variant letter must be a alphabetic character
+        if !"abcdefghijklmnopqrstuvwxyz".contains(letter) {
+            return
+        }
+        
+        selectedVolumeIndex = volumeIndex
+        selectedVolume.selectedWorkIndex = workIndex
+        
+        let baseWork = selectedVolumeSelectedWork
+        
+        let variantWork = JsonVolume.JsonWork(issueNumber: baseWork.issueNumber, variantLetter: letter, coverImage: baseWork.coverImage, isOwned: true)
+        
+        
+        // varliant letter mist not create a duplicate variant
+        if selectedVolumeCompleteWorkIDs.contains(variantWork.id) {
+            return
+        }
+        
+        var works = selectedVolume.works
+        works.append(variantWork)
+        selectedVolume.works = works.sorted(by: { w1, w2 in
+            return w1.id < w2.id
+        })
+        
+        
+    }
 }

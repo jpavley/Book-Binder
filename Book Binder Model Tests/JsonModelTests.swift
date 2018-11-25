@@ -399,4 +399,37 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(addedWork.isOwned, true)
         XCTAssertEqual(addedWork.coverImage, "")
     }
+    
+    func testAddVariantWork() {
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
+        
+        let vi = testModel2.selectedVolumeIndex
+        let wi = 5 // issue 4
+        testModel2.addVariantWork(volumeIndex: vi, workIndex: wi, letter: "a")
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "4a", "5", "6", "7", "8", "8b", "9", "10"])
+        
+        let wi2 = 7 // issue 5
+        testModel2.addVariantWork(volumeIndex: vi, workIndex: wi2, letter: "q")
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "4a", "5", "5q", "6", "7", "8", "8b", "9", "10"])
+
+        // defend against a string with length < 1 or > 1
+        let wi3 = 9 // issue 6
+        testModel2.addVariantWork(volumeIndex: vi, workIndex: wi3, letter: "xxxx")
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "4a", "5", "5q", "6", "7", "8", "8b", "9", "10"])
+        
+        // defend against a string that is not a alphabetical character
+        testModel2.addVariantWork(volumeIndex: vi, workIndex: wi3, letter: "7")
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "4a", "5", "5q", "6", "7", "8", "8b", "9", "10"])
+        
+        // defend against a string that will create a duplicate variant
+        testModel2.addVariantWork(volumeIndex: vi, workIndex: wi, letter: "a")
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "4a", "5", "5q", "6", "7", "8", "8b", "9", "10"])
+        
+        // ok to create a variant based on a variant as long as the other rules are observed
+        let wi4 = 1 // issue 1a
+        testModel2.addVariantWork(volumeIndex: vi, workIndex: wi4, letter: "c")
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "1c", "2", "3", "4", "4a", "5", "5q", "6", "7", "8", "8b", "9", "10"])
+
+
+    }
 }
