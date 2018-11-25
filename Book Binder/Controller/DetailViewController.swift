@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     @IBOutlet weak var trashButton: UIBarButtonItem!
+    @IBOutlet weak var cameraButtom: UIBarButtonItem!
+    @IBOutlet weak var variantButton: UIBarButtonItem!
     
     // MARK:- Properties
     
@@ -52,9 +54,22 @@ class DetailViewController: UIViewController {
         print("camera action")
     }
     
-    @IBAction func addIssueAction(_ sender: Any) {
-        // TODO: Add an issue to this series
-        print("add issue action")
+    @IBAction func variantAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Variant Letter", message: "Enter a variant letter for this issue...", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addTextField(configurationHandler: { textField in
+            textField.placeholder = "A, B, C, etc..."
+        })
+                
+        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+            if let variantLetter = alert.textFields?.first?.text {
+                print("varientLetter \(variantLetter)")
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -196,6 +211,15 @@ class DetailViewController: UIViewController {
             }
         }
         
+        func enableVariantButton(_ variantLetter: String) {
+            
+            if variantLetter == "" {
+                variantButton.isEnabled = true
+            } else {
+                variantButton.isEnabled = false
+            }
+        }
+        
         // get the state
         
         let seriesTitle = comicBookCollection.selectedVolume.seriesName
@@ -208,7 +232,9 @@ class DetailViewController: UIViewController {
         
         let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
         
+        // enable and disable commands
         enableTrashButton(isOwned, variantLetter)
+        enableVariantButton(variantLetter)
         
         // update the fields
         
