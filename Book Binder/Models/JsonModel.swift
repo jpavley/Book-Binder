@@ -226,13 +226,8 @@ extension JsonModel {
     
     func addVariantWork(volumeIndex: Int, workIndex: Int, letter: String) {
         
-        // variant letter must be a single character
-        if letter.count < 1 || letter.count > 1 {
-            return
-        }
-        
-        // variant letter must be a alphabetic character
-        if !"abcdefghijklmnopqrstuvwxyz".contains(letter) {
+        // variant letter must be at least a single character
+        if letter.count < 1 {
             return
         }
         
@@ -254,7 +249,5 @@ extension JsonModel {
         selectedVolume.works = works.sorted(by: { w1, w2 in
             return w1.id < w2.id
         })
-        
-        
     }
 }

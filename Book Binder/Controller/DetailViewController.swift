@@ -55,12 +55,12 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func variantAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Variant Letter", message: "Enter a variant letter for this issue...", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Variant Identifier", message: "Enter a variant identifier for this issue...", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "A, B, C, etc..."
+            textField.placeholder = "A, A.B&W, BOP, etc..."
         })
         
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
