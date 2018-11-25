@@ -62,10 +62,22 @@ class DetailViewController: UIViewController {
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = "A, B, C, etc..."
         })
-                
+        
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             if let variantLetter = alert.textFields?.first?.text {
                 print("varientLetter \(variantLetter)")
+                
+                let vi = self.comicBookCollection.selectedVolumeIndex
+                let wi = self.comicBookCollection.selectedVolume.selectedWorkIndex
+                
+                self.comicBookCollection.addVariantWork(volumeIndex: vi, workIndex: wi, letter: variantLetter)
+                
+                // TODO: set selectedWorkIndex to the index this variant
+                // let variantIndex = self.comicBookCollection.selectedVolume.indexFor(work: variantWork)
+                self.comicBookCollection.selectedVolume.selectedWorkIndex += 1
+                self.save()
+                self.updateUX()
+                
             }
         }))
         
