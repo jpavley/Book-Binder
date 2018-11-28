@@ -224,11 +224,11 @@ extension JsonModel {
         selectedVolume.works.append(currentWork)
     }
     
-    func addVariantWork(volumeIndex: Int, workIndex: Int, letter: String) {
+    func addVariantWork(volumeIndex: Int, workIndex: Int, letter: String) -> JsonModel.JsonVolume.JsonWork? {
         
         // variant letter must be at least a single character
         if letter.count < 1 {
-            return
+            return nil
         }
         
         selectedVolumeIndex = volumeIndex
@@ -241,7 +241,7 @@ extension JsonModel {
         
         // varliant letter mist not create a duplicate variant
         if selectedVolumeCompleteWorkIDs.contains(variantWork.id) {
-            return
+            return nil
         }
         
         var works = selectedVolume.works
@@ -249,18 +249,28 @@ extension JsonModel {
         selectedVolume.works = works.sorted(by: { w1, w2 in
             return w1.id < w2.id
         })
+        
+        return variantWork
     }
     
-    func indexFor(volumeIndex: Int, workID: String) -> Int? {
-        
-        selectedVolumeIndex = volumeIndex
-        
+//    func indexFor(volumeIndex: Int, workID: String) -> Int? {
+//
+//        selectedVolumeIndex = volumeIndex
+//
+//        for i in 0..<selectedVolumeCompleteWorkIDs.count {
+//            if selectedVolumeCompleteWorkIDs[i] == workID {
+//                return i
+//            }
+//        }
+//
+//        return nil
+//    }
+    
+    func selectWork(work: JsonModel.JsonVolume.JsonWork) {
         for i in 0..<selectedVolumeCompleteWorkIDs.count {
-            if selectedVolumeCompleteWorkIDs[i] == workID {
-                return i
+            if selectedVolumeCompleteWorkIDs[i] == work.id {
+                selectedVolume.selectedWorkIndex = i
             }
         }
-        
-        return nil
     }
 }
