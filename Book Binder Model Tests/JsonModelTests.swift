@@ -425,7 +425,19 @@ class JsonModelTests: XCTestCase {
         let wi4 = 1 // issue 1a
         testModel2.addVariantWork(volumeIndex: vi, workIndex: wi4, letter: "c")
         XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "1c", "2", "3", "4", "4a", "5", "5b&w", "6", "7", "8", "8b", "9", "10"])
+    }
+    
+    func testIndexForWorkID() {
+        XCTAssertEqual(testModel2.selectedVolumeCompleteWorkIDs, ["1", "1a", "1b", "2", "3", "4", "5", "6", "7", "8", "8b", "9", "10"])
+        
+        let vi = testModel2.selectedVolumeIndex
+        
+        for i in 0..<testModel2.selectedVolumeCompleteWorkIDs.count {
+            let wID = testModel2.selectedVolumeCompleteWorkIDs[i]
+            let wI = testModel2.indexFor(volumeIndex: vi, workID: wID)!
+            XCTAssertEqual(wI, i)
+        }
 
-
+        
     }
 }

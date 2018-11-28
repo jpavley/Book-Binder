@@ -39,15 +39,5 @@ class CollectionReusableView: UICollectionReusableView {
         
         drawRule(start: start2, end: end2, color: color2, width: width2)
         drawRule(start: start1, end: end1, color: color1, width: width1)
-
-        
-//        if let context = UIGraphicsGetCurrentContext() {
-//            context.move(to: CGPoint(x: rect.minX, y: rect.minY))
-//            context.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-//            context.setStrokeColor(UIColor.lightGray.cgColor)
-//            context.setLineWidth(1.0)
-//            context.strokePath()
-//
-//        }
     }
 }

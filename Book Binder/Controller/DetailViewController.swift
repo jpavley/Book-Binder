@@ -73,7 +73,11 @@ class DetailViewController: UIViewController {
                 self.comicBookCollection.addVariantWork(volumeIndex: vi, workIndex: wi, letter: variantLetter)
                 
                 // TODO: set selectedWorkIndex to the index this variant
-                // let variantIndex = self.comicBookCollection.selectedVolume.indexFor(work: variantWork)
+                let issueNumber = self.comicBookCollection.selectedVolumeSelectedWork.issueNumber
+                let wID = "\(issueNumber)\(variantLetter)"
+                if let variantIndex = self.comicBookCollection.indexFor(volumeIndex: vi, workID: wID) {
+                    self.comicBookCollection.selectedVolume.selectedWorkIndex = variantIndex
+                }
                 self.save()
                 self.updateUX()
                 

@@ -15,7 +15,7 @@ import Foundation
 ///     - A collected work is in a volume's works list.
 ///     - An uncollected work is not in a volume's works list but was published based on firstWorkNumber and currentWorkNumber.
 ///     - A published work may or may not be in a volume's works list but was published based on firstWorkNumber and currentWorkNumber.
-class JsonModel: Codable {
+final class JsonModel: Codable {
     
     var volumes: [JsonVolume]
     var selectedVolumeIndex: Int
@@ -249,5 +249,18 @@ extension JsonModel {
         selectedVolume.works = works.sorted(by: { w1, w2 in
             return w1.id < w2.id
         })
+    }
+    
+    func indexFor(volumeIndex: Int, workID: String) -> Int? {
+        
+        selectedVolumeIndex = volumeIndex
+        
+        for i in 0..<selectedVolumeCompleteWorkIDs.count {
+            if selectedVolumeCompleteWorkIDs[i] == workID {
+                return i
+            }
+        }
+        
+        return nil
     }
 }
