@@ -224,6 +224,7 @@ extension JsonModel {
         selectedVolume.works.append(currentWork)
     }
     
+    @discardableResult
     func addVariantWork(volumeIndex: Int, workIndex: Int, letter: String) -> JsonModel.JsonVolume.JsonWork? {
         
         // variant letter must be at least a single character
@@ -252,19 +253,6 @@ extension JsonModel {
         
         return variantWork
     }
-    
-//    func indexFor(volumeIndex: Int, workID: String) -> Int? {
-//
-//        selectedVolumeIndex = volumeIndex
-//
-//        for i in 0..<selectedVolumeCompleteWorkIDs.count {
-//            if selectedVolumeCompleteWorkIDs[i] == workID {
-//                return i
-//            }
-//        }
-//
-//        return nil
-//    }
     
     func selectWork(work: JsonModel.JsonVolume.JsonWork) {
         for i in 0..<selectedVolumeCompleteWorkIDs.count {

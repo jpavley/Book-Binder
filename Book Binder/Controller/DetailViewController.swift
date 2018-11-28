@@ -65,7 +65,6 @@ class DetailViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             if let variantLetter = alert.textFields?.first?.text {
-                print("varientLetter \(variantLetter)")
                 
                 let vi = self.comicBookCollection.selectedVolumeIndex
                 let wi = self.comicBookCollection.selectedVolume.selectedWorkIndex
