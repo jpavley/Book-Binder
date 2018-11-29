@@ -212,7 +212,8 @@ extension JsonModel {
         }
     }
     
-    func addNextWork(for volumeID: Int) {
+    @discardableResult
+    func addNextWork(for volumeID: Int) -> JsonModel.JsonVolume.JsonWork {
         
         selectedVolumeIndex = volumeID
         
@@ -222,6 +223,7 @@ extension JsonModel {
         let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "", isOwned: true)
         
         selectedVolume.works.append(currentWork)
+        return currentWork
     }
     
     @discardableResult
