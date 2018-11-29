@@ -227,19 +227,14 @@ extension JsonModel {
     }
     
     @discardableResult
-    func addVariantWork(volumeIndex: Int, workIndex: Int, letter: String) -> JsonModel.JsonVolume.JsonWork? {
+    func addVariantWork(workNumber: Int, letter: String) -> JsonModel.JsonVolume.JsonWork? {
         
         // variant letter must be at least a single character
         if letter.count < 1 {
             return nil
         }
         
-        selectedVolumeIndex = volumeIndex
-        selectedVolume.selectedWorkIndex = workIndex
-        
-        let baseWork = selectedVolumeSelectedWork
-        
-        let variantWork = JsonVolume.JsonWork(issueNumber: baseWork.issueNumber, variantLetter: letter, coverImage: baseWork.coverImage, isOwned: true)
+        let variantWork = JsonVolume.JsonWork(issueNumber: workNumber, variantLetter: letter, coverImage: "", isOwned: true)
         
         
         // varliant letter mist not create a duplicate variant

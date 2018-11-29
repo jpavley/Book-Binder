@@ -65,20 +65,11 @@ class DetailViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
             if let variantLetter = alert.textFields?.first?.text {
-                
-                let vi = self.comicBookCollection.selectedVolumeIndex
-                let wi = self.comicBookCollection.selectedVolume.selectedWorkIndex
-                
-                if let variantWork = self.comicBookCollection.addVariantWork(volumeIndex: vi,
-                                                                             workIndex: wi,
-                                                                             letter: variantLetter) {
+                let workNumber = self.comicBookCollection.selectedVolumeSelectedWork.issueNumber
+                if let variantWork = self.comicBookCollection.addVariantWork(workNumber: workNumber, letter: variantLetter) {
                     self.comicBookCollection.selectWork(work: variantWork)
-                    print(variantWork.id)
-                    print(self.comicBookCollection.selectedVolumeCompleteWorkIDs)
                 }
-                
-                self.updateUX()
-                
+                self.updateUXOnLoad()
             }
         }))
         
