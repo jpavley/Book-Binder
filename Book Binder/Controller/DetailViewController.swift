@@ -55,7 +55,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func variantAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Variant Identifier", message: "Enter a variant identifier for this issue...", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Variant Identifier", message: "Enter a new variant identifier for issue \(comicBookCollection.selectedVolumeSelectedWork.id)", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -63,13 +63,10 @@ class DetailViewController: UIViewController {
             textField.placeholder = "A, A.B&W, BOP, etc..."
         })
         
-        alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             if let variantLetter = alert.textFields?.first?.text {
-                let workNumber = self.comicBookCollection.selectedVolumeSelectedWork.issueNumber
-                if let variantWork = self.comicBookCollection.addVariantWork(workNumber: workNumber, letter: variantLetter) {
-                    self.comicBookCollection.selectWork(work: variantWork)
-                }
-                self.updateUXOnLoad()
+                self.comicBookCollection.selectedVolumeSelectedWork.variantLetter = variantLetter
+                self.updateUX()
             }
         }))
         
@@ -205,25 +202,6 @@ class DetailViewController: UIViewController {
     /// When loading the view don't set the isOwnedSwith, because that reloads it!
     func updateUX() {
         
-        func enableTrashButton(_ isOwned: Bool, _ variantLetter: String) {
-            // TODO: Handle custom cover image case
-            
-            if isOwned || variantLetter != "" {
-                trashButton.isEnabled = true
-            } else {
-                trashButton.isEnabled = false
-            }
-        }
-        
-        func enableVariantButton(_ variantLetter: String) {
-            
-            if variantLetter == "" {
-                variantButton.isEnabled = true
-            } else {
-                variantButton.isEnabled = false
-            }
-        }
-        
         // get the state
         
         let seriesTitle = comicBookCollection.selectedVolume.seriesName
@@ -234,11 +212,9 @@ class DetailViewController: UIViewController {
         
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage != "" ? comicBookCollection.selectedVolumeSelectedWork.coverImage : comicBookCollection.selectedVolume.defaultCoverID
         
-        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
-        
         // enable and disable commands
-        enableTrashButton(isOwned, variantLetter)
-        enableVariantButton(variantLetter)
+        trashButton.isEnabled = true
+        variantButton.isEnabled = true
         
         // update the fields
         
