@@ -108,7 +108,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         comicBookCollection.selectedVolumeIndex = section
-        return comicBookCollection.selectedVolumeCompleteWorkIDs.count + 2 // for ... and +
+        return comicBookCollection.selectedVolumeCollectedWorkIDs.count + 2 // for ... and +
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -142,14 +142,14 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             currentIssueString = "..."
             
-        } else if indexPath.item == (comicBookCollection.selectedVolumeCompleteWorkIDs.count + 1) {
+        } else if indexPath.item == (comicBookCollection.selectedVolumeCollectedWorkIDs.count + 1) {
             
             // offset the published issue count by 1 to account for ... and + icons
             currentIssueString = "+"
             
         } else {
             
-            currentIssueString = "\(comicBookCollection.selectedVolumeCompleteWorkIDs[offsetIndexPath.item])"
+            currentIssueString = "\(comicBookCollection.selectedVolumeCollectedWorkIDs[offsetIndexPath.item])"
         }
         return currentIssueString
     }

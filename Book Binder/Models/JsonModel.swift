@@ -86,47 +86,13 @@ extension JsonModel {
         return volumes[selectedVolumeIndex]
     }
     
-    /// The currently selected work in the collection of the currently selected volume by selectedVolumeIndex and selectedWorkIndex.
-    var selectedVolumeSelectedCollectedWork: JsonVolume.JsonWork {
-        return selectedVolume.works[selectedVolume.selectedWorkIndex]
-    }
-    
-    
-    /// The currently selected work from the complete list of collection and uncollected works of the currently selected volume by selectedVolumeIndex and selectedWorkIndex.
-    /// If a work is not in the works list a new work is created and returned.
     var selectedVolumeSelectedWork: JsonVolume.JsonWork {
-        
-        // return either a published work or collected work based in selectedWorkIndex
-        
-        let selectedWorkID = selectedVolumeCompleteWorkIDs[selectedVolume.selectedWorkIndex]
-        
-        for work in selectedVolume.works {
-            let workID = "\(work.issueNumber)\(work.variantLetter)"
-            if selectedWorkID == workID {
-                return work
-            }
-        }
-        
-        // if a collected work is not found return an uncollected work
-        let issueNumber = Int(selectedWorkID)!
-        
-        let uncollectedWork = JsonVolume.JsonWork(issueNumber: issueNumber, variantLetter: "", coverImage: "american-standard-dc", isOwned: false)
-        return uncollectedWork
+        return selectedVolume.works[selectedVolume.selectedWorkIndex]
     }
     
     /// The number of works in the collection of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeWorksCount: Int {
         return selectedVolume.works.count
-    }
-    
-    /// A list of IDs (issue numbers as strings) from the list of published works of the currently selected volume by selectedVolumeIndex.
-    var selectedVolumePublishedWorkIDs: [String] {
-        var result = [String]()
-        for i in selectedVolume.firstWorkNumber...selectedVolume.currentWorkNumber {
-            result.append("\(i)")
-        }
-        
-        return result
     }
     
     /// A list of IDs (issue numbers and variant letters as strings) from the list of collected works of the currently selected volume by selectedVolumeIndex.
@@ -150,33 +116,6 @@ extension JsonModel {
         }
         
         return result
-    }
-    
-    /// A list of IDs (issue numbers and variant letters as strings) from the complete list of collected and uncollected works of the currently selected volume by selectedVolumeIndex.
-    var selectedVolumeCompleteWorkIDs: [String] {
-        
-        let rawWorks = selectedVolumePublishedWorkIDs
-        var sharedWorks = [String]()
-        
-        for work in selectedVolume.works {
-            
-            // if a variant has the same number as a published work
-            // but doesn't have a variant letter...
-            
-            if rawWorks.contains("\(work.issueNumber)") && work.variantLetter != "" {
-                sharedWorks.append("\(work.issueNumber)\(work.variantLetter)")
-            }
-            
-            // TODO: User added a new work to collected works but the number is greater than currentWorkNumber
-            //       - New issue (currentWorkNumber + 1)
-            //       - Random issue (any number outside the range of firstWorkNumber...currentWorkNumber
-            //       - If we add it do we have to update currentWorkNumber? 1...10 + 11 yes, but 1...10 + 100 ??
-        }
-        
-        let unsorted = sharedWorks + rawWorks
-        let sorted = unsorted.sorted {$0.localizedStandardCompare($1) == .orderedAscending}
-        
-        return sorted
     }
 }
 
@@ -238,7 +177,7 @@ extension JsonModel {
         
         
         // varliant letter mist not create a duplicate variant
-        if selectedVolumeCompleteWorkIDs.contains(variantWork.id) {
+        if selectedVolumeCollectedWorkIDs.contains(variantWork.id) {
             return nil
         }
         
@@ -252,8 +191,8 @@ extension JsonModel {
     }
     
     func selectWork(work: JsonModel.JsonVolume.JsonWork) {
-        for i in 0..<selectedVolumeCompleteWorkIDs.count {
-            if selectedVolumeCompleteWorkIDs[i] == work.id {
+        for i in 0..<selectedVolume.works.count {
+            if selectedVolume.works[i].id == work.id {
                 selectedVolume.selectedWorkIndex = i
             }
         }
