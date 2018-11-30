@@ -233,10 +233,29 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
                 // go to the series view
                 print("issueString: \(issueString)")
             case "+":
+                let alert = UIAlertController(title: "Add Issue", message: "Add a new issue to \(comicBookCollection.selectedVolume.seriesName) \(comicBookCollection.selectedVolume.era)", preferredStyle: .alert)
                 
-                comicBookCollection.addNextWork(for: indexPath.section)
-                collectionView.reloadData()
-                saveUserDefaults(for: defaultsKey, with: comicBookCollection)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                alert.addTextField(configurationHandler: { textField in
+                    textField.placeholder = "issue number"
+                })
+                alert.addTextField(configurationHandler: { textField in
+                    textField.placeholder = "variant identifier"
+                })
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    if let issueNumber = alert.textFields?.first?.text, let variantLetter = alert.textFields?.last?.text {
+                        let addedWork = JsonModel.JsonVolume.JsonWork(issueNumber: Int(issueNumber)!, variantLetter: variantLetter, coverImage: "", isOwned: true)
+                        self.comicBookCollection.selectedVolume.works.append(addedWork)
+                    }
+                    collectionView.reloadData()
+                    saveUserDefaults(for: defaultsKey, with: self.comicBookCollection)
+
+                }))
+                
+                self.present(alert, animated: true, completion: nil)
+
             default:
                 
                 // go to detail view control to display selected book
