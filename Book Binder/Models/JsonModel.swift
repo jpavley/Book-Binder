@@ -130,14 +130,10 @@ extension JsonModel {
             
             let filteredWorks = selectedVolume.works.filter { $0.id != w.id }
             selectedVolume.works = filteredWorks
-            
-            // if there was a variant letter select the prev work
-            
-            if w.variantLetter != "" {
-                selectedVolume.selectedWorkIndex -= 1
-                if selectedVolume.selectedWorkIndex < 0 {
-                    selectedVolume.selectedWorkIndex = 0
-                }
+                        
+            selectedVolume.selectedWorkIndex -= 1
+            if selectedVolume.selectedWorkIndex < 0 {
+                selectedVolume.selectedWorkIndex = 0
             }
         }
     }
