@@ -32,21 +32,17 @@ final class JsonModel: Codable {
         var seriesName: String
         var era: Int
         var volumeNumber: Int
-        var firstWorkNumber: Int
-        var currentWorkNumber: Int
         var kind: String
         var works: [JsonWork]
         var defaultCoverID: String
         var selectedWorkIndex: Int
         
-        init(publisherName: String, seriesName: String, era: Int, volumeNumber: Int, firstWorkNumber: Int, currentWorkNumber: Int, kind: String, works: [JsonWork], defaultCoverID: String, selectedWorkIndex: Int) {
+        init(publisherName: String, seriesName: String, era: Int, volumeNumber: Int, kind: String, works: [JsonWork], defaultCoverID: String, selectedWorkIndex: Int) {
             
             self.publisherName = publisherName
             self.seriesName = seriesName
             self.era = era
             self.volumeNumber = volumeNumber
-            self.firstWorkNumber = firstWorkNumber
-            self.currentWorkNumber = currentWorkNumber
             self.kind = kind
             self.works = works
             self.defaultCoverID = defaultCoverID
@@ -124,11 +120,6 @@ extension JsonModel {
 extension JsonModel {
     
     func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
-        
-        if w.issueNumber > selectedVolume.currentWorkNumber {
-            selectedVolume.currentWorkNumber = w.issueNumber
-        }
-        
         if !selectedVolumeCollectedWorkIDs.contains(w.id) {
             selectedVolume.works.append(w)
         }
@@ -156,8 +147,8 @@ extension JsonModel {
         
         selectedVolumeIndex = volumeID
         
-        selectedVolume.currentWorkNumber += 1
-        let currentWorkNumber = selectedVolume.currentWorkNumber
+        let lastWorkNumber = selectedVolume.works.last!.issueNumber
+        let currentWorkNumber = lastWorkNumber + 1
         
         let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "", isOwned: true)
         

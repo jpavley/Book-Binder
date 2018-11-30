@@ -6,18 +6,10 @@
             "seriesName": "Limo Man",
             "era": 1950,
             "volumeNumber": 1,
-            "firstWorkNumber": 1,
-            "currentWorkNumber": 10,
             "kind": "series",
             "defaultCoverID": "american-standard-marvel",
             "selectedWorkIndex": 0,
             "works": [
-                {
-                    "issueNumber": 1,
-                    "variantLetter": "",
-                    "coverImage": "american-standard-marvel",
-                    "isOwned": true
-                },
                 {
                     "issueNumber": 1,
                     "variantLetter": "a",
@@ -31,7 +23,37 @@
                     "isOwned": false
                 },
                 {
+                    "issueNumber": 2,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 3,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
                     "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "max",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 7,
                     "variantLetter": "",
                     "coverImage": "american-standard-marvel",
                     "isOwned": false
@@ -39,6 +61,18 @@
                 {
                     "issueNumber": 8,
                     "variantLetter": "b",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 10,
+                    "variantLetter": "b&w",
                     "coverImage": "american-standard-marvel",
                     "isOwned": true
                 }
@@ -49,12 +83,40 @@
             "seriesName": "Atomic Woman",
             "era": 1990,
             "volumeNumber": 1,
-            "firstWorkNumber": 5,
-            "currentWorkNumber": 15,
             "kind": "mini-series",
             "defaultCoverID": "american-standard-marvel",
             "selectedWorkIndex": 0,
             "works": [
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 7,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
                 {
                     "issueNumber": 10,
                     "variantLetter": "",
@@ -75,15 +137,21 @@
                 },
                 {
                     "issueNumber": 13,
+                    "variantLetter": "b",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 14,
                     "variantLetter": "",
                     "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
                 {
-                    "issueNumber": 13,
-                    "variantLetter": "b",
+                    "issueNumber": 15,
+                    "variantLetter": "",
                     "coverImage": "american-standard-marvel",
-                    "isOwned": true
+                    "isOwned": false
                 }
             ]
         },
@@ -92,18 +160,10 @@
             "seriesName": "Atomic Woman",
             "era": 2010,
             "volumeNumber": 2,
-            "firstWorkNumber": 1,
-            "currentWorkNumber": 9,
             "kind": "series",
             "defaultCoverID": "american-standard-marvel",
             "selectedWorkIndex": 0,
             "works": [
-                {
-                    "issueNumber": 1,
-                    "variantLetter": "",
-                    "coverImage": "american-standard-marvel",
-                    "isOwned": true
-                },
                 {
                     "issueNumber": 1,
                     "variantLetter": "a",
@@ -113,6 +173,36 @@
                 {
                     "issueNumber": 2,
                     "variantLetter": "b",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 3,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "z",
+                    "coverImage": "american-standard-marvel",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 7,
+                    "variantLetter": "",
                     "coverImage": "american-standard-marvel",
                     "isOwned": false
                 },
@@ -135,23 +225,27 @@
             "seriesName": "Massive Cat Attack",
             "era": 2011,
             "volumeNumber": 1,
-            "firstWorkNumber": 1,
-            "currentWorkNumber": 1,
             "kind": "one-short",
             "defaultCoverID": "american-standard-ga",
             "selectedWorkIndex": 0,
             "works": [
                 {
                     "issueNumber": 1,
-                    "variantLetter": "",
+                    "variantLetter": "a",
                     "coverImage": "american-standard-ga",
                     "isOwned": true
                 },
                 {
                     "issueNumber": 1,
-                    "variantLetter": "a",
+                    "variantLetter": "b",
                     "coverImage": "american-standard-ga",
                     "isOwned": true
+                },
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "c",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
                 }
             ]
         },
@@ -160,17 +254,39 @@
             "seriesName": "Darling Dog",
             "era": 1942,
             "volumeNumber": 1,
-            "firstWorkNumber": 1,
-            "currentWorkNumber": 6,
             "kind": "annual",
             "defaultCoverID": "american-standard-ga",
             "selectedWorkIndex": 0,
             "works": [
                 {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 2,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 3,
+                    "variantLetter": "b&w",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
+                {
                     "issueNumber": 4,
                     "variantLetter": "",
                     "coverImage": "american-standard-ga",
                     "isOwned": true
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 6,
@@ -185,12 +301,22 @@
             "seriesName": "Darling Dog",
             "era": 1952,
             "volumeNumber": 2,
-            "firstWorkNumber": 7,
-            "currentWorkNumber": 12,
             "kind": "annual",
             "defaultCoverID": "american-standard-ga",
             "selectedWorkIndex": 0,
             "works": [
+                {
+                    "issueNumber": 7,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "b",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
                 {
                     "issueNumber": 9,
                     "variantLetter": "",
@@ -198,8 +324,20 @@
                     "isOwned": true
                 },
                 {
+                    "issueNumber": 10,
+                    "variantLetter": "",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
+                {
                     "issueNumber": 11,
                     "variantLetter": "a",
+                    "coverImage": "american-standard-ga",
+                    "isOwned": false
+                },
+                {
+                    "issueNumber": 12,
+                    "variantLetter": "",
                     "coverImage": "american-standard-ga",
                     "isOwned": false
                 }
