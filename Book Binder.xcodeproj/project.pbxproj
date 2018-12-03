@@ -18,6 +18,8 @@
 		48699AEF215AE7710038864A /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48699AEE215AE7710038864A /* CollectionReusableView.swift */; };
 		48FBD3052151405000D2A14B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3032151405000D2A14B /* LICENSE */; };
 		48FBD3062151405000D2A14B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 48FBD3042151405000D2A14B /* README.md */; };
+		B820403921B5D12C000261A7 /* sample2.json in Resources */ = {isa = PBXBuildFile; fileRef = B820403821B5D12C000261A7 /* sample2.json */; };
+		B820403A21B5D12C000261A7 /* sample2.json in Resources */ = {isa = PBXBuildFile; fileRef = B820403821B5D12C000261A7 /* sample2.json */; };
 		B82641DC21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = B82641DA21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png */; };
 		B82641DD21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */; };
 		B83DAA1221A468C100EBCC71 /* WorkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83DAA1121A468C100EBCC71 /* WorkData.swift */; };
@@ -55,6 +57,7 @@
 		48699AEE215AE7710038864A /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		48FBD3032151405000D2A14B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		48FBD3042151405000D2A14B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		B820403821B5D12C000261A7 /* sample2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sample2.json; sourceTree = "<group>"; };
 		B82641DA21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-11-18 at 11.56.43 AM.png"; sourceTree = "<group>"; };
 		B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-11-18 at 11.56.54 AM.png"; sourceTree = "<group>"; };
 		B83DAA1121A468C100EBCC71 /* WorkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkData.swift; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 				B8F41CA1219768520042C446 /* sample1.json */,
 				B8F41CA5219768910042C446 /* JsonModelTests.swift */,
 				484CC0EB215850350012CD42 /* Info.plist */,
+				B820403821B5D12C000261A7 /* sample2.json */,
 			);
 			path = "Book Binder Model Tests";
 			sourceTree = "<group>";
@@ -253,6 +257,7 @@
 				48FBD3062151405000D2A14B /* README.md in Resources */,
 				48FBD3052151405000D2A14B /* LICENSE in Resources */,
 				4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */,
+				B820403921B5D12C000261A7 /* sample2.json in Resources */,
 				B82641DC21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png in Resources */,
 				483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */,
 				B8F41CA3219768520042C446 /* sample1.json in Resources */,
@@ -263,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B820403A21B5D12C000261A7 /* sample2.json in Resources */,
 				B8F41CAA2197885A0042C446 /* sample1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

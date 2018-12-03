@@ -68,7 +68,7 @@ class SummaryViewController: UIViewController {
         
         if let savedCollection = readUserDefaults(for: defaultsKey) {
             self.comicBookCollection = savedCollection
-        } else if let sampleCollection = initFromBundle(forResource: "sample1", ofType: "json") {
+        } else if let sampleCollection = initFromBundle(forResource: "sample2", ofType: "json") {
             self.comicBookCollection = sampleCollection
         } else {
             print("no data in local phone stroage or in application bundle")

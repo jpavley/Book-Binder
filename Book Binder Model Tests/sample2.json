@@ -1,0 +1,22 @@
+{
+    "selectedVolumeIndex": 0,
+    "volumes": [
+        {
+            "publisherName": "DC",
+            "seriesName": "Action Comics",
+            "era": 1932,
+            "volumeNumber": 1,
+            "kind": "series",
+            "defaultCoverID": "american-standard-dc",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 220,
+                    "variantLetter": "",
+                    "coverImage": "ac220-1",
+                    "isOwned": true
+                }
+            ]
+        }
+    ]
+}
