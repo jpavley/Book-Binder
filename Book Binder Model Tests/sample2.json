@@ -21,6 +21,18 @@
                     "variantLetter": "",
                     "coverImage": "ac221-1",
                     "isOwned": true
+                },
+                {
+                    "issueNumber": 222,
+                    "variantLetter": "",
+                    "coverImage": "ac222-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 223,
+                    "variantLetter": "",
+                    "coverImage": "ac223-1",
+                    "isOwned": true
                 }
             ]
         }
