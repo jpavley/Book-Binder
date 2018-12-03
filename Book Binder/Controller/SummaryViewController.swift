@@ -16,12 +16,6 @@ class SummaryViewController: UIViewController {
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
-    // MARK:- Constants -
-    
-    let columnCount = CGFloat(5)
-    let collectionViewMinSpacing = CGFloat(2)
-    let cellHeight = CGFloat(60)
-    
     // MARK:- Properties -
     
     var comicBookCollection: JsonModel!
@@ -110,7 +104,9 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        cell.iconImage.image = UIImage(named: "ac220-1-thumb")
+        let imageName = comicBookCollection.volumes[indexPath.section].works[indexPath.item].coverImage
+        let thumbName = "\(imageName)-thumb"
+        cell.iconImage.image = UIImage(named: thumbName)
         
         return cell
     }
