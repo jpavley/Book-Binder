@@ -22,50 +22,32 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="YdK-R5-hcI">
-                                    <size key="itemSize" width="60" height="40"/>
+                                    <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="50" height="75"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="NKw-ev-Cdh" customClass="CollectionViewCell" customModule="Book_Binder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="75" width="60" height="40"/>
+                                        <rect key="frame" x="0.0" y="75" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xm-CH-IWv">
-                                                    <rect key="frame" x="9" y="9.5" width="42" height="21"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Label">
-                                                            <attributes>
-                                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                <font key="NSFont" metaFont="system" size="17"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Edit-Series" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-F6-hEi">
-                                                    <rect key="frame" x="16" y="6" width="28" height="28"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="28" id="4s9-qA-qcN"/>
-                                                        <constraint firstAttribute="height" constant="28" id="Ukp-z7-Y6K"/>
-                                                    </constraints>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ac220-1-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-F6-hEi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="L0x-F6-hEi" firstAttribute="centerX" secondItem="NKw-ev-Cdh" secondAttribute="centerX" id="LtA-Vg-KVs"/>
-                                            <constraint firstItem="L0x-F6-hEi" firstAttribute="centerY" secondItem="NKw-ev-Cdh" secondAttribute="centerY" id="SXk-kt-N8b"/>
-                                            <constraint firstItem="7Xm-CH-IWv" firstAttribute="centerY" secondItem="NKw-ev-Cdh" secondAttribute="centerY" id="niL-4w-tsf"/>
-                                            <constraint firstItem="7Xm-CH-IWv" firstAttribute="centerX" secondItem="NKw-ev-Cdh" secondAttribute="centerX" id="w7e-Fq-HKl"/>
+                                            <constraint firstItem="L0x-F6-hEi" firstAttribute="leading" secondItem="NKw-ev-Cdh" secondAttribute="leading" id="DBa-J2-BY3"/>
+                                            <constraint firstAttribute="trailing" secondItem="L0x-F6-hEi" secondAttribute="trailing" id="UOO-rZ-qCK"/>
+                                            <constraint firstItem="L0x-F6-hEi" firstAttribute="top" secondItem="NKw-ev-Cdh" secondAttribute="top" id="rNI-ui-Zrn"/>
+                                            <constraint firstAttribute="bottom" secondItem="L0x-F6-hEi" secondAttribute="bottom" id="x4K-Jj-8HF"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="iconImage" destination="L0x-F6-hEi" id="eRP-Om-S91"/>
-                                            <outlet property="titleLabel" destination="7Xm-CH-IWv" id="qQu-I1-lEP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -292,7 +274,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Edit-Series" width="170" height="170"/>
+        <image name="ac220-1-thumb" width="105" height="149"/>
         <image name="american-standard-ga" width="478" height="738"/>
     </resources>
 </document>

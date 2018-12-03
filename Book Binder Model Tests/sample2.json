@@ -15,6 +15,12 @@
                     "variantLetter": "",
                     "coverImage": "ac220-1",
                     "isOwned": true
+                },
+                {
+                    "issueNumber": 221,
+                    "variantLetter": "",
+                    "coverImage": "ac221-1",
+                    "isOwned": true
                 }
             ]
         }

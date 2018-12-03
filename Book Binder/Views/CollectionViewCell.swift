@@ -12,7 +12,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     // Outlets not private so we can access from the view controller class
     
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectionImage: UIImageView!
     @IBOutlet weak var iconImage: UIImageView!
     
