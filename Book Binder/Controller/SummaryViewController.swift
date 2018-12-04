@@ -46,6 +46,7 @@ class SummaryViewController: UIViewController {
             collectionView.reloadData()
         }
     }
+    
     func updateComicBookCollectionData() {
         
         // TODO: Uncomment but erase similutor storage first
@@ -62,7 +63,7 @@ class SummaryViewController: UIViewController {
 // MARK: - UICollectionView -
 
 extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
+        
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {

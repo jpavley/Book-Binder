@@ -24,20 +24,20 @@ class CollectionReusableView: UICollectionReusableView {
         }
     }
     
-    override func draw(_ rect: CGRect) {
-        
-        let start1 = CGPoint(x: rect.minX, y: rect.minY)
-        let end1 = CGPoint(x: rect.maxX, y: rect.minY)
-        let color1 = UIColor(named: "SectionColorDark")!.cgColor
-        let width1 = CGFloat(2.0)
-        
-        
-        let start2 = CGPoint(x: rect.minX, y: rect.minY+2)
-        let end2 = CGPoint(x: rect.maxX, y: rect.minY+2)
-        let color2 = UIColor(named: "SectionColorLight")!.cgColor
-        let width2 = CGFloat(4.0)
-        
-        drawRule(start: start2, end: end2, color: color2, width: width2)
-        drawRule(start: start1, end: end1, color: color1, width: width1)
-    }
+//    override func draw(_ rect: CGRect) {
+//        
+//        let start1 = CGPoint(x: rect.minX, y: rect.minY)
+//        let end1 = CGPoint(x: rect.maxX, y: rect.minY)
+//        let color1 = UIColor(named: "SectionColorDark")!.cgColor
+//        let width1 = CGFloat(2.0)
+//        
+//        
+//        let start2 = CGPoint(x: rect.minX, y: rect.minY+2)
+//        let end2 = CGPoint(x: rect.maxX, y: rect.minY+2)
+//        let color2 = UIColor(named: "SectionColorLight")!.cgColor
+//        let width2 = CGFloat(4.0)
+//        
+//        drawRule(start: start2, end: end2, color: color2, width: width2)
+//        drawRule(start: start1, end: end1, color: color1, width: width1)
+//    }
 }
