@@ -16,6 +16,13 @@ class SummaryViewController: UIViewController {
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    // MARK:- Constants -
+    
+    let columnCount = CGFloat(5)
+    let collectionViewMinSpacing = CGFloat(0)
+    let cellHeight = CGFloat(100)
+    let cellWidth = CGFloat(80)
+    
     // MARK:- Properties -
     
     var comicBookCollection: JsonModel!
@@ -34,6 +41,19 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        func collectionViewLayout() {
+            
+            let calculatedColumnCount = (view.frame.size.width / cellWidth).rounded()
+            let spacesBetweenColumns = calculatedColumnCount - 1
+            let totalSpacing = collectionViewMinSpacing * spacesBetweenColumns
+            
+            let width = (view.frame.size.width - totalSpacing) / calculatedColumnCount
+            let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            layout.itemSize = CGSize(width: width, height: cellHeight)
+        }
+        
+        collectionViewLayout()
         navigationController?.isToolbarHidden = false
     }
     
@@ -49,10 +69,9 @@ class SummaryViewController: UIViewController {
     
     func updateComicBookCollectionData() {
         
-        // TODO: Uncomment but erase similutor storage first
-        /* if let savedCollection = readUserDefaults(for: defaultsKey) {
+        if let savedCollection = readUserDefaults(for: defaultsKey) {
             self.comicBookCollection = savedCollection
-        } else */ if let sampleCollection = initFromBundle(forResource: "sample2", ofType: "json") {
+        } else  if let sampleCollection = initFromBundle(forResource: "sample2", ofType: "json") {
             self.comicBookCollection = sampleCollection
         } else {
             print("no data in local phone stroage or in application bundle")
