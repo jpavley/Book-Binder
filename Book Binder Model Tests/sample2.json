@@ -110,7 +110,7 @@
         },
         {
             "publisherName": "Marvel Comics",
-            "seriesName": "Factastic Four",
+            "seriesName": "Fantastic Four",
             "era": 1961,
             "volumeNumber": 1,
             "kind": "series",
@@ -177,6 +177,89 @@
                     "coverImage": "ff159-1",
                     "isOwned": true
                 }
+            ]
+        },
+        {
+            "publisherName": "Marvel Comics",
+            "seriesName": "Vision and the Scarlet Witch",
+            "era": 1980,
+            "volumeNumber": 1,
+            "kind": "series",
+            "defaultCoverID": "american-standard-marvel",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "coverImage": "vs1-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 2,
+                    "variantLetter": "",
+                    "coverImage": "vs2-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 3,
+                    "variantLetter": "",
+                    "coverImage": "vs3-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "coverImage": "vs4-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "vs5-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "",
+                    "coverImage": "vs6-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 7,
+                    "variantLetter": "",
+                    "coverImage": "vs7-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "",
+                    "coverImage": "vs8-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "",
+                    "coverImage": "vs9-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 10,
+                    "variantLetter": "",
+                    "coverImage": "vs10-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 11,
+                    "variantLetter": "",
+                    "coverImage": "vs11-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 12,
+                    "variantLetter": "",
+                    "coverImage": "vs12-1",
+                    "isOwned": true
+                },
             ]
         }
     ]
