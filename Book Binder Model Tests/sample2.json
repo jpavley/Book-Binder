@@ -2,7 +2,7 @@
     "selectedVolumeIndex": 0,
     "volumes": [
         {
-            "publisherName": "DC",
+            "publisherName": "DC Comics",
             "seriesName": "Action Comics",
             "era": 1932,
             "volumeNumber": 1,
@@ -259,8 +259,314 @@
                     "variantLetter": "",
                     "coverImage": "vs12-1",
                     "isOwned": true
+                }
+            ]
+        },
+        {
+            "publisherName": "DC Comics",
+            "seriesName": "Wonder Woman",
+            "era": 1986,
+            "volumeNumber": 1,
+            "kind": "series",
+            "defaultCoverID": "american-standard-dc",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 1,
+                    "variantLetter": "",
+                    "coverImage": "ww1-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 2,
+                    "variantLetter": "",
+                    "coverImage": "ww2-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 3,
+                    "variantLetter": "",
+                    "coverImage": "ww3-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 4,
+                    "variantLetter": "",
+                    "coverImage": "ww4-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 5,
+                    "variantLetter": "",
+                    "coverImage": "ww5-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 6,
+                    "variantLetter": "",
+                    "coverImage": "ww6-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 7,
+                    "variantLetter": "",
+                    "coverImage": "ww7-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 8,
+                    "variantLetter": "",
+                    "coverImage": "ww8-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 9,
+                    "variantLetter": "",
+                    "coverImage": "ww9-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 10,
+                    "variantLetter": "",
+                    "coverImage": "ww10-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 11,
+                    "variantLetter": "",
+                    "coverImage": "ww11-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 12,
+                    "variantLetter": "",
+                    "coverImage": "ww12-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 13,
+                    "variantLetter": "",
+                    "coverImage": "ww13-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 14,
+                    "variantLetter": "",
+                    "coverImage": "ww14-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 15,
+                    "variantLetter": "",
+                    "coverImage": "ww15-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 16,
+                    "variantLetter": "",
+                    "coverImage": "ww16-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 17,
+                    "variantLetter": "",
+                    "coverImage": "ww17-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 18,
+                    "variantLetter": "",
+                    "coverImage": "ww18-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 19,
+                    "variantLetter": "",
+                    "coverImage": "ww19-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 20,
+                    "variantLetter": "",
+                    "coverImage": "ww20-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 21,
+                    "variantLetter": "",
+                    "coverImage": "ww21-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 22,
+                    "variantLetter": "",
+                    "coverImage": "ww22-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 23,
+                    "variantLetter": "",
+                    "coverImage": "ww23-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 24,
+                    "variantLetter": "",
+                    "coverImage": "ww24-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 25,
+                    "variantLetter": "",
+                    "coverImage": "ww25-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 26,
+                    "variantLetter": "",
+                    "coverImage": "ww26-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 27,
+                    "variantLetter": "",
+                    "coverImage": "ww27-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 28,
+                    "variantLetter": "",
+                    "coverImage": "ww28-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 29,
+                    "variantLetter": "",
+                    "coverImage": "ww29-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 30,
+                    "variantLetter": "",
+                    "coverImage": "ww30-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 31,
+                    "variantLetter": "",
+                    "coverImage": "ww31-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 32,
+                    "variantLetter": "",
+                    "coverImage": "ww32-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 33,
+                    "variantLetter": "",
+                    "coverImage": "ww33-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 34,
+                    "variantLetter": "",
+                    "coverImage": "ww34-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 35,
+                    "variantLetter": "",
+                    "coverImage": "ww35-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 36,
+                    "variantLetter": "",
+                    "coverImage": "ww36-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 37,
+                    "variantLetter": "",
+                    "coverImage": "ww37-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 38,
+                    "variantLetter": "",
+                    "coverImage": "ww38-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 39,
+                    "variantLetter": "",
+                    "coverImage": "ww39-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 40,
+                    "variantLetter": "",
+                    "coverImage": "ww40-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 41,
+                    "variantLetter": "",
+                    "coverImage": "ww41-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 42,
+                    "variantLetter": "",
+                    "coverImage": "ww42-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 43,
+                    "variantLetter": "",
+                    "coverImage": "ww43-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 44,
+                    "variantLetter": "",
+                    "coverImage": "ww44-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 45,
+                    "variantLetter": "",
+                    "coverImage": "ww45-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 46,
+                    "variantLetter": "",
+                    "coverImage": "ww46-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 47,
+                    "variantLetter": "",
+                    "coverImage": "ww47-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 48,
+                    "variantLetter": "",
+                    "coverImage": "ww48-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 49,
+                    "variantLetter": "",
+                    "coverImage": "ww49-1",
+                    "isOwned": true
                 },
             ]
         }
+
     ]
 }
