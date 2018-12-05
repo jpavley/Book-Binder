@@ -107,6 +107,77 @@
                     "isOwned": true
                 }
             ]
+        },
+        {
+            "publisherName": "Marvel Comics",
+            "seriesName": "Factastic Four",
+            "era": 1961,
+            "volumeNumber": 1,
+            "kind": "series",
+            "defaultCoverID": "american-standard-marvel",
+            "selectedWorkIndex": 0,
+            "works": [
+                {
+                    "issueNumber": 150,
+                    "variantLetter": "",
+                    "coverImage": "ff150-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 151,
+                    "variantLetter": "",
+                    "coverImage": "ff151-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 152,
+                    "variantLetter": "",
+                    "coverImage": "ff152-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 153,
+                    "variantLetter": "",
+                    "coverImage": "ff153-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 154,
+                    "variantLetter": "",
+                    "coverImage": "ff154-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 155,
+                    "variantLetter": "",
+                    "coverImage": "ff155-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 156,
+                    "variantLetter": "",
+                    "coverImage": "ff156-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 157,
+                    "variantLetter": "",
+                    "coverImage": "ff157-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 158,
+                    "variantLetter": "",
+                    "coverImage": "ff158-1",
+                    "isOwned": true
+                },
+                {
+                    "issueNumber": 159,
+                    "variantLetter": "",
+                    "coverImage": "ff159-1",
+                    "isOwned": true
+                }
+            ]
         }
     ]
 }
