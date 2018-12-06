@@ -182,4 +182,33 @@ extension JsonModel {
             }
         }
     }
+    
+    func selectNextWork() {
+        selectedVolume.selectedWorkIndex += 1
+        if selectedVolume.selectedWorkIndex >= selectedVolume.works.count {
+            selectedVolume.selectedWorkIndex = 0
+        }
+    }
+    
+    func selectPreviousWork() {
+        selectedVolume.selectedWorkIndex -= 1
+        if selectedVolume.selectedWorkIndex <= 0 {
+            selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
+        }
+    }
+    
+    func selectNextVolume() {
+        selectedVolumeIndex += 1
+        if selectedVolumeIndex >= volumes.count {
+            selectedVolumeIndex = 0
+        }
+    }
+    
+    func selectPreviousVolume() {
+        selectedVolumeIndex -= 1
+        if selectedVolumeIndex <= 0 {
+            selectedVolumeIndex = volumes.count - 1
+        }
+    }
+
 }

@@ -162,26 +162,22 @@ class DetailViewController: UIViewController {
         switch gesture.direction {
             
         case .left:
-            // TODO: next work
-            print("next work")
+            comicBookCollection.selectNextWork()
             
         case .right:
-            // TODO: previous work
-            print("previous work")
+            comicBookCollection.selectPreviousWork()
             
         case .up:
-            // TODO: next volume
-            print("next volume")
+            comicBookCollection.selectNextVolume()
 
         case .down:
-            // TODO: previous volume
-            print("next volume")
+            comicBookCollection.selectPreviousVolume()
             
        default:
             assert(false, "BOOKBINDERAPP: unsupported gesture")
         }
         
-        updateUX()
+        updateUXOnLoad()
     }
     
     /// When loading the view set the isOwnedSwitch
