@@ -112,22 +112,16 @@ class DetailViewController: UIViewController {
     }
     
     func save() {
-        let work = comicBookCollection.selectedVolumeSelectedWork
         
-        work.issueNumber = Int(issueNumberLabel.text ?? "") ?? 0
-        work.variantLetter = variantLetterLabel.text ?? ""
-        work.isOwned = isOwnedSwitch.isOn
+        let issueNumber = Int(issueNumberLabel.text ?? "") ?? 0
+        let variantLetter = variantLetterLabel.text ?? ""
+        let isOwned = isOwnedSwitch.isOn
+        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
         
-        // TODO: Figure out how to properly implement the ability to change cover photos
-        work.coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
-        
-        if work.isOwned {
-            comicBookCollection.addWorkToSelectedVolume(work)
-        }
+        comicBookCollection.updateSelectedWorkOfSelectedVolume(issueNumber: issueNumber, variantLetter: variantLetter, isOwned: isOwned, coverImage: coverImage)
         
         saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         dismiss(animated: true, completion: nil)
-        
     }
     
     func addSwipeGestureRecognisers() {

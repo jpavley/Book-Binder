@@ -119,6 +119,16 @@ extension JsonModel {
 
 extension JsonModel {
     
+    func updateSelectedWorkOfSelectedVolume(issueNumber: Int, variantLetter: String, isOwned: Bool, coverImage: String) {
+                
+        selectedVolumeSelectedWork.issueNumber = issueNumber
+        selectedVolumeSelectedWork.variantLetter = variantLetter
+        selectedVolumeSelectedWork.isOwned = isOwned
+        // TODO: Figure out how to properly implement the ability to change cover photos
+        selectedVolumeSelectedWork.coverImage = coverImage
+    }
+    
+    
     func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
         if !selectedVolumeCollectedWorkIDs.contains(w.id) {
             selectedVolume.works.append(w)
