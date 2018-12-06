@@ -14,6 +14,11 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var selectionImage: UIImageView!
     @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var addWorkButton: UIButton!
+    
+    @IBAction func addWorkAction(_ sender: Any) {
+    }
+    
     
     var isEditing: Bool = false {
         didSet {

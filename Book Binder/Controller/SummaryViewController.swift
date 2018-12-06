@@ -126,6 +126,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let work = comicBookCollection.volumes[indexPath.section].works[indexPath.item]
         
+        // configure image
+        
         let thumbName = "\(work.coverImage)-thumb"
         cell.iconImage.image = UIImage(named: thumbName)
         
@@ -134,6 +136,11 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else {
             cell.iconImage.alpha = 0.3
         }
+        
+        // configure button
+        
+        cell.addWorkButton.isHidden = true
+        cell.addWorkButton.isEnabled = false
         
         return cell
     }
