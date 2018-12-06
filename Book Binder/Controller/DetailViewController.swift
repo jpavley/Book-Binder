@@ -79,11 +79,8 @@ class DetailViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            // TODO: if there are no changes don't undo
-            // if changes() {
             cancel()
             updateUXOnLoad()
-            // }
         }
     }
     
