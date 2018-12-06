@@ -209,7 +209,6 @@ class JsonModelTests: XCTestCase {
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork.coverImage, imageList[i])
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork.isOwned, ownList[i])
         }
-
     }
     
     // MARK:- serialization and deserialization
@@ -396,4 +395,49 @@ class JsonModelTests: XCTestCase {
         
         XCTAssertEqual(testModel2.selectedVolumeCollectedWorkIDs, ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w", "11"])
     }
+    
+    // MARK:- Navigation
+    
+    func testNextWork() {
+        let testIDs = ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"]
+        
+        for i in 0..<testModel2.selectedVolume.works.count {
+            XCTAssertEqual(testModel2.selectedVolumeSelectedWork.id, testIDs[i])
+            testModel2.selectNextWork()
+        }
+    }
+    
+    func testPrevWork() {
+        let testIDs = ["10b&w", "9", "8b", "7", "6max", "5", "4", "3", "2", "1b", "1a"]
+        
+        testModel2.selectedVolume.selectedWorkIndex = 10
+        
+        for i in 0..<testModel2.selectedVolume.works.count {
+            XCTAssertEqual(testModel2.selectedVolumeSelectedWork.id, testIDs[i])
+            testModel2.selectPreviousWork()
+        }
+    }
+    
+    func testNextVolume() {
+        let testSeriesNames = ["Limo Man", "Atomic Woman", "Atomic Woman", "Massive Cat Attack", "Darling Dog", "Darling Dog"]
+        
+        testModel2.selectedVolumeIndex = 0
+        
+        for i in 0..<testModel2.volumes.count {
+            XCTAssertEqual(testModel2.selectedVolume.seriesName, testSeriesNames[i])
+            testModel2.selectNextVolume()
+        }
+    }
+    
+    func testPrevVolume() {
+        let testSeriesNames = ["Darling Dog", "Darling Dog", "Massive Cat Attack", "Atomic Woman", "Atomic Woman", "Limo Man"]
+        
+        testModel2.selectedVolumeIndex = 5
+        
+        for i in 0..<testModel2.volumes.count {
+            XCTAssertEqual(testModel2.selectedVolume.seriesName, testSeriesNames[i])
+            testModel2.selectPreviousVolume()
+        }
+    }
+
 }
