@@ -147,7 +147,6 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Marvel Entertainment" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hj3-XC-JxU">
                                         <rect key="frame" x="70.5" y="0.0" width="147" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Daredevil 2017" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToO-mV-afp">
@@ -167,7 +166,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Issue" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJO-N3-uwD">
                                                         <rect key="frame" x="0.0" y="0.0" width="192" height="31"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -222,9 +221,9 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FDZ-7P-hqR"/>
-                        <barButtonItem title="Variant" id="a4w-Li-dos">
+                        <barButtonItem title="Edit" id="a4w-Li-dos">
                             <connections>
-                                <action selector="variantAction:" destination="6F6-9h-lCG" id="Xcd-dN-38c"/>
+                                <action selector="editAction:" destination="6F6-9h-lCG" id="Xcd-dN-38c"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -232,12 +231,12 @@
                     <connections>
                         <outlet property="cameraButtom" destination="je3-mr-ZhH" id="QKK-Wd-fuh"/>
                         <outlet property="coverImageView" destination="ZQM-w5-72L" id="wQ9-bl-dFv"/>
+                        <outlet property="editButton" destination="a4w-Li-dos" id="gJP-4G-3O0"/>
                         <outlet property="isOwnedSwitch" destination="UCS-Eo-pEg" id="84O-42-ZrH"/>
                         <outlet property="issueLabel" destination="EJO-N3-uwD" id="eRK-NW-qP4"/>
                         <outlet property="publisherLabel" destination="Hj3-XC-JxU" id="j1g-aX-xNR"/>
                         <outlet property="titleLabel" destination="ToO-mV-afp" id="M5z-8S-HwS"/>
                         <outlet property="trashButton" destination="idT-ra-eSi" id="ETZ-eB-2Nd"/>
-                        <outlet property="variantButton" destination="a4w-Li-dos" id="gJP-4G-3O0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>

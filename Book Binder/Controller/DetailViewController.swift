@@ -20,7 +20,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var isOwnedSwitch: UISwitch!
     @IBOutlet weak var trashButton: UIBarButtonItem!
     @IBOutlet weak var cameraButtom: UIBarButtonItem!
-    @IBOutlet weak var variantButton: UIBarButtonItem!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     // MARK:- Properties
     
@@ -58,9 +58,9 @@ class DetailViewController: UIViewController {
         updateUX()
     }
     
-    @IBAction func variantAction(_ sender: Any) {
+    @IBAction func editAction(_ sender: Any) {
         // TODO: This function becomes something else
-        print("variant action")
+        print("edit action")
         save()
         updateUX()
     }
@@ -200,7 +200,7 @@ class DetailViewController: UIViewController {
         
         // enable and disable commands
         trashButton.isEnabled = true
-        variantButton.isEnabled = true
+        editButton.isEnabled = true
         
         // update the fields
         
