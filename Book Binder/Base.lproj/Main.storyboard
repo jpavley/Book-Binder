@@ -221,7 +221,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FDZ-7P-hqR"/>
-                        <barButtonItem title="Edit" id="a4w-Li-dos">
+                        <barButtonItem systemItem="add" id="a4w-Li-dos">
                             <connections>
                                 <action selector="editAction:" destination="6F6-9h-lCG" id="Xcd-dN-38c"/>
                             </connections>
