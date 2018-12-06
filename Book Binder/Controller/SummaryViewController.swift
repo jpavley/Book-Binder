@@ -124,9 +124,16 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        let imageName = comicBookCollection.volumes[indexPath.section].works[indexPath.item].coverImage
-        let thumbName = "\(imageName)-thumb"
+        let work = comicBookCollection.volumes[indexPath.section].works[indexPath.item]
+        
+        let thumbName = "\(work.coverImage)-thumb"
         cell.iconImage.image = UIImage(named: thumbName)
+        
+        if work.isOwned {
+            cell.iconImage.alpha = 1.0
+        } else {
+            cell.iconImage.alpha = 0.3
+        }
         
         return cell
     }

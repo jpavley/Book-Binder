@@ -210,10 +210,16 @@ class DetailViewController: UIViewController {
         
         // udpate the cover
         
+        var coverImageAlpha = CGFloat(1.0)
+        
+        if !comicBookCollection.selectedVolumeSelectedWork.isOwned {
+            coverImageAlpha = 0.3
+        }
+        
         coverImageView.alpha = 0
         coverImageView.image = UIImage(named: coverImage)
         UIView.animate(withDuration: 1.0, animations: {
-            self.coverImageView.alpha = 1.0
+            self.coverImageView.alpha = coverImageAlpha
         }, completion: nil)
     }
     

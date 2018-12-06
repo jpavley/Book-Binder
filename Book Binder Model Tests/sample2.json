@@ -32,7 +32,7 @@
                     "issueNumber": 223,
                     "variantLetter": "",
                     "coverImage": "ac223-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 224,
@@ -56,7 +56,7 @@
                     "issueNumber": 227,
                     "variantLetter": "",
                     "coverImage": "ac227-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 228,
@@ -98,7 +98,7 @@
                     "issueNumber": 254,
                     "variantLetter": "",
                     "coverImage": "ac254-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 256,
@@ -127,13 +127,13 @@
                     "issueNumber": 151,
                     "variantLetter": "",
                     "coverImage": "ff151-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 152,
                     "variantLetter": "",
                     "coverImage": "ff152-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 153,
@@ -175,7 +175,7 @@
                     "issueNumber": 159,
                     "variantLetter": "",
                     "coverImage": "ff159-1",
-                    "isOwned": true
+                    "isOwned": false
                 }
             ]
         },
@@ -192,7 +192,7 @@
                     "issueNumber": 1,
                     "variantLetter": "",
                     "coverImage": "vs1-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 2,
@@ -204,7 +204,7 @@
                     "issueNumber": 3,
                     "variantLetter": "",
                     "coverImage": "vs3-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 4,
@@ -222,7 +222,7 @@
                     "issueNumber": 6,
                     "variantLetter": "",
                     "coverImage": "vs6-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 7,
@@ -240,7 +240,7 @@
                     "issueNumber": 9,
                     "variantLetter": "",
                     "coverImage": "vs9-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 10,
@@ -281,7 +281,7 @@
                     "issueNumber": 2,
                     "variantLetter": "",
                     "coverImage": "ww2-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 3,
@@ -323,7 +323,7 @@
                     "issueNumber": 9,
                     "variantLetter": "",
                     "coverImage": "ww9-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 10,
@@ -371,7 +371,7 @@
                     "issueNumber": 17,
                     "variantLetter": "",
                     "coverImage": "ww17-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 18,
@@ -401,7 +401,7 @@
                     "issueNumber": 22,
                     "variantLetter": "",
                     "coverImage": "ww22-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 23,
@@ -449,19 +449,19 @@
                     "issueNumber": 30,
                     "variantLetter": "",
                     "coverImage": "ww30-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 31,
                     "variantLetter": "",
                     "coverImage": "ww31-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 32,
                     "variantLetter": "",
                     "coverImage": "ww32-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 33,
@@ -521,7 +521,7 @@
                     "issueNumber": 42,
                     "variantLetter": "",
                     "coverImage": "ww42-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 43,
@@ -533,7 +533,7 @@
                     "issueNumber": 44,
                     "variantLetter": "",
                     "coverImage": "ww44-1",
-                    "isOwned": true
+                    "isOwned": false
                 },
                 {
                     "issueNumber": 45,
