@@ -111,7 +111,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         comicBookCollection.selectedVolumeIndex = section
-        return comicBookCollection.selectedVolumeCollectedWorkIDs.count
+        return comicBookCollection.selectedVolumeCollectedWorkIDs.count + 1 // extra cell for addWorkButton
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -122,25 +122,43 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        comicBookCollection.selectedVolumeIndex = indexPath.section
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        let work = comicBookCollection.volumes[indexPath.section].works[indexPath.item]
-        
-        // configure image
-        
-        let thumbName = "\(work.coverImage)-thumb"
-        cell.iconImage.image = UIImage(named: thumbName)
-        
-        if work.isOwned {
+        if indexPath.item == comicBookCollection.selectedVolumeCollectedWorkIDs.count {
+            // Add Issue Cell
+            
+            // scale the icon image
             cell.iconImage.alpha = 1.0
+            cell.iconImage.contentMode = .scaleAspectFit
+            cell.iconImage.transform = CGAffineTransform(scaleX: 0.35, y: 0.35)
+            
+            // color the icon image
+            let original =  UIImage(named: "Add-New-Issue")
+            let tinted = original?.withRenderingMode(.alwaysTemplate)
+            cell.iconImage.image = tinted
+            cell.tintColor = UIColor.blue
+            
+
         } else {
-            cell.iconImage.alpha = 0.3
+            // Display cover Cell
+            
+            // scale the cover
+            cell.iconImage.alpha = 1.0
+            cell.iconImage.contentMode = .center
+            cell.iconImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+
+            // assign the cover image
+            let work = comicBookCollection.volumes[indexPath.section].works[indexPath.item]
+            let thumbName = "\(work.coverImage)-thumb"
+            cell.iconImage.image = UIImage(named: thumbName)
+            
+            // fade if not opwned
+            if !work.isOwned {
+                cell.iconImage.alpha = 0.3
+            }
         }
-        
-        // configure button
-        
-        cell.addWorkButton.isHidden = true
-        cell.addWorkButton.isEnabled = false
         
         return cell
     }

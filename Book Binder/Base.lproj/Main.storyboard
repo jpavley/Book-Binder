@@ -38,24 +38,15 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ac221-1-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="L0x-F6-hEi">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EC3-YM-J7a">
-                                                    <rect key="frame" x="29" y="39" width="22" height="22"/>
-                                                    <connections>
-                                                        <action selector="addWorkAction:" destination="NKw-ev-Cdh" eventType="touchUpInside" id="XUH-Y1-RZI"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="L0x-F6-hEi" firstAttribute="leading" secondItem="NKw-ev-Cdh" secondAttribute="leading" id="DBa-J2-BY3"/>
-                                            <constraint firstItem="EC3-YM-J7a" firstAttribute="centerX" secondItem="NKw-ev-Cdh" secondAttribute="centerX" id="Opo-2K-yxZ"/>
                                             <constraint firstAttribute="trailing" secondItem="L0x-F6-hEi" secondAttribute="trailing" id="UOO-rZ-qCK"/>
-                                            <constraint firstItem="EC3-YM-J7a" firstAttribute="centerY" secondItem="NKw-ev-Cdh" secondAttribute="centerY" id="aaU-qS-a3i"/>
                                             <constraint firstItem="L0x-F6-hEi" firstAttribute="top" secondItem="NKw-ev-Cdh" secondAttribute="top" id="rNI-ui-Zrn"/>
                                             <constraint firstAttribute="bottom" secondItem="L0x-F6-hEi" secondAttribute="bottom" id="x4K-Jj-8HF"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="addWorkButton" destination="EC3-YM-J7a" id="hnI-RF-vAE"/>
                                             <outlet property="iconImage" destination="L0x-F6-hEi" id="eRP-Om-S91"/>
                                         </connections>
                                     </collectionViewCell>
