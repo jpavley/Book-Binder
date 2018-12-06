@@ -123,6 +123,12 @@ extension JsonModel {
         return selectedVolumeCollectedWorkIDs.contains(workID)
     }
     
+    func sortSelectedVoluneWorks() {
+        selectedVolume.works = selectedVolume.works.sorted(by: { w1, w2 in
+            return w1.id < w2.id
+        })
+    }
+    
     func updateSelectedWorkOfSelectedVolume(issueNumber: Int, variantLetter: String, isOwned: Bool, coverImage: String) {
         
         selectedVolumeSelectedWork.issueNumber = issueNumber
@@ -136,10 +142,7 @@ extension JsonModel {
         if !selectedVolumeCollectedWorkIDs.contains(w.id) {
             selectedVolume.works.append(w)
         }
-        
-        selectedVolume.works = selectedVolume.works.sorted(by: { w1, w2 in
-            return w1.id < w2.id
-        })
+        sortSelectedVoluneWorks()
         selectWork(work: w)
     }
     
@@ -170,31 +173,6 @@ extension JsonModel {
         
         selectedVolume.works.append(currentWork)
         return currentWork
-    }
-    
-    @discardableResult
-    func addVariantWork(workNumber: Int, letter: String) -> JsonModel.JsonVolume.JsonWork? {
-        
-        // variant letter must be at least a single character
-        if letter.count < 1 {
-            return nil
-        }
-        
-        let variantWork = JsonVolume.JsonWork(issueNumber: workNumber, variantLetter: letter, coverImage: "", isOwned: true)
-        
-        
-        // varliant letter mist not create a duplicate variant
-        if selectedVolumeCollectedWorkIDs.contains(variantWork.id) {
-            return nil
-        }
-        
-        var works = selectedVolume.works
-        works.append(variantWork)
-        selectedVolume.works = works.sorted(by: { w1, w2 in
-            return w1.id < w2.id
-        })
-        
-        return variantWork
     }
     
     func selectWork(work: JsonModel.JsonVolume.JsonWork) {
