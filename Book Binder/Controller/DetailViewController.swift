@@ -14,8 +14,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var publisherLabel: UILabel!
-    @IBOutlet private weak var issueNumberLabel: UILabel!
-    @IBOutlet weak var variantLetterLabel: UILabel!
+    @IBOutlet weak var issueLabel: UILabel!
     
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var isOwnedSwitch: UISwitch!
@@ -128,12 +127,10 @@ class DetailViewController: UIViewController {
     
     func save() {
         
-        let issueNumber = Int(issueNumberLabel.text ?? "") ?? 0
-        let variantLetter = variantLetterLabel.text ?? ""
         let isOwned = isOwnedSwitch.isOn
         let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
         
-        comicBookCollection.updateSelectedWorkOfSelectedVolume(issueNumber: issueNumber, variantLetter: variantLetter, isOwned: isOwned, coverImage: coverImage)
+        comicBookCollection.updateSelectedWorkOfSelectedVolume(isOwned: isOwned, coverImage: coverImage)
         
         saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         dismiss(animated: true, completion: nil)
@@ -209,8 +206,7 @@ class DetailViewController: UIViewController {
         
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
-        issueNumberLabel.text = "\(workNumber)"
-        variantLetterLabel.text = "\(variantLetter)"
+        issueLabel.text = "# \(workNumber)\(variantLetter)"
         
         // udpate the cover
         

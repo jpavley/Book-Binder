@@ -129,12 +129,8 @@ extension JsonModel {
         })
     }
     
-    func updateSelectedWorkOfSelectedVolume(issueNumber: Int, variantLetter: String, isOwned: Bool, coverImage: String) {
-        
-        selectedVolumeSelectedWork.issueNumber = issueNumber
-        selectedVolumeSelectedWork.variantLetter = variantLetter
+    func updateSelectedWorkOfSelectedVolume(isOwned: Bool, coverImage: String) {
         selectedVolumeSelectedWork.isOwned = isOwned
-        // TODO: Figure out how to properly implement the ability to change cover photos
         selectedVolumeSelectedWork.coverImage = coverImage
     }
     
@@ -192,7 +188,7 @@ extension JsonModel {
     
     func selectPreviousWork() {
         selectedVolume.selectedWorkIndex -= 1
-        if selectedVolume.selectedWorkIndex <= 0 {
+        if selectedVolume.selectedWorkIndex < 0 {
             selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
         }
     }
@@ -206,7 +202,7 @@ extension JsonModel {
     
     func selectPreviousVolume() {
         selectedVolumeIndex -= 1
-        if selectedVolumeIndex <= 0 {
+        if selectedVolumeIndex < 0 {
             selectedVolumeIndex = volumes.count - 1
         }
     }
