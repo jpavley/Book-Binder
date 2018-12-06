@@ -379,7 +379,7 @@ class JsonModelTests: XCTestCase {
         
         let addedWork = testModel2.selectedVolume.works.last!
         XCTAssertEqual(addedWork.isOwned, true)
-        XCTAssertEqual(addedWork.coverImage, "")
+        XCTAssertEqual(addedWork.coverImage, "american-standard-marvel")
     }
     
     func testSelectWork() {

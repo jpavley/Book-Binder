@@ -165,7 +165,9 @@ extension JsonModel {
         let lastWorkNumber = selectedVolume.works.last!.issueNumber
         let currentWorkNumber = lastWorkNumber + 1
         
-        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: "", isOwned: true)
+        let coverImage = selectedVolume.defaultCoverID
+        
+        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: coverImage, isOwned: true)
         
         selectedVolume.works.append(currentWork)
         return currentWork

@@ -119,14 +119,17 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         return comicBookCollection.volumes.count
     }
     
+    func isAddIssueCell(indexPath: IndexPath) -> Bool {
+        comicBookCollection.selectedVolumeIndex = indexPath.section
+        return indexPath.item == comicBookCollection.selectedVolumeCollectedWorkIDs.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        comicBookCollection.selectedVolumeIndex = indexPath.section
-        
+                
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
-        if indexPath.item == comicBookCollection.selectedVolumeCollectedWorkIDs.count {
+        if isAddIssueCell(indexPath: indexPath) {
             // Add Issue Cell
             
             // scale the icon image
@@ -165,8 +168,9 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if isEditing {
-            navigationController?.isToolbarHidden = false
+        if isAddIssueCell(indexPath: indexPath) {
+            comicBookCollection.addNextWork(for: indexPath.section)
+            collectionView.reloadData()
         } else {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
