@@ -315,7 +315,7 @@
                     "issueNumber": 8,
                     "variantLetter": "b",
                     "coverImage": "american-standard-ga",
-                    "isOwned": false
+                    "isOwned": true
                 },
                 {
                     "issueNumber": 9,
