@@ -125,12 +125,14 @@ extension JsonModel {
         }
     }
     
-    func removeWorkFromSelectedVolume(_ w: JsonVolume.JsonWork) {
+    func removeSelectedWorkFromSelectedVolume() {
+        let w = selectedVolumeSelectedWork
+
         if selectedVolumeCollectedWorkIDs.contains(w.id) {
             
             let filteredWorks = selectedVolume.works.filter { $0.id != w.id }
             selectedVolume.works = filteredWorks
-                        
+            
             selectedVolume.selectedWorkIndex -= 1
             if selectedVolume.selectedWorkIndex < 0 {
                 selectedVolume.selectedWorkIndex = 0

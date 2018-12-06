@@ -31,14 +31,12 @@ class DetailViewController: UIViewController {
     // MARK:- Actions
     
     @IBAction func deleteAction(_ sender: Any) {
-        // TODO: Mark this work for removal from owenership and tracking. It becomes a published, uncollected work.
         
         let alert = UIAlertController(title: "", message: "Delete issue \(comicBookCollection.selectedVolumeSelectedWork.id)?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
             // yes delete please
-            let work = self.comicBookCollection.selectedVolumeSelectedWork
-            self.comicBookCollection.removeWorkFromSelectedVolume(work)
+            self.comicBookCollection.removeSelectedWorkFromSelectedVolume()
             self.updateUXOnLoad()
         }))
         
