@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
         let title = comicBookCollection.selectedVolume.seriesName
         let workID = comicBookCollection.selectedVolumeSelectedWork.id
         
-        let alert = UIAlertController(title: "", message: "Delete \(title) issue \(workID)?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "Delete \(title) \(workID)?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
             // yes delete please
@@ -56,22 +56,8 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func variantAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Variant Identifier", message: "Enter a new variant identifier for issue \(comicBookCollection.selectedVolumeSelectedWork.id)", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "A, A.B&W, BOP, etc..."
-        })
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            if let variantLetter = alert.textFields?.first?.text {
-                self.comicBookCollection.selectedVolumeSelectedWork.variantLetter = variantLetter
-                self.updateUX()
-            }
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
+        // TODO: This function becomes something else
+        print("variant action")
     }
     
     
