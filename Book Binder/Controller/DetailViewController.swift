@@ -32,7 +32,10 @@ class DetailViewController: UIViewController {
     
     @IBAction func deleteAction(_ sender: Any) {
         
-        let alert = UIAlertController(title: "", message: "Delete issue \(comicBookCollection.selectedVolumeSelectedWork.id)?", preferredStyle: .alert)
+        let title = comicBookCollection.selectedVolume.seriesName
+        let workID = comicBookCollection.selectedVolumeSelectedWork.id
+        
+        let alert = UIAlertController(title: "", message: "Delete \(title) issue \(workID)?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
             // yes delete please

@@ -132,8 +132,8 @@ extension JsonModel {
             
             let filteredWorks = selectedVolume.works.filter { $0.id != w.id }
             selectedVolume.works = filteredWorks
-            
             selectedVolume.selectedWorkIndex -= 1
+            
             if selectedVolume.selectedWorkIndex < 0 {
                 selectedVolume.selectedWorkIndex = 0
             }
