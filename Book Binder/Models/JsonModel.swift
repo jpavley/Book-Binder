@@ -119,8 +119,12 @@ extension JsonModel {
 
 extension JsonModel {
     
+    func workExists(workID: String) -> Bool {
+        return selectedVolumeCollectedWorkIDs.contains(workID)
+    }
+    
     func updateSelectedWorkOfSelectedVolume(issueNumber: Int, variantLetter: String, isOwned: Bool, coverImage: String) {
-                
+        
         selectedVolumeSelectedWork.issueNumber = issueNumber
         selectedVolumeSelectedWork.variantLetter = variantLetter
         selectedVolumeSelectedWork.isOwned = isOwned
@@ -128,11 +132,15 @@ extension JsonModel {
         selectedVolumeSelectedWork.coverImage = coverImage
     }
     
-    
     func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
         if !selectedVolumeCollectedWorkIDs.contains(w.id) {
             selectedVolume.works.append(w)
         }
+        
+        selectedVolume.works = selectedVolume.works.sorted(by: { w1, w2 in
+            return w1.id < w2.id
+        })
+        selectWork(work: w)
     }
     
     func removeSelectedWorkFromSelectedVolume() {

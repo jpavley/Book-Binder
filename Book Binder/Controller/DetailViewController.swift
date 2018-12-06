@@ -32,6 +32,8 @@ class DetailViewController: UIViewController {
     
     @IBAction func deleteAction(_ sender: Any) {
         
+        cacheUndoData(actionKind: .delete)
+        
         let title = comicBookCollection.selectedVolume.seriesName
         let workID = comicBookCollection.selectedVolumeSelectedWork.id
         
@@ -53,11 +55,15 @@ class DetailViewController: UIViewController {
     @IBAction func cameraAction(_ sender: Any) {
         // TODO: Replace the current cover with a new or existing photo
         print("camera action")
+        save()
+        updateUX()
     }
     
     @IBAction func variantAction(_ sender: Any) {
         // TODO: This function becomes something else
         print("variant action")
+        save()
+        updateUX()
     }
     
     
@@ -69,7 +75,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSwipeGestureRecognisers()
-        cacheUndoData()
+        cacheUndoData(actionKind: .update)
         updateUXOnLoad()
     }
     
@@ -79,7 +85,14 @@ class DetailViewController: UIViewController {
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            cancel()
+            
+            switch undoData.actionKind {
+            case .delete:
+                undoDelete()
+            case .update:
+                cancel()
+            }
+            
             updateUXOnLoad()
         }
     }
@@ -90,25 +103,27 @@ class DetailViewController: UIViewController {
     
     // MARK:- Methods
     
-    func cacheUndoData() {
-        undoData = WorkData(issueNumber: comicBookCollection.selectedVolumeSelectedWork.issueNumber,
+    func cacheUndoData(actionKind: Action) {
+        undoData = WorkData(actionKind: actionKind,
+                            issueNumber: comicBookCollection.selectedVolumeSelectedWork.issueNumber,
                             variantLetter: comicBookCollection.selectedVolumeSelectedWork.variantLetter,
                             coverImage: comicBookCollection.selectedVolumeSelectedWork.coverImage,
                             isOwned: comicBookCollection.selectedVolumeSelectedWork.isOwned)
     }
     
-    func cancel() {
+    func undoDelete() {
+        let work = JsonModel.JsonVolume.JsonWork(issueNumber: undoData.issueNumber, variantLetter: undoData.variantLetter, coverImage: undoData.coverImage, isOwned: undoData.isOwned)
         
+        comicBookCollection.addWorkToSelectedVolume(work)
+    }
+    
+    func cancel() {
         let work = comicBookCollection.selectedVolumeSelectedWork
         
         work.issueNumber = undoData.issueNumber
         work.variantLetter = undoData.variantLetter
         work.coverImage = undoData.coverImage
         work.isOwned = undoData.isOwned
-        
-        if work.isOwned {
-            comicBookCollection.addWorkToSelectedVolume(work)
-        }
     }
     
     func save() {
