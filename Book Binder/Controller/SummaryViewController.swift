@@ -130,10 +130,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return cell
     }
-    
-    // MARK:- Did Select Item At
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
+        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if isEditing {
             navigationController?.isToolbarHidden = false
