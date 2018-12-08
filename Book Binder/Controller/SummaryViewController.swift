@@ -141,7 +141,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             let original =  UIImage(named: "Add-New-Issue")
             let tinted = original?.withRenderingMode(.alwaysTemplate)
             cell.iconImage.image = tinted
-            cell.tintColor = UIColor.blue
+            cell.tintColor = UIColor(named: "UIBlueColor")
             
 
         } else {
