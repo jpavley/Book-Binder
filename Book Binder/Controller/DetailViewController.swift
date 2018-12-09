@@ -23,6 +23,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     @IBOutlet var popoverView: UIView!
+    @IBOutlet weak var popoverIssueField: UITextField!
+    @IBOutlet weak var popoverVariantField: UITextField!
+    @IBOutlet weak var popoverCoverImage: UIImageView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     // MARK:- Properties
@@ -31,28 +34,6 @@ class DetailViewController: UIViewController {
     var undoData: WorkData!
     
     // MARK:- Actions
-    
-    @IBAction func cancelPopoverAction(_ sender: Any) {
-        exitPopoverView()
-    }
-    
-    @IBAction func savePopoverAction(_ sender: Any) {
-        exitPopoverView()
-    }
-    
-    func exitPopoverView() {
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.popoverView.alpha = 0
-            self.visualEffectView.isHidden = true
-            
-            }) { success in
-                self.popoverView.removeFromSuperview()
-                self.save()
-                self.updateUX()
-            }
-    }
     
     @IBAction func deleteAction(_ sender: Any) {
         
@@ -83,9 +64,31 @@ class DetailViewController: UIViewController {
         updateUX()
     }
     
+    @IBAction func isOwnedAction(_ sender: Any) {
+        save()
+        updateUX()
+    }
+    
+    // MARK:- Popover Implementation
+    
+    func enableMainUX(toggle: Bool) {
+        navigationController!.navigationItem.setHidesBackButton(toggle, animated: true)
+        trashButton.isEnabled = toggle
+        cameraButtom.isEnabled = toggle
+        editButton.isEnabled = toggle
+
+    }
+    
     @IBAction func editAction(_ sender: Any) {
         
         visualEffectView.isHidden = false
+        enableMainUX(toggle: false)
+        
+        // load data into popover fields
+        popoverIssueField.text = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber)"
+        popoverVariantField.text = comicBookCollection.selectedVolumeSelectedWork.variantLetter
+        popoverCoverImage.image = UIImage(named: "\(comicBookCollection.selectedVolumeSelectedWork.coverImage)-thumb")
+        
         view.addSubview(popoverView)
         popoverView.center = view.center
         
@@ -98,17 +101,47 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func isOwnedAction(_ sender: Any) {
-        save()
-        updateUX()
+    @IBAction func cancelPopoverAction(_ sender: Any) {
+        exitPopoverView()
     }
+    
+    @IBAction func savePopoverAction(_ sender: Any) {
+        exitPopoverView()
+        
+        // TODO: changing the issue number and varient letter is dangerious!
+        //       - Check for duplicate workIDs and don't allow
+        //       - Don't allow an empty issue number field
+        comicBookCollection.selectedVolumeSelectedWork.issueNumber = Int(popoverIssueField.text!) ?? 0
+        comicBookCollection.selectedVolumeSelectedWork.variantLetter = popoverVariantField.text ?? ""
+
+        self.save()
+        self.updateUX(animateCover: false)
+
+    }
+    
+    func exitPopoverView() {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.popoverView.alpha = 0
+            self.visualEffectView.isHidden = true
+            
+        }) { success in
+            self.popoverView.removeFromSuperview()
+            self.enableMainUX(toggle: true)
+        }
+    }
+    
+    // MARK:- Main View Implementation
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // popover view config
         popoverView.layer.cornerRadius = 5
         visualEffectView.isHidden = true
         
+        // main view config
         addSwipeGestureRecognisers()
         cacheUndoData(actionKind: .update)
         updateUXOnLoad()
@@ -222,7 +255,7 @@ class DetailViewController: UIViewController {
     }
     
     /// When loading the view don't set the isOwnedSwith, because that reloads it!
-    func updateUX() {
+    func updateUX(animateCover: Bool = true) {
         
         // get the state
         
@@ -252,11 +285,14 @@ class DetailViewController: UIViewController {
             coverImageAlpha = 0.3
         }
         
-        coverImageView.alpha = 0
-        coverImageView.image = UIImage(named: coverImage)
-        UIView.animate(withDuration: 1.0, animations: {
-            self.coverImageView.alpha = coverImageAlpha
-        }, completion: nil)
+        if animateCover {
+            
+            coverImageView.alpha = 0
+            coverImageView.image = UIImage(named: coverImage)
+            UIView.animate(withDuration: 1.0) {
+                self.coverImageView.alpha = coverImageAlpha
+            }
+        }
     }
     
     // MARK:- Navigation
