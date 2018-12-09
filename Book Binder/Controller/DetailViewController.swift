@@ -22,12 +22,37 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var cameraButtom: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
+    @IBOutlet var popoverView: UIView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    
     // MARK:- Properties
     
     var comicBookCollection: JsonModel!
     var undoData: WorkData!
     
     // MARK:- Actions
+    
+    @IBAction func cancelPopoverAction(_ sender: Any) {
+        exitPopoverView()
+    }
+    
+    @IBAction func savePopoverAction(_ sender: Any) {
+        exitPopoverView()
+    }
+    
+    func exitPopoverView() {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.popoverView.alpha = 0
+            self.visualEffectView.isHidden = true
+            
+            }) { success in
+                self.popoverView.removeFromSuperview()
+                self.save()
+                self.updateUX()
+            }
+    }
     
     @IBAction func deleteAction(_ sender: Any) {
         
@@ -59,10 +84,18 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func editAction(_ sender: Any) {
-        // TODO: This function becomes something else
-        print("edit action")
-        save()
-        updateUX()
+        
+        visualEffectView.isHidden = false
+        view.addSubview(popoverView)
+        popoverView.center = view.center
+        
+        popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        popoverView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.popoverView.alpha = 1
+            self.popoverView.transform = CGAffineTransform.identity
+        }
     }
     
     
@@ -73,6 +106,9 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        popoverView.layer.cornerRadius = 5
+        visualEffectView.isHidden = true
+        
         addSwipeGestureRecognisers()
         cacheUndoData(actionKind: .update)
         updateUXOnLoad()
