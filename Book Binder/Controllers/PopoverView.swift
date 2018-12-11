@@ -1,5 +1,5 @@
 //
-//  PopoverViewManager.swift
+//  PopoverView.swift
 //  Book Binder
 //
 //  Created by John Pavley on 12/11/18.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-class PopoverViewManager {
+class PopoverView {
     
 }
