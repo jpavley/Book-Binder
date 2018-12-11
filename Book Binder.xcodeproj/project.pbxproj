@@ -119,7 +119,7 @@
 		483C61B6214ED8E9008C69D8 /* Book Binder */ = {
 			isa = PBXGroup;
 			children = (
-				484CC0DB2157DCF20012CD42 /* Controller */,
+				484CC0DB2157DCF20012CD42 /* Controllers */,
 				484CC0DA2157DCE00012CD42 /* Views */,
 				484CC0D92157DCC40012CD42 /* Models */,
 				483C61B7214ED8E9008C69D8 /* AppDelegate.swift */,
@@ -149,14 +149,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		484CC0DB2157DCF20012CD42 /* Controller */ = {
+		484CC0DB2157DCF20012CD42 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */,
 				484CC0D521567A180012CD42 /* DetailViewController.swift */,
 				B8F41CA6219769C30042C446 /* DataHelper.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		484CC0E8215850350012CD42 /* Book Binder Model Tests */ = {
