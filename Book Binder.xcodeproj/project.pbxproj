@@ -145,6 +145,7 @@
 		484CC0DA2157DCE00012CD42 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B87C9DA621BFF3AA00F21E49 /* PopoverView.swift */,
 				484CC0D72156CC310012CD42 /* CollectionViewCell.swift */,
 				48699AEE215AE7710038864A /* CollectionReusableView.swift */,
 			);
@@ -157,7 +158,6 @@
 				483C61B9214ED8E9008C69D8 /* SummaryViewController.swift */,
 				484CC0D521567A180012CD42 /* DetailViewController.swift */,
 				B8F41CA6219769C30042C446 /* DataHelper.swift */,
-				B87C9DA621BFF3AA00F21E49 /* PopoverView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

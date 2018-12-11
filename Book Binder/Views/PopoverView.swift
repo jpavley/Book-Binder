@@ -6,8 +6,8 @@
 //  Copyright © 2018 John Pavley. All rights reserved.
 //
 
-import Foundation
+import UIKit 
 
-class PopoverView {
+class PopoverView: UIView {
     
 }
