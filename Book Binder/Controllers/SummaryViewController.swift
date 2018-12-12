@@ -15,6 +15,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     // MARK:- Constants -
     
@@ -53,6 +54,7 @@ class SummaryViewController: UIViewController {
             layout.itemSize = CGSize(width: width, height: cellHeight)
         }
         
+        visualEffectView.isHidden = true
         collectionViewLayout()
         navigationController?.isToolbarHidden = false
     }

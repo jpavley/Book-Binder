@@ -96,12 +96,37 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="F4d-16-u3X"/>
                                 </connections>
                             </collectionView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Vs-6v7">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CQ3-MR-YrM">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vGV-Zj-Pz2">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Gkj-dM-iHt">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="tgc-Vs-6v7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4Xk-uY-yim"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uSc-2I-9lN" secondAttribute="trailing" id="LBL-pg-qVu"/>
                             <constraint firstItem="uSc-2I-9lN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M72-au-JqR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tgc-Vs-6v7" secondAttribute="trailing" id="QJY-ZH-PhQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tgc-Vs-6v7" secondAttribute="bottom" id="fFl-bj-BZ1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uSc-2I-9lN" secondAttribute="bottom" id="nO1-sH-FHU"/>
+                            <constraint firstItem="tgc-Vs-6v7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oey-HD-42V"/>
                             <constraint firstItem="uSc-2I-9lN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yaE-8c-L2w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -126,6 +151,7 @@
                         <outlet property="addButton" destination="A9W-rz-feo" id="hvh-gh-M2M"/>
                         <outlet property="cameraButton" destination="wXj-fd-wij" id="V7l-LL-uaW"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
+                        <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="cFA-qS-7Jx"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>
                     </connections>
                 </viewController>
@@ -186,14 +212,23 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHY-FF-jD6">
                                                     <rect key="frame" x="0.0" y="0.0" width="114" height="30"/>
                                                     <state key="normal" title="Photos"/>
+                                                    <connections>
+                                                        <action selector="photosAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="uBU-8R-fIZ"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CG-Iy-65l">
                                                     <rect key="frame" x="0.0" y="51" width="114" height="30"/>
                                                     <state key="normal" title="Camera"/>
+                                                    <connections>
+                                                        <action selector="cameraAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="qeq-xG-Ptm"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjG-Xg-dwA">
                                                     <rect key="frame" x="0.0" y="102" width="114" height="30"/>
-                                                    <state key="normal" title="None"/>
+                                                    <state key="normal" title="No Image"/>
+                                                    <connections>
+                                                        <action selector="noImageAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="fpx-Kj-Fqm"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -213,6 +248,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
                                             <state key="normal" title="Cancel"/>
                                             <connections>
+                                                <action selector="cancelAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="dq1-JN-fv2"/>
                                                 <action selector="cancelPopoverAction:" destination="6F6-9h-lCG" eventType="touchUpInside" id="86U-bF-KJh"/>
                                             </connections>
                                         </button>
@@ -220,6 +256,7 @@
                                             <rect key="frame" x="227" y="0.0" width="37" height="30"/>
                                             <state key="normal" title="Done"/>
                                             <connections>
+                                                <action selector="doneAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="E9N-j9-Wq7"/>
                                                 <action selector="savePopoverAction:" destination="6F6-9h-lCG" eventType="touchUpInside" id="9qM-cg-mea"/>
                                             </connections>
                                         </button>
@@ -239,7 +276,7 @@
                     <connections>
                         <outlet property="coverImage" destination="mYc-D7-J1Q" id="pOL-oV-ig8"/>
                         <outlet property="issueNumberField" destination="uNp-GZ-Bkz" id="oJC-Uk-NsX"/>
-                        <outlet property="varlantLetterField" destination="3Zy-RV-Dci" id="bNd-Ag-dp0"/>
+                        <outlet property="variantLetterField" destination="3Zy-RV-Dci" id="bNd-Ag-dp0"/>
                     </connections>
                 </view>
             </objects>
