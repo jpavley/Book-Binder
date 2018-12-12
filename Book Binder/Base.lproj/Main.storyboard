@@ -130,7 +130,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="lXD-3N-hkp" userLabel="AddIssueView">
+                <view contentMode="scaleToFill" id="lXD-3N-hkp" userLabel="AddIssueView" customClass="PopoverView" customModule="Book_Binder" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="280" height="400"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -236,6 +236,11 @@
                         <constraint firstItem="7Co-TE-B8u" firstAttribute="bottom" secondItem="MzE-2Z-z3i" secondAttribute="bottom" constant="16" id="gNh-Xo-HSC"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="7Co-TE-B8u"/>
+                    <connections>
+                        <outlet property="coverImage" destination="mYc-D7-J1Q" id="pOL-oV-ig8"/>
+                        <outlet property="issueNumberField" destination="uNp-GZ-Bkz" id="oJC-Uk-NsX"/>
+                        <outlet property="varlantLetterField" destination="3Zy-RV-Dci" id="bNd-Ag-dp0"/>
+                    </connections>
                 </view>
             </objects>
             <point key="canvasLocation" x="1136.25" y="129.92957746478874"/>

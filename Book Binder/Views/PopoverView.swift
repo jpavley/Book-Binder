@@ -10,4 +10,9 @@ import UIKit
 
 class PopoverView: UIView {
     
+    @IBOutlet weak var issueNumberField: UITextField!
+    
+    @IBOutlet weak var varlantLetterField: UITextField!
+    
+    @IBOutlet weak var coverImage: UIImageView!
 }
