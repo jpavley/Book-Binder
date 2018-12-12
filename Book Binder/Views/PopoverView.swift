@@ -19,10 +19,12 @@ class PopoverView: UIView {
     
     @IBAction func doneAction(_ sender: Any) {
         saveData()
+        visualEffectView.isHidden = true
         removeFromSuperview()
     }
     
     @IBAction func cancelAction(_ sender: Any) {
+        visualEffectView.isHidden = true
         removeFromSuperview()
     }
     

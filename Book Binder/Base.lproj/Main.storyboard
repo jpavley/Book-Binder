@@ -151,6 +151,7 @@
                         <outlet property="addButton" destination="A9W-rz-feo" id="hvh-gh-M2M"/>
                         <outlet property="cameraButton" destination="wXj-fd-wij" id="V7l-LL-uaW"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
+                        <outlet property="popoverView" destination="lXD-3N-hkp" id="Nx2-Jw-MHj"/>
                         <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="cFA-qS-7Jx"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>
                     </connections>
@@ -277,6 +278,7 @@
                         <outlet property="coverImage" destination="mYc-D7-J1Q" id="pOL-oV-ig8"/>
                         <outlet property="issueNumberField" destination="uNp-GZ-Bkz" id="oJC-Uk-NsX"/>
                         <outlet property="variantLetterField" destination="3Zy-RV-Dci" id="bNd-Ag-dp0"/>
+                        <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="0v3-JZ-A6p"/>
                     </connections>
                 </view>
             </objects>

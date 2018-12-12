@@ -16,6 +16,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet var popoverView: PopoverView!
     
     // MARK:- Constants -
     
@@ -171,11 +172,31 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if isAddIssueCell(indexPath: indexPath) {
-            comicBookCollection.addNextWork(for: indexPath.section)
-            collectionView.reloadData()
+            //comicBookCollection.addNextWork(for: indexPath.section)
+            //collectionView.reloadData()
+            addWorkToSeries(seriesIndex: indexPath.section)
         } else {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
+    }
+    
+    func addWorkToSeries(seriesIndex: Int) {
+        visualEffectView.isHidden = false
+                
+        view.addSubview(popoverView)
+        popoverView.center = view.center
+        
+        popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        popoverView.alpha = 0
+        
+        popoverView.comicBookCollection = comicBookCollection
+        popoverView.loadData()
+        
+        UIView.animate(withDuration: 0.4) {
+            self.popoverView.alpha = 1
+            self.popoverView.transform = CGAffineTransform.identity
+        }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
