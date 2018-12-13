@@ -16,18 +16,18 @@ class PopoverView: UIView {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var publisherNameLabel: UILabel!
     @IBOutlet weak var seriesTitleLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var comicBookCollection: JsonModel!
     
     @IBAction func doneAction(_ sender: Any) {
         saveData()
-        visualEffectView.isHidden = true
-        removeFromSuperview()
+        exitPopoverView()
+        collectionView.reloadData()
     }
     
     @IBAction func cancelAction(_ sender: Any) {
-        visualEffectView.isHidden = true
-        removeFromSuperview()
+        exitPopoverView()
     }
     
     @IBAction func photosAction(_ sender: Any) {
@@ -42,10 +42,31 @@ class PopoverView: UIView {
         print("noImageAction()")
     }
     
+    func exitPopoverView() {
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.alpha = 0
+            self.visualEffectView.isHidden = true
+            
+        }) { success in
+            self.removeFromSuperview()
+        }
+    }
+    
     func saveData() {
-        comicBookCollection.selectedVolumeSelectedWork.issueNumber = Int(issueNumberField.text!) ?? 0
-        comicBookCollection.selectedVolumeSelectedWork.variantLetter = variantLetterField.text ?? ""
-        // TODO: Save to user defaults
+        let issueNumber = Int(issueNumberField.text!) ?? 0
+        let variantLetter = variantLetterField.text!
+        let coverImage = comicBookCollection.selectedVolume.defaultCoverID
+        let isOwned = true
+        
+        let work = JsonModel.JsonVolume.JsonWork(issueNumber: issueNumber,
+                                                 variantLetter: variantLetter,
+                                                 coverImage: coverImage,
+                                                 isOwned: isOwned)
+        comicBookCollection.addWorkToSelectedVolume(work)
+        
+        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
     }
     
     func loadData() {

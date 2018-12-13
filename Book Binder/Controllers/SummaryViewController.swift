@@ -190,6 +190,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         popoverView.alpha = 0
         
+        comicBookCollection.selectedVolumeIndex = seriesIndex
+        comicBookCollection.selectedVolume.selectedWorkIndex = comicBookCollection.selectedVolume.works.count - 1
         popoverView.comicBookCollection = comicBookCollection
         popoverView.loadData()
         

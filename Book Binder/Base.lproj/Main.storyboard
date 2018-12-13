@@ -287,6 +287,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="7Co-TE-B8u"/>
                     <connections>
+                        <outlet property="collectionView" destination="uSc-2I-9lN" id="9u1-64-9GL"/>
                         <outlet property="coverImage" destination="mYc-D7-J1Q" id="pOL-oV-ig8"/>
                         <outlet property="issueNumberField" destination="uNp-GZ-Bkz" id="oJC-Uk-NsX"/>
                         <outlet property="publisherNameLabel" destination="KgN-iW-2Zi" id="lUv-G1-RdS"/>
