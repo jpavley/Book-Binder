@@ -55,6 +55,7 @@ class SummaryViewController: UIViewController {
             layout.itemSize = CGSize(width: width, height: cellHeight)
         }
         
+        popoverView.layer.cornerRadius = 5
         visualEffectView.isHidden = true
         collectionViewLayout()
         navigationController?.isToolbarHidden = false
@@ -208,5 +209,14 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             dest.comicBookCollection = comicBookCollection
         }
+    }
+}
+
+extension SummaryViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
     }
 }

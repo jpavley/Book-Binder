@@ -14,6 +14,8 @@ class PopoverView: UIView {
     @IBOutlet weak var variantLetterField: UITextField!
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var publisherNameLabel: UILabel!
+    @IBOutlet weak var seriesTitleLabel: UILabel!
     
     var comicBookCollection: JsonModel!
     
@@ -47,8 +49,9 @@ class PopoverView: UIView {
     }
     
     func loadData() {
-        issueNumberField.text = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber)"
-        variantLetterField.text = comicBookCollection.selectedVolumeSelectedWork.variantLetter
-        coverImage.image = UIImage(named: "\(comicBookCollection.selectedVolumeSelectedWork.coverImage)-thumb")
+        publisherNameLabel.text = "\(comicBookCollection.selectedVolume.publisherName)"
+        seriesTitleLabel.text = comicBookCollection.selectedVolume.seriesName
+        coverImage.image = UIImage(named: "\(comicBookCollection.selectedVolume.defaultCoverID)-thumb")
+        issueNumberField.placeholder = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber)"
     }
 }
