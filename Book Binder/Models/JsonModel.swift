@@ -124,9 +124,10 @@ extension JsonModel {
     }
     
     func sortSelectedVoluneWorks() {
-        selectedVolume.works = selectedVolume.works.sorted(by: { w1, w2 in
-            return w1.id < w2.id
-        })
+        selectedVolume.works = selectedVolume.works.sorted {
+            (w1, w2) -> Bool in return w1.id.localizedStandardCompare(w2.id) == .orderedAscending
+        }
+        
     }
     
     func updateSelectedWorkOfSelectedVolume(isOwned: Bool, coverImage: String) {

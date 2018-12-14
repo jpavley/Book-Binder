@@ -73,6 +73,8 @@ class PopoverView: UIView {
         publisherNameLabel.text = "\(comicBookCollection.selectedVolume.publisherName)"
         seriesTitleLabel.text = comicBookCollection.selectedVolume.seriesName
         coverImage.image = UIImage(named: "\(comicBookCollection.selectedVolume.defaultCoverID)-thumb")
-        issueNumberField.placeholder = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber)"
+        issueNumberField.text = ""
+        issueNumberField.placeholder = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber + 1)"
+        variantLetterField.text = ""
     }
 }
