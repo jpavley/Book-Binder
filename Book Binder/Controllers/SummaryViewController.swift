@@ -101,6 +101,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             let era = comicBookCollection.selectedVolume.era
             let publisher = comicBookCollection.selectedVolume.publisherName
             
+            headerView.volumeIndex = indexPath.section
+            headerView.comicBookCollection = comicBookCollection
             headerView.titleLabel.text = "\(title) \(era)"
             headerView.subTitleLabel.text = publisher
             

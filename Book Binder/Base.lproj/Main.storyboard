@@ -74,6 +74,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX2-Yp-qHC">
                                                             <rect key="frame" x="266" y="0.0" width="30" height="30"/>
                                                             <state key="normal" title="Edit"/>
+                                                            <connections>
+                                                                <action selector="editAction:" destination="Uhm-rR-XoA" eventType="touchUpInside" id="avo-JP-EkK"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
