@@ -16,7 +16,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet var popoverView: PopoverView!
+    @IBOutlet var popoverView: AddIssuePopoverView!
     
     // MARK:- Constants -
     

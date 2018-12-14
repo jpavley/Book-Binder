@@ -8,7 +8,7 @@
 
 import UIKit 
 
-class PopoverView: UIView {
+class AddIssuePopoverView: UIView {
     
     @IBOutlet weak var issueNumberField: UITextField!
     @IBOutlet weak var variantLetterField: UITextField!
