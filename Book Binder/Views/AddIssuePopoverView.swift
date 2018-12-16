@@ -21,9 +21,12 @@ class AddIssuePopoverView: UIView {
     var comicBookCollection: JsonModel!
     
     @IBAction func doneAction(_ sender: Any) {
-        saveData()
+        
+        if issueNumberField.text != "" {
+            saveData()
+            collectionView.reloadData()
+        }
         exitPopoverView()
-        collectionView.reloadData()
     }
     
     @IBAction func cancelAction(_ sender: Any) {
