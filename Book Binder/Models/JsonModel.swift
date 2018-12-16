@@ -124,8 +124,15 @@ extension JsonModel {
     }
     
     func sortSelectedVoluneWorks() {
+        
+        // more typing
+//        selectedVolume.works = selectedVolume.works.sorted {
+//            (w1, w2) -> Bool in return w1.id.localizedStandardCompare(w2.id) == .orderedAscending
+//        }
+        
+        // less typing
         selectedVolume.works = selectedVolume.works.sorted {
-            (w1, w2) -> Bool in return w1.id.localizedStandardCompare(w2.id) == .orderedAscending
+            $0.id.localizedStandardCompare($1.id) == .orderedAscending
         }
         
     }
