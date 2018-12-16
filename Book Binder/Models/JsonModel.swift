@@ -94,7 +94,7 @@ extension JsonModel {
     /// A list of IDs (issue numbers and variant letters as strings) from the list of collected works of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeCollectedWorkIDs: [String] {
         var result = [String]()
-                
+        
         selectedVolume.works.forEach {
             result.append("\($0.issueNumber)\($0.variantLetter)")
         }
@@ -105,10 +105,8 @@ extension JsonModel {
     var selectedVolumeOwnedWorkIDs: [String] {
         var result = [String]()
         
-        for work in selectedVolume.works {
-            if work.isOwned {
-                result.append("\(work.issueNumber)\(work.variantLetter)")
-            }
+        selectedVolume.works.filter { $0.isOwned }.forEach {
+            result.append("\($0.issueNumber)\($0.variantLetter)")
         }
         
         return result
