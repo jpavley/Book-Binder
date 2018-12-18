@@ -126,9 +126,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // popover view config
-        popoverView.layer.cornerRadius = 5
-        visualEffectView.isHidden = true
+        configurePopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
         
         // main view config
         addSwipeGestureRecognisers()
