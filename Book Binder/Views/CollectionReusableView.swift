@@ -12,14 +12,6 @@ class CollectionReusableView: UICollectionReusableView {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
-    
-    var comicBookCollection: JsonModel!
-    var volumeIndex: Int!
-    
-    @IBAction func editAction(_ sender: Any) {
-
-        let seriesName = comicBookCollection.volumes[volumeIndex].seriesName
-        print("editAction() \(seriesName)")
-
-    }
+    @IBOutlet weak var editButton: UIButton!
+        
 }

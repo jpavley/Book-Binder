@@ -40,6 +40,12 @@ class SummaryViewController: UIViewController {
         print("snapItem touched")
     }
     
+    @IBAction func editSeriesAction(_ sender: Any) {
+        let editButton = sender as! UIButton
+        let seriesName = comicBookCollection.volumes[editButton.tag].seriesName
+        print("editAction() \(seriesName)")
+
+    }
     // MARK: - Startup -
     
     override func viewDidLoad() {
@@ -103,8 +109,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             let era = comicBookCollection.selectedVolume.era
             let publisher = comicBookCollection.selectedVolume.publisherName
             
-            headerView.volumeIndex = indexPath.section
-            headerView.comicBookCollection = comicBookCollection
+            headerView.editButton.tag = indexPath.section
             headerView.titleLabel.text = "\(title) \(era)"
             headerView.subTitleLabel.text = publisher
             
@@ -177,8 +182,6 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if isAddIssueCell(indexPath: indexPath) {
-            //comicBookCollection.addNextWork(for: indexPath.section)
-            //collectionView.reloadData()
             addWorkToSeries(seriesIndex: indexPath.section)
         } else {
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
