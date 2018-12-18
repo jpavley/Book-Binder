@@ -102,12 +102,14 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func cancelPopoverAction(_ sender: Any) {
-        exitPopoverView()
+        exitPopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
+        enableMainUX(toggle: true)
     }
     
     @IBAction func savePopoverAction(_ sender: Any) {
-        exitPopoverView()
-        
+        exitPopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
+        enableMainUX(toggle: true)
+
         // TODO: changing the issue number and varient letter is dangerious!
         //       - Check for duplicate workIDs and don't allow
         //       - Don't allow an empty issue number field
@@ -118,20 +120,7 @@ class DetailViewController: UIViewController {
         self.updateUX(animateCover: false)
 
     }
-    
-    func exitPopoverView() {
         
-        UIView.animate(withDuration: 0.3, animations: {
-            self.popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.popoverView.alpha = 0
-            self.visualEffectView.isHidden = true
-            
-        }) { success in
-            self.popoverView.removeFromSuperview()
-            self.enableMainUX(toggle: true)
-        }
-    }
-    
     // MARK:- Main View Implementation
     
     override func viewDidLoad() {
