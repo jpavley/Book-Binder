@@ -56,15 +56,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3qO-5H-l2T">
-                                            <rect key="frame" x="12" y="12" width="576" height="55.5"/>
+                                            <rect key="frame" x="12" y="12" width="351" height="55.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Marvel Entertainment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzu-a5-DKV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="576" height="21.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="syg-78-O26">
-                                                    <rect key="frame" x="0.0" y="25.5" width="576" height="30"/>
+                                                    <rect key="frame" x="0.0" y="25.5" width="351" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Daredevil 2017 Vol 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpH-el-l4f">
                                                             <rect key="frame" x="0.0" y="0.0" width="189.5" height="30"/>
@@ -72,7 +72,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX2-Yp-qHC">
-                                                            <rect key="frame" x="546" y="0.0" width="30" height="30"/>
+                                                            <rect key="frame" x="321" y="0.0" width="30" height="30"/>
                                                             <state key="normal" title="Edit"/>
                                                             <connections>
                                                                 <action selector="editAction:" destination="Uhm-rR-XoA" eventType="touchUpInside" id="avo-JP-EkK"/>
@@ -152,9 +152,10 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="A9W-rz-feo" id="hvh-gh-M2M"/>
+                        <outlet property="addIssuePopoverView" destination="lXD-3N-hkp" id="Nx2-Jw-MHj"/>
                         <outlet property="cameraButton" destination="wXj-fd-wij" id="V7l-LL-uaW"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
-                        <outlet property="popoverView" destination="lXD-3N-hkp" id="Nx2-Jw-MHj"/>
+                        <outlet property="editSeriesPopoverView" destination="4lF-TE-LsV" id="7Z3-AW-VmM"/>
                         <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="cFA-qS-7Jx"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>
                     </connections>

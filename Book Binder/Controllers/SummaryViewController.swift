@@ -16,7 +16,8 @@ class SummaryViewController: UIViewController {
     @IBOutlet private weak var addButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet var popoverView: AddIssuePopoverView!
+    @IBOutlet var addIssuePopoverView: AddIssuePopoverView!
+    @IBOutlet var editSeriesPopoverView: EditSeriesPopoverView!
     
     // MARK:- Constants -
     
@@ -55,7 +56,7 @@ class SummaryViewController: UIViewController {
             layout.itemSize = CGSize(width: width, height: cellHeight)
         }
         
-        popoverView.layer.cornerRadius = 5
+        addIssuePopoverView.layer.cornerRadius = 5
         visualEffectView.isHidden = true
         collectionViewLayout()
         navigationController?.isToolbarHidden = false
@@ -186,20 +187,20 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func addWorkToSeries(seriesIndex: Int) {
         visualEffectView.isHidden = false
                 
-        view.addSubview(popoverView)
-        popoverView.center = view.center
+        view.addSubview(addIssuePopoverView)
+        addIssuePopoverView.center = view.center
         
-        popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        popoverView.alpha = 0
+        addIssuePopoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        addIssuePopoverView.alpha = 0
         
         comicBookCollection.selectedVolumeIndex = seriesIndex
         comicBookCollection.selectedVolume.selectedWorkIndex = comicBookCollection.selectedVolume.works.count - 1
-        popoverView.comicBookCollection = comicBookCollection
-        popoverView.loadData()
+        addIssuePopoverView.comicBookCollection = comicBookCollection
+        addIssuePopoverView.loadData()
         
         UIView.animate(withDuration: 0.4) {
-            self.popoverView.alpha = 1
-            self.popoverView.transform = CGAffineTransform.identity
+            self.addIssuePopoverView.alpha = 1
+            self.addIssuePopoverView.transform = CGAffineTransform.identity
         }
 
     }
