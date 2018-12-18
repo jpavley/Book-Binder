@@ -56,8 +56,9 @@ class SummaryViewController: UIViewController {
             layout.itemSize = CGSize(width: width, height: cellHeight)
         }
         
-        addIssuePopoverView.layer.cornerRadius = 5
-        visualEffectView.isHidden = true
+        configurePopoverView(popoverView: addIssuePopoverView, visualEffectView: visualEffectView)
+        configurePopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView)
+        
         collectionViewLayout()
         navigationController?.isToolbarHidden = false
     }
@@ -185,24 +186,15 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func addWorkToSeries(seriesIndex: Int) {
-        visualEffectView.isHidden = false
-                
-        view.addSubview(addIssuePopoverView)
-        addIssuePopoverView.center = view.center
-        
-        addIssuePopoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        addIssuePopoverView.alpha = 0
         
         comicBookCollection.selectedVolumeIndex = seriesIndex
         comicBookCollection.selectedVolume.selectedWorkIndex = comicBookCollection.selectedVolume.works.count - 1
         addIssuePopoverView.comicBookCollection = comicBookCollection
         addIssuePopoverView.loadData()
         
-        UIView.animate(withDuration: 0.4) {
-            self.addIssuePopoverView.alpha = 1
-            self.addIssuePopoverView.transform = CGAffineTransform.identity
-        }
-
+        visualEffectView.isHidden = false
+        
+        loadPopoverView(popoverView: addIssuePopoverView, visualEffectView: visualEffectView, parentView: view)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

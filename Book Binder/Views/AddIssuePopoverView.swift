@@ -26,11 +26,11 @@ class AddIssuePopoverView: UIView {
             saveData()
             collectionView.reloadData()
         }
-        exitPopoverView()
+        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
-        exitPopoverView()
+        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     
     @IBAction func photosAction(_ sender: Any) {
@@ -43,18 +43,6 @@ class AddIssuePopoverView: UIView {
     
     @IBAction func noImageAction(_ sender: Any) {
         print("noImageAction()")
-    }
-    
-    func exitPopoverView() {
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.alpha = 0
-            self.visualEffectView.isHidden = true
-            
-        }) { success in
-            self.removeFromSuperview()
-        }
     }
     
     func saveData() {
