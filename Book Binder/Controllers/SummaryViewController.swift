@@ -42,9 +42,15 @@ class SummaryViewController: UIViewController {
     
     @IBAction func editSeriesAction(_ sender: Any) {
         let editButton = sender as! UIButton
-        let seriesName = comicBookCollection.volumes[editButton.tag].seriesName
-        print("editAction() \(seriesName)")
+        
+        editSeriesPopoverView.publisherTextField.text = comicBookCollection.volumes[editButton.tag].publisherName
+        editSeriesPopoverView.seriesTextField.text = comicBookCollection.volumes[editButton.tag].seriesName
+        editSeriesPopoverView.eraTextField.text = "\(comicBookCollection.volumes[editButton.tag].era)"
+        
+        let coverImageName = comicBookCollection.volumes[editButton.tag].defaultCoverID
+        editSeriesPopoverView.coverImageView.image = UIImage(named: "\(coverImageName)-thumb")
 
+        loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
     // MARK: - Startup -
     
