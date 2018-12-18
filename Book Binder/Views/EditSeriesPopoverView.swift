@@ -14,6 +14,7 @@ class EditSeriesPopoverView: UIView {
     @IBOutlet weak var seriesTextField: UITextField!
     @IBOutlet weak var eraTextField: UITextField!
     @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     @IBAction func photosAction(_ sender: Any) {
         
@@ -28,10 +29,10 @@ class EditSeriesPopoverView: UIView {
     }
     
     @IBAction func doneAction(_ sender: Any) {
-        
+        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
-        
+        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
 }
