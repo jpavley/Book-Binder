@@ -81,24 +81,13 @@ class DetailViewController: UIViewController {
     
     @IBAction func editAction(_ sender: Any) {
         
-        visualEffectView.isHidden = false
-        enableMainUX(toggle: false)
-        
         // load data into popover fields
         popoverIssueField.text = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber)"
         popoverVariantField.text = comicBookCollection.selectedVolumeSelectedWork.variantLetter
         popoverCoverImage.image = UIImage(named: "\(comicBookCollection.selectedVolumeSelectedWork.coverImage)-thumb")
         
-        view.addSubview(popoverView)
-        popoverView.center = view.center
-        
-        popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        popoverView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4) {
-            self.popoverView.alpha = 1
-            self.popoverView.transform = CGAffineTransform.identity
-        }
+        enableMainUX(toggle: false)
+        loadPopoverView(popoverView: popoverView, visualEffectView: visualEffectView, parentView: view)
     }
     
     @IBAction func cancelPopoverAction(_ sender: Any) {
