@@ -33,12 +33,14 @@ class SummaryViewController: UIViewController {
     // MARK:- Actions -
     
     @IBAction func addItem() {
-        print("addItem touched")
         
         editSeriesPopoverView.publisherTextField.text = ""
         editSeriesPopoverView.seriesTextField.text = ""
         editSeriesPopoverView.eraTextField.text = ""
         editSeriesPopoverView.coverImageView.image = UIImage(named: "american-standard-marvel-thumb")
+        editSeriesPopoverView.saveFunction = {
+            print("called from add series")
+        }
         
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
@@ -55,6 +57,10 @@ class SummaryViewController: UIViewController {
         
         let coverImageName = comicBookCollection.volumes[editButton.tag].defaultCoverID
         editSeriesPopoverView.coverImageView.image = UIImage(named: "\(coverImageName)-thumb")
+        
+        editSeriesPopoverView.saveFunction = {
+            print("called from edit series")
+        }
 
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }

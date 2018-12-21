@@ -15,6 +15,8 @@ class EditSeriesPopoverView: UIView {
     @IBOutlet weak var eraTextField: UITextField!
     @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+
+    var saveFunction: () -> () = { print("series details saved") }
     
     @IBAction func photosAction(_ sender: Any) {
         
@@ -30,6 +32,7 @@ class EditSeriesPopoverView: UIView {
     
     @IBAction func doneAction(_ sender: Any) {
         // TODO: If called from edit, then update selected series, if called from add, then add new series
+        saveFunction()
         exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     
