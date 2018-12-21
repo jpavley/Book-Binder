@@ -29,6 +29,7 @@ class EditSeriesPopoverView: UIView {
     }
     
     @IBAction func doneAction(_ sender: Any) {
+        // TODO: If called from edit, then update selected series, if called from add, then add new series
         exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     

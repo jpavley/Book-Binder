@@ -34,10 +34,16 @@ class SummaryViewController: UIViewController {
     
     @IBAction func addItem() {
         print("addItem touched")
+        
+        editSeriesPopoverView.publisherTextField.text = ""
+        editSeriesPopoverView.seriesTextField.text = ""
+        editSeriesPopoverView.eraTextField.text = ""
+        editSeriesPopoverView.coverImageView.image = UIImage(named: "american-standard-marvel-thumb")
+        
+        loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
     
     @IBAction func snapItem(_ sender: Any) {
-        print("snapItem touched")
     }
     
     @IBAction func editSeriesAction(_ sender: Any) {
