@@ -40,6 +40,27 @@ class SummaryViewController: UIViewController {
         editSeriesPopoverView.coverImageView.image = UIImage(named: "american-standard-marvel-thumb")
         editSeriesPopoverView.saveFunction = {
             print("called from add series")
+            
+            let publisherName = self.editSeriesPopoverView.publisherTextField.text!
+            let seriesName = self.editSeriesPopoverView.seriesTextField.text!
+            let era = Int(self.editSeriesPopoverView.eraTextField.text!) ?? 0
+            let volumeNumber = 1
+            let kind = "comic book"
+            let work = JsonModel.JsonVolume.JsonWork(issueNumber: 0, variantLetter: "", coverImage: "", isOwned: false)
+            let defaultCoverID = "american-standard-marvel"
+            let selectedWorkIndex = 0
+            
+            let newVolume = JsonModel.JsonVolume(publisherName: publisherName,
+                                                 seriesName: seriesName,
+                                                 era: era,
+                                                 volumeNumber: volumeNumber,
+                                                 kind: kind,
+                                                 works: [work],
+                                                 defaultCoverID: defaultCoverID,
+                                                 selectedWorkIndex: selectedWorkIndex)
+            
+            self.comicBookCollection.volumes.append(newVolume)
+            self.collectionView.reloadData()
         }
         
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
