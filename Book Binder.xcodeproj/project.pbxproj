@@ -23,6 +23,7 @@
 		B82641DC21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = B82641DA21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png */; };
 		B82641DD21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png in Resources */ = {isa = PBXBuildFile; fileRef = B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */; };
 		B833143021CEBEAA00B12BEF /* mvp_0_2_screenshots in Resources */ = {isa = PBXBuildFile; fileRef = B833142F21CEBEAA00B12BEF /* mvp_0_2_screenshots */; };
+		B833143321D0365F00B12BEF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B833143221D0365F00B12BEF /* .gitignore */; };
 		B83DAA1221A468C100EBCC71 /* WorkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83DAA1121A468C100EBCC71 /* WorkData.swift */; };
 		B85E619821C479F2005CA92A /* EditSeriesPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E619721C479F2005CA92A /* EditSeriesPopoverView.swift */; };
 		B85E619A21C47A35005CA92A /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E619921C47A35005CA92A /* UIViewHelper.swift */; };
@@ -65,6 +66,7 @@
 		B82641DA21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-11-18 at 11.56.43 AM.png"; sourceTree = "<group>"; };
 		B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2018-11-18 at 11.56.54 AM.png"; sourceTree = "<group>"; };
 		B833142F21CEBEAA00B12BEF /* mvp_0_2_screenshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mvp_0_2_screenshots; sourceTree = "<group>"; };
+		B833143221D0365F00B12BEF /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B83DAA1121A468C100EBCC71 /* WorkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkData.swift; sourceTree = "<group>"; };
 		B85E619721C479F2005CA92A /* EditSeriesPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSeriesPopoverView.swift; sourceTree = "<group>"; };
 		B85E619921C47A35005CA92A /* UIViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				48FBD3042151405000D2A14B /* README.md */,
 				48FBD3032151405000D2A14B /* LICENSE */,
+				B833143221D0365F00B12BEF /* .gitignore */,
 				482475FF21528A930039399D /* UX Designs */,
 				483C61B6214ED8E9008C69D8 /* Book Binder */,
 				484CC0E8215850350012CD42 /* Book Binder Model Tests */,
@@ -275,6 +278,7 @@
 				483C61BF214ED8EB008C69D8 /* Assets.xcassets in Resources */,
 				B82641DD21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png in Resources */,
 				48FBD3062151405000D2A14B /* README.md in Resources */,
+				B833143321D0365F00B12BEF /* .gitignore in Resources */,
 				48FBD3052151405000D2A14B /* LICENSE in Resources */,
 				4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */,
 				B833143021CEBEAA00B12BEF /* mvp_0_2_screenshots in Resources */,
