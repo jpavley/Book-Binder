@@ -176,6 +176,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         return indexPath.item == comicBookCollection.selectedVolumeCollectedWorkIDs.count
     }
     
+    // MARK:-
+    
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
                 
@@ -226,6 +228,8 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             performSegue(withIdentifier: "DetailSegue", sender: indexPath)
         }
     }
+    
+    // MARK: -
     
     func addWorkToSeries(seriesIndex: Int) {
         
