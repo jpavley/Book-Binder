@@ -96,7 +96,7 @@ extension JsonModel {
         var result = [String]()
         
         selectedVolume.works.forEach {
-            result.append("\($0.issueNumber)\($0.variantLetter)")
+            result.append($0.id)
         }
         
         return result
