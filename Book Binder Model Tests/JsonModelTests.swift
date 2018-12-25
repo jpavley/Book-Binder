@@ -439,5 +439,22 @@ class JsonModelTests: XCTestCase {
             testModel2.selectPreviousVolume()
         }
     }
+    
+    func testVolumeID() {
+        let testVolumeIDs = [ "Marble Entertainment/Limo Man/1950",
+                              "Marble Entertainment/Atomic Woman/1990",
+                              "Marble Entertainment/Atomic Woman/2010",
+                              "EKK Comics/Massive Cat Attack/2011",
+                              "EKK Comics/Darling Dog/1942",
+                              "EKK Comics/Darling Dog/1952"
+        ]
+        
+        testModel2.selectedVolumeIndex = 0
+        
+        for i in 0..<testModel2.volumes.count {
+            XCTAssertEqual(testModel2.selectedVolume.id, testVolumeIDs[i])
+            testModel2.selectNextVolume()
+        }
+    }
 
 }

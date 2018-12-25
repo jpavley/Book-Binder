@@ -49,6 +49,10 @@ final class JsonModel: Codable {
             self.selectedWorkIndex = selectedWorkIndex
         }
         
+        var id: String {
+            return "\(publisherName)/\(seriesName)/\(era)"
+        }
+        
         class JsonWork: Codable {
             
             var issueNumber: Int
@@ -117,15 +121,16 @@ extension JsonModel {
 
 extension JsonModel {
     
+    // MARK:- Work CRUD
+    
     func workExists(workID: String) -> Bool {
         return selectedVolumeCollectedWorkIDs.contains(workID)
     }
     
-    func sortSelectedVoluneWorks() {
+    func sortSelectedVolumeWorks() {
         selectedVolume.works = selectedVolume.works.sorted {
             $0.id.localizedStandardCompare($1.id) == .orderedAscending
         }
-        
     }
     
     func updateSelectedWorkOfSelectedVolume(isOwned: Bool, coverImage: String) {
@@ -137,7 +142,7 @@ extension JsonModel {
         if !selectedVolumeCollectedWorkIDs.contains(w.id) {
             selectedVolume.works.append(w)
         }
-        sortSelectedVoluneWorks()
+        sortSelectedVolumeWorks()
         selectWork(work: w)
     }
     
@@ -170,6 +175,8 @@ extension JsonModel {
         selectedVolume.works.append(currentWork)
         return currentWork
     }
+    
+    // MARK:- Selection
     
     func selectWork(work: JsonModel.JsonVolume.JsonWork) {
         for i in 0..<selectedVolume.works.count {
@@ -205,6 +212,28 @@ extension JsonModel {
         if selectedVolumeIndex < 0 {
             selectedVolumeIndex = volumes.count - 1
         }
+    }
+    
+    // MARK:- Volume CRUD
+    
+    func volumeExists() {
+        
+    }
+    
+    func sortVolumes() {
+        
+    }
+    
+    func addVolume() {
+        
+    }
+    
+    func udpateVolume() {
+        
+    }
+    
+    func deleteVolume() {
+        
     }
 
 }
