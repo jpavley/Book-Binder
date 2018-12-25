@@ -97,13 +97,7 @@ extension JsonModel {
     
     /// A list of IDs (issue numbers and variant letters as strings) from the list of collected works of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeCollectedWorkIDs: [String] {
-        var result = [String]()
-        
-        selectedVolume.works.forEach {
-            result.append($0.id)
-        }
-        
-        return result
+        return selectedVolume.works.map { $0.id }
     }
     
     var selectedVolumeOwnedWorkIDs: [String] {
@@ -114,6 +108,10 @@ extension JsonModel {
         }
         
         return result
+    }
+    
+    var volumeIDs: [String] {
+        return volumes.map{$0.id}
     }
 }
 
@@ -216,24 +214,24 @@ extension JsonModel {
     
     // MARK:- Volume CRUD
     
-    func volumeExists() {
-        
+    func volumeExists(volumeID: String) -> Bool {
+        return volumeIDs.contains(volumeID)
     }
-    
+
     func sortVolumes() {
-        
+        // TODO: write it!
     }
     
     func addVolume() {
-        
+        // TODO: write it!
     }
     
     func udpateVolume() {
-        
+        // TODO: write it!
     }
     
     func deleteVolume() {
-        
+        // TODO: write it!
     }
 
 }
