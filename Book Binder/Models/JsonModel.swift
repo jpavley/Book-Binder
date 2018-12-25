@@ -101,13 +101,8 @@ extension JsonModel {
     }
     
     var selectedVolumeOwnedWorkIDs: [String] {
-        var result = [String]()
         
-        selectedVolume.works.filter { $0.isOwned }.forEach {
-            result.append("\($0.issueNumber)\($0.variantLetter)")
-        }
-        
-        return result
+        return selectedVolume.works.filter { $0.isOwned }.map { "\($0.issueNumber)\($0.variantLetter)" }
     }
     
     var volumeIDs: [String] {
