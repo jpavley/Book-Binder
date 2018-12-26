@@ -392,9 +392,17 @@ class JsonModelTests: XCTestCase {
         testModel2.selectWork(work: work1)
         testModel2.removeSelectedWorkFromSelectedVolume()
         XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1a", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"])
+        XCTAssertEqual(testModel2.selectedVolume.selectedWorkIndex, 0)
         
         let work2 = testModel2.selectedVolume.works[2]
         XCTAssertEqual(work2.id, "3")
+        
+        let work0 = testModel2.selectedVolume.works[0]
+        testModel2.selectWork(work: work0)
+        testModel2.removeSelectedWorkFromSelectedVolume()
+        XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"])
+        XCTAssertEqual(testModel2.selectedVolume.selectedWorkIndex, 0)
+
     }
     
     func testAddNexWork() {
