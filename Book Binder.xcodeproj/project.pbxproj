@@ -32,7 +32,6 @@
 		B8F41CA4219768520042C446 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA2219768520042C446 /* JsonModel.swift */; };
 		B8F41CA7219769C30042C446 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA6219769C30042C446 /* DataHelper.swift */; };
 		B8F41CA82197884E0042C446 /* JsonModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA5219768910042C446 /* JsonModelTests.swift */; };
-		B8F41CA9219788570042C446 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA2219768520042C446 /* JsonModel.swift */; };
 		B8F41CAA2197885A0042C446 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = B8F41CA1219768520042C446 /* sample1.json */; };
 /* End PBXBuildFile section */
 
@@ -324,7 +323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8F41CA82197884E0042C446 /* JsonModelTests.swift in Sources */,
-				B8F41CA9219788570042C446 /* JsonModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

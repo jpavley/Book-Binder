@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Book_Binder
 
 class JsonModelTests: XCTestCase {
     
@@ -454,6 +455,25 @@ class JsonModelTests: XCTestCase {
         for i in 0..<testModel2.volumes.count {
             XCTAssertEqual(testModel2.selectedVolume.id, testVolumeIDs[i])
             testModel2.selectNextVolume()
+        }
+    }
+    
+    func testVolumeExists() {
+        let testVolumeIDs = [ "Marble Entertainment/Limo Man/1950",
+                              "Marble Entertainment/Atomic Woman/1990",
+                              "Marble Entertainment/Atomic Woman/2010",
+                              "Man/Bear/Pig",
+                              "EKK Comics/Massive Cat Attack/2011",
+                              "EKK Comics/Darling Dog/1942",
+                              "EKK Comics/Darling Dog/1952",
+                              "Cat/Dog/Cow"
+        ]
+        
+        let bogusIDIndexes = [3, 7]
+        testModel2.selectedVolumeIndex = 0
+        
+        for i in 0 ..< testModel2.volumes.count {
+            XCTAssertEqual(testModel2.volumeExists(volumeID: testVolumeIDs[i]), !bogusIDIndexes.contains(i))
         }
     }
 
