@@ -340,6 +340,16 @@ class JsonModelTests: XCTestCase {
     
     // MARK:- Test Functions
     
+    func testWorkExists() {
+        let testWorkIDs = ["1a", "1b", "2", "3", "3x", "5", "6max", "7", "7qqq", "8b", "9", "10b&w"]
+        
+        let bogusWorkIDIndexes = [4, 8]
+        
+        for i in 0 ..< testModel2.selectedVolume.works.count {
+            XCTAssertEqual(testModel2.workExists(workID: testWorkIDs[i]), !bogusWorkIDIndexes.contains(i))
+        }
+    }
+    
     func testAddWorkToSelectedVolume() {
         let newWork = JsonModel.JsonVolume.JsonWork(issueNumber: 100, variantLetter: "z", coverImage: "image123", isOwned: true)
         let newWorkID = "\(newWork.issueNumber)\(newWork.variantLetter)"
