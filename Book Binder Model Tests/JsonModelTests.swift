@@ -350,6 +350,21 @@ class JsonModelTests: XCTestCase {
         }
     }
     
+    func testUpdateSelectedWorkOfSelectedVolume() {
+        let beforeUpdate = testModel2.selectedVolumeSelectedWork
+        
+        XCTAssertEqual(beforeUpdate.isOwned, true)
+        XCTAssertEqual(beforeUpdate.coverImage, "american-standard-marvel")
+        
+        testModel2.updateSelectedWorkOfSelectedVolume(isOwned: false, coverImage: "catdog")
+        
+        let afterUpdate = testModel2.selectedVolumeSelectedWork
+        
+        XCTAssertEqual(afterUpdate.isOwned, false)
+        XCTAssertEqual(afterUpdate.coverImage, "catdog")
+
+    }
+    
     func testAddWorkToSelectedVolume() {
         let newWork = JsonModel.JsonVolume.JsonWork(issueNumber: 100, variantLetter: "z", coverImage: "image123", isOwned: true)
         let newWorkID = "\(newWork.issueNumber)\(newWork.variantLetter)"
