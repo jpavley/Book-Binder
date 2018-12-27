@@ -219,7 +219,23 @@ extension JsonModel {
         }
     }
     
-    func addVolume() {
+    @discardableResult
+    func addVolume(_ v: JsonVolume) -> JsonVolume? {
+        
+        if volumeExists(volumeID: v.id) {
+            return nil
+        }
+        
+        volumes.append(v)
+        sortVolumes()
+        
+        // TODO: Should I update the selected volume index? To the added volume index?
+        // selectedVolumeIndex = 0
+        
+        return v
+    }
+    
+    func selecteVolume(_ v: JsonVolume) {
         // TODO: write it!
     }
     

@@ -540,5 +540,28 @@ class JsonModelTests: XCTestCase {
         
         XCTAssertEqual(testVolumeIDsSorted, testModel2.volumeIDs)
     }
+    
+    func testAddVolume() {
+        
+        // add existing volume
+        
+        let testVolume1 = testModel2.volumes.first!
+        let result1 = testModel2.addVolume(testVolume1)
+        XCTAssertNil(result1)
+        XCTAssertEqual(testModel2.volumes.count, 6)
+        XCTAssertEqual(testModel2.selectedVolumeIndex, 0)
+
+        // add new volume
+        
+        let testWork1 = JsonModel.JsonVolume.JsonWork(issueNumber: 1, variantLetter: "z", coverImage: "file not found", isOwned: true)
+        
+        let testVolume2 = JsonModel.JsonVolume(publisherName: "Cat", seriesName: "Dog", era: 2018, volumeNumber: 1, kind: "graphic novel", works: [testWork1], defaultCoverID: "return to sender", selectedWorkIndex: 0)
+        
+        let result2 = testModel2.addVolume(testVolume2)
+        XCTAssertNotNil(result2)
+        XCTAssertEqual(testModel2.volumes.count, 7)
+        XCTAssertEqual(testModel2.selectedVolumeIndex, 0)
+        
+    }
 
 }
