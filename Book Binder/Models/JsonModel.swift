@@ -214,7 +214,9 @@ extension JsonModel {
     }
 
     func sortVolumes() {
-        // TODO: write it!
+        volumes = volumes.sorted {
+            $0.id.localizedStandardCompare($1.id) == .orderedAscending
+        }
     }
     
     func addVolume() {

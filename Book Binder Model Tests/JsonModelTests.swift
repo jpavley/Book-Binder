@@ -509,5 +509,36 @@ class JsonModelTests: XCTestCase {
             XCTAssertEqual(testModel2.volumeExists(volumeID: testVolumeIDs[i]), !bogusIDIndexes.contains(i))
         }
     }
+    
+    func testSortVolumes() {
+        
+        // before sorting
+
+        let testVolumeIDsUnsorted = [
+            "Marble Entertainment/Limo Man/1950",
+            "Marble Entertainment/Atomic Woman/1990",
+            "Marble Entertainment/Atomic Woman/2010",
+            "EKK Comics/Massive Cat Attack/2011",
+            "EKK Comics/Darling Dog/1942",
+            "EKK Comics/Darling Dog/1952",
+            ]
+        
+        XCTAssertEqual(testVolumeIDsUnsorted, testModel2.volumeIDs)
+        
+        // after sorting
+        
+        let testVolumeIDsSorted = [
+            "EKK Comics/Darling Dog/1942",
+            "EKK Comics/Darling Dog/1952",
+            "EKK Comics/Massive Cat Attack/2011",
+            "Marble Entertainment/Atomic Woman/1990",
+            "Marble Entertainment/Atomic Woman/2010",
+            "Marble Entertainment/Limo Man/1950"
+        ]
+        
+        testModel2.sortVolumes()
+        
+        XCTAssertEqual(testVolumeIDsSorted, testModel2.volumeIDs)
+    }
 
 }
