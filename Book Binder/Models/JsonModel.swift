@@ -249,11 +249,18 @@ extension JsonModel {
         return nil
     }
     
-    func udpateVolume() {
-        // TODO: write it!
+    func removeSelectedVolume() {
+        let v = selectedVolume
+        
+        if volumeExists(volumeID: v.id) {
+            let filteredVolumes = volumes.filter { $0.id != v.id }
+            volumes = filteredVolumes
+            selectedVolumeIndex = selectedVolumeIndex == 0 ? 0 : selectedVolumeIndex - 1
+        }
     }
     
-    func deleteVolume() {
+    func updateSelectedVolume(_ v: JsonVolume) -> JsonVolume? {
         // TODO: write it!
-    }
+        return nil
+   }
 }

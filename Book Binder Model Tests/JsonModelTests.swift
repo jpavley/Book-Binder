@@ -586,4 +586,27 @@ class JsonModelTests: XCTestCase {
         XCTAssertNil(result2)
         XCTAssertEqual(testModel2.selectedVolumeIndex, 5)
     }
+    
+    func testRemoveSelectedVolume() {
+        
+        
+        testModel2.selectedVolumeIndex = 2
+        let testVolume1 = testModel2.selectedVolume
+        
+        // before removal
+        
+        XCTAssertNotNil(testVolume1)
+        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume1.id), true)
+
+        // after removal
+        
+        testModel2.removeSelectedVolume()
+        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume1.id), false)
+        
+        // make the selectedVolumeIndex bounce from -1 to 0
+        testModel2.selectedVolumeIndex = 0
+        let testVolume2 = testModel2.selectedVolume
+        testModel2.removeSelectedVolume()
+        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume2.id), false)
+    }
 }
