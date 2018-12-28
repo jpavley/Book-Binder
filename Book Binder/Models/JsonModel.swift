@@ -258,9 +258,4 @@ extension JsonModel {
             selectedVolumeIndex = selectedVolumeIndex == 0 ? 0 : selectedVolumeIndex - 1
         }
     }
-    
-    func updateSelectedVolume(_ v: JsonVolume) -> JsonVolume? {
-        // TODO: write it!
-        return nil
-   }
 }
