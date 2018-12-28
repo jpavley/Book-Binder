@@ -228,13 +228,13 @@ extension JsonModel {
         
         volumes.append(v)
         sortVolumes()
-        selecteVolume(v)
+        selectVolume(v)
         
         return v
     }
     
     @discardableResult
-    func selecteVolume(_ v: JsonVolume) -> Int? {
+    func selectVolume(_ v: JsonVolume) -> Int? {
         // TODO: write it!
         
         var result = -1

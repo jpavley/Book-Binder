@@ -572,7 +572,7 @@ class JsonModelTests: XCTestCase {
         // select existing volume
         
         let testVolume1 = testModel2.volumes.last!
-        let result1 = testModel2.selecteVolume(testVolume1)
+        let result1 = testModel2.selectVolume(testVolume1)
         XCTAssertNotNil(result1)
         XCTAssertEqual(testModel2.volumes[result1!].id, testVolume1.id)
         
@@ -582,7 +582,7 @@ class JsonModelTests: XCTestCase {
         
         let testVolume2 = JsonModel.JsonVolume(publisherName: "Cat", seriesName: "Dog", era: 2018, volumeNumber: 1, kind: "graphic novel", works: [testWork1], defaultCoverID: "return to sender", selectedWorkIndex: 0)
         
-        let result2 = testModel2.selecteVolume(testVolume2)
+        let result2 = testModel2.selectVolume(testVolume2)
         XCTAssertNil(result2)
         XCTAssertEqual(testModel2.selectedVolumeIndex, 5)
     }
