@@ -50,6 +50,8 @@ class SummaryViewController: UIViewController {
             let defaultCoverID = "american-standard-marvel"
             let selectedWorkIndex = 0
             
+            // TODO: Handle "no works yet" use case
+            
             let newVolume = JsonModel.JsonVolume(publisherName: publisherName,
                                                  seriesName: seriesName,
                                                  era: era,
@@ -59,7 +61,7 @@ class SummaryViewController: UIViewController {
                                                  defaultCoverID: defaultCoverID,
                                                  selectedWorkIndex: selectedWorkIndex)
             
-            self.comicBookCollection.volumes.append(newVolume)
+            self.comicBookCollection.addVolume(newVolume)
             self.collectionView.reloadData()
         }
         
@@ -91,6 +93,8 @@ class SummaryViewController: UIViewController {
         editSeriesPopoverView.saveFunction = {
             print("called from edit series")
         }
+        
+        // TODO: implement save function
 
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
