@@ -555,12 +555,12 @@ class JsonModelTests: XCTestCase {
         
         let testWork1 = JsonModel.JsonVolume.JsonWork(issueNumber: 1, variantLetter: "z", coverImage: "file not found", isOwned: true)
         
-        let testVolume2 = JsonModel.JsonVolume(publisherName: "Cat", seriesName: "Dog", era: 2018, volumeNumber: 1, kind: "graphic novel", works: [testWork1], defaultCoverID: "return to sender", selectedWorkIndex: 0)
+        let testVolume2 = JsonModel.JsonVolume(publisherName: "Zebra", seriesName: "Dog", era: 2018, volumeNumber: 1, kind: "graphic novel", works: [testWork1], defaultCoverID: "return to sender", selectedWorkIndex: 0)
         
         let result2 = testModel2.addVolume(testVolume2)
         XCTAssertNotNil(result2)
         XCTAssertEqual(testModel2.volumes.count, 7)
-        XCTAssertEqual(testModel2.selectedVolumeIndex, 0)
+        XCTAssertEqual(testModel2.selectedVolumeIndex, 6)
     }
     
     func testSelectVolume() {

@@ -228,13 +228,12 @@ extension JsonModel {
         
         volumes.append(v)
         sortVolumes()
-        
-        // TODO: Should I update the selected volume index? To the added volume index?
-        // selectedVolumeIndex = 0
+        selecteVolume(v)
         
         return v
     }
     
+    @discardableResult
     func selecteVolume(_ v: JsonVolume) -> Int? {
         // TODO: write it!
         
