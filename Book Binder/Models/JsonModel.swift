@@ -235,8 +235,19 @@ extension JsonModel {
         return v
     }
     
-    func selecteVolume(_ v: JsonVolume) {
+    func selecteVolume(_ v: JsonVolume) -> Int? {
         // TODO: write it!
+        
+        var result = -1
+        
+        for i in 0 ..< volumes.count {
+            if volumes[i].id == v.id {
+                selectedVolumeIndex = i
+                result = i
+                return result
+            }
+        }
+        return nil
     }
     
     func udpateVolume() {
@@ -246,5 +257,4 @@ extension JsonModel {
     func deleteVolume() {
         // TODO: write it!
     }
-
 }
