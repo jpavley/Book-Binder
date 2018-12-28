@@ -23,7 +23,7 @@ class SummaryViewController: UIViewController {
     
     let columnCount = CGFloat(5)
     let collectionViewMinSpacing = CGFloat(0)
-    let cellHeight = CGFloat(100)
+    let cellHeight = CGFloat(140)
     let cellWidth = CGFloat(80)
     
     // MARK:- Properties -
@@ -217,7 +217,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             // scale the cover
             cell.iconImage.alpha = 1.0
-            cell.iconImage.contentMode = .center
+            cell.iconImage.contentMode = .top
             cell.iconImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
 
             // assign the cover image

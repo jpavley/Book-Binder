@@ -11,7 +11,7 @@ import UIKit
 func configurePopoverView(popoverView: UIView, visualEffectView: UIVisualEffectView) {
     popoverView.layer.cornerRadius = 5
     visualEffectView.isHidden = true
-
+    popoverView.frame.size.width = UIScreen.main.bounds.width
 }
 
 func loadPopoverView(popoverView: UIView, visualEffectView: UIVisualEffectView, parentView: UIView) {
