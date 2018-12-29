@@ -23,7 +23,8 @@ class JsonModelTests: XCTestCase {
     var testVolume2: JsonModel.JsonVolume!
     var testVolume3: JsonModel.JsonVolume!
 
-    var testModel1: JsonModel!
+    var testModel1: JsonModel! // existing collection use case
+    var testModel3: JsonModel! // volume without works use case
     
     // bundle based
     
@@ -139,6 +140,7 @@ class JsonModelTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         initFromProperties()
         testModel2 = initFromBundle(forResource: "sample1", ofType: "json")
+        testModel3 = initFromBundle(forResource: "sample3", ofType: "json")
     }
 
     override func tearDown() {
@@ -608,5 +610,9 @@ class JsonModelTests: XCTestCase {
         let testVolume2 = testModel2.selectedVolume
         testModel2.removeSelectedVolume()
         XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume2.id), false)
+    }
+    
+    func testVolumeWithoutWorks() {
+        
     }
 }
