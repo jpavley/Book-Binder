@@ -613,6 +613,9 @@ class JsonModelTests: XCTestCase {
     }
     
     func testVolumeWithoutWorks() {
+        
+        // make sure nothing breaks if a volume has no works
+        
         XCTAssertNotNil(testModel3)
         XCTAssertNotNil(testModel3.selectedVolume)
         XCTAssertNil(testModel3.selectedVolumeSelectedWork)
@@ -620,10 +623,33 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel3.volumes.count, 1)
         XCTAssertEqual(testModel3.volumes[0].works.count, 0)
         
+        
+        XCTAssertEqual(testModel3.selectedVolumeWorksCount, 0)
+        XCTAssertEqual(testModel3.selectedVolumeCollectedWorkIDs.count, 0)
+        XCTAssertEqual(testModel3.selectedVolumeCollectedWorkIDs.count, 0)
+        XCTAssertEqual(testModel3.workExists(workID: "1"), false)
+        
+        testModel3.sortSelectedVolumeWorks()
         testModel3.updateSelectedWorkOfSelectedVolume(isOwned: true, coverImage: "cat")
         XCTAssertNotEqual(testModel3.selectedVolumeSelectedWork?.coverImage, "cat")
-        
         testModel3.removeSelectedWorkFromSelectedVolume()
+        
+        let w0 = JsonModel.JsonVolume.JsonWork(issueNumber: 100, variantLetter: "", coverImage: "dog", isOwned: true)
+        testModel3.selectWork(work: w0)
         XCTAssertNil(testModel3.selectedVolumeSelectedWork)
+        
+        testModel3.selectNextWork()
+        testModel3.selectPreviousWork()
+        XCTAssertEqual(testModel3.selectedVolumeWorksCount, 0)
+        
+        // make sure we can add works to a volume that started out with no works
+        
+        let w1 = JsonModel.JsonVolume.JsonWork(issueNumber: 1, variantLetter: "a", coverImage: "cat", isOwned: true)
+        testModel3.addWorkToSelectedVolume(w1)
+        XCTAssertTrue(testModel3.workExists(workID: w1.id))
+        let w2 = testModel3.addNextWork(for: 0)
+        XCTAssertTrue(testModel3.workExists(workID: "2"))
+        XCTAssertEqual(w2.coverImage, "american-standard-ga")
+
     }
 }
