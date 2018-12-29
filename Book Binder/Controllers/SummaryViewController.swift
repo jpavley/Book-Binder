@@ -32,7 +32,7 @@ class SummaryViewController: UIViewController {
     
     // MARK:- Actions -
     
-    @IBAction func addItem() {
+    @IBAction func addVolume() {
         
         editSeriesPopoverView.publisherTextField.text = ""
         editSeriesPopoverView.seriesTextField.text = ""
@@ -46,20 +46,24 @@ class SummaryViewController: UIViewController {
             let era = Int(self.editSeriesPopoverView.eraTextField.text!) ?? 0
             let volumeNumber = 1
             let kind = "comic book"
-            let work = JsonModel.JsonVolume.JsonWork(issueNumber: 0, variantLetter: "", coverImage: "", isOwned: false)
+            //let work = JsonModel.JsonVolume.JsonWork(issueNumber: 0, variantLetter: "", coverImage: "", isOwned: false)
+            let works = [JsonModel.JsonVolume.JsonWork]()
             let defaultCoverID = "american-standard-marvel"
             let selectedWorkIndex = 0
             
             // TODO: Handle "no works yet" use case
             
-            let newVolume = JsonModel.JsonVolume(publisherName: publisherName,
-                                                 seriesName: seriesName,
-                                                 era: era,
-                                                 volumeNumber: volumeNumber,
-                                                 kind: kind,
-                                                 works: [work],
-                                                 defaultCoverID: defaultCoverID,
-                                                 selectedWorkIndex: selectedWorkIndex)
+            let newVolume = JsonModel.JsonVolume(
+                publisherName: publisherName,
+                seriesName: seriesName,
+                era: era,
+                volumeNumber: volumeNumber,
+                kind: kind,
+                //works: [work],
+                works: works,
+                defaultCoverID: defaultCoverID,
+                selectedWorkIndex: selectedWorkIndex
+            )
             
             self.comicBookCollection.addVolume(newVolume)
             self.collectionView.reloadData()
@@ -95,7 +99,7 @@ class SummaryViewController: UIViewController {
         }
         
         // TODO: implement save function
-
+        
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
     
@@ -103,7 +107,7 @@ class SummaryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         func collectionViewLayout() {
             
             let calculatedColumnCount = (view.frame.size.width / cellWidth).rounded()
@@ -147,7 +151,7 @@ class SummaryViewController: UIViewController {
 // MARK: - UICollectionView -
 
 extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-        
+    
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
@@ -194,7 +198,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         
         if isAddIssueCell(indexPath: indexPath) {
@@ -211,7 +215,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.iconImage.image = tinted
             cell.tintColor = UIColor(named: "UIBlueColor")
             
-
+            
         } else {
             // Display cover Cell
             
@@ -219,7 +223,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             cell.iconImage.alpha = 1.0
             cell.iconImage.contentMode = .top
             cell.iconImage.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-
+            
             // assign the cover image
             let work = comicBookCollection.volumes[indexPath.section].works[indexPath.item]
             let thumbName = "\(work.coverImage)-thumb"
@@ -233,7 +237,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         return cell
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if isAddIssueCell(indexPath: indexPath) {
@@ -260,7 +264,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
-
+            
             comicBookCollection.selectedVolumeIndex = indexPath.section
             comicBookCollection.selectedVolume.selectedWorkIndex = indexPath.item
             

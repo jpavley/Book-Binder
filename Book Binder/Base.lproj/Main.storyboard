@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CDA-61-z6t">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,11 +12,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="Summary VIew" customClass="SummaryViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uSc-2I-9lN">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="YdK-R5-hcI">
                                     <size key="itemSize" width="80" height="120"/>
@@ -52,7 +49,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderView" id="Uhm-rR-XoA" customClass="CollectionReusableView" customModule="Book_Binder" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3qO-5H-l2T">
@@ -101,9 +98,9 @@
                                 </connections>
                             </collectionView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Vs-6v7">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CQ3-MR-YrM">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -132,7 +129,7 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="s8E-TW-X1A"/>
                         <barButtonItem systemItem="add" id="A9W-rz-feo">
                             <connections>
-                                <action selector="addItem" destination="BYZ-38-t0r" id="ELD-Sl-C2W"/>
+                                <action selector="addVolume" destination="BYZ-38-t0r" id="ELD-Sl-C2W"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -457,28 +454,28 @@
             <objects>
                 <viewController title="Comic Book" id="6F6-9h-lCG" userLabel="Detail View" customClass="DetailViewController" customModule="Book_Binder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLF-Lk-Apy">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2uJ-nz-JWE">
-                                <rect key="frame" x="8" y="72" width="304" height="444"/>
+                                <rect key="frame" x="8" y="72" width="584" height="476"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Marvel Entertainment" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hj3-XC-JxU">
-                                        <rect key="frame" x="78.5" y="0.0" width="147" height="18"/>
+                                        <rect key="frame" x="218.5" y="0.0" width="147" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Daredevil 2017" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToO-mV-afp">
-                                        <rect key="frame" x="93" y="26" width="118.5" height="20.5"/>
+                                        <rect key="frame" x="233" y="26" width="118.5" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" image="ff151-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZQM-w5-72L">
-                                        <rect key="frame" x="0.0" y="54.5" width="304" height="331.5"/>
+                                        <rect key="frame" x="82" y="54.5" width="420" height="363.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BLc-X8-AFA">
-                                        <rect key="frame" x="0.0" y="394" width="304" height="50"/>
+                                        <rect key="frame" x="0.0" y="426" width="584" height="50"/>
                                         <subviews>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="huJ-Mp-PHx" userLabel="Spacer View">
                                                 <rect key="frame" x="0.0" y="0.0" width="8" height="50"/>
@@ -488,10 +485,10 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zJw-IN-TKj">
-                                                <rect key="frame" x="16" y="0.0" width="176" height="50"/>
+                                                <rect key="frame" x="16" y="0.0" width="456" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Issue" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EJO-N3-uwD">
-                                                        <rect key="frame" x="0.0" y="0.0" width="176" height="50"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="456" height="50"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -499,7 +496,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-Mp-fkk">
-                                                <rect key="frame" x="200" y="0.0" width="88" height="50"/>
+                                                <rect key="frame" x="480" y="0.0" width="88" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="1000" text="Owned" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDA-V6-Crr">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
@@ -517,7 +514,7 @@
                                                 </subviews>
                                             </stackView>
                                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Wr-dt-hT9" userLabel="Spacer View">
-                                                <rect key="frame" x="296" y="0.0" width="8" height="50"/>
+                                                <rect key="frame" x="576" y="0.0" width="8" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="8" id="HQg-GS-hwO"/>
@@ -532,9 +529,9 @@
                                 </constraints>
                             </stackView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuG-y1-uSN">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8Tw-E0-YFn">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="prominent"/>
