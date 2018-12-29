@@ -90,9 +90,9 @@ extension JsonModel {
         
         if selectedVolume.works.isEmpty {
             return nil
-        } else {
-            return selectedVolume.works[selectedVolume.selectedWorkIndex]
         }
+        
+        return selectedVolume.works[selectedVolume.selectedWorkIndex]
     }
     
     /// The number of works in the collection of the currently selected volume by selectedVolumeIndex.

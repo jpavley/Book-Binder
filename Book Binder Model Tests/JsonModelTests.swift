@@ -619,5 +619,11 @@ class JsonModelTests: XCTestCase {
         
         XCTAssertEqual(testModel3.volumes.count, 1)
         XCTAssertEqual(testModel3.volumes[0].works.count, 0)
+        
+        testModel3.updateSelectedWorkOfSelectedVolume(isOwned: true, coverImage: "cat")
+        XCTAssertNotEqual(testModel3.selectedVolumeSelectedWork?.coverImage, "cat")
+        
+        testModel3.removeSelectedWorkFromSelectedVolume()
+        XCTAssertNil(testModel3.selectedVolumeSelectedWork)
     }
 }
