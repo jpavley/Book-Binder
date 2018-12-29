@@ -23,7 +23,7 @@ class SummaryViewController: UIViewController {
     
     let columnCount = CGFloat(5)
     let collectionViewMinSpacing = CGFloat(0)
-    let cellHeight = CGFloat(140)
+    let cellHeight = CGFloat(126)
     let cellWidth = CGFloat(80)
     
     // MARK:- Properties -
