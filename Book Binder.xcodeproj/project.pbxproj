@@ -34,6 +34,7 @@
 		B8F41CA82197884E0042C446 /* JsonModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F41CA5219768910042C446 /* JsonModelTests.swift */; };
 		B8F41CAA2197885A0042C446 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = B8F41CA1219768520042C446 /* sample1.json */; };
 		B8FBA7B521D7E2910059C44E /* sample3.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B421D7E2910059C44E /* sample3.json */; };
+		B8FBA7B621D7E6370059C44E /* sample3.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B421D7E2910059C44E /* sample3.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,11 +178,11 @@
 		484CC0E8215850350012CD42 /* Book Binder Model Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B8FBA7B421D7E2910059C44E /* sample3.json */,
 				B8F41CA1219768520042C446 /* sample1.json */,
+				B820403821B5D12C000261A7 /* sample2.json */,
+				B8FBA7B421D7E2910059C44E /* sample3.json */,
 				B8F41CA5219768910042C446 /* JsonModelTests.swift */,
 				484CC0EB215850350012CD42 /* Info.plist */,
-				B820403821B5D12C000261A7 /* sample2.json */,
 			);
 			path = "Book Binder Model Tests";
 			sourceTree = "<group>";
@@ -288,6 +289,7 @@
 				B82641DC21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png in Resources */,
 				483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */,
 				B8F41CA3219768520042C446 /* sample1.json in Resources */,
+				B8FBA7B621D7E6370059C44E /* sample3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

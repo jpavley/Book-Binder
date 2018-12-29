@@ -61,11 +61,17 @@ class AddIssuePopoverView: UIView {
     }
     
     func loadData() {
+        
         publisherNameLabel.text = "\(comicBookCollection.selectedVolume.publisherName)"
         seriesTitleLabel.text = comicBookCollection.selectedVolume.seriesName
         coverImage.image = UIImage(named: "\(comicBookCollection.selectedVolume.defaultCoverID)-thumb")
         issueNumberField.text = ""
-        issueNumberField.placeholder = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber + 1)"
+        
+        if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+            issueNumberField.placeholder = "\(selectedVolumeSelectedWork.issueNumber + 1)"
+        } else {
+            issueNumberField.placeholder = ""
+        }
         variantLetterField.text = ""
     }
 }

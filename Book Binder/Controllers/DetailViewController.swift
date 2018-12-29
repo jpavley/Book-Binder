@@ -37,24 +37,28 @@ class DetailViewController: UIViewController {
     
     @IBAction func deleteAction(_ sender: Any) {
         
-        cacheUndoData(actionKind: .delete)
-        
-        let title = comicBookCollection.selectedVolume.seriesName
-        let workID = comicBookCollection.selectedVolumeSelectedWork.id
-        
-        let alert = UIAlertController(title: "", message: "Delete \(title) \(workID)?", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
-            // yes delete please
-            self.comicBookCollection.removeSelectedWorkFromSelectedVolume()
-            self.updateUXOnLoad()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "No", style: .default, handler:  { action in
-            // no don't delete
-        }))
-        
-        present(alert, animated: true, completion: nil)
+        if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+            
+            cacheUndoData(actionKind: .delete)
+            
+            let title = comicBookCollection.selectedVolume.seriesName
+            let workID = selectedVolumeSelectedWork.id
+            let alert = UIAlertController(title: "", message: "Delete \(title) \(workID)?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
+                // yes delete please
+                self.comicBookCollection.removeSelectedWorkFromSelectedVolume()
+                self.updateUXOnLoad()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: .default, handler:  { action in
+                // no don't delete
+            }))
+            
+            present(alert, animated: true, completion: nil)
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
     }
     
     @IBAction func cameraAction(_ sender: Any) {
@@ -81,10 +85,14 @@ class DetailViewController: UIViewController {
     
     @IBAction func editAction(_ sender: Any) {
         
+        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
+        
         // load data into popover fields
-        popoverIssueField.text = "\(comicBookCollection.selectedVolumeSelectedWork.issueNumber)"
-        popoverVariantField.text = comicBookCollection.selectedVolumeSelectedWork.variantLetter
-        popoverCoverImage.image = UIImage(named: "\(comicBookCollection.selectedVolumeSelectedWork.coverImage)-thumb")
+        popoverIssueField.text = "\(selectedVolumeSelectedWork.issueNumber)"
+        popoverVariantField.text = selectedVolumeSelectedWork.variantLetter
+        popoverCoverImage.image = UIImage(named: "\(selectedVolumeSelectedWork.coverImage)-thumb")
         
         enableMainUX(toggle: false)
         loadPopoverView(popoverView: popoverView, visualEffectView: visualEffectView, parentView: view)
@@ -96,14 +104,19 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func savePopoverAction(_ sender: Any) {
+        
+        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
+        
         exitPopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
         enableMainUX(toggle: true)
 
         // TODO: changing the issue number and varient letter is dangerious!
         //       - Check for duplicate workIDs and don't allow
         //       - Don't allow an empty issue number field
-        comicBookCollection.selectedVolumeSelectedWork.issueNumber = Int(popoverIssueField.text!) ?? 0
-        comicBookCollection.selectedVolumeSelectedWork.variantLetter = popoverVariantField.text ?? ""
+        selectedVolumeSelectedWork.issueNumber = Int(popoverIssueField.text!) ?? 0
+        selectedVolumeSelectedWork.variantLetter = popoverVariantField.text ?? ""
 
         self.save()
         self.updateUX(animateCover: false)
@@ -148,11 +161,16 @@ class DetailViewController: UIViewController {
     // MARK:- Methods
     
     func cacheUndoData(actionKind: Action) {
+        
+        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
+        
         undoData = WorkData(actionKind: actionKind,
-                            issueNumber: comicBookCollection.selectedVolumeSelectedWork.issueNumber,
-                            variantLetter: comicBookCollection.selectedVolumeSelectedWork.variantLetter,
-                            coverImage: comicBookCollection.selectedVolumeSelectedWork.coverImage,
-                            isOwned: comicBookCollection.selectedVolumeSelectedWork.isOwned)
+                            issueNumber: selectedVolumeSelectedWork.issueNumber,
+                            variantLetter: selectedVolumeSelectedWork.variantLetter,
+                            coverImage: selectedVolumeSelectedWork.coverImage,
+                            isOwned: selectedVolumeSelectedWork.isOwned)
     }
     
     func undoDelete() {
@@ -162,18 +180,24 @@ class DetailViewController: UIViewController {
     }
     
     func cancel() {
-        let work = comicBookCollection.selectedVolumeSelectedWork
-        
-        work.issueNumber = undoData.issueNumber
-        work.variantLetter = undoData.variantLetter
-        work.coverImage = undoData.coverImage
-        work.isOwned = undoData.isOwned
+        if let work = comicBookCollection.selectedVolumeSelectedWork {
+            work.issueNumber = undoData.issueNumber
+            work.variantLetter = undoData.variantLetter
+            work.coverImage = undoData.coverImage
+            work.isOwned = undoData.isOwned
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
     }
     
     func save() {
         
+        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
+        
         let isOwned = isOwnedSwitch.isOn
-        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage
+        let coverImage = selectedVolumeSelectedWork.coverImage
         
         comicBookCollection.updateSelectedWorkOfSelectedVolume(isOwned: isOwned, coverImage: coverImage)
         
@@ -226,22 +250,30 @@ class DetailViewController: UIViewController {
     func updateUXOnLoad() {
         updateUX()
         
-        let isOwned = comicBookCollection.selectedVolumeSelectedWork.isOwned
-        isOwnedSwitch.setOn(isOwned, animated: true)
+        if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+            let isOwned = selectedVolumeSelectedWork.isOwned
+            isOwnedSwitch.setOn(isOwned, animated: true)
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
     }
     
     /// When loading the view don't set the isOwnedSwith, because that reloads it!
     func updateUX(animateCover: Bool = true) {
+        
+        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        }
         
         // get the state
         
         let seriesTitle = comicBookCollection.selectedVolume.seriesName
         let publisherName = comicBookCollection.selectedVolume.publisherName
         let era = comicBookCollection.selectedVolume.era
-        let workNumber = comicBookCollection.selectedVolumeSelectedWork.issueNumber
-        let variantLetter = comicBookCollection.selectedVolumeSelectedWork.variantLetter
+        let workNumber = selectedVolumeSelectedWork.issueNumber
+        let variantLetter = selectedVolumeSelectedWork.variantLetter
         
-        let coverImage = comicBookCollection.selectedVolumeSelectedWork.coverImage != "" ? comicBookCollection.selectedVolumeSelectedWork.coverImage : comicBookCollection.selectedVolume.defaultCoverID
+        let coverImage = selectedVolumeSelectedWork.coverImage != "" ? selectedVolumeSelectedWork.coverImage : comicBookCollection.selectedVolume.defaultCoverID
         
         // enable and disable commands
         trashButton.isEnabled = true
@@ -257,7 +289,7 @@ class DetailViewController: UIViewController {
         
         var coverImageAlpha = CGFloat(1.0)
         
-        if !comicBookCollection.selectedVolumeSelectedWork.isOwned {
+        if !selectedVolumeSelectedWork.isOwned {
             coverImageAlpha = 0.3
         }
         

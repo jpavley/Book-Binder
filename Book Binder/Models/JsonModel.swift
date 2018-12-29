@@ -86,8 +86,13 @@ extension JsonModel {
         return volumes[selectedVolumeIndex]
     }
     
-    var selectedVolumeSelectedWork: JsonVolume.JsonWork {
-        return selectedVolume.works[selectedVolume.selectedWorkIndex]
+    var selectedVolumeSelectedWork: JsonVolume.JsonWork? {
+        
+        if selectedVolume.works.isEmpty {
+            return nil
+        } else {
+            return selectedVolume.works[selectedVolume.selectedWorkIndex]
+        }
     }
     
     /// The number of works in the collection of the currently selected volume by selectedVolumeIndex.
@@ -127,6 +132,11 @@ extension JsonModel {
     }
     
     func updateSelectedWorkOfSelectedVolume(isOwned: Bool, coverImage: String) {
+        
+        guard let selectedVolumeSelectedWork = selectedVolumeSelectedWork else {
+            return
+        }
+        
         selectedVolumeSelectedWork.isOwned = isOwned
         selectedVolumeSelectedWork.coverImage = coverImage
     }
@@ -140,6 +150,11 @@ extension JsonModel {
     }
     
     func removeSelectedWorkFromSelectedVolume() {
+        
+        guard let selectedVolumeSelectedWork = selectedVolumeSelectedWork else {
+            return
+        }
+        
         let w = selectedVolumeSelectedWork
 
         if selectedVolumeCollectedWorkIDs.contains(w.id) {
