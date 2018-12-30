@@ -156,7 +156,7 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         
-        guard let selectedVolume = comicBookCollection.selectedVolume else {
+        if comicBookCollection.selectedVolume == nil {
             assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
         
@@ -167,9 +167,9 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             comicBookCollection.selectedVolumeIndex = indexPath.section
             
-            let title = selectedVolume.seriesName
-            let era = selectedVolume.era
-            let publisher = selectedVolume.publisherName
+            let title = comicBookCollection.selectedVolume?.seriesName ?? ""
+            let era = comicBookCollection.selectedVolume?.era ?? 0
+            let publisher = comicBookCollection.selectedVolume?.publisherName
             
             headerView.editButton.tag = indexPath.section
             headerView.titleLabel.text = "\(title) \(era)"

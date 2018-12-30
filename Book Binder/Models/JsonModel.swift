@@ -227,8 +227,11 @@ extension JsonModel {
     }
     
     func selectNextWork() {
+        
         if let selectedVolume = selectedVolume {
+            
             selectedVolume.selectedWorkIndex += 1
+            
             if selectedVolume.selectedWorkIndex >= selectedVolume.works.count {
                 selectedVolume.selectedWorkIndex = 0
             }
@@ -238,8 +241,11 @@ extension JsonModel {
     }
     
     func selectPreviousWork() {
+        
         if let selectedVolume = selectedVolume {
+            
             selectedVolume.selectedWorkIndex -= 1
+            
             if selectedVolume.selectedWorkIndex < 0 {
                 selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
             }
@@ -250,6 +256,7 @@ extension JsonModel {
     
     func selectNextVolume() {
         selectedVolumeIndex += 1
+        
         if selectedVolumeIndex >= volumes.count {
             selectedVolumeIndex = 0
         }
@@ -257,6 +264,7 @@ extension JsonModel {
     
     func selectPreviousVolume() {
         selectedVolumeIndex -= 1
+                
         if selectedVolumeIndex < 0 {
             selectedVolumeIndex = volumes.count - 1
         }

@@ -254,16 +254,23 @@ class DetailViewController: UIViewController {
             let isOwned = selectedVolumeSelectedWork.isOwned
             isOwnedSwitch.setOn(isOwned, animated: true)
         } else {
-            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+            //assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+            return
         }
     }
     
     /// When loading the view don't set the isOwnedSwith, because that reloads it!
     func updateUX(animateCover: Bool = true) {
         
-        guard let selectedVolume = comicBookCollection.selectedVolume, let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
-            assert(false, "BOOKBINDERAPP: selectedVolume and/or selectedVolumeSelectedWork is nil")
+        guard let selectedVolume = comicBookCollection.selectedVolume else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        
+        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            //assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+            return
+        }
+
         
         // get the state
         
