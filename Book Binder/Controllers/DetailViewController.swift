@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var trashButton: UIBarButtonItem!
     @IBOutlet weak var cameraButtom: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var NoIssuesLabel: UILabel!
     
     @IBOutlet var popoverView: UIView!
     @IBOutlet weak var popoverIssueField: UITextField!
@@ -191,17 +192,16 @@ class DetailViewController: UIViewController {
     }
     
     func save() {
-        
-        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
-            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+                
+        if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+            let isOwned = isOwnedSwitch.isOn
+            let coverImage = selectedVolumeSelectedWork.coverImage
+            
+            comicBookCollection.updateSelectedWorkOfSelectedVolume(isOwned: isOwned, coverImage: coverImage)
+            
+            saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         }
         
-        let isOwned = isOwnedSwitch.isOn
-        let coverImage = selectedVolumeSelectedWork.coverImage
-        
-        comicBookCollection.updateSelectedWorkOfSelectedVolume(isOwned: isOwned, coverImage: coverImage)
-        
-        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         dismiss(animated: true, completion: nil)
     }
     
@@ -253,8 +253,6 @@ class DetailViewController: UIViewController {
         if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
             let isOwned = selectedVolumeSelectedWork.isOwned
             isOwnedSwitch.setOn(isOwned, animated: true)
-        } else {
-            //assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
         }
     }
     
@@ -270,11 +268,7 @@ class DetailViewController: UIViewController {
         } else {
             let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork!
             updateUXWithWorks(selectedVolume, selectedVolumeSelectedWork, animateCover)
-
         }
-        
-        // get the state
-        
     }
     
     func updateUXWithWorks(_ selectedVolume: JsonModel.JsonVolume,
@@ -290,16 +284,19 @@ class DetailViewController: UIViewController {
         let coverImage = selectedWork.coverImage != "" ? selectedWork.coverImage : selectedVolume.defaultCoverID
         
         // enable and disable commands
+        
         trashButton.isEnabled = true
         editButton.isEnabled = true
+        isOwnedSwitch.isEnabled = true
         
         // update the fields
         
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
         issueLabel.text = "# \(workNumber)\(variantLetter)"
+        NoIssuesLabel.isHidden = true
         
-        // udpate the cover
+        // update the cover
         
         var coverImageAlpha = CGFloat(1.0)
         
@@ -324,26 +321,38 @@ class DetailViewController: UIViewController {
         let era = selectedVolume.era
         let workNumber = ""
         let variantLetter = ""
+        let coverImage = "missing-issue"
         
         // enable and disable commands
+        
         trashButton.isEnabled = false
         editButton.isEnabled = false
+        isOwnedSwitch.isOn = false
+        isOwnedSwitch.isEnabled = false
+
         
         // update the fields
         
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
         issueLabel.text = "# \(workNumber)\(variantLetter)"
+        NoIssuesLabel.isHidden = false
         
-        // update the cover
+        // update the no issues field
         
         if animateCover {
             
-//            coverImageView.alpha = 0
-//            coverImageView.image = UIImage(named: coverImage)
-//            UIView.animate(withDuration: 1.0) {
-//                self.coverImageView.alpha = coverImageAlpha
-//            }
+            NoIssuesLabel.alpha = 0
+            UIView.animate(withDuration: 1.0) {
+                self.NoIssuesLabel.alpha = 1
+            }
+            
+            coverImageView.alpha = 0
+            coverImageView.image = UIImage(named: coverImage)
+            UIView.animate(withDuration: 1.0) {
+                self.coverImageView.alpha = 0.3
+            }
+
         }
 
     }

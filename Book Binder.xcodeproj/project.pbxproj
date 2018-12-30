@@ -181,10 +181,10 @@
 		484CC0E8215850350012CD42 /* Book Binder Model Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B8FBA7B721D863AC0059C44E /* sample4.json */,
 				B8F41CA1219768520042C446 /* sample1.json */,
 				B820403821B5D12C000261A7 /* sample2.json */,
 				B8FBA7B421D7E2910059C44E /* sample3.json */,
+				B8FBA7B721D863AC0059C44E /* sample4.json */,
 				B8F41CA5219768910042C446 /* JsonModelTests.swift */,
 				484CC0EB215850350012CD42 /* Info.plist */,
 			);
