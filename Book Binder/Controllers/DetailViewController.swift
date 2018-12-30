@@ -255,7 +255,6 @@ class DetailViewController: UIViewController {
             isOwnedSwitch.setOn(isOwned, animated: true)
         } else {
             //assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
-            return
         }
     }
     
@@ -266,21 +265,29 @@ class DetailViewController: UIViewController {
             assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
         
-        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
-            //assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
-            return
-        }
+        if comicBookCollection.selectedVolumeSelectedWork == nil {
+            updateUXNoWorks(selectedVolume, animateCover)
+        } else {
+            let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork!
+            updateUXWithWorks(selectedVolume, selectedVolumeSelectedWork, animateCover)
 
+        }
         
         // get the state
+        
+    }
+    
+    func updateUXWithWorks(_ selectedVolume: JsonModel.JsonVolume,
+                           _ selectedWork: JsonModel.JsonVolume.JsonWork,
+                           _ animateCover: Bool) {
         
         let seriesTitle = selectedVolume.seriesName
         let publisherName = selectedVolume.publisherName
         let era = selectedVolume.era
-        let workNumber = selectedVolumeSelectedWork.issueNumber
-        let variantLetter = selectedVolumeSelectedWork.variantLetter
+        let workNumber = selectedWork.issueNumber
+        let variantLetter = selectedWork.variantLetter
         
-        let coverImage = selectedVolumeSelectedWork.coverImage != "" ? selectedVolumeSelectedWork.coverImage : selectedVolume.defaultCoverID
+        let coverImage = selectedWork.coverImage != "" ? selectedWork.coverImage : selectedVolume.defaultCoverID
         
         // enable and disable commands
         trashButton.isEnabled = true
@@ -296,7 +303,7 @@ class DetailViewController: UIViewController {
         
         var coverImageAlpha = CGFloat(1.0)
         
-        if !selectedVolumeSelectedWork.isOwned {
+        if !selectedWork.isOwned {
             coverImageAlpha = 0.3
         }
         
@@ -308,6 +315,37 @@ class DetailViewController: UIViewController {
                 self.coverImageView.alpha = coverImageAlpha
             }
         }
+    }
+    
+    func updateUXNoWorks(_ selectedVolume: JsonModel.JsonVolume, _ animateCover: Bool) {
+        
+        let seriesTitle = selectedVolume.seriesName
+        let publisherName = selectedVolume.publisherName
+        let era = selectedVolume.era
+        let workNumber = ""
+        let variantLetter = ""
+        
+        // enable and disable commands
+        trashButton.isEnabled = false
+        editButton.isEnabled = false
+        
+        // update the fields
+        
+        titleLabel.text = "\(seriesTitle) \(era)"
+        publisherLabel.text = "\(publisherName)"
+        issueLabel.text = "# \(workNumber)\(variantLetter)"
+        
+        // update the cover
+        
+        if animateCover {
+            
+//            coverImageView.alpha = 0
+//            coverImageView.image = UIImage(named: coverImage)
+//            UIView.animate(withDuration: 1.0) {
+//                self.coverImageView.alpha = coverImageAlpha
+//            }
+        }
+
     }
     
     // MARK:- Navigation
