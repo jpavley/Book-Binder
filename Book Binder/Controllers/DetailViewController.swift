@@ -37,11 +37,11 @@ class DetailViewController: UIViewController {
     
     @IBAction func deleteAction(_ sender: Any) {
         
-        if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+        if let selectedVolume = comicBookCollection.selectedVolume, let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
             
             cacheUndoData(actionKind: .delete)
             
-            let title = comicBookCollection.selectedVolume.seriesName
+            let title = selectedVolume.seriesName
             let workID = selectedVolumeSelectedWork.id
             let alert = UIAlertController(title: "", message: "Delete \(title) \(workID)?", preferredStyle: .alert)
             
@@ -57,7 +57,7 @@ class DetailViewController: UIViewController {
             
             present(alert, animated: true, completion: nil)
         } else {
-            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+            assert(false, "BOOKBINDERAPP: selectedVolume and/or selectedVolumeSelectedWork is nil")
         }
     }
     
@@ -261,19 +261,19 @@ class DetailViewController: UIViewController {
     /// When loading the view don't set the isOwnedSwith, because that reloads it!
     func updateUX(animateCover: Bool = true) {
         
-        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
-            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        guard let selectedVolume = comicBookCollection.selectedVolume, let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
+            assert(false, "BOOKBINDERAPP: selectedVolume and/or selectedVolumeSelectedWork is nil")
         }
         
         // get the state
         
-        let seriesTitle = comicBookCollection.selectedVolume.seriesName
-        let publisherName = comicBookCollection.selectedVolume.publisherName
-        let era = comicBookCollection.selectedVolume.era
+        let seriesTitle = selectedVolume.seriesName
+        let publisherName = selectedVolume.publisherName
+        let era = selectedVolume.era
         let workNumber = selectedVolumeSelectedWork.issueNumber
         let variantLetter = selectedVolumeSelectedWork.variantLetter
         
-        let coverImage = selectedVolumeSelectedWork.coverImage != "" ? selectedVolumeSelectedWork.coverImage : comicBookCollection.selectedVolume.defaultCoverID
+        let coverImage = selectedVolumeSelectedWork.coverImage != "" ? selectedVolumeSelectedWork.coverImage : selectedVolume.defaultCoverID
         
         // enable and disable commands
         trashButton.isEnabled = true

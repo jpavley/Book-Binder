@@ -155,6 +155,11 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard let selectedVolume = comicBookCollection.selectedVolume else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        }
+        
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             
@@ -162,9 +167,9 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             comicBookCollection.selectedVolumeIndex = indexPath.section
             
-            let title = comicBookCollection.selectedVolume.seriesName
-            let era = comicBookCollection.selectedVolume.era
-            let publisher = comicBookCollection.selectedVolume.publisherName
+            let title = selectedVolume.seriesName
+            let era = selectedVolume.era
+            let publisher = selectedVolume.publisherName
             
             headerView.editButton.tag = indexPath.section
             headerView.titleLabel.text = "\(title) \(era)"
@@ -251,22 +256,31 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func addWorkToSeries(seriesIndex: Int) {
         
-        comicBookCollection.selectedVolumeIndex = seriesIndex
-        comicBookCollection.selectedVolume.selectedWorkIndex = comicBookCollection.selectedVolume.works.count - 1
-        addIssuePopoverView.comicBookCollection = comicBookCollection
-        addIssuePopoverView.loadData()
-        
-        visualEffectView.isHidden = false
-        
-        loadPopoverView(popoverView: addIssuePopoverView, visualEffectView: visualEffectView, parentView: view)
+        if let selectedVolume = comicBookCollection.selectedVolume {
+            
+            comicBookCollection.selectedVolumeIndex = seriesIndex
+            selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
+            addIssuePopoverView.comicBookCollection = comicBookCollection
+            addIssuePopoverView.loadData()
+            
+            visualEffectView.isHidden = false
+            
+            loadPopoverView(popoverView: addIssuePopoverView, visualEffectView: visualEffectView, parentView: view)
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        guard let selectedVolume = comicBookCollection.selectedVolume else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        }
+        
         if let dest = segue.destination as? DetailViewController, let indexPath = sender as? IndexPath {
             
             comicBookCollection.selectedVolumeIndex = indexPath.section
-            comicBookCollection.selectedVolume.selectedWorkIndex = indexPath.item
+            selectedVolume.selectedWorkIndex = indexPath.item
             
             dest.comicBookCollection = comicBookCollection
         }

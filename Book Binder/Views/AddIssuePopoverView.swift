@@ -46,32 +46,43 @@ class AddIssuePopoverView: UIView {
     }
     
     func saveData() {
-        let issueNumber = Int(issueNumberField.text!) ?? 0
-        let variantLetter = variantLetterField.text!
-        let coverImage = comicBookCollection.selectedVolume.defaultCoverID
-        let isOwned = true
-        
-        let work = JsonModel.JsonVolume.JsonWork(issueNumber: issueNumber,
-                                                 variantLetter: variantLetter,
-                                                 coverImage: coverImage,
-                                                 isOwned: isOwned)
-        comicBookCollection.addWorkToSelectedVolume(work)
-        
-        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
+        if let selectedVolume = comicBookCollection.selectedVolume {
+            
+            let issueNumber = Int(issueNumberField.text!) ?? 0
+            let variantLetter = variantLetterField.text!
+            let coverImage = selectedVolume.defaultCoverID
+            let isOwned = true
+            
+            let work = JsonModel.JsonVolume.JsonWork(
+                issueNumber: issueNumber,
+                variantLetter: variantLetter,
+                coverImage: coverImage,
+                isOwned: isOwned
+            )
+            
+            comicBookCollection.addWorkToSelectedVolume(work)
+            saveUserDefaults(for: defaultsKey, with: comicBookCollection)
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        }
     }
     
     func loadData() {
-        
-        publisherNameLabel.text = "\(comicBookCollection.selectedVolume.publisherName)"
-        seriesTitleLabel.text = comicBookCollection.selectedVolume.seriesName
-        coverImage.image = UIImage(named: "\(comicBookCollection.selectedVolume.defaultCoverID)-thumb")
-        issueNumberField.text = ""
-        
-        if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
-            issueNumberField.placeholder = "\(selectedVolumeSelectedWork.issueNumber + 1)"
+        if let selectedVolume = comicBookCollection.selectedVolume {
+            
+            publisherNameLabel.text = "\(selectedVolume.publisherName)"
+            seriesTitleLabel.text = selectedVolume.seriesName
+            coverImage.image = UIImage(named: "\(selectedVolume.defaultCoverID)-thumb")
+            issueNumberField.text = ""
+            
+            if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+                issueNumberField.placeholder = "\(selectedVolumeSelectedWork.issueNumber + 1)"
+            } else {
+                issueNumberField.placeholder = ""
+            }
+            variantLetterField.text = ""
         } else {
-            issueNumberField.placeholder = ""
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
-        variantLetterField.text = ""
     }
 }

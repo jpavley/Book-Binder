@@ -82,32 +82,41 @@ extension JsonModel {
     
     
     /// The currently selected volume by selectedVolumeIndex.
-    var selectedVolume: JsonVolume {
+    var selectedVolume: JsonVolume? {
+        
+        if volumes.isEmpty {
+            return nil
+        }
+        
         return volumes[selectedVolumeIndex]
     }
     
     var selectedVolumeSelectedWork: JsonVolume.JsonWork? {
         
-        if selectedVolume.works.isEmpty {
-            return nil
+        if let selectedVolume = selectedVolume {
+            if selectedVolume.works.isEmpty {
+                return nil
+            }
+            
+            return selectedVolume.works[selectedVolume.selectedWorkIndex]
         }
         
-        return selectedVolume.works[selectedVolume.selectedWorkIndex]
+        return nil
     }
     
     /// The number of works in the collection of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeWorksCount: Int {
-        return selectedVolume.works.count
+        return selectedVolume?.works.count ?? 0
     }
     
     /// A list of IDs (issue numbers and variant letters as strings) from the list of collected works of the currently selected volume by selectedVolumeIndex.
     var selectedVolumeCollectedWorkIDs: [String] {
-        return selectedVolume.works.map { $0.id }
+        return selectedVolume?.works.map { $0.id } ?? [String]()
     }
     
     var selectedVolumeOwnedWorkIDs: [String] {
         
-        return selectedVolume.works.filter { $0.isOwned }.map { "\($0.issueNumber)\($0.variantLetter)" }
+        return selectedVolume?.works.filter { $0.isOwned }.map { "\($0.issueNumber)\($0.variantLetter)" } ?? [String]()
     }
     
     var volumeIDs: [String] {
@@ -126,8 +135,12 @@ extension JsonModel {
     }
     
     func sortSelectedVolumeWorks() {
-        selectedVolume.works = selectedVolume.works.sorted {
-            $0.id.localizedStandardCompare($1.id) == .orderedAscending
+        if let selectedVolume = selectedVolume {
+            selectedVolume.works = selectedVolume.works.sorted {
+                $0.id.localizedStandardCompare($1.id) == .orderedAscending
+            }
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
     }
     
@@ -142,11 +155,15 @@ extension JsonModel {
     }
     
     func addWorkToSelectedVolume(_ w: JsonVolume.JsonWork) {
-        if !selectedVolumeCollectedWorkIDs.contains(w.id) {
-            selectedVolume.works.append(w)
+        if let selectedVolume = selectedVolume {
+            if !selectedVolumeCollectedWorkIDs.contains(w.id) {
+                selectedVolume.works.append(w)
+            }
+            sortSelectedVolumeWorks()
+            selectWork(work: w)
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
-        sortSelectedVolumeWorks()
-        selectWork(work: w)
     }
     
     func removeSelectedWorkFromSelectedVolume() {
@@ -156,55 +173,78 @@ extension JsonModel {
         }
         
         let w = selectedVolumeSelectedWork
-
+        
         if selectedVolumeCollectedWorkIDs.contains(w.id) {
-            
-            let filteredWorks = selectedVolume.works.filter { $0.id != w.id }
-            selectedVolume.works = filteredWorks
-            selectedVolume.selectedWorkIndex -= 1
-            
-            if selectedVolume.selectedWorkIndex < 0 {
-                selectedVolume.selectedWorkIndex = 0
+            if let selectedVolume = selectedVolume {
+                
+                let filteredWorks = selectedVolume.works.filter { $0.id != w.id }
+                selectedVolume.works = filteredWorks
+                selectedVolume.selectedWorkIndex -= 1
+                
+                if selectedVolume.selectedWorkIndex < 0 {
+                    selectedVolume.selectedWorkIndex = 0
+                }
+            } else {
+                assert(false, "BOOKBINDERAPP: selectedVolume is nil")
             }
         }
     }
     
     @discardableResult
-    func addNextWork(for volumeID: Int) -> JsonModel.JsonVolume.JsonWork {
+    func addNextWork(for volumeID: Int) -> JsonModel.JsonVolume.JsonWork? {
         
-        selectedVolumeIndex = volumeID
-        
-        let lastWorkNumber = selectedVolume.works.last!.issueNumber
-        let currentWorkNumber = lastWorkNumber + 1
-        
-        let coverImage = selectedVolume.defaultCoverID
-        let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: coverImage, isOwned: true)
-        
-        selectedVolume.works.append(currentWork)
-        return currentWork
+        if let selectedVolume = selectedVolume {
+            
+            selectedVolumeIndex = volumeID
+            
+            let lastWorkNumber = selectedVolume.works.last!.issueNumber
+            let currentWorkNumber = lastWorkNumber + 1
+            
+            let coverImage = selectedVolume.defaultCoverID
+            let currentWork = JsonVolume.JsonWork(issueNumber: currentWorkNumber, variantLetter: "", coverImage: coverImage, isOwned: true)
+            
+            selectedVolume.works.append(currentWork)
+            return currentWork
+            
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        }
+        return nil
     }
     
     // MARK:- Selection
     
     func selectWork(work: JsonModel.JsonVolume.JsonWork) {
-        for i in 0..<selectedVolume.works.count {
-            if selectedVolume.works[i].id == work.id {
-                selectedVolume.selectedWorkIndex = i
+        if let selectedVolume = selectedVolume {
+            for i in 0..<selectedVolume.works.count {
+                if selectedVolume.works[i].id == work.id {
+                    selectedVolume.selectedWorkIndex = i
+                }
             }
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
     }
     
     func selectNextWork() {
-        selectedVolume.selectedWorkIndex += 1
-        if selectedVolume.selectedWorkIndex >= selectedVolume.works.count {
-            selectedVolume.selectedWorkIndex = 0
+        if let selectedVolume = selectedVolume {
+            selectedVolume.selectedWorkIndex += 1
+            if selectedVolume.selectedWorkIndex >= selectedVolume.works.count {
+                selectedVolume.selectedWorkIndex = 0
+            }
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
     }
     
     func selectPreviousWork() {
-        selectedVolume.selectedWorkIndex -= 1
-        if selectedVolume.selectedWorkIndex < 0 {
-            selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
+        if let selectedVolume = selectedVolume {
+            selectedVolume.selectedWorkIndex -= 1
+            if selectedVolume.selectedWorkIndex < 0 {
+                selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
+            }
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
     }
     
@@ -265,12 +305,15 @@ extension JsonModel {
     }
     
     func removeSelectedVolume() {
-        let v = selectedVolume
-        
-        if volumeExists(volumeID: v.id) {
-            let filteredVolumes = volumes.filter { $0.id != v.id }
-            volumes = filteredVolumes
-            selectedVolumeIndex = selectedVolumeIndex == 0 ? 0 : selectedVolumeIndex - 1
+        if let selectedVolume = selectedVolume {
+            let v = selectedVolume
+            if volumeExists(volumeID: v.id) {
+                let filteredVolumes = volumes.filter { $0.id != v.id }
+                volumes = filteredVolumes
+                selectedVolumeIndex = selectedVolumeIndex == 0 ? 0 : selectedVolumeIndex - 1
+            }
+        } else {
+            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
     }
 }
