@@ -35,6 +35,8 @@
 		B8F41CAA2197885A0042C446 /* sample1.json in Resources */ = {isa = PBXBuildFile; fileRef = B8F41CA1219768520042C446 /* sample1.json */; };
 		B8FBA7B521D7E2910059C44E /* sample3.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B421D7E2910059C44E /* sample3.json */; };
 		B8FBA7B621D7E6370059C44E /* sample3.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B421D7E2910059C44E /* sample3.json */; };
+		B8FBA7B821D863AC0059C44E /* sample4.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B721D863AC0059C44E /* sample4.json */; };
+		B8FBA7B921D863C00059C44E /* sample4.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B721D863AC0059C44E /* sample4.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		B8F41CA5219768910042C446 /* JsonModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModelTests.swift; sourceTree = "<group>"; };
 		B8F41CA6219769C30042C446 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		B8FBA7B421D7E2910059C44E /* sample3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample3.json; sourceTree = "<group>"; };
+		B8FBA7B721D863AC0059C44E /* sample4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample4.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,7 @@
 		484CC0E8215850350012CD42 /* Book Binder Model Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B8FBA7B721D863AC0059C44E /* sample4.json */,
 				B8F41CA1219768520042C446 /* sample1.json */,
 				B820403821B5D12C000261A7 /* sample2.json */,
 				B8FBA7B421D7E2910059C44E /* sample3.json */,
@@ -285,6 +289,7 @@
 				48FBD3052151405000D2A14B /* LICENSE in Resources */,
 				4824760121528AF70039399D /* UX for Book Binder Summary View.png in Resources */,
 				B833143021CEBEAA00B12BEF /* mvp_0_2_screenshots in Resources */,
+				B8FBA7B921D863C00059C44E /* sample4.json in Resources */,
 				B820403921B5D12C000261A7 /* sample2.json in Resources */,
 				B82641DC21A1D22100BE6710 /* Screen Shot 2018-11-18 at 11.56.43 AM.png in Resources */,
 				483C61BD214ED8E9008C69D8 /* Main.storyboard in Resources */,
@@ -299,6 +304,7 @@
 			files = (
 				B820403A21B5D12C000261A7 /* sample2.json in Resources */,
 				B8F41CAA2197885A0042C446 /* sample1.json in Resources */,
+				B8FBA7B821D863AC0059C44E /* sample4.json in Resources */,
 				B8FBA7B521D7E2910059C44E /* sample3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
