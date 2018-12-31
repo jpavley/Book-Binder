@@ -179,33 +179,33 @@ class JsonModelTests: XCTestCase {
     func testInitFromBundle() {
         XCTAssertNotNil(testModel2)
         
-        XCTAssertEqual(testModel2.selectedVolume.publisherName, "Marble Entertainment")
+        XCTAssertEqual(testModel2.selectedVolume!.publisherName, "Marble Entertainment")
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.issueNumber, 1)
         
-        XCTAssertEqual(testModel2.selectedVolume.defaultCoverID, "american-standard-marvel")
+        XCTAssertEqual(testModel2.selectedVolume!.defaultCoverID, "american-standard-marvel")
 
         
         testModel2.selectedVolumeIndex = 3
-        XCTAssertEqual(testModel2.selectedVolume.publisherName, "EKK Comics")
+        XCTAssertEqual(testModel2.selectedVolume!.publisherName, "EKK Comics")
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.isOwned, true)
         
-        testModel2.selectedVolume.selectedWorkIndex = 1
+        testModel2.selectedVolume!.selectedWorkIndex = 1
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.variantLetter, "b")
         
         testModel2.selectedVolumeIndex = 5
-        XCTAssertEqual(testModel2.selectedVolume.seriesName, "Darling Dog")
-        XCTAssertEqual(testModel2.selectedVolume.era, 1952)
-        XCTAssertEqual(testModel2.selectedVolume.volumeNumber, 2)
-        XCTAssertEqual(testModel2.selectedVolume.kind, "annual")
-        XCTAssertEqual(testModel2.selectedVolume.selectedWorkIndex, 0)
+        XCTAssertEqual(testModel2.selectedVolume!.seriesName, "Darling Dog")
+        XCTAssertEqual(testModel2.selectedVolume!.era, 1952)
+        XCTAssertEqual(testModel2.selectedVolume!.volumeNumber, 2)
+        XCTAssertEqual(testModel2.selectedVolume!.kind, "annual")
+        XCTAssertEqual(testModel2.selectedVolume!.selectedWorkIndex, 0)
         
         let issueList = [7, 8, 9, 10, 11, 12]
         let variantList = ["", "b", "", "", "a", ""]
         let imageList = ["american-standard-ga", "american-standard-ga", "american-standard-ga", "american-standard-ga", "american-standard-ga", "american-standard-ga"]
         let ownList = [false, true, true, false, false, false]
         
-        for i in 0..<testModel2.selectedVolume.works.count {
-            testModel2.selectedVolume.selectedWorkIndex = i
+        for i in 0..<testModel2.selectedVolume!.works.count {
+            testModel2.selectedVolume!.selectedWorkIndex = i
             
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.issueNumber, issueList[i])
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.variantLetter, variantList[i])
@@ -226,8 +226,8 @@ class JsonModelTests: XCTestCase {
         
         // orignal data is in model
         testModel2.selectedVolumeIndex = 5
-        XCTAssertEqual(testModel2.selectedVolume.seriesName, "Darling Dog")
-        XCTAssertEqual(testModel2.selectedVolume.era, 1952)
+        XCTAssertEqual(testModel2.selectedVolume!.seriesName, "Darling Dog")
+        XCTAssertEqual(testModel2.selectedVolume!.era, 1952)
 
         saveUserDefaults(for: defaultsKey, with: testModel2)
         
@@ -238,29 +238,29 @@ class JsonModelTests: XCTestCase {
         testModel2 = readUserDefaults(for: defaultsKey)
         // make user loaded data is same as saved data
         testModel2.selectedVolumeIndex = 5
-        XCTAssertEqual(testModel2.selectedVolume.seriesName, "Darling Dog")
-        XCTAssertEqual(testModel2.selectedVolume.era, 1952)
+        XCTAssertEqual(testModel2.selectedVolume!.seriesName, "Darling Dog")
+        XCTAssertEqual(testModel2.selectedVolume!.era, 1952)
 
         
         // make changes
-        testModel2.selectedVolume.seriesName = "Horrible Ugly Misrable Dog"
-        testModel2.selectedVolume.era = 1992
+        testModel2.selectedVolume!.seriesName = "Horrible Ugly Misrable Dog"
+        testModel2.selectedVolume!.era = 1992
         
         saveUserDefaults(for: defaultsKey, with: testModel2)
         testModel2 = readUserDefaults(for: defaultsKey)
         
         // see if loaded data refects changes
-        XCTAssertEqual(testModel2.selectedVolume.seriesName, "Horrible Ugly Misrable Dog")
-        XCTAssertEqual(testModel2.selectedVolume.era, 1992)
+        XCTAssertEqual(testModel2.selectedVolume!.seriesName, "Horrible Ugly Misrable Dog")
+        XCTAssertEqual(testModel2.selectedVolume!.era, 1992)
     }
     
     // MARK:- computed properties
     
     func testSelectedVolume() {
-        XCTAssertEqual(testModel1.selectedVolume.volumeNumber, 4)
-        XCTAssertEqual(testModel1.selectedVolume.era, 1)
-        XCTAssertEqual(testModel1.selectedVolume.publisherName, "a")
-        XCTAssertEqual(testModel1.selectedVolume.works.count, 3)
+        XCTAssertEqual(testModel1.selectedVolume!.volumeNumber, 4)
+        XCTAssertEqual(testModel1.selectedVolume!.era, 1)
+        XCTAssertEqual(testModel1.selectedVolume!.publisherName, "a")
+        XCTAssertEqual(testModel1.selectedVolume!.works.count, 3)
     }
     
     func testSelectedVolumeSelectedCollectedWork() {
@@ -271,7 +271,7 @@ class JsonModelTests: XCTestCase {
     
     func testSelectedVolumeSelectedWork1() {
         
-        testModel2.selectedVolume.selectedWorkIndex = 2
+        testModel2.selectedVolume!.selectedWorkIndex = 2
         
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.issueNumber, 2)
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.variantLetter, "")
@@ -300,7 +300,7 @@ class JsonModelTests: XCTestCase {
         
         
         for i in 0..<testModel2.selectedVolumeCollectedWorkIDs.count {
-            testModel2.selectedVolume.selectedWorkIndex = i
+            testModel2.selectedVolume!.selectedWorkIndex = i
             
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.issueNumber, issueList[i])
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.variantLetter, variantList[i])
@@ -335,7 +335,7 @@ class JsonModelTests: XCTestCase {
     
     func testWorkID() {
         testModel2.selectedVolumeIndex = 1
-        testModel2.selectedVolume.selectedWorkIndex = 7
+        testModel2.selectedVolume!.selectedWorkIndex = 7
         
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.id, "12b")
     }
@@ -347,7 +347,7 @@ class JsonModelTests: XCTestCase {
         
         let bogusWorkIDIndexes = [4, 8]
         
-        for i in 0 ..< testModel2.selectedVolume.works.count {
+        for i in 0 ..< testModel2.selectedVolume!.works.count {
             XCTAssertEqual(testModel2.workExists(workID: testWorkIDs[i]), !bogusWorkIDIndexes.contains(i))
         }
     }
@@ -382,28 +382,28 @@ class JsonModelTests: XCTestCase {
         XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1a", "8b", "9", "10b&w"])
         
         testModel2.selectedVolumeIndex = 0
-        for work in testModel2.selectedVolume.works {
+        for work in testModel2.selectedVolume!.works {
             work.isOwned = true
         }
         
         XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"])
         
-        let work1 = testModel2.selectedVolume.works[1]
+        let work1 = testModel2.selectedVolume!.works[1]
         XCTAssertEqual(work1.id, "1b")
         
         testModel2.selectWork(work: work1)
         testModel2.removeSelectedWorkFromSelectedVolume()
         XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["1a", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"])
-        XCTAssertEqual(testModel2.selectedVolume.selectedWorkIndex, 0)
+        XCTAssertEqual(testModel2.selectedVolume!.selectedWorkIndex, 0)
         
-        let work2 = testModel2.selectedVolume.works[2]
+        let work2 = testModel2.selectedVolume!.works[2]
         XCTAssertEqual(work2.id, "3")
         
-        let work0 = testModel2.selectedVolume.works[0]
+        let work0 = testModel2.selectedVolume!.works[0]
         testModel2.selectWork(work: work0)
         testModel2.removeSelectedWorkFromSelectedVolume()
         XCTAssertEqual(testModel2.selectedVolumeOwnedWorkIDs, ["2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"])
-        XCTAssertEqual(testModel2.selectedVolume.selectedWorkIndex, 0)
+        XCTAssertEqual(testModel2.selectedVolume!.selectedWorkIndex, 0)
 
     }
     
@@ -413,7 +413,7 @@ class JsonModelTests: XCTestCase {
         testModel2.addNextWork(for: 0)
         XCTAssertEqual(testModel2.selectedVolumeCollectedWorkIDs, ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w", "11"])
         
-        let addedWork = testModel2.selectedVolume.works.last!
+        let addedWork = testModel2.selectedVolume!.works.last!
         XCTAssertEqual(addedWork.isOwned, true)
         XCTAssertEqual(addedWork.coverImage, "american-standard-marvel")
     }
@@ -421,13 +421,13 @@ class JsonModelTests: XCTestCase {
     func testSelectWork() {
         XCTAssertEqual(testModel2.selectedVolumeCollectedWorkIDs, ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"])
         
-        let currentIndex = testModel2.selectedVolume.selectedWorkIndex
-        let currentWork = testModel2.selectedVolume.works[currentIndex]
+        let currentIndex = testModel2.selectedVolume!.selectedWorkIndex
+        let currentWork = testModel2.selectedVolume!.works[currentIndex]
         XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.id, currentWork.id)
         
         let newWork = testModel2.addNextWork(for: 0)
-        testModel2.selectWork(work: newWork)
-        XCTAssertEqual(testModel2.selectedVolume.selectedWorkIndex, 11)
+        testModel2.selectWork(work: newWork!)
+        XCTAssertEqual(testModel2.selectedVolume!.selectedWorkIndex, 11)
         
         XCTAssertEqual(testModel2.selectedVolumeCollectedWorkIDs, ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w", "11"])
     }
@@ -437,7 +437,7 @@ class JsonModelTests: XCTestCase {
     func testNextWork() {
         let testIDs = ["1a", "1b", "2", "3", "4", "5", "6max", "7", "8b", "9", "10b&w"]
         
-        for i in 0..<testModel2.selectedVolume.works.count {
+        for i in 0..<testModel2.selectedVolume!.works.count {
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.id, testIDs[i])
             testModel2.selectNextWork()
         }
@@ -446,9 +446,9 @@ class JsonModelTests: XCTestCase {
     func testPrevWork() {
         let testIDs = ["10b&w", "9", "8b", "7", "6max", "5", "4", "3", "2", "1b", "1a"]
         
-        testModel2.selectedVolume.selectedWorkIndex = 10
+        testModel2.selectedVolume!.selectedWorkIndex = 10
         
-        for i in 0..<testModel2.selectedVolume.works.count {
+        for i in 0..<testModel2.selectedVolume!.works.count {
             XCTAssertEqual(testModel2.selectedVolumeSelectedWork!.id, testIDs[i])
             testModel2.selectPreviousWork()
         }
@@ -460,7 +460,7 @@ class JsonModelTests: XCTestCase {
         testModel2.selectedVolumeIndex = 0
         
         for i in 0..<testModel2.volumes.count {
-            XCTAssertEqual(testModel2.selectedVolume.seriesName, testSeriesNames[i])
+            XCTAssertEqual(testModel2.selectedVolume!.seriesName, testSeriesNames[i])
             testModel2.selectNextVolume()
         }
     }
@@ -471,7 +471,7 @@ class JsonModelTests: XCTestCase {
         testModel2.selectedVolumeIndex = 5
         
         for i in 0..<testModel2.volumes.count {
-            XCTAssertEqual(testModel2.selectedVolume.seriesName, testSeriesNames[i])
+            XCTAssertEqual(testModel2.selectedVolume!.seriesName, testSeriesNames[i])
             testModel2.selectPreviousVolume()
         }
     }
@@ -488,7 +488,7 @@ class JsonModelTests: XCTestCase {
         testModel2.selectedVolumeIndex = 0
         
         for i in 0..<testModel2.volumes.count {
-            XCTAssertEqual(testModel2.selectedVolume.id, testVolumeIDs[i])
+            XCTAssertEqual(testModel2.selectedVolume!.id, testVolumeIDs[i])
             testModel2.selectNextVolume()
         }
     }
@@ -598,18 +598,18 @@ class JsonModelTests: XCTestCase {
         // before removal
         
         XCTAssertNotNil(testVolume1)
-        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume1.id), true)
+        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume1!.id), true)
 
         // after removal
         
         testModel2.removeSelectedVolume()
-        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume1.id), false)
+        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume1!.id), false)
         
         // make the selectedVolumeIndex bounce from -1 to 0
         testModel2.selectedVolumeIndex = 0
         let testVolume2 = testModel2.selectedVolume
         testModel2.removeSelectedVolume()
-        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume2.id), false)
+        XCTAssertEqual(testModel2.volumeExists(volumeID: testVolume2!.id), false)
     }
     
     func testVolumeWithoutWorks() {
@@ -649,7 +649,10 @@ class JsonModelTests: XCTestCase {
         XCTAssertTrue(testModel3.workExists(workID: w1.id))
         let w2 = testModel3.addNextWork(for: 0)
         XCTAssertTrue(testModel3.workExists(workID: "2"))
-        XCTAssertEqual(w2.coverImage, "american-standard-ga")
-
+        XCTAssertEqual(w2!.coverImage, "american-standard-ga")
+    }
+    
+    func testWithoutVoumes() {
+        
     }
 }
