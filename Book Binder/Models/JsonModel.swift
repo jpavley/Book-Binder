@@ -139,9 +139,9 @@ extension JsonModel {
             selectedVolume.works = selectedVolume.works.sorted {
                 $0.id.localizedStandardCompare($1.id) == .orderedAscending
             }
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        // assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        return
     }
     
     func updateSelectedWorkOfSelectedVolume(isOwned: Bool, coverImage: String) {
@@ -161,9 +161,9 @@ extension JsonModel {
             }
             sortSelectedVolumeWorks()
             selectWork(work: w)
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        // assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        return
     }
     
     func removeSelectedWorkFromSelectedVolume() {
@@ -184,8 +184,6 @@ extension JsonModel {
                 if selectedVolume.selectedWorkIndex < 0 {
                     selectedVolume.selectedWorkIndex = 0
                 }
-            } else {
-                assert(false, "BOOKBINDERAPP: selectedVolume is nil")
             }
         }
     }
@@ -206,9 +204,8 @@ extension JsonModel {
             selectedVolume.works.append(currentWork)
             return currentWork
             
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        // assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         return nil
     }
     
@@ -221,9 +218,9 @@ extension JsonModel {
                     selectedVolume.selectedWorkIndex = i
                 }
             }
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        //assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        return
     }
     
     func selectNextWork() {
@@ -235,9 +232,9 @@ extension JsonModel {
             if selectedVolume.selectedWorkIndex >= selectedVolume.works.count {
                 selectedVolume.selectedWorkIndex = 0
             }
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        //assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        return
     }
     
     func selectPreviousWork() {
@@ -249,9 +246,9 @@ extension JsonModel {
             if selectedVolume.selectedWorkIndex < 0 {
                 selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
             }
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        // assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        return
     }
     
     func selectNextVolume() {
@@ -264,7 +261,7 @@ extension JsonModel {
     
     func selectPreviousVolume() {
         selectedVolumeIndex -= 1
-                
+        
         if selectedVolumeIndex < 0 {
             selectedVolumeIndex = volumes.count - 1
         }
@@ -320,8 +317,8 @@ extension JsonModel {
                 volumes = filteredVolumes
                 selectedVolumeIndex = selectedVolumeIndex == 0 ? 0 : selectedVolumeIndex - 1
             }
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
+        // assert(false, "BOOKBINDERAPP: selectedVolume is nil")
+        return
     }
 }

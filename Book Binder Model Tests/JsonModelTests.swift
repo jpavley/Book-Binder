@@ -23,12 +23,11 @@ class JsonModelTests: XCTestCase {
     var testVolume2: JsonModel.JsonVolume!
     var testVolume3: JsonModel.JsonVolume!
 
-    var testModel1: JsonModel! // existing collection use case
-    var testModel3: JsonModel! // volume without works use case
+    var testModel1: JsonModel! // init from code use case
+    var testModel2: JsonModel! // init from bundle, volumes and works use case
+    var testModel3: JsonModel! // init from bundle, volume without works use case
+    var testModel4: JsonModel! // init from bundle, no volumes use case
     
-    // bundle based
-    
-    var testModel2: JsonModel!
     
     // ser defaults
     
@@ -141,6 +140,7 @@ class JsonModelTests: XCTestCase {
         initFromProperties()
         testModel2 = initFromBundle(forResource: "sample1", ofType: "json")
         testModel3 = initFromBundle(forResource: "sample3", ofType: "json")
+        testModel4 = initFromBundle(forResource: "sample4", ofType: "json")
     }
 
     override func tearDown() {
@@ -626,7 +626,6 @@ class JsonModelTests: XCTestCase {
         
         XCTAssertEqual(testModel3.selectedVolumeWorksCount, 0)
         XCTAssertEqual(testModel3.selectedVolumeCollectedWorkIDs.count, 0)
-        XCTAssertEqual(testModel3.selectedVolumeCollectedWorkIDs.count, 0)
         XCTAssertEqual(testModel3.workExists(workID: "1"), false)
         
         testModel3.sortSelectedVolumeWorks()
@@ -653,6 +652,42 @@ class JsonModelTests: XCTestCase {
     }
     
     func testWithoutVoumes() {
+        XCTAssertNotNil(testModel4)
+        XCTAssertNil(testModel4.selectedVolume)
+        XCTAssertNil(testModel4.selectedVolumeSelectedWork)
         
+        XCTAssertEqual(testModel4.selectedVolumeIndex, 0)
+        XCTAssertEqual(testModel4.volumes.count, 0)
+        
+        XCTAssertEqual(testModel4.selectedVolumeWorksCount, 0)
+        XCTAssertEqual(testModel4.selectedVolumeCollectedWorkIDs.count, 0)
+        XCTAssertEqual(testModel4.workExists(workID: "1"), false)
+        
+        testModel4.sortSelectedVolumeWorks()
+        testModel4.updateSelectedWorkOfSelectedVolume(isOwned: true, coverImage: "cat")
+        XCTAssertNotEqual(testModel4.selectedVolumeSelectedWork?.coverImage, "cat")
+        testModel4.removeSelectedWorkFromSelectedVolume()
+        testModel4.removeSelectedVolume()
+        let ownedIDs = testModel4.selectedVolumeOwnedWorkIDs
+        XCTAssertEqual(ownedIDs.count, 0)
+        
+        let w0 = JsonModel.JsonVolume.JsonWork(issueNumber: 100, variantLetter: "", coverImage: "dog", isOwned: true)
+        testModel4.selectWork(work: w0)
+        XCTAssertNil(testModel4.selectedVolumeSelectedWork)
+        
+        testModel4.selectNextWork()
+        testModel4.selectPreviousWork()
+        testModel4.selectNextVolume()
+        testModel4.selectPreviousVolume()
+        XCTAssertEqual(testModel4.selectedVolumeWorksCount, 0)
+        
+        // make sure we CANNOT add works to a volume that doesn't exist
+        
+        let w1 = JsonModel.JsonVolume.JsonWork(issueNumber: 1, variantLetter: "a", coverImage: "cat", isOwned: true)
+        testModel4.addWorkToSelectedVolume(w1)
+        XCTAssertFalse(testModel4.workExists(workID: w1.id))
+        let w2 = testModel4.addNextWork(for: 0)
+        XCTAssertFalse(testModel4.workExists(workID: "2"))
+        XCTAssertNil(w2)
     }
 }
