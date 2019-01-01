@@ -85,11 +85,8 @@ class SummaryViewController: UIViewController {
             )
             
             self.comicBookCollection.addVolume(newVolume)
+            saveUserDefaults(for: defaultsKey, with: self.comicBookCollection)
             self.collectionView.reloadData()
-            self.enableToolbarButtons(toggle: true)
-        }
-        
-        editSeriesPopoverView.deleteFunction = {
             self.enableToolbarButtons(toggle: true)
         }
         
@@ -115,6 +112,7 @@ class SummaryViewController: UIViewController {
         
         let editButton = sender as! UIButton
         
+        comicBookCollection.selectedVolumeIndex = editButton.tag
         editSeriesPopoverView.publisherTextField.text = comicBookCollection.volumes[editButton.tag].publisherName
         editSeriesPopoverView.seriesTextField.text = comicBookCollection.volumes[editButton.tag].seriesName
         editSeriesPopoverView.eraTextField.text = "\(comicBookCollection.volumes[editButton.tag].era)"
@@ -126,10 +124,23 @@ class SummaryViewController: UIViewController {
         // congigure save, delete, and cancel functions
         
         editSeriesPopoverView.saveFunction = {
+            self.comicBookCollection.selectedVolume!.publisherName = self.editSeriesPopoverView.publisherTextField.text!
+            self.comicBookCollection.selectedVolume!.seriesName = self.editSeriesPopoverView.seriesTextField.text!
+            self.comicBookCollection.selectedVolume!.era = Int(self.editSeriesPopoverView.eraTextField
+                
+                
+                .text!) ?? 0
+            // TODO: Update the coverImageView somehow
+
+            saveUserDefaults(for: defaultsKey, with: self.comicBookCollection)
+            self.collectionView.reloadData()
             self.enableToolbarButtons(toggle: true)
         }
         
         editSeriesPopoverView.deleteFunction = {
+            self.comicBookCollection.removeSelectedVolume()
+            saveUserDefaults(for: defaultsKey, with: self.comicBookCollection)
+            self.collectionView.reloadData()
             self.enableToolbarButtons(toggle: true)
         }
         

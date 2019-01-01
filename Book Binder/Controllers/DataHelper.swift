@@ -94,6 +94,5 @@ func readUserDefaults(for key: String) -> JsonModel? {
         print(error)
         return nil
     }
-    
 }
 

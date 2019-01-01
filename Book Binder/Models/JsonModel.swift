@@ -316,6 +316,7 @@ extension JsonModel {
                 let filteredVolumes = volumes.filter { $0.id != v.id }
                 volumes = filteredVolumes
                 selectedVolumeIndex = selectedVolumeIndex == 0 ? 0 : selectedVolumeIndex - 1
+                sortVolumes()
             }
         }
         // assert(false, "BOOKBINDERAPP: selectedVolume is nil")
