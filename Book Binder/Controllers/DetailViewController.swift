@@ -49,6 +49,7 @@ class DetailViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
                 // yes delete please
                 self.comicBookCollection.removeSelectedWorkFromSelectedVolume()
+                self.save() // TODO: Last issue deleted reappears on relaunch of app
                 self.updateUXOnLoad()
             }))
             
