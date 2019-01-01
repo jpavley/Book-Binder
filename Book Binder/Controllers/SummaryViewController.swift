@@ -314,12 +314,46 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             comicBookCollection.selectedVolumeIndex = seriesIndex
             selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
             addIssuePopoverView.comicBookCollection = comicBookCollection
-            addIssuePopoverView.loadData()
+            
+            addIssuePopoverView.publisherNameLabel.text = "\(selectedVolume.publisherName)"
+            addIssuePopoverView.seriesTitleLabel.text = selectedVolume.seriesName
+            addIssuePopoverView.coverImage.image = UIImage(named: "\(selectedVolume.defaultCoverID)-thumb")
+            addIssuePopoverView.issueNumberField.text = ""
+            
+            if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
+                addIssuePopoverView.issueNumberField.placeholder = "\(selectedVolumeSelectedWork.issueNumber + 1)"
+            } else {
+                addIssuePopoverView.issueNumberField.placeholder = ""
+            }
+            
+            addIssuePopoverView.variantLetterField.text = ""
+
             
             // congigure save, delete, and cancel functions
             
             addIssuePopoverView.saveFunction = {
                 self.enableToolbarButtons(toggle: true)
+                
+                if self.addIssuePopoverView.issueNumberField.text == "" {
+                    // Dont create and save a work if the user doens't give us an issue number
+                    return
+                }
+                
+                let issueNumber = Int(self.addIssuePopoverView.issueNumberField.text!) ?? 0
+                let variantLetter = self.addIssuePopoverView.variantLetterField.text!
+                let coverImage = selectedVolume.defaultCoverID
+                let isOwned = true
+                
+                let work = JsonModel.JsonVolume.JsonWork(
+                    issueNumber: issueNumber,
+                    variantLetter: variantLetter,
+                    coverImage: coverImage,
+                    isOwned: isOwned
+                )
+                
+                self.comicBookCollection.addWorkToSelectedVolume(work)
+                saveUserDefaults(for: defaultsKey, with: self.comicBookCollection)
+                self.collectionView.reloadData()
             }
             
             addIssuePopoverView.cancelFunction = {

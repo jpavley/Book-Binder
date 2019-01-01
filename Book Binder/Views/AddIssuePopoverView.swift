@@ -26,11 +26,6 @@ class AddIssuePopoverView: UIView {
     
     @IBAction func doneAction(_ sender: Any) {
         saveFunction()
-        
-        if issueNumberField.text != "" {
-            saveData()
-            collectionView.reloadData()
-        }
         exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     
@@ -49,46 +44,5 @@ class AddIssuePopoverView: UIView {
     
     @IBAction func noImageAction(_ sender: Any) {
         print("noImageAction()")
-    }
-    
-    func saveData() {
-        if let selectedVolume = comicBookCollection.selectedVolume {
-            
-            let issueNumber = Int(issueNumberField.text!) ?? 0
-            let variantLetter = variantLetterField.text!
-            let coverImage = selectedVolume.defaultCoverID
-            let isOwned = true
-            
-            let work = JsonModel.JsonVolume.JsonWork(
-                issueNumber: issueNumber,
-                variantLetter: variantLetter,
-                coverImage: coverImage,
-                isOwned: isOwned
-            )
-            
-            comicBookCollection.addWorkToSelectedVolume(work)
-            saveUserDefaults(for: defaultsKey, with: comicBookCollection)
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
-        }
-    }
-    
-    func loadData() {
-        if let selectedVolume = comicBookCollection.selectedVolume {
-            
-            publisherNameLabel.text = "\(selectedVolume.publisherName)"
-            seriesTitleLabel.text = selectedVolume.seriesName
-            coverImage.image = UIImage(named: "\(selectedVolume.defaultCoverID)-thumb")
-            issueNumberField.text = ""
-            
-            if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
-                issueNumberField.placeholder = "\(selectedVolumeSelectedWork.issueNumber + 1)"
-            } else {
-                issueNumberField.placeholder = ""
-            }
-            variantLetterField.text = ""
-        } else {
-            assert(false, "BOOKBINDERAPP: selectedVolume is nil")
-        }
     }
 }
