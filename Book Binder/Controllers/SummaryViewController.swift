@@ -38,6 +38,7 @@ class SummaryViewController: UIViewController {
         editSeriesPopoverView.seriesTextField.text = ""
         editSeriesPopoverView.eraTextField.text = ""
         editSeriesPopoverView.coverImageView.image = UIImage(named: "american-standard-marvel-thumb")
+        editSeriesPopoverView.deleteButton.isHidden = true
         editSeriesPopoverView.saveFunction = {
             print("called from add series")
             
@@ -77,6 +78,9 @@ class SummaryViewController: UIViewController {
     
     @IBAction func editSeriesAction(_ sender: Any) {
         
+        addButton.isEnabled = false
+        cameraButton.isEnabled = false
+        
         func getCoverImageName(for section: Int) -> String {
             if comicBookCollection.volumes[section].works.count > 0 {
                 return comicBookCollection.volumes[section].works.first!.coverImage
@@ -90,12 +94,13 @@ class SummaryViewController: UIViewController {
         editSeriesPopoverView.publisherTextField.text = comicBookCollection.volumes[editButton.tag].publisherName
         editSeriesPopoverView.seriesTextField.text = comicBookCollection.volumes[editButton.tag].seriesName
         editSeriesPopoverView.eraTextField.text = "\(comicBookCollection.volumes[editButton.tag].era)"
+        editSeriesPopoverView.deleteButton.isHidden = false
         
         let coverImageName = getCoverImageName(for: editButton.tag)
         editSeriesPopoverView.coverImageView.image = UIImage(named: "\(coverImageName)-thumb")
         
         editSeriesPopoverView.saveFunction = {
-            print("called from edit series")
+            print("editSeriesPopoverView.saveFunction")
         }
         
         // TODO: implement save function

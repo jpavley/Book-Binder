@@ -407,7 +407,7 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="146" translatesAutoresizingMaskIntoConstraints="NO" id="BFr-dT-r2r" userLabel="Commands Stack View">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BFr-dT-r2r" userLabel="Commands Stack View">
                                     <rect key="frame" x="0.0" y="356" width="294" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="52T-Ww-76b">
@@ -415,6 +415,13 @@
                                             <state key="normal" title="Cancel"/>
                                             <connections>
                                                 <action selector="cancelAction:" destination="4lF-TE-LsV" eventType="touchUpInside" id="jsV-mx-yB4"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gT0-4z-edF">
+                                            <rect key="frame" x="127.5" y="0.0" width="45" height="30"/>
+                                            <state key="normal" title="Delete"/>
+                                            <connections>
+                                                <action selector="deleteAction:" destination="4lF-TE-LsV" eventType="touchUpInside" id="Afg-R8-EHf"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsE-mL-exj">
@@ -443,6 +450,7 @@
                     <viewLayoutGuide key="safeArea" id="RSM-bF-Joh"/>
                     <connections>
                         <outlet property="coverImageView" destination="857-TA-fno" id="NZe-Ni-Siq"/>
+                        <outlet property="deleteButton" destination="gT0-4z-edF" id="svn-hQ-ejx"/>
                         <outlet property="eraTextField" destination="b2F-hB-2kl" id="FKS-Ih-F7V"/>
                         <outlet property="publisherTextField" destination="VRU-DX-2lN" id="jql-6M-TGn"/>
                         <outlet property="seriesTextField" destination="hy3-Dh-WMn" id="ruf-C2-fj7"/>
