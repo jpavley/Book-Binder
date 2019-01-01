@@ -56,15 +56,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3qO-5H-l2T">
-                                            <rect key="frame" x="12" y="12" width="576" height="55.5"/>
+                                            <rect key="frame" x="12" y="12" width="351" height="55.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Marvel Entertainment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzu-a5-DKV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="576" height="21.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="syg-78-O26">
-                                                    <rect key="frame" x="0.0" y="25.5" width="576" height="30"/>
+                                                    <rect key="frame" x="0.0" y="25.5" width="351" height="30"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Daredevil 2017 Vol 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpH-el-l4f">
                                                             <rect key="frame" x="0.0" y="0.0" width="189.5" height="30"/>
@@ -72,7 +72,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eX2-Yp-qHC">
-                                                            <rect key="frame" x="546" y="0.0" width="30" height="30"/>
+                                                            <rect key="frame" x="321" y="0.0" width="30" height="30"/>
                                                             <state key="normal" title="Edit"/>
                                                             <connections>
                                                                 <action selector="editSeriesAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oFx-SG-h2B"/>
@@ -100,6 +100,12 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="F4d-16-u3X"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Series Collected!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgE-6N-zSh">
+                                <rect key="frame" x="109.5" y="323" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Vs-6v7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CQ3-MR-YrM">
@@ -116,8 +122,10 @@
                             <constraint firstItem="uSc-2I-9lN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="M72-au-JqR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tgc-Vs-6v7" secondAttribute="trailing" id="QJY-ZH-PhQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tgc-Vs-6v7" secondAttribute="bottom" id="fFl-bj-BZ1"/>
+                            <constraint firstItem="UgE-6N-zSh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mhD-md-yxX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uSc-2I-9lN" secondAttribute="bottom" id="nO1-sH-FHU"/>
                             <constraint firstItem="tgc-Vs-6v7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="oey-HD-42V"/>
+                            <constraint firstItem="UgE-6N-zSh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="yRB-O3-dEd"/>
                             <constraint firstItem="uSc-2I-9lN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yaE-8c-L2w"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -144,6 +152,7 @@
                         <outlet property="cameraButton" destination="wXj-fd-wij" id="V7l-LL-uaW"/>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="AGO-hx-Dcz"/>
                         <outlet property="editSeriesPopoverView" destination="4lF-TE-LsV" id="7Z3-AW-VmM"/>
+                        <outlet property="noSeriesCollectedLabel" destination="UgE-6N-zSh" id="sBz-OX-BvS"/>
                         <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="cFA-qS-7Jx"/>
                         <segue destination="6F6-9h-lCG" kind="show" identifier="DetailSegue" id="uZ7-ad-L54"/>
                     </connections>
@@ -542,7 +551,7 @@
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No issues collected!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8w-NP-uCw">
                                 <rect key="frame" x="82" y="319" width="211" height="29"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="24"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuG-y1-uSN">

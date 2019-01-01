@@ -18,6 +18,7 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet var addIssuePopoverView: AddIssuePopoverView!
     @IBOutlet var editSeriesPopoverView: EditSeriesPopoverView!
+    @IBOutlet weak var noSeriesCollectedLabel: UILabel!
     
     // MARK:- Constants -
     
@@ -171,6 +172,7 @@ class SummaryViewController: UIViewController {
         
         collectionViewLayout()
         navigationController?.isToolbarHidden = false
+        noSeriesCollectedLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
