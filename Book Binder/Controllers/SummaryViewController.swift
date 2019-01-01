@@ -126,10 +126,7 @@ class SummaryViewController: UIViewController {
         editSeriesPopoverView.saveFunction = {
             self.comicBookCollection.selectedVolume!.publisherName = self.editSeriesPopoverView.publisherTextField.text!
             self.comicBookCollection.selectedVolume!.seriesName = self.editSeriesPopoverView.seriesTextField.text!
-            self.comicBookCollection.selectedVolume!.era = Int(self.editSeriesPopoverView.eraTextField
-                
-                
-                .text!) ?? 0
+            self.comicBookCollection.selectedVolume!.era = Int(self.editSeriesPopoverView.eraTextField.text!) ?? 0
             // TODO: Update the coverImageView somehow
 
             saveUserDefaults(for: defaultsKey, with: self.comicBookCollection)
@@ -308,14 +305,31 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         if let selectedVolume = comicBookCollection.selectedVolume {
             
+            // configure view UX while popup is popped
+            
+            enableToolbarButtons(toggle: false)
+            
+            // configure popup UX
+            
             comicBookCollection.selectedVolumeIndex = seriesIndex
             selectedVolume.selectedWorkIndex = selectedVolume.works.count - 1
             addIssuePopoverView.comicBookCollection = comicBookCollection
             addIssuePopoverView.loadData()
             
-            visualEffectView.isHidden = false
+            // congigure save, delete, and cancel functions
+            
+            addIssuePopoverView.saveFunction = {
+                self.enableToolbarButtons(toggle: true)
+            }
+            
+            addIssuePopoverView.cancelFunction = {
+                self.enableToolbarButtons(toggle: true)
+            }
+            
+            // everything is ready! pop the popup!
             
             loadPopoverView(popoverView: addIssuePopoverView, visualEffectView: visualEffectView, parentView: view)
+            
         } else {
             assert(false, "BOOKBINDERAPP: selectedVolume is nil")
         }
