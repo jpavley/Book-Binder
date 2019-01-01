@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var trashButton: UIBarButtonItem!
     @IBOutlet weak var cameraButtom: UIBarButtonItem!
     @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var NoIssuesLabel: UILabel!
+    @IBOutlet weak var noIssuesLabel: UILabel!
     
     @IBOutlet var popoverView: UIView!
     @IBOutlet weak var popoverIssueField: UITextField!
@@ -294,7 +294,7 @@ class DetailViewController: UIViewController {
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
         issueLabel.text = "# \(workNumber)\(variantLetter)"
-        NoIssuesLabel.isHidden = true
+        noIssuesLabel.isHidden = true
         
         // update the cover
         
@@ -336,15 +336,15 @@ class DetailViewController: UIViewController {
         titleLabel.text = "\(seriesTitle) \(era)"
         publisherLabel.text = "\(publisherName)"
         issueLabel.text = "# \(workNumber)\(variantLetter)"
-        NoIssuesLabel.isHidden = false
+        noIssuesLabel.isHidden = false
         
         // update the no issues field
         
         if animateCover {
             
-            NoIssuesLabel.alpha = 0
+            noIssuesLabel.alpha = 0
             UIView.animate(withDuration: 1.0) {
-                self.NoIssuesLabel.alpha = 1
+                self.noIssuesLabel.alpha = 1
             }
             
             coverImageView.alpha = 0

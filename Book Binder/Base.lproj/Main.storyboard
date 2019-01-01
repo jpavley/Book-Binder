@@ -599,12 +599,12 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="NoIssuesLabel" destination="H8w-NP-uCw" id="H3K-4Q-keE"/>
                         <outlet property="cameraButtom" destination="je3-mr-ZhH" id="QKK-Wd-fuh"/>
                         <outlet property="coverImageView" destination="ZQM-w5-72L" id="wQ9-bl-dFv"/>
                         <outlet property="editButton" destination="a4w-Li-dos" id="gJP-4G-3O0"/>
                         <outlet property="isOwnedSwitch" destination="UCS-Eo-pEg" id="84O-42-ZrH"/>
                         <outlet property="issueLabel" destination="EJO-N3-uwD" id="eRK-NW-qP4"/>
+                        <outlet property="noIssuesLabel" destination="H8w-NP-uCw" id="H3K-4Q-keE"/>
                         <outlet property="popoverCoverImage" destination="FTE-td-OuD" id="3ru-Re-ZQG"/>
                         <outlet property="popoverIssueField" destination="URK-Cn-dFX" id="Zvg-88-P68"/>
                         <outlet property="popoverVariantField" destination="ANs-e9-mA6" id="Sse-K1-BCX"/>
