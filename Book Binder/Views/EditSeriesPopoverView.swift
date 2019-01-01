@@ -17,8 +17,10 @@ class EditSeriesPopoverView: UIView {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var deleteButton: UIButton!
     
-    var saveFunction: () -> () = { print("series details saved") }
-    
+    var saveFunction: () -> () = { print("series changes saved") }
+    var cancelFunction: () -> () = { print("series changes canceled") }
+    var deleteFunction: () -> () = { print("series deleted") }
+
     @IBAction func photosAction(_ sender: Any) {
         
     }
@@ -37,10 +39,12 @@ class EditSeriesPopoverView: UIView {
     }
     
     @IBAction func deleteAction(_ sender: Any) {
-        print("delete")
+        deleteFunction()
+        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
+        cancelFunction()
         exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
     }
 }

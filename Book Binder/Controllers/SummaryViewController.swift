@@ -30,29 +30,48 @@ class SummaryViewController: UIViewController {
     
     var comicBookCollection: JsonModel!
     
+    // MARK:- Action helpers
+    
+    func enableToolbarButtons(toggle: Bool) {
+        addButton.isEnabled = toggle
+        cameraButton.isEnabled = toggle
+    }
+    
+    func getCoverImageName(for section: Int) -> String {
+        if comicBookCollection.volumes[section].works.count > 0 {
+            return comicBookCollection.volumes[section].works.first!.coverImage
+        } else {
+            return comicBookCollection.volumes[section].defaultCoverID
+        }
+    }
+    
     // MARK:- Actions -
     
     @IBAction func addVolume() {
+        
+        // configure view UX while popup is popped
+        
+        enableToolbarButtons(toggle: false)
+        
+        // configure popup UX
         
         editSeriesPopoverView.publisherTextField.text = ""
         editSeriesPopoverView.seriesTextField.text = ""
         editSeriesPopoverView.eraTextField.text = ""
         editSeriesPopoverView.coverImageView.image = UIImage(named: "american-standard-marvel-thumb")
         editSeriesPopoverView.deleteButton.isHidden = true
+        
+        // congigure save, delete, and cancel functions
+        
         editSeriesPopoverView.saveFunction = {
-            print("called from add series")
-            
             let publisherName = self.editSeriesPopoverView.publisherTextField.text!
             let seriesName = self.editSeriesPopoverView.seriesTextField.text!
             let era = Int(self.editSeriesPopoverView.eraTextField.text!) ?? 0
             let volumeNumber = 1
             let kind = "comic book"
-            //let work = JsonModel.JsonVolume.JsonWork(issueNumber: 0, variantLetter: "", coverImage: "", isOwned: false)
             let works = [JsonModel.JsonVolume.JsonWork]()
             let defaultCoverID = "american-standard-marvel"
             let selectedWorkIndex = 0
-            
-            // TODO: Handle "no works yet" use case
             
             let newVolume = JsonModel.JsonVolume(
                 publisherName: publisherName,
@@ -60,7 +79,6 @@ class SummaryViewController: UIViewController {
                 era: era,
                 volumeNumber: volumeNumber,
                 kind: kind,
-                //works: [work],
                 works: works,
                 defaultCoverID: defaultCoverID,
                 selectedWorkIndex: selectedWorkIndex
@@ -68,7 +86,18 @@ class SummaryViewController: UIViewController {
             
             self.comicBookCollection.addVolume(newVolume)
             self.collectionView.reloadData()
+            self.enableToolbarButtons(toggle: true)
         }
+        
+        editSeriesPopoverView.deleteFunction = {
+            self.enableToolbarButtons(toggle: true)
+        }
+        
+        editSeriesPopoverView.cancelFunction = {
+            self.enableToolbarButtons(toggle: true)
+        }
+        
+        // everything is ready! pop the popup!
         
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
@@ -78,16 +107,11 @@ class SummaryViewController: UIViewController {
     
     @IBAction func editSeriesAction(_ sender: Any) {
         
-        addButton.isEnabled = false
-        cameraButton.isEnabled = false
+        // configure view UX while popup is popped
         
-        func getCoverImageName(for section: Int) -> String {
-            if comicBookCollection.volumes[section].works.count > 0 {
-                return comicBookCollection.volumes[section].works.first!.coverImage
-            } else {
-                return comicBookCollection.volumes[section].defaultCoverID
-            }
-        }
+        enableToolbarButtons(toggle: false)
+        
+        // configure popup UX
         
         let editButton = sender as! UIButton
         
@@ -99,11 +123,21 @@ class SummaryViewController: UIViewController {
         let coverImageName = getCoverImageName(for: editButton.tag)
         editSeriesPopoverView.coverImageView.image = UIImage(named: "\(coverImageName)-thumb")
         
+        // congigure save, delete, and cancel functions
+        
         editSeriesPopoverView.saveFunction = {
-            print("editSeriesPopoverView.saveFunction")
+            self.enableToolbarButtons(toggle: true)
         }
         
-        // TODO: implement save function
+        editSeriesPopoverView.deleteFunction = {
+            self.enableToolbarButtons(toggle: true)
+        }
+        
+        editSeriesPopoverView.cancelFunction = {
+            self.enableToolbarButtons(toggle: true)
+        }
+        
+        // everything is ready! pop the popup!
         
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }
