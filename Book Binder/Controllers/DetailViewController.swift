@@ -49,7 +49,7 @@ class DetailViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:  { action in
                 // yes delete please
                 self.comicBookCollection.removeSelectedWorkFromSelectedVolume()
-                self.save() // TODO: Last issue deleted reappears on relaunch of app
+                self.save()
                 self.updateUXOnLoad()
             }))
             
@@ -200,9 +200,8 @@ class DetailViewController: UIViewController {
             
             comicBookCollection.updateSelectedWorkOfSelectedVolume(isOwned: isOwned, coverImage: coverImage)
             
-            saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         }
-        
+        saveUserDefaults(for: defaultsKey, with: comicBookCollection)
         dismiss(animated: true, completion: nil)
     }
     
