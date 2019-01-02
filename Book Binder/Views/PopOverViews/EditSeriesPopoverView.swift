@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditSeriesPopoverView: UIView {
+class EditSeriesPopoverView: PopoverUIView {
     
     @IBOutlet weak var publisherTextField: UITextField!
     @IBOutlet weak var seriesTextField: UITextField!
@@ -17,10 +17,6 @@ class EditSeriesPopoverView: UIView {
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var deleteButton: UIButton!
     
-    var saveFunction: () -> () = { print("series changes saved") }
-    var cancelFunction: () -> () = { print("series changes canceled") }
-    var deleteFunction: () -> () = { print("series deleted") }
-
     @IBAction func photosAction(_ sender: Any) {
         
     }
@@ -35,16 +31,16 @@ class EditSeriesPopoverView: UIView {
     
     @IBAction func doneAction(_ sender: Any) {
         saveFunction()
-        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
+        exitPopoverView(visualEffectView: visualEffectView)
     }
     
     @IBAction func deleteAction(_ sender: Any) {
         deleteFunction()
-        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
+        exitPopoverView(visualEffectView: visualEffectView)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
         cancelFunction()
-        exitPopoverView(popoverView: self, visualEffectView: visualEffectView)
+        exitPopoverView(visualEffectView: visualEffectView)
     }
 }
