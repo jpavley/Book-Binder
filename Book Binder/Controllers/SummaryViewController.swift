@@ -50,11 +50,11 @@ class SummaryViewController: UIViewController {
     
     @IBAction func addVolume() {
         
-        // configure view UX while popup is popped
+        // configure view UX while popover is popped
         
         enableToolbarButtons(toggle: false)
         
-        // configure popup UX
+        // configure popover UX before it appears
         
         editSeriesPopoverView.publisherTextField.text = ""
         editSeriesPopoverView.seriesTextField.text = ""
@@ -146,7 +146,7 @@ class SummaryViewController: UIViewController {
             self.enableToolbarButtons(toggle: true)
         }
         
-        // everything is ready! pop the popup!
+        // everything is ready! pop the popover!
         
         loadPopoverView(popoverView: editSeriesPopoverView, visualEffectView: visualEffectView, parentView: view)
     }

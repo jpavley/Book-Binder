@@ -23,10 +23,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var noIssuesLabel: UILabel!
     
-    @IBOutlet var popoverView: UIView!
-    @IBOutlet weak var popoverIssueField: UITextField!
-    @IBOutlet weak var popoverVariantField: UITextField!
-    @IBOutlet weak var popoverCoverImage: UIImageView!
+    @IBOutlet var editIssuePopoverView: UIView!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     
     // MARK:- Properties
@@ -87,50 +84,58 @@ class DetailViewController: UIViewController {
     
     @IBAction func editAction(_ sender: Any) {
         
+        // make sure we're not going to blow up!
+        
         guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
             assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
         }
         
-        // load data into popover fields
-        popoverIssueField.text = "\(selectedVolumeSelectedWork.issueNumber)"
-        popoverVariantField.text = selectedVolumeSelectedWork.variantLetter
-        popoverCoverImage.image = UIImage(named: "\(selectedVolumeSelectedWork.coverImage)-thumb")
+        // disable the main view while the popover is popped
         
         enableMainUX(toggle: false)
-        loadPopoverView(popoverView: popoverView, visualEffectView: visualEffectView, parentView: view)
-    }
-    
-    @IBAction func cancelPopoverAction(_ sender: Any) {
-        exitPopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
-        enableMainUX(toggle: true)
-    }
-    
-    @IBAction func savePopoverAction(_ sender: Any) {
         
-        guard let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork else {
-            assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+        // configure popover UX before it appears
+        
+        let pov = editIssuePopoverView as! EditIssuePopoverView
+        pov.issueNumberField.text = "\(selectedVolumeSelectedWork.issueNumber)"
+        pov.variantLetterField.text = selectedVolumeSelectedWork.variantLetter
+        pov.coverImage.image = UIImage(named: "\(selectedVolumeSelectedWork.coverImage)-thumb")
+        
+        // congigure save, delete, and cancel functions
+        
+        pov.saveFunction = {
+            self.enableMainUX(toggle: true)
+            guard let selectedVolumeSelectedWork = self.comicBookCollection.selectedVolumeSelectedWork else {
+                assert(false, "BOOKBINDERAPP: selectedVolumeSelectedWork is nil")
+            }
+            
+            // TODO: changing the issue number and varient letter is dangerious!
+            //       - Check for duplicate workIDs and don't allow
+            //       - Don't allow an empty issue number field
+            selectedVolumeSelectedWork.issueNumber = Int(pov.issueNumberField.text!) ?? 0
+            selectedVolumeSelectedWork.variantLetter = pov.variantLetterField.text ?? ""
+            // TODO: Update the coverImageView somehow
+            
+            self.save()
+            self.updateUX(animateCover: false)
         }
         
-        exitPopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
-        enableMainUX(toggle: true)
-
-        // TODO: changing the issue number and varient letter is dangerious!
-        //       - Check for duplicate workIDs and don't allow
-        //       - Don't allow an empty issue number field
-        selectedVolumeSelectedWork.issueNumber = Int(popoverIssueField.text!) ?? 0
-        selectedVolumeSelectedWork.variantLetter = popoverVariantField.text ?? ""
-
-        self.save()
-        self.updateUX(animateCover: false)
-
-    }
+        pov.cancelFunction = {
+            self.enableMainUX(toggle: true)
+        }
         
+        // everything is ready! pop the popover!
+        
+        pov.loadPopoverView(visualEffectView: visualEffectView, parentView: view)
+    }
+    
     // MARK:- Main View Implementation
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configurePopoverView(popoverView: popoverView, visualEffectView: visualEffectView)
+        let pov = editIssuePopoverView as! EditIssuePopoverView
+        pov.configurePopoverView(visualEffectView: visualEffectView)
         
         // main view config
         addSwipeGestureRecognisers()

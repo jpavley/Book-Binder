@@ -263,7 +263,6 @@
                                             <state key="normal" title="Cancel"/>
                                             <connections>
                                                 <action selector="cancelAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="dq1-JN-fv2"/>
-                                                <action selector="cancelPopoverAction:" destination="6F6-9h-lCG" eventType="touchUpInside" id="86U-bF-KJh"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdB-Da-7d6">
@@ -271,7 +270,6 @@
                                             <state key="normal" title="Done"/>
                                             <connections>
                                                 <action selector="doneAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="E9N-j9-Wq7"/>
-                                                <action selector="savePopoverAction:" destination="6F6-9h-lCG" eventType="touchUpInside" id="9qM-cg-mea"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -294,7 +292,7 @@
                         <outlet property="publisherNameLabel" destination="KgN-iW-2Zi" id="lUv-G1-RdS"/>
                         <outlet property="seriesTitleLabel" destination="u5s-Oh-ejq" id="fMq-EG-nAh"/>
                         <outlet property="variantLetterField" destination="3Zy-RV-Dci" id="bNd-Ag-dp0"/>
-                        <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="0v3-JZ-A6p"/>
+                        <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="C8C-cn-enk"/>
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" id="4lF-TE-LsV" userLabel="Edit Series View" customClass="EditSeriesPopoverView" customModule="Book_Binder" customModuleProvider="target">
@@ -463,7 +461,7 @@
                         <outlet property="eraTextField" destination="b2F-hB-2kl" id="FKS-Ih-F7V"/>
                         <outlet property="publisherTextField" destination="VRU-DX-2lN" id="jql-6M-TGn"/>
                         <outlet property="seriesTextField" destination="hy3-Dh-WMn" id="ruf-C2-fj7"/>
-                        <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="Mdi-My-7cv"/>
+                        <outlet property="visualEffectView" destination="tgc-Vs-6v7" id="JIq-xA-tnr"/>
                     </connections>
                 </view>
             </objects>
@@ -602,13 +600,10 @@
                         <outlet property="cameraButtom" destination="je3-mr-ZhH" id="QKK-Wd-fuh"/>
                         <outlet property="coverImageView" destination="ZQM-w5-72L" id="wQ9-bl-dFv"/>
                         <outlet property="editButton" destination="a4w-Li-dos" id="gJP-4G-3O0"/>
+                        <outlet property="editIssuePopoverView" destination="jbY-fL-dtK" id="32Q-UW-v7Y"/>
                         <outlet property="isOwnedSwitch" destination="UCS-Eo-pEg" id="84O-42-ZrH"/>
                         <outlet property="issueLabel" destination="EJO-N3-uwD" id="eRK-NW-qP4"/>
                         <outlet property="noIssuesLabel" destination="H8w-NP-uCw" id="H3K-4Q-keE"/>
-                        <outlet property="popoverCoverImage" destination="FTE-td-OuD" id="3ru-Re-ZQG"/>
-                        <outlet property="popoverIssueField" destination="URK-Cn-dFX" id="Zvg-88-P68"/>
-                        <outlet property="popoverVariantField" destination="ANs-e9-mA6" id="Sse-K1-BCX"/>
-                        <outlet property="popoverView" destination="jbY-fL-dtK" id="iQa-1l-wIQ"/>
                         <outlet property="publisherLabel" destination="Hj3-XC-JxU" id="j1g-aX-xNR"/>
                         <outlet property="titleLabel" destination="ToO-mV-afp" id="M5z-8S-HwS"/>
                         <outlet property="trashButton" destination="idT-ra-eSi" id="ETZ-eB-2Nd"/>
@@ -616,7 +611,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-co-nvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="jbY-fL-dtK" userLabel="Popover">
+                <view contentMode="scaleToFill" id="jbY-fL-dtK" customClass="EditIssuePopoverView" customModule="Book_Binder" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="310" height="400"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -672,14 +667,23 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbV-fi-ILX">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
                                                     <state key="normal" title="Photos"/>
+                                                    <connections>
+                                                        <action selector="photosAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="aXm-KS-FiT"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUJ-xs-vpZ">
                                                     <rect key="frame" x="0.0" y="51" width="128" height="30"/>
                                                     <state key="normal" title="Camera"/>
+                                                    <connections>
+                                                        <action selector="cameraAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="6cf-sj-f0r"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qp9-jM-UVr">
                                                     <rect key="frame" x="0.0" y="102" width="128" height="30"/>
-                                                    <state key="normal" title="None"/>
+                                                    <state key="normal" title="No Image"/>
+                                                    <connections>
+                                                        <action selector="noImageAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="3W6-T3-7Lz"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -699,14 +703,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
                                             <state key="normal" title="Cancel"/>
                                             <connections>
-                                                <action selector="cancelPopoverAction:" destination="6F6-9h-lCG" eventType="touchUpInside" id="Jmv-wJ-54A"/>
+                                                <action selector="cancelAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="w6X-v3-0Hn"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M2E-nV-KuK">
                                             <rect key="frame" x="241" y="0.0" width="37" height="30"/>
                                             <state key="normal" title="Done"/>
                                             <connections>
-                                                <action selector="savePopoverAction:" destination="6F6-9h-lCG" eventType="touchUpInside" id="7VC-GI-c2S"/>
+                                                <action selector="doneAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="OWw-V1-nqw"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -722,6 +726,12 @@
                         <constraint firstItem="BB6-PR-le8" firstAttribute="bottom" secondItem="z8b-Yx-kC5" secondAttribute="bottom" constant="8" id="vge-o6-UXL"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="BB6-PR-le8"/>
+                    <connections>
+                        <outlet property="coverImage" destination="FTE-td-OuD" id="dcm-PS-Vh3"/>
+                        <outlet property="issueNumberField" destination="URK-Cn-dFX" id="JZN-i7-mJj"/>
+                        <outlet property="variantLetterField" destination="ANs-e9-mA6" id="j83-0K-lHt"/>
+                        <outlet property="visualEffectView" destination="tuG-y1-uSN" id="K7m-LW-GLj"/>
+                    </connections>
                 </view>
             </objects>
             <point key="canvasLocation" x="2147" y="130"/>

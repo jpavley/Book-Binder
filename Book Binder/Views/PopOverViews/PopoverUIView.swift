@@ -14,39 +14,36 @@ class PopoverUIView: UIView {
     var cancelFunction: () -> () = { print("series changes canceled") }
     var deleteFunction: () -> () = { print("series deleted") }
     
-    weak var visualEffectView: UIVisualEffectView!
-    weak var parentView: UIView!
-    
-    func configurePopoverView() {
-        self.layer.cornerRadius = 5
+    func configurePopoverView(visualEffectView: UIVisualEffectView) {
+        self.layer.cornerRadius = 16
         visualEffectView.isHidden = true
         self.frame.size.width = UIScreen.main.bounds.width
     }
     
-    func loadPopoverView(popoverView: UIView, visualEffectView: UIVisualEffectView, parentView: UIView) {
+    func loadPopoverView(visualEffectView: UIVisualEffectView, parentView: UIView) {
         visualEffectView.isHidden = false
         
-        parentView.addSubview(popoverView)
-        popoverView.center = parentView.center
+        parentView.addSubview(self)
+        self.center = parentView.center
         
-        popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        popoverView.alpha = 0
+        self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.alpha = 0
         
         UIView.animate(withDuration: 0.4) {
-            popoverView.alpha = 1
-            popoverView.transform = CGAffineTransform.identity
+            self.alpha = 1
+            self.transform = CGAffineTransform.identity
         }
     }
     
-    func exitPopoverView(popoverView: UIView, visualEffectView: UIVisualEffectView) {
+    func exitPopoverView(visualEffectView: UIVisualEffectView) {
         
         UIView.animate(withDuration: 0.3, animations: {
-            popoverView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            popoverView.alpha = 0
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.alpha = 0
             visualEffectView.isHidden = true
             
         }) { success in
-            popoverView.removeFromSuperview()
+            self.removeFromSuperview()
         }
     }
 }

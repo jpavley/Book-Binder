@@ -9,5 +9,31 @@
 import UIKit
 
 class EditIssuePopoverView: PopoverUIView {
-
+    
+    @IBOutlet weak var issueNumberField: UITextField!
+    @IBOutlet weak var variantLetterField: UITextField!
+    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    
+    @IBAction func doneAction(_ sender: Any) {
+        saveFunction()
+        exitPopoverView(visualEffectView: visualEffectView)
+    }
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        cancelFunction()
+        exitPopoverView(visualEffectView: visualEffectView)
+    }
+    
+    @IBAction func photosAction(_ sender: Any) {
+        print("photosAction()")
+    }
+    
+    @IBAction func cameraAction(_ sender: Any) {
+        print("cameraAction()")
+    }
+    
+    @IBAction func noImageAction(_ sender: Any) {
+        print("noImageAction()")
+    }
 }
