@@ -38,6 +38,7 @@
 		B8FBA7B821D863AC0059C44E /* sample4.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B721D863AC0059C44E /* sample4.json */; };
 		B8FBA7B921D863C00059C44E /* sample4.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B721D863AC0059C44E /* sample4.json */; };
 		B8FBA7BB21DD1A620059C44E /* PopoverUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */; };
+		B8FBA7BD21DD22BE0059C44E /* EditIssuePopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FBA7BC21DD22BE0059C44E /* EditIssuePopoverView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		B8FBA7B421D7E2910059C44E /* sample3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample3.json; sourceTree = "<group>"; };
 		B8FBA7B721D863AC0059C44E /* sample4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample4.json; sourceTree = "<group>"; };
 		B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverUIView.swift; sourceTree = "<group>"; };
+		B8FBA7BC21DD22BE0059C44E /* EditIssuePopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssuePopoverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,12 +163,10 @@
 		484CC0DA2157DCE00012CD42 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B87C9DA621BFF3AA00F21E49 /* AddIssuePopoverView.swift */,
-				B85E619721C479F2005CA92A /* EditSeriesPopoverView.swift */,
+				B8FBA7BE21DD23240059C44E /* PopOverViews */,
 				484CC0D72156CC310012CD42 /* CollectionViewCell.swift */,
 				48699AEE215AE7710038864A /* CollectionReusableView.swift */,
 				B85E619921C47A35005CA92A /* UIViewHelper.swift */,
-				B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +201,17 @@
 				B82641DB21A1D22000BE6710 /* Screen Shot 2018-11-18 at 11.56.54 AM.png */,
 			);
 			path = mvp_0_1_screenshots;
+			sourceTree = "<group>";
+		};
+		B8FBA7BE21DD23240059C44E /* PopOverViews */ = {
+			isa = PBXGroup;
+			children = (
+				B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */,
+				B87C9DA621BFF3AA00F21E49 /* AddIssuePopoverView.swift */,
+				B85E619721C479F2005CA92A /* EditSeriesPopoverView.swift */,
+				B8FBA7BC21DD22BE0059C44E /* EditIssuePopoverView.swift */,
+			);
+			path = PopOverViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,6 +340,7 @@
 				B8F41CA7219769C30042C446 /* DataHelper.swift in Sources */,
 				B8F41CA4219768520042C446 /* JsonModel.swift in Sources */,
 				B83DAA1221A468C100EBCC71 /* WorkData.swift in Sources */,
+				B8FBA7BD21DD22BE0059C44E /* EditIssuePopoverView.swift in Sources */,
 				484CC0D82156CC310012CD42 /* CollectionViewCell.swift in Sources */,
 				483C61B8214ED8E9008C69D8 /* AppDelegate.swift in Sources */,
 			);
