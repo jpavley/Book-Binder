@@ -37,6 +37,7 @@
 		B8FBA7B621D7E6370059C44E /* sample3.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B421D7E2910059C44E /* sample3.json */; };
 		B8FBA7B821D863AC0059C44E /* sample4.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B721D863AC0059C44E /* sample4.json */; };
 		B8FBA7B921D863C00059C44E /* sample4.json in Resources */ = {isa = PBXBuildFile; fileRef = B8FBA7B721D863AC0059C44E /* sample4.json */; };
+		B8FBA7BB21DD1A620059C44E /* PopoverUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		B8F41CA6219769C30042C446 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		B8FBA7B421D7E2910059C44E /* sample3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample3.json; sourceTree = "<group>"; };
 		B8FBA7B721D863AC0059C44E /* sample4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample4.json; sourceTree = "<group>"; };
+		B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				484CC0D72156CC310012CD42 /* CollectionViewCell.swift */,
 				48699AEE215AE7710038864A /* CollectionReusableView.swift */,
 				B85E619921C47A35005CA92A /* UIViewHelper.swift */,
+				B8FBA7BA21DD1A620059C44E /* PopoverUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 			files = (
 				48699AEF215AE7710038864A /* CollectionReusableView.swift in Sources */,
 				B85E619A21C47A35005CA92A /* UIViewHelper.swift in Sources */,
+				B8FBA7BB21DD1A620059C44E /* PopoverUIView.swift in Sources */,
 				B85E619821C479F2005CA92A /* EditSeriesPopoverView.swift in Sources */,
 				484CC0D621567A180012CD42 /* DetailViewController.swift in Sources */,
 				B87C9DA721BFF3AA00F21E49 /* AddIssuePopoverView.swift in Sources */,
