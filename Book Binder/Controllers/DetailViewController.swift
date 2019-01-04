@@ -109,7 +109,6 @@ class DetailViewController: UIViewController {
         let pov = editIssuePopoverView as! EditIssuePopoverView
         pov.issueNumberField.text = "\(selectedVolumeSelectedWork.issueNumber)"
         pov.variantLetterField.text = selectedVolumeSelectedWork.variantLetter
-        pov.coverImage.image = UIImage(named: "\(selectedVolumeSelectedWork.coverImage)-thumb")
         
         // congigure save, delete, and cancel functions
         

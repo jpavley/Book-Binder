@@ -217,44 +217,13 @@
                                         </textField>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K4v-1P-swC" userLabel="Cover Stack View">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JdX-FP-hJx">
                                     <rect key="frame" x="0.0" y="144.5" width="294" height="199.5"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="UOd-pU-ns7" userLabel="Buttons Stack View">
-                                            <rect key="frame" x="0.0" y="34" width="144" height="132"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aHY-FF-jD6">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
-                                                    <state key="normal" title="Photos"/>
-                                                    <connections>
-                                                        <action selector="photosAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="uBU-8R-fIZ"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9CG-Iy-65l">
-                                                    <rect key="frame" x="0.0" y="51" width="144" height="30"/>
-                                                    <state key="normal" title="Camera"/>
-                                                    <connections>
-                                                        <action selector="cameraAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="qeq-xG-Ptm"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UjG-Xg-dwA">
-                                                    <rect key="frame" x="0.0" y="102" width="144" height="30"/>
-                                                    <state key="normal" title="No Image"/>
-                                                    <connections>
-                                                        <action selector="noImageAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="fpx-Kj-Fqm"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="american-standard-dc" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-D7-J1Q">
-                                            <rect key="frame" x="164" y="5" width="130" height="190"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="130" id="AQY-Ui-Z2G"/>
-                                                <constraint firstAttribute="height" constant="190" id="Dfi-dt-gbs"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                </stackView>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="sEu-HC-FAB" userLabel="Commands Stack View">
                                     <rect key="frame" x="0.0" y="356" width="294" height="30"/>
                                     <subviews>
@@ -287,7 +256,6 @@
                     <viewLayoutGuide key="safeArea" id="7Co-TE-B8u"/>
                     <connections>
                         <outlet property="collectionView" destination="uSc-2I-9lN" id="9u1-64-9GL"/>
-                        <outlet property="coverImage" destination="mYc-D7-J1Q" id="pOL-oV-ig8"/>
                         <outlet property="issueNumberField" destination="uNp-GZ-Bkz" id="oJC-Uk-NsX"/>
                         <outlet property="publisherNameLabel" destination="KgN-iW-2Zi" id="lUv-G1-RdS"/>
                         <outlet property="seriesTitleLabel" destination="u5s-Oh-ejq" id="fMq-EG-nAh"/>
@@ -362,58 +330,13 @@
                                         </textField>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wJO-aW-FUI" userLabel="Cover Stack View">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3rC-ep-Tyt">
                                     <rect key="frame" x="0.0" y="117" width="294" height="230"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="z45-cQ-A91" userLabel="Buttons Stack View">
-                                            <rect key="frame" x="0.0" y="49" width="144" height="132"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gM-jM-EUb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
-                                                    <state key="normal" title="Photos"/>
-                                                    <connections>
-                                                        <action selector="photosAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="0Gm-A5-VTU"/>
-                                                        <action selector="photosAction:" destination="4lF-TE-LsV" eventType="touchUpInside" id="T1s-My-GSy"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8C-Dc-zIk">
-                                                    <rect key="frame" x="0.0" y="51" width="144" height="30"/>
-                                                    <state key="normal" title="Camera"/>
-                                                    <connections>
-                                                        <action selector="cameraAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="ZgY-oy-khF"/>
-                                                        <action selector="cameraAction:" destination="4lF-TE-LsV" eventType="touchUpInside" id="vVs-ft-1Y1"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgy-SB-BMp">
-                                                    <rect key="frame" x="0.0" y="102" width="144" height="30"/>
-                                                    <state key="normal" title="No Image"/>
-                                                    <connections>
-                                                        <action selector="noImageAction:" destination="4lF-TE-LsV" eventType="touchUpInside" id="7Fj-AP-yse"/>
-                                                        <action selector="noImageAction:" destination="lXD-3N-hkp" eventType="touchUpInside" id="sPo-F0-D4D"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="omx-dl-T3x" userLabel="Image Stack View">
-                                            <rect key="frame" x="164" y="10.5" width="130" height="209.5"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="american-standard-dc" translatesAutoresizingMaskIntoConstraints="NO" id="857-TA-fno">
-                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="190"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="130" id="fKe-EY-ibC"/>
-                                                        <constraint firstAttribute="height" constant="190" id="hpA-db-KJp"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Cover Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CQ-Hh-MQ5">
-                                                    <rect key="frame" x="0.0" y="196" width="130" height="13.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                </stackView>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BFr-dT-r2r" userLabel="Commands Stack View">
                                     <rect key="frame" x="0.0" y="356" width="294" height="30"/>
                                     <subviews>
@@ -456,7 +379,6 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="RSM-bF-Joh"/>
                     <connections>
-                        <outlet property="coverImageView" destination="857-TA-fno" id="NZe-Ni-Siq"/>
                         <outlet property="deleteButton" destination="gT0-4z-edF" id="svn-hQ-ejx"/>
                         <outlet property="eraTextField" destination="b2F-hB-2kl" id="FKS-Ih-F7V"/>
                         <outlet property="publisherTextField" destination="VRU-DX-2lN" id="jql-6M-TGn"/>
@@ -658,44 +580,13 @@
                                         </textField>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dkz-18-RzW" userLabel="Cover Stack View">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0HY-nP-2gC">
                                     <rect key="frame" x="0.0" y="94" width="278" height="243"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="oQI-7S-YvZ" userLabel="Buttons Stack View">
-                                            <rect key="frame" x="0.0" y="55.5" width="128" height="132"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbV-fi-ILX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
-                                                    <state key="normal" title="Photos"/>
-                                                    <connections>
-                                                        <action selector="photosAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="aXm-KS-FiT"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XUJ-xs-vpZ">
-                                                    <rect key="frame" x="0.0" y="51" width="128" height="30"/>
-                                                    <state key="normal" title="Camera"/>
-                                                    <connections>
-                                                        <action selector="cameraAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="6cf-sj-f0r"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qp9-jM-UVr">
-                                                    <rect key="frame" x="0.0" y="102" width="128" height="30"/>
-                                                    <state key="normal" title="No Image"/>
-                                                    <connections>
-                                                        <action selector="noImageAction:" destination="jbY-fL-dtK" eventType="touchUpInside" id="3W6-T3-7Lz"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="american-standard-dc" translatesAutoresizingMaskIntoConstraints="NO" id="FTE-td-OuD">
-                                            <rect key="frame" x="148" y="26.5" width="130" height="190"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="130" id="0nE-8W-esU"/>
-                                                <constraint firstAttribute="height" constant="190" id="bJr-gT-6eu"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                </stackView>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="U6r-Bn-AVg" userLabel="Commands Stack View">
                                     <rect key="frame" x="0.0" y="354" width="278" height="30"/>
                                     <subviews>
@@ -727,7 +618,6 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="BB6-PR-le8"/>
                     <connections>
-                        <outlet property="coverImage" destination="FTE-td-OuD" id="dcm-PS-Vh3"/>
                         <outlet property="issueNumberField" destination="URK-Cn-dFX" id="JZN-i7-mJj"/>
                         <outlet property="variantLetterField" destination="ANs-e9-mA6" id="j83-0K-lHt"/>
                         <outlet property="visualEffectView" destination="tuG-y1-uSN" id="K7m-LW-GLj"/>
@@ -761,7 +651,6 @@
     </scenes>
     <resources>
         <image name="ac221-1-thumb" width="105" height="151"/>
-        <image name="american-standard-dc" width="478" height="738"/>
         <image name="ff151-1" width="420" height="632"/>
     </resources>
 </document>

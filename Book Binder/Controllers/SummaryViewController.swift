@@ -59,7 +59,6 @@ class SummaryViewController: UIViewController, UIImagePickerControllerDelegate, 
         editSeriesPopoverView.publisherTextField.text = ""
         editSeriesPopoverView.seriesTextField.text = ""
         editSeriesPopoverView.eraTextField.text = ""
-        editSeriesPopoverView.coverImageView.image = UIImage(named: "american-standard-marvel-thumb")
         editSeriesPopoverView.deleteButton.isHidden = true
         
         // congigure save, delete, and cancel functions
@@ -118,9 +117,6 @@ class SummaryViewController: UIViewController, UIImagePickerControllerDelegate, 
         editSeriesPopoverView.seriesTextField.text = comicBookCollection.volumes[editButton.tag].seriesName
         editSeriesPopoverView.eraTextField.text = "\(comicBookCollection.volumes[editButton.tag].era)"
         editSeriesPopoverView.deleteButton.isHidden = false
-        
-        let coverImageName = getCoverImageName(for: editButton.tag)
-        editSeriesPopoverView.coverImageView.image = UIImage(named: "\(coverImageName)-thumb")
         
         // congigure save, delete, and cancel functions
         
@@ -319,7 +315,6 @@ extension SummaryViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             addIssuePopoverView.publisherNameLabel.text = "\(selectedVolume.publisherName)"
             addIssuePopoverView.seriesTitleLabel.text = selectedVolume.seriesName
-            addIssuePopoverView.coverImage.image = UIImage(named: "\(selectedVolume.defaultCoverID)-thumb")
             addIssuePopoverView.issueNumberField.text = ""
             
             if let selectedVolumeSelectedWork = comicBookCollection.selectedVolumeSelectedWork {
