@@ -18,15 +18,18 @@ class EditSeriesPopoverView: PopoverUIView {
     @IBOutlet weak var deleteButton: UIButton!
     
     @IBAction func photosAction(_ sender: Any) {
-        
+        photoLibraryFunction()
+        print("photosAction()")
     }
     
     @IBAction func cameraAction(_ sender: Any) {
-        
+        cameraFunction()
+        print("cameraAction()")
     }
     
     @IBAction func noImageAction(_ sender: Any) {
-        
+        noImageFunction()
+        print("noImageAction()")
     }
     
     @IBAction func doneAction(_ sender: Any) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK:- Outlets
     
@@ -123,6 +123,20 @@ class DetailViewController: UIViewController {
         pov.cancelFunction = {
             self.enableMainUX(toggle: true)
         }
+        
+        // configure photo, camera, and no image functions
+        
+        pov.photoLibraryFunction = {
+            
+        }
+        
+//        pov.cameraFunction = {
+//
+//        }
+//
+//        pov.noImageFunction = {
+//
+//        }
         
         // everything is ready! pop the popover!
         

@@ -14,6 +14,10 @@ class PopoverUIView: UIView {
     var cancelFunction: () -> () = { print("series changes canceled") }
     var deleteFunction: () -> () = { print("series deleted") }
     
+    var photoLibraryFunction: () -> () = { print("open photo picker") }
+    var cameraFunction: () -> () = { print("open camera") }
+    var noImageFunction: () -> () = { print("no image") }
+    
     func configurePopoverView(visualEffectView: UIVisualEffectView) {
         self.layer.cornerRadius = 16
         visualEffectView.isHidden = true

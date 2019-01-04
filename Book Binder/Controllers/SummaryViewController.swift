@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SummaryViewController: UIViewController {
+class SummaryViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK:- Outlets -
     

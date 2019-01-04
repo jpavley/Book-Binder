@@ -26,14 +26,17 @@ class EditIssuePopoverView: PopoverUIView {
     }
     
     @IBAction func photosAction(_ sender: Any) {
+        photoLibraryFunction()
         print("photosAction()")
     }
     
     @IBAction func cameraAction(_ sender: Any) {
+        cameraFunction()
         print("cameraAction()")
     }
     
     @IBAction func noImageAction(_ sender: Any) {
+        noImageFunction()
         print("noImageAction()")
     }
 }
