@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class DetailViewController: UIViewController {
     
     // MARK:- Outlets
     
@@ -62,10 +62,19 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func cameraAction(_ sender: Any) {
-        // TODO: Replace the current cover with a new or existing photo
-        print("camera action")
-        save()
-        updateUX()
+        
+        self.photoPicker.allowsEditing = false
+        self.photoPicker.sourceType = .photoLibrary
+        
+        self.addChild(photoPicker)
+        photoPicker.didMove(toParent: self)
+        self.view!.addSubview(photoPicker.view)
+        
+//        self.present(self.photoPicker, animated: true) {
+//            // access photo details here
+//            self.save()
+//            self.updateUX()
+//        }
     }
     
     @IBAction func isOwnedAction(_ sender: Any) {
@@ -127,13 +136,13 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         // configure photo, camera, and no image functions
         
-        pov.photoLibraryFunction = {
-            self.photoPicker.allowsEditing = false
-            self.photoPicker.sourceType = .photoLibrary
-            self.present(self.photoPicker, animated: true) {
-                // access photo details here
-            }
-        }
+//        pov.photoLibraryFunction = {
+//            self.photoPicker.allowsEditing = false
+//            self.photoPicker.sourceType = .photoLibrary
+//            self.present(self.photoPicker, animated: true) {
+//                // access photo details here
+//            }
+//        }
         
 //        pov.cameraFunction = {
 //
@@ -400,5 +409,27 @@ extension DetailViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[.originalImage] as? UIImage {
+            coverImageView.image = pickedImage
+            let imageURL = info[.imageURL]
+            print("image url: \(imageURL!)")
+            save()
+            updateUX()
+        }
+        
+        picker.view!.removeFromSuperview()
+        picker.removeFromParent()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.view!.removeFromSuperview()
+        picker.removeFromParent()
     }
 }
