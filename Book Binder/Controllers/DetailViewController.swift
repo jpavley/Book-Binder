@@ -30,6 +30,7 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     var comicBookCollection: JsonModel!
     var undoData: WorkData!
+    var photoPicker: UIImagePickerController!
     
     // MARK:- Actions
     
@@ -127,7 +128,11 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         // configure photo, camera, and no image functions
         
         pov.photoLibraryFunction = {
-            
+            self.photoPicker.allowsEditing = false
+            self.photoPicker.sourceType = .photoLibrary
+            self.present(self.photoPicker, animated: true) {
+                // access photo details here
+            }
         }
         
 //        pov.cameraFunction = {
@@ -148,8 +153,14 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // popover config
+        
         let pov = editIssuePopoverView as! EditIssuePopoverView
         pov.configurePopoverView(visualEffectView: visualEffectView)
+        
+        // photo library config
+        photoPicker = UIImagePickerController()
+        photoPicker.delegate = self
         
         // main view config
         addSwipeGestureRecognisers()
